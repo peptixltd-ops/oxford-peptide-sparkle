@@ -210,9 +210,7 @@ function Home() {
         </div>
       </section>
 
-          </div>
-        </div>
-      </section>
+
 
       {/* Best Sellers */}
       <section className="bg-bone py-16">
