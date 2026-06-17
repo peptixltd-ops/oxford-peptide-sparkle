@@ -69,30 +69,20 @@ const reviews = [
   { text: "Outstanding documentation and transparency. The best peptide supplier we've sourced from in the UK.", who: "Verified Buyer" },
 ];
 
-/* ---------- Logo (refined SVG crest) ---------- */
+/* ---------- Logo (uses uploaded brand asset) ---------- */
 function Logo({ light = false }: { light?: boolean }) {
-  const fg = light ? "var(--bone)" : "var(--navy-deep)";
-  const sub = light ? "rgba(247,243,233,0.7)" : "rgba(20,28,42,0.65)";
   return (
-    <Link to="/" className="flex items-center gap-3 group">
-      <svg width="36" height="44" viewBox="0 0 36 44" fill="none" aria-hidden>
-        <defs>
-          <linearGradient id="crest" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#1f2a3d" />
-            <stop offset="1" stopColor="#0e1623" />
-          </linearGradient>
-        </defs>
-        <path d="M2 3 L18 1 L34 3 L34 24 C34 33 27 40 18 43 C9 40 2 33 2 24 Z" fill="url(#crest)" stroke="var(--gold)" strokeWidth="1.4" />
-        {/* serif O monogram */}
-        <circle cx="18" cy="19" r="7.5" fill="none" stroke="var(--gold)" strokeWidth="1.6" />
-        <circle cx="18" cy="19" r="2.2" fill="var(--gold)" />
-        {/* base bar */}
-        <rect x="9" y="30" width="18" height="1" fill="var(--gold)" opacity="0.85" />
-        <rect x="12" y="32.5" width="12" height="0.7" fill="var(--gold)" opacity="0.55" />
-      </svg>
-      <div className="leading-tight" style={{ color: fg }}>
+    <Link to="/" className="flex items-center gap-3 group" aria-label="Oxford Research Peptides — Home">
+      <img
+        src={oxfordLogo.url}
+        alt="Oxford Research Peptides"
+        width={56}
+        height={56}
+        className={`h-12 w-12 object-contain rounded-sm ${light ? "" : "bg-navy-deep p-1"}`}
+      />
+      <div className="leading-tight hidden sm:block" style={{ color: light ? "var(--bone)" : "var(--navy-deep)" }}>
         <div className="font-display text-[20px] font-semibold tracking-[0.08em] leading-none">OXFORD</div>
-        <div className="text-[9px] tracking-[0.32em] mt-1.5" style={{ color: sub }}>RESEARCH PEPTIDES</div>
+        <div className="text-[9px] tracking-[0.32em] mt-1.5 text-gold">RESEARCH PEPTIDES</div>
       </div>
     </Link>
   );
