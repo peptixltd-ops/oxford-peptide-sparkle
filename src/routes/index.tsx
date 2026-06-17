@@ -38,12 +38,12 @@ const trustBadges = [
 ];
 
 const products = [
-  { name: "Retatrutide",        dose: "10mg", purity: ">99% Purity", cap: "#1d2530", accent: "#d4b16a" },
-  { name: "BPC-157",            dose: "10mg", purity: ">99% Purity", cap: "#1a3a6e", accent: "#5b8dd1" },
-  { name: "TB-500",             dose: "10mg", purity: ">99% Purity", cap: "#2a4d35", accent: "#7ab089" },
-  { name: "BPC-157 / TB-500",   dose: "10mg", purity: ">99% Purity", cap: "#3d2050", accent: "#a87bc8" },
-  { name: "GHK-Cu",             dose: "5mg",  purity: ">98% Purity", cap: "#7a3a1c", accent: "#d68a5c" },
-  { name: "CJC-1295 (no DAC)",  dose: "5mg",  purity: ">99% Purity", cap: "#0c4a55", accent: "#5fb8c4" },
+  { name: "Retatrutide",        dose: "10mg", purity: ">99% Purity", img: vialRetatrutide },
+  { name: "BPC-157",            dose: "5mg",  purity: ">99% Purity", img: vialBpc157 },
+  { name: "TB-500",             dose: "5mg",  purity: ">99% Purity", img: vialTb500 },
+  { name: "BPC-157 / TB-500",   dose: "10mg", purity: ">99% Purity", img: vialBpc157 },
+  { name: "GHK-Cu",             dose: "5mg",  purity: ">98% Purity", img: vialTb500 },
+  { name: "CJC-1295 (no DAC)",  dose: "5mg",  purity: ">99% Purity", img: vialRetatrutide },
 ];
 
 // Neutral, research-only categorisations — no therapeutic claims.
