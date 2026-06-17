@@ -227,8 +227,8 @@ function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {products.map((p) => (
               <div key={p.name} className="bg-white border border-border p-5 flex flex-col group hover:border-gold transition-colors">
-                <div className="aspect-square flex items-center justify-center mb-4 relative bg-gradient-to-b from-muted/30 to-transparent">
-                  <Vial cap={p.cap} accent={p.accent} label={p.name.toUpperCase()} />
+                <div className="aspect-square flex items-center justify-center mb-4 relative bg-gradient-to-b from-navy-deep/5 to-transparent overflow-hidden">
+                  <img src={p.img} alt={`${p.name} research peptide vial`} className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <h3 className="font-display text-base font-semibold mb-2 leading-tight">{p.name}</h3>
                 <span className="inline-block bg-gold/20 text-navy-deep text-[10px] font-bold px-2 py-1 mb-1 w-fit">{p.dose}</span>
