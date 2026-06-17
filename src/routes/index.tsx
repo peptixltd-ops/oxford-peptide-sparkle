@@ -13,9 +13,11 @@ import artBook from "@/assets/article-book.jpg";
 import artNetwork from "@/assets/article-network.jpg";
 import wholesaleVials from "@/assets/wholesale-vials.jpg";
 import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
-import vialRetatrutide from "@/assets/vial-retatrutide.jpg";
-import vialBpc157 from "@/assets/vial-bpc157.jpg";
-import vialTb500 from "@/assets/vial-tb500.jpg";
+import vialRetatrutide from "@/assets/vial-retatrutide.png";
+import vialSemaglutide from "@/assets/vial-semaglutide.png";
+import vialTirzepatide from "@/assets/vial-tirzepatide.png";
+import vialGhkcu from "@/assets/vial-ghkcu.png";
+import vialBpc157 from "@/assets/vial-bpc157.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,12 +40,12 @@ const trustBadges = [
 ];
 
 const products = [
-  { name: "Retatrutide",        dose: "10mg", purity: ">99% Purity", img: vialRetatrutide },
-  { name: "BPC-157",            dose: "5mg",  purity: ">99% Purity", img: vialBpc157 },
-  { name: "TB-500",             dose: "5mg",  purity: ">99% Purity", img: vialTb500 },
-  { name: "BPC-157 / TB-500",   dose: "10mg", purity: ">99% Purity", img: vialBpc157 },
-  { name: "GHK-Cu",             dose: "5mg",  purity: ">98% Purity", img: vialTb500 },
-  { name: "CJC-1295 (no DAC)",  dose: "5mg",  purity: ">99% Purity", img: vialRetatrutide },
+  { name: "Retatrutide", dose: "10mg", purity: ">99% Purity", img: vialRetatrutide, accent: "#1d4f8a" },
+  { name: "Semaglutide", dose: "10mg", purity: ">99% Purity", img: vialSemaglutide, accent: "#7a1f2b" },
+  { name: "Tirzepatide", dose: "10mg", purity: ">99% Purity", img: vialTirzepatide, accent: "#a37423" },
+  { name: "GHK-Cu",      dose: "5mg",  purity: ">98% Purity", img: vialGhkcu,       accent: "#1f6b6b" },
+  { name: "BPC-157",     dose: "5mg",  purity: ">99% Purity", img: vialBpc157,      accent: "#5a3a8a" },
+  { name: "CJC-1295 (no DAC)", dose: "5mg", purity: ">99% Purity", img: vialRetatrutide, accent: "#1d4f8a" },
 ];
 
 // Neutral, research-only categorisations — no therapeutic claims.
