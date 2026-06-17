@@ -4,7 +4,7 @@ import {
   Microscope, Truck, ArrowRight, Star, Calculator, Instagram, Twitter, Mail,
   Atom, Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
 } from "lucide-react";
-import heroVial from "@/assets/hero-vial.jpg";
+import heroVial from "@/assets/vial-retatrutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
@@ -161,18 +161,13 @@ function Home() {
         </div>
       </div>
 
-      {/* Hero — fully integrated */}
-      <section className="relative text-bone overflow-hidden min-h-[680px] flex items-center">
-        <img src={heroVial} alt="" width={1920} height={1080}
-          className="absolute inset-0 w-full h-full object-cover" />
-        {/* Layered scrims for legibility */}
+      {/* Hero — single vial, calm background */}
+      <section className="relative text-bone overflow-hidden min-h-[680px] flex items-center bg-navy-deep">
+        {/* Soft radial glow behind vial */}
         <div className="absolute inset-0" style={{
-          background: "linear-gradient(90deg, rgba(10,15,26,0.95) 0%, rgba(10,15,26,0.75) 35%, rgba(10,15,26,0.2) 60%, rgba(10,15,26,0.6) 100%)"
+          background: "radial-gradient(ellipse at 75% 50%, rgba(180,140,70,0.18) 0%, transparent 55%), linear-gradient(180deg, #0a0f1a 0%, #0e1729 100%)"
         }} />
-        <div className="absolute inset-0" style={{
-          background: "linear-gradient(180deg, rgba(10,15,26,0.4) 0%, transparent 30%, transparent 70%, rgba(10,15,26,0.5) 100%)"
-        }} />
-        <div className="container-x relative grid lg:grid-cols-[1.1fr_1fr] gap-10 py-24 items-center">
+        <div className="container-x relative grid lg:grid-cols-[1.2fr_1fr] gap-10 py-24 items-center">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-10 bg-gold" />
@@ -201,18 +196,20 @@ function Home() {
             </div>
           </div>
 
-          {/* Right column — stat list rather than competing visual */}
-          <div className="hidden lg:flex flex-col gap-5 lg:pl-8 lg:border-l lg:border-bone/15">
-            {[
-              { k: ">99%", v: "Average peptide purity across catalogue" },
-              { k: "100%", v: "Batches with independent COA included" },
-              { k: "UK",   v: "Manufactured and dispatched same day" },
-            ].map(s => (
-              <div key={s.k} className="flex items-baseline gap-5">
-                <div className="font-display text-5xl text-gold font-medium tabular-nums w-24">{s.k}</div>
-                <div className="text-sm text-bone/75 max-w-[18ch] leading-snug">{s.v}</div>
-              </div>
-            ))}
+          {/* Right column — single hero vial */}
+          <div className="relative flex items-center justify-center min-h-[480px]">
+            <div className="absolute w-[380px] h-[380px] rounded-full" style={{
+              background: "radial-gradient(circle, rgba(212,175,99,0.25) 0%, transparent 65%)"
+            }} />
+            <img
+              src={heroVial}
+              alt="Oxford Research Peptides vial"
+              className="relative max-h-[560px] w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
+            />
+          </div>
+        </div>
+      </section>
+
           </div>
         </div>
       </section>
