@@ -12,6 +12,10 @@ import artVials from "@/assets/article-vials.jpg";
 import artBook from "@/assets/article-book.jpg";
 import artNetwork from "@/assets/article-network.jpg";
 import wholesaleVials from "@/assets/wholesale-vials.jpg";
+import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
+import vialRetatrutide from "@/assets/vial-retatrutide.jpg";
+import vialBpc157 from "@/assets/vial-bpc157.jpg";
+import vialTb500 from "@/assets/vial-tb500.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
