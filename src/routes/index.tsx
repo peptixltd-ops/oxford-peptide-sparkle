@@ -12,6 +12,10 @@ import artVials from "@/assets/article-vials.jpg";
 import artBook from "@/assets/article-book.jpg";
 import artNetwork from "@/assets/article-network.jpg";
 import wholesaleVials from "@/assets/wholesale-vials.jpg";
+import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
+import vialRetatrutide from "@/assets/vial-retatrutide.jpg";
+import vialBpc157 from "@/assets/vial-bpc157.jpg";
+import vialTb500 from "@/assets/vial-tb500.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,12 +38,12 @@ const trustBadges = [
 ];
 
 const products = [
-  { name: "Retatrutide",        dose: "10mg", purity: ">99% Purity", cap: "#1d2530", accent: "#d4b16a" },
-  { name: "BPC-157",            dose: "10mg", purity: ">99% Purity", cap: "#1a3a6e", accent: "#5b8dd1" },
-  { name: "TB-500",             dose: "10mg", purity: ">99% Purity", cap: "#2a4d35", accent: "#7ab089" },
-  { name: "BPC-157 / TB-500",   dose: "10mg", purity: ">99% Purity", cap: "#3d2050", accent: "#a87bc8" },
-  { name: "GHK-Cu",             dose: "5mg",  purity: ">98% Purity", cap: "#7a3a1c", accent: "#d68a5c" },
-  { name: "CJC-1295 (no DAC)",  dose: "5mg",  purity: ">99% Purity", cap: "#0c4a55", accent: "#5fb8c4" },
+  { name: "Retatrutide",        dose: "10mg", purity: ">99% Purity", img: vialRetatrutide },
+  { name: "BPC-157",            dose: "5mg",  purity: ">99% Purity", img: vialBpc157 },
+  { name: "TB-500",             dose: "5mg",  purity: ">99% Purity", img: vialTb500 },
+  { name: "BPC-157 / TB-500",   dose: "10mg", purity: ">99% Purity", img: vialBpc157 },
+  { name: "GHK-Cu",             dose: "5mg",  purity: ">98% Purity", img: vialTb500 },
+  { name: "CJC-1295 (no DAC)",  dose: "5mg",  purity: ">99% Purity", img: vialRetatrutide },
 ];
 
 // Neutral, research-only categorisations — no therapeutic claims.
@@ -65,30 +69,20 @@ const reviews = [
   { text: "Outstanding documentation and transparency. The best peptide supplier we've sourced from in the UK.", who: "Verified Buyer" },
 ];
 
-/* ---------- Logo (refined SVG crest) ---------- */
+/* ---------- Logo (uses uploaded brand asset) ---------- */
 function Logo({ light = false }: { light?: boolean }) {
-  const fg = light ? "var(--bone)" : "var(--navy-deep)";
-  const sub = light ? "rgba(247,243,233,0.7)" : "rgba(20,28,42,0.65)";
   return (
-    <Link to="/" className="flex items-center gap-3 group">
-      <svg width="36" height="44" viewBox="0 0 36 44" fill="none" aria-hidden>
-        <defs>
-          <linearGradient id="crest" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#1f2a3d" />
-            <stop offset="1" stopColor="#0e1623" />
-          </linearGradient>
-        </defs>
-        <path d="M2 3 L18 1 L34 3 L34 24 C34 33 27 40 18 43 C9 40 2 33 2 24 Z" fill="url(#crest)" stroke="var(--gold)" strokeWidth="1.4" />
-        {/* serif O monogram */}
-        <circle cx="18" cy="19" r="7.5" fill="none" stroke="var(--gold)" strokeWidth="1.6" />
-        <circle cx="18" cy="19" r="2.2" fill="var(--gold)" />
-        {/* base bar */}
-        <rect x="9" y="30" width="18" height="1" fill="var(--gold)" opacity="0.85" />
-        <rect x="12" y="32.5" width="12" height="0.7" fill="var(--gold)" opacity="0.55" />
-      </svg>
-      <div className="leading-tight" style={{ color: fg }}>
+    <Link to="/" className="flex items-center gap-3 group" aria-label="Oxford Research Peptides — Home">
+      <img
+        src={oxfordLogo.url}
+        alt="Oxford Research Peptides"
+        width={56}
+        height={56}
+        className={`h-12 w-12 object-contain rounded-sm ${light ? "" : "bg-navy-deep p-1"}`}
+      />
+      <div className="leading-tight hidden sm:block" style={{ color: light ? "var(--bone)" : "var(--navy-deep)" }}>
         <div className="font-display text-[20px] font-semibold tracking-[0.08em] leading-none">OXFORD</div>
-        <div className="text-[9px] tracking-[0.32em] mt-1.5" style={{ color: sub }}>RESEARCH PEPTIDES</div>
+        <div className="text-[9px] tracking-[0.32em] mt-1.5 text-gold">RESEARCH PEPTIDES</div>
       </div>
     </Link>
   );
@@ -233,8 +227,8 @@ function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {products.map((p) => (
               <div key={p.name} className="bg-white border border-border p-5 flex flex-col group hover:border-gold transition-colors">
-                <div className="aspect-square flex items-center justify-center mb-4 relative bg-gradient-to-b from-muted/30 to-transparent">
-                  <Vial cap={p.cap} accent={p.accent} label={p.name.toUpperCase()} />
+                <div className="aspect-square flex items-center justify-center mb-4 relative bg-gradient-to-b from-navy-deep/5 to-transparent overflow-hidden">
+                  <img src={p.img} alt={`${p.name} research peptide vial`} className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <h3 className="font-display text-base font-semibold mb-2 leading-tight">{p.name}</h3>
                 <span className="inline-block bg-gold/20 text-navy-deep text-[10px] font-bold px-2 py-1 mb-1 w-fit">{p.dose}</span>
