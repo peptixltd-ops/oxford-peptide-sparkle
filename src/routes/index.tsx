@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Search, User, ShoppingBag, ShieldCheck, FlaskConical, ClipboardCheck,
   Microscope, Truck, ArrowRight, Star, Calculator, Instagram, Twitter, Mail,
-  Activity, Heart, TrendingUp, Atom, MoreHorizontal, Droplet, Package, Award
+  Atom, Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
 } from "lucide-react";
 import heroVial from "@/assets/hero-vial.jpg";
 import labStandards from "@/assets/lab-standards.jpg";
@@ -17,9 +17,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Oxford Research Peptides — Premium UK Manufactured Research Peptides" },
-      { name: "description", content: "UK manufactured, third-party tested research peptides with >99% purity. Certificates of analysis included on every batch." },
+      { name: "description", content: "UK manufactured, third-party tested research peptides with >99% purity. For laboratory research use only." },
       { property: "og:title", content: "Oxford Research Peptides — Premium UK Research Peptides" },
-      { property: "og:description", content: "UK manufactured, third-party tested research peptides with >99% purity." },
+      { property: "og:description", content: "UK manufactured, third-party tested research peptides. Strictly for in-vitro laboratory research." },
     ],
   }),
   component: Home,
@@ -34,48 +34,94 @@ const trustBadges = [
 ];
 
 const products = [
-  { name: "Retatrutide", dose: "10mg", purity: ">99% Purity", color: "oklch(0.4 0.04 258)" },
-  { name: "BPC-157", dose: "10mg", purity: ">99% Purity", color: "oklch(0.35 0.1 250)" },
-  { name: "TB-500", dose: "10mg", purity: ">99% Purity", color: "oklch(0.4 0.08 150)" },
-  { name: "BPC-157 / TB-500 Blend", dose: "10mg", purity: ">99% Purity", color: "oklch(0.35 0.12 290)" },
-  { name: "GHK-Cu", dose: "5mg", purity: ">98% Purity", color: "oklch(0.5 0.13 50)" },
-  { name: "CJC-1295 (no DAC)", dose: "5mg", purity: ">99% Purity", color: "oklch(0.45 0.09 220)" },
+  { name: "Retatrutide",        dose: "10mg", purity: ">99% Purity", cap: "#1d2530", accent: "#d4b16a" },
+  { name: "BPC-157",            dose: "10mg", purity: ">99% Purity", cap: "#1a3a6e", accent: "#5b8dd1" },
+  { name: "TB-500",             dose: "10mg", purity: ">99% Purity", cap: "#2a4d35", accent: "#7ab089" },
+  { name: "BPC-157 / TB-500",   dose: "10mg", purity: ">99% Purity", cap: "#3d2050", accent: "#a87bc8" },
+  { name: "GHK-Cu",             dose: "5mg",  purity: ">98% Purity", cap: "#7a3a1c", accent: "#d68a5c" },
+  { name: "CJC-1295 (no DAC)",  dose: "5mg",  purity: ">99% Purity", cap: "#0c4a55", accent: "#5fb8c4" },
 ];
 
+// Neutral, research-only categorisations — no therapeutic claims.
 const researchAreas = [
-  { icon: Activity, title: "Weight Management Research", items: ["Retatrutide", "Tirzepatide", "Semaglutide"] },
-  { icon: Heart, title: "Recovery Research", items: ["BPC-157", "TB-500", "BPC/TB Blend"] },
-  { icon: TrendingUp, title: "Growth Hormone Research", items: ["CJC-1295", "Ipamorelin", "Sermorelin"] },
-  { icon: Atom, title: "Copper Peptides Research", items: ["GHK-Cu", "TB-500", "Copper Peptides"] },
-  { icon: MoreHorizontal, title: "Other Research Peptides", items: ["Melanotan II", "PT-141", "And more"] },
+  { icon: Dna,            title: "Peptide Chemistry",    items: ["Synthetic peptides", "Modified analogues", "Reference standards"] },
+  { icon: Beaker,         title: "Receptor Studies",     items: ["GLP-1 ligands", "GHSR ligands", "Melanocortin ligands"] },
+  { icon: TestTube,       title: "Assay Development",    items: ["HPLC standards", "MS reference", "Calibration peptides"] },
+  { icon: Thermometer,    title: "Stability Research",   items: ["Lyophilised powders", "Reconstitution studies", "Long-term storage"] },
+  { icon: MoreHorizontal, title: "Specialty Compounds",  items: ["Copper peptides", "Cyclic peptides", "Custom syntheses"] },
 ];
 
 const articles = [
-  { img: artMolecule, date: "May 1, 2024", title: "Retatrutide Benefits: What The Research Shows" },
-  { img: artReconstitute, date: "April 28, 2024", title: "How to Reconstitute Peptides: A Step-by-Step Guide" },
-  { img: artNetwork, date: "May 1, 2024", title: "Retatrutide vs Tirzepatide: Key Differences" },
-  { img: artVials, date: "April 25, 2024", title: "What is Bacteriostatic Water and Why Is It Important?" },
-  { img: artBook, date: "April 20, 2024", title: "Peptides Beginner Guide: Everything You Need to Know" },
+  { img: artMolecule, date: "May 1, 2024", title: "Structural Notes on Retatrutide: A Triple Agonist Peptide" },
+  { img: artReconstitute, date: "April 28, 2024", title: "Reconstituting Lyophilised Peptides: A Laboratory Guide" },
+  { img: artNetwork, date: "May 1, 2024", title: "Comparative Sequence Analysis: Retatrutide vs Tirzepatide" },
+  { img: artVials, date: "April 25, 2024", title: "Bacteriostatic Water: Composition and Laboratory Use" },
+  { img: artBook, date: "April 20, 2024", title: "A Researcher's Primer to Peptide Handling and Storage" },
 ];
 
 const reviews = [
-  { text: "Excellent quality peptides with full COA provided. Fast delivery and discreet packaging. Highly recommended.", who: "Verified Buyer" },
-  { text: "The purity is consistently above 99%. Oxford Research Peptides is my go-to supplier.", who: "Laboratory Researcher" },
-  { text: "Outstanding customer service and transparency. The best peptide supplier in the UK.", who: "Verified Buyer" },
+  { text: "Consistently high purity with full COA provided. Fast delivery and discreet packaging. Highly recommended for in-vitro work.", who: "Verified Buyer" },
+  { text: "Purity is consistently above 99%. Oxford Research Peptides has become our standard supplier for reference material.", who: "Laboratory Researcher" },
+  { text: "Outstanding documentation and transparency. The best peptide supplier we've sourced from in the UK.", who: "Verified Buyer" },
 ];
 
+/* ---------- Logo (refined SVG crest) ---------- */
 function Logo({ light = false }: { light?: boolean }) {
+  const fg = light ? "var(--bone)" : "var(--navy-deep)";
+  const sub = light ? "rgba(247,243,233,0.7)" : "rgba(20,28,42,0.65)";
   return (
-    <Link to="/" className="flex items-center gap-2.5 group">
-      <div className={`w-9 h-10 rounded-sm flex items-center justify-center border-2 ${light ? "border-gold" : "border-gold"}`}
-           style={{ background: "linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%)" }}>
-        <span className="text-gold text-lg font-display font-bold">O</span>
-      </div>
-      <div className={`leading-tight ${light ? "text-bone" : "text-navy-deep"}`}>
-        <div className="font-display text-lg font-semibold tracking-wide">OXFORD</div>
-        <div className="text-[9px] tracking-[0.2em] -mt-1 opacity-80">RESEARCH PEPTIDES</div>
+    <Link to="/" className="flex items-center gap-3 group">
+      <svg width="36" height="44" viewBox="0 0 36 44" fill="none" aria-hidden>
+        <defs>
+          <linearGradient id="crest" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#1f2a3d" />
+            <stop offset="1" stopColor="#0e1623" />
+          </linearGradient>
+        </defs>
+        <path d="M2 3 L18 1 L34 3 L34 24 C34 33 27 40 18 43 C9 40 2 33 2 24 Z" fill="url(#crest)" stroke="var(--gold)" strokeWidth="1.4" />
+        {/* serif O monogram */}
+        <circle cx="18" cy="19" r="7.5" fill="none" stroke="var(--gold)" strokeWidth="1.6" />
+        <circle cx="18" cy="19" r="2.2" fill="var(--gold)" />
+        {/* base bar */}
+        <rect x="9" y="30" width="18" height="1" fill="var(--gold)" opacity="0.85" />
+        <rect x="12" y="32.5" width="12" height="0.7" fill="var(--gold)" opacity="0.55" />
+      </svg>
+      <div className="leading-tight" style={{ color: fg }}>
+        <div className="font-display text-[20px] font-semibold tracking-[0.08em] leading-none">OXFORD</div>
+        <div className="text-[9px] tracking-[0.32em] mt-1.5" style={{ color: sub }}>RESEARCH PEPTIDES</div>
       </div>
     </Link>
+  );
+}
+
+/* ---------- Pharma vial component ---------- */
+function Vial({ cap, accent, label }: { cap: string; accent: string; label: string }) {
+  return (
+    <div className="relative w-[88px] h-[140px] mx-auto">
+      {/* Cap */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[44px] h-[18px] rounded-[3px]"
+        style={{ background: `linear-gradient(180deg, ${cap} 0%, #000 100%)`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2)" }} />
+      <div className="absolute left-1/2 -translate-x-1/2 top-[14px] w-[48px] h-[6px] rounded-[2px]"
+        style={{ background: `linear-gradient(180deg, #c9c9c9, #6e6e6e)`, boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.3)" }} />
+      {/* Glass body */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[20px] w-[72px] h-[118px] rounded-b-[10px] rounded-t-[3px] overflow-hidden"
+        style={{
+          background: "linear-gradient(180deg, rgba(220,230,240,0.55) 0%, rgba(180,195,210,0.35) 50%, rgba(140,160,180,0.55) 100%)",
+          boxShadow: "inset 2px 0 4px rgba(255,255,255,0.5), inset -2px 0 4px rgba(0,0,0,0.15), inset 0 -6px 8px rgba(0,0,0,0.2)",
+          border: "1px solid rgba(180,195,210,0.4)",
+        }}>
+        {/* highlight */}
+        <div className="absolute left-1 top-2 w-1.5 h-20 rounded-full bg-white/60 blur-[1px]" />
+        {/* Label */}
+        <div className="absolute inset-x-1 top-7 bottom-3 bg-white border-t border-b border-muted-foreground/30 px-1.5 py-2 flex flex-col">
+          <div className="h-[3px] w-full mb-1.5" style={{ background: accent }} />
+          <div className="text-[8.5px] font-bold tracking-tight text-navy-deep leading-tight">{label}</div>
+          <div className="text-[6px] text-muted-foreground mt-auto tracking-widest">RESEARCH USE ONLY</div>
+        </div>
+      </div>
+      {/* Shadow */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-[-6px] w-[80px] h-2 bg-black/20 rounded-full blur-md" />
+    </div>
   );
 }
 
@@ -119,20 +165,28 @@ function Home() {
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden text-bone"
-        style={{ background: "linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 50%, var(--navy-deep) 100%)" }}>
-        <div className="absolute inset-0 opacity-[0.04]" style={{
-          backgroundImage: "radial-gradient(circle at 20% 50%, var(--gold) 0%, transparent 40%), radial-gradient(circle at 80% 80%, var(--gold) 0%, transparent 40%)"
+      {/* Hero — fully integrated */}
+      <section className="relative text-bone overflow-hidden min-h-[680px] flex items-center">
+        <img src={heroVial} alt="" width={1920} height={1080}
+          className="absolute inset-0 w-full h-full object-cover" />
+        {/* Layered scrims for legibility */}
+        <div className="absolute inset-0" style={{
+          background: "linear-gradient(90deg, rgba(10,15,26,0.95) 0%, rgba(10,15,26,0.75) 35%, rgba(10,15,26,0.2) 60%, rgba(10,15,26,0.6) 100%)"
         }} />
-        <div className="container-x relative grid lg:grid-cols-[1.1fr_1fr_0.7fr] gap-10 py-20 items-center">
+        <div className="absolute inset-0" style={{
+          background: "linear-gradient(180deg, rgba(10,15,26,0.4) 0%, transparent 30%, transparent 70%, rgba(10,15,26,0.5) 100%)"
+        }} />
+        <div className="container-x relative grid lg:grid-cols-[1.1fr_1fr] gap-10 py-24 items-center">
           <div>
-            <div className="text-gold text-xs font-bold tracking-[0.25em] mb-6">PREMIUM RESEARCH PEPTIDES</div>
-            <h1 className="font-display text-6xl md:text-7xl font-medium leading-[1.05] mb-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-10 bg-gold" />
+              <span className="text-gold text-[11px] font-bold tracking-[0.3em]">PREMIUM RESEARCH PEPTIDES</span>
+            </div>
+            <h1 className="font-display text-6xl md:text-7xl font-medium leading-[1.02] mb-7">
               Research.<br />Quality.<br />Results<span className="text-gold">.</span>
             </h1>
-            <p className="text-bone/70 text-base max-w-md mb-8 leading-relaxed">
-              Premium research peptides manufactured in the UK with the highest standards of quality and transparency.
+            <p className="text-bone/75 text-base max-w-md mb-9 leading-relaxed">
+              Premium research peptides manufactured in the UK with the highest standards of quality, documentation and transparency. Strictly for in-vitro laboratory research.
             </p>
             <div className="flex flex-wrap gap-3 mb-8">
               <button className="px-7 py-3.5 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors">
@@ -148,26 +202,19 @@ function Home() {
                 {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400" />)}
               </div>
               <span className="text-bone/70">4.9/5 based on 120+ reviews</span>
-              <span className="text-emerald-400 font-semibold">★ Trustpilot</span>
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 bg-gold/10 blur-3xl rounded-full" />
-            <img src={heroVial} alt="Premium research peptide vial" width={520} height={520}
-              className="relative max-w-full h-auto drop-shadow-2xl" />
-          </div>
-
-          <div className="hidden lg:flex flex-col gap-5">
-            {trustBadges.map((b) => (
-              <div key={b.title} className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center shrink-0">
-                  <b.icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <div className="text-[11px] font-bold tracking-wider">{b.title.toUpperCase()}</div>
-                  <div className="text-[11px] opacity-70">{b.sub}</div>
-                </div>
+          {/* Right column — stat list rather than competing visual */}
+          <div className="hidden lg:flex flex-col gap-5 lg:pl-8 lg:border-l lg:border-bone/15">
+            {[
+              { k: ">99%", v: "Average peptide purity across catalogue" },
+              { k: "100%", v: "Batches with independent COA included" },
+              { k: "UK",   v: "Manufactured and dispatched same day" },
+            ].map(s => (
+              <div key={s.k} className="flex items-baseline gap-5">
+                <div className="font-display text-5xl text-gold font-medium tabular-nums w-24">{s.k}</div>
+                <div className="text-sm text-bone/75 max-w-[18ch] leading-snug">{s.v}</div>
               </div>
             ))}
           </div>
@@ -186,16 +233,10 @@ function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {products.map((p) => (
               <div key={p.name} className="bg-white border border-border p-5 flex flex-col group hover:border-gold transition-colors">
-                <div className="aspect-square flex items-center justify-center mb-4 relative">
-                  <div className="absolute inset-x-4 inset-y-2 bg-gradient-to-b from-transparent to-muted/60 rounded-full blur-xl" />
-                  <div className="relative w-20 h-32 flex flex-col items-center">
-                    <div className="w-14 h-6 rounded-t-sm" style={{ background: p.color }} />
-                    <div className="w-20 h-26 bg-gradient-to-b from-white/90 to-white/60 border border-muted-foreground/20 rounded-b-sm flex items-center justify-center px-1" style={{ height: "6.5rem" }}>
-                      <span className="text-[10px] font-bold text-navy-deep text-center leading-tight">{p.name.split(" ")[0]}</span>
-                    </div>
-                  </div>
+                <div className="aspect-square flex items-center justify-center mb-4 relative bg-gradient-to-b from-muted/30 to-transparent">
+                  <Vial cap={p.cap} accent={p.accent} label={p.name.toUpperCase()} />
                 </div>
-                <h3 className="font-display text-base font-semibold mb-2">{p.name}</h3>
+                <h3 className="font-display text-base font-semibold mb-2 leading-tight">{p.name}</h3>
                 <span className="inline-block bg-gold/20 text-navy-deep text-[10px] font-bold px-2 py-1 mb-1 w-fit">{p.dose}</span>
                 <div className="text-xs text-muted-foreground mb-4">{p.purity}</div>
                 <button className="mt-auto border border-border py-2.5 text-[10px] font-bold tracking-widest hover:bg-navy-deep hover:text-bone hover:border-navy-deep transition-colors">
@@ -207,7 +248,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Research areas */}
+      {/* Research areas — neutral categorisations */}
       <section className="bg-muted/40 py-16">
         <div className="container-x">
           <div className="flex items-center justify-between mb-10">
@@ -245,7 +286,7 @@ function Home() {
             <div className="text-gold text-xs font-bold tracking-[0.25em] mb-4">OUR STANDARDS</div>
             <h2 className="font-display text-4xl md:text-5xl font-medium mb-5 leading-tight">Excellence in Every Batch</h2>
             <p className="text-bone/70 mb-8 max-w-md leading-relaxed">
-              We combine advanced manufacturing with independent testing to deliver peptides researchers can trust.
+              We combine advanced peptide synthesis with independent third-party testing to deliver reference-grade material researchers can document and trust.
             </p>
             <div className="grid grid-cols-4 gap-4 mb-8 max-w-md">
               {[
@@ -272,7 +313,7 @@ function Home() {
               {[
                 ["Product", "Retatrutide"],
                 ["Batch Number", "ORP-240501"],
-                ["Purity", ">99%"],
+                ["Purity (HPLC)", ">99%"],
                 ["Appearance", "White Lyophilised Powder"],
                 ["Molecular Weight", "4,574.6 g/mol"],
                 ["Test Date", "01/05/2024"],
@@ -335,7 +376,7 @@ function Home() {
               <div className="flex-1">
                 <h3 className="text-xs font-bold tracking-[0.25em] mb-2">PEPTIDE RECONSTITUTION CALCULATOR</h3>
                 <p className="text-bone/70 text-sm mb-5 leading-relaxed">
-                  Calculate your peptide dosages and reconstitution amounts with our easy-to-use calculator.
+                  Calculate reconstitution volumes and concentrations for your in-vitro work with our easy-to-use calculator.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-2">
                   <input type="email" placeholder="Enter your email"
@@ -377,7 +418,7 @@ function Home() {
           <div>
             <div className="text-gold text-[11px] font-bold tracking-[0.25em] mb-2">WHOLESALE & BULK SUPPLY</div>
             <h2 className="font-display text-2xl md:text-3xl font-medium mb-3 leading-tight">
-              Supplying laboratories, clinics and research institutions across the UK and worldwide.
+              Supplying laboratories, universities and research institutions across the UK and worldwide.
             </h2>
             <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted-foreground">
               <span>✓ Competitive pricing</span>
@@ -398,7 +439,7 @@ function Home() {
           <div className="col-span-2 lg:col-span-2">
             <Logo light />
             <p className="text-bone/60 text-xs mt-5 max-w-xs leading-relaxed">
-              Premium research peptides manufactured in the UK with the highest standards of quality and transparency.
+              Premium research peptides manufactured in the UK with the highest standards of quality and transparency. Strictly for laboratory research use.
             </p>
             <div className="flex gap-3 mt-5">
               <a href="#" aria-label="Instagram" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Instagram className="w-4 h-4" /></a>
@@ -422,7 +463,7 @@ function Home() {
           ))}
           <div className="col-span-2 lg:col-span-2">
             <h4 className="text-[11px] font-bold tracking-[0.2em] text-gold mb-4">STAY UPDATED</h4>
-            <p className="text-xs text-bone/70 mb-4">Get the latest research news, new peptides, and exclusive offers.</p>
+            <p className="text-xs text-bone/70 mb-4">Get the latest research notes, new catalogue additions and supply updates.</p>
             <div className="flex">
               <input type="email" placeholder="Enter your email"
                 className="flex-1 bg-white/5 border border-bone/20 px-3 py-2.5 text-xs outline-none focus:border-gold" />
@@ -433,7 +474,7 @@ function Home() {
         <div className="border-t border-bone/10">
           <div className="container-x py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px] text-bone/50">
             <div>© 2024 Oxford Research Peptides. All rights reserved.</div>
-            <div>Research Use Only. Not for Human Consumption.</div>
+            <div>Research Use Only. Not for Human or Animal Consumption.</div>
             <div className="flex gap-2 opacity-70">
               {["VISA","MC","AMEX","PP","AP","GP"].map(p => (
                 <span key={p} className="bg-white text-navy-deep text-[9px] font-bold px-2 py-1 rounded-sm">{p}</span>
