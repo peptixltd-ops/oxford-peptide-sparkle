@@ -230,7 +230,7 @@ function Home() {
             {products.map((p) => (
               <div key={p.name} className="bg-white border border-border p-5 flex flex-col group hover:border-gold transition-colors">
                 <div className="aspect-square flex items-center justify-center mb-4 relative bg-gradient-to-b from-navy-deep/5 to-transparent overflow-hidden">
-                  <img src={p.img} alt={`${p.name} research peptide vial`} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={p.img} alt={`${p.name} research peptide vial`} className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                 </div>
                 <h3 className="font-display text-base font-semibold mb-2 leading-tight">{p.name}</h3>
                 <span className="inline-block bg-gold/20 text-navy-deep text-[10px] font-bold px-2 py-1 mb-1 w-fit">{p.dose}</span>
