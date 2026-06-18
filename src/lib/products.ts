@@ -1,8 +1,4 @@
-import vialGeneric from "@/assets/vial-retatrutide.png";
-import vialGeneric from "@/assets/vial-semaglutide.png";
-import vialGeneric from "@/assets/vial-tirzepatide.png";
-import vialGeneric from "@/assets/vial-ghkcu.png";
-import vialGeneric from "@/assets/vial-bpc157.png";
+import vialGeneric from "@/assets/vial-generic.png";
 
 export type Variant = { id: string; label: string; price: number };
 
