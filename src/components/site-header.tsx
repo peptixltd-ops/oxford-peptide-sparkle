@@ -22,6 +22,7 @@ const navLinks = [
   { to: "/lab-testing", label: "LAB TESTING" },
   { to: "/about", label: "ABOUT US" },
   { to: "/wholesale", label: "WHOLESALE" },
+  { to: "/faqs", label: "FAQS" },
 ] as const;
 
 export function SiteHeader() {
