@@ -72,7 +72,7 @@ function ProductPage() {
               <div className="mb-6">
                 <label className="block text-[11px] font-bold tracking-widest mb-3">SIZE / VARIANT</label>
                 <div className="flex flex-wrap gap-2">
-                  {product.variants.map(v => {
+                  {product.variants.map((v: Variant) => {
                     const active = v.id === variantId;
                     return (
                       <button
