@@ -42,7 +42,7 @@ function ProductPage() {
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [variantId, setVariantId] = useState(product.variants[0].id);
-  const variant = product.variants.find(v => v.id === variantId) ?? product.variants[0];
+  const variant = product.variants.find((v: Variant) => v.id === variantId) ?? product.variants[0];
   const fmt = (n: number) => `£${n.toFixed(2)}`;
 
   return (
