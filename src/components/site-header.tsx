@@ -1,23 +1,17 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, User, ShoppingBag } from "lucide-react";
 import { useState } from "react";
-import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
+import oxfordLogo from "@/assets/oxford-logo.png.asset.json";
 import { useCart } from "@/lib/cart";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link to="/" className="flex items-center gap-3 group" aria-label="Oxford Research Peptides — Home">
+    <Link to="/" className="flex items-center group" aria-label="Oxford Research Peptides — Home">
       <img
         src={oxfordLogo.url}
         alt="Oxford Research Peptides"
-        width={56}
-        height={56}
-        className={`h-12 w-12 object-contain rounded-sm ${light ? "" : "bg-navy-deep p-1"}`}
+        className={`h-12 w-auto object-contain ${light ? "brightness-0 invert" : ""}`}
       />
-      <div className="leading-tight hidden sm:block" style={{ color: light ? "var(--bone)" : "var(--navy-deep)" }}>
-        <div className="font-display text-[20px] font-semibold tracking-[0.08em] leading-none">OXFORD</div>
-        <div className="text-[9px] tracking-[0.32em] mt-1.5 text-gold">RESEARCH PEPTIDES</div>
-      </div>
     </Link>
   );
 }
