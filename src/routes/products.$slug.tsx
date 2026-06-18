@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { getProduct } from "@/lib/products";
+import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import { useState } from "react";
 import { ClipboardCheck, FlaskConical, Truck, ShieldCheck } from "lucide-react";
