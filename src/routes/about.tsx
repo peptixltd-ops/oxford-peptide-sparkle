@@ -23,7 +23,7 @@ export const Route = createFileRoute("/about")({
           <p>Oxford Research Peptides supplies reference-grade lyophilised peptides to laboratories, universities and research institutions across the UK and internationally. All material is intended strictly for in-vitro laboratory research.</p>
           <p>We combine modern solid-phase peptide synthesis with independent third-party testing to produce material researchers can document and trust. Every batch ships with a certificate of analysis showing HPLC purity and identity confirmation.</p>
           <h2 className="font-display text-3xl font-medium pt-6">Contact</h2>
-          <p>Email: <a href="mailto:research@oxfordresearchpeptides.com" className="text-gold underline">research@oxfordresearchpeptides.com</a></p>
+          <p>Email: <a href="mailto:oxfordresearchpeptides@gmail.com" className="text-gold underline">oxfordresearchpeptides@gmail.com</a></p>
         </div>
       </section>
       <SiteFooter />
