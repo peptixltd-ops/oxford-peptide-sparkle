@@ -1,10 +1,14 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import type { Product } from "@/lib/products";
+import { fromPrice } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 
 export function ProductCard({ p }: { p: Product }) {
   const { add } = useCart();
   const navigate = useNavigate();
+  const defaultVariant = p.variants[0];
+  const min = fromPrice(p);
+  const hasMultiple = p.variants.length > 1;
 
   return (
     <div className="bg-white border border-border p-5 flex flex-col group hover:border-gold transition-colors">
@@ -18,20 +22,24 @@ export function ProductCard({ p }: { p: Product }) {
       <Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-gold transition-colors">
         <h3 className="font-display text-base font-semibold mb-2 leading-tight">{p.name}</h3>
       </Link>
-      <div className="flex items-center gap-2 mb-1">
-        <span className="inline-block bg-gold/20 text-navy-deep text-[10px] font-bold px-2 py-1 w-fit">{p.dose}</span>
-        <span className="text-sm font-bold text-navy-deep">£{p.price}</span>
+      <div className="flex items-center gap-2 mb-1 flex-wrap">
+        <span className="inline-block bg-gold/20 text-navy-deep text-[10px] font-bold px-2 py-1 w-fit">
+          {hasMultiple ? `${p.variants.length} sizes` : defaultVariant.label}
+        </span>
+        <span className="text-sm font-bold text-navy-deep">
+          {hasMultiple ? <><span className="text-[10px] font-normal text-muted-foreground mr-1">from</span>£{min}</> : <>£{defaultVariant.price}</>}
+        </span>
       </div>
       <div className="text-xs text-muted-foreground mb-4">{p.purity}</div>
       <div className="mt-auto grid grid-cols-2 gap-2">
         <button
-          onClick={() => add(p.slug)}
+          onClick={() => add(p.slug, defaultVariant.id)}
           className="border border-navy-deep text-navy-deep py-2.5 text-[10px] font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors"
         >
           ADD TO CART
         </button>
         <button
-          onClick={() => { add(p.slug); navigate({ to: "/cart" }); }}
+          onClick={() => { add(p.slug, defaultVariant.id); navigate({ to: "/cart" }); }}
           className="bg-gold text-navy-deep py-2.5 text-[10px] font-bold tracking-widest hover:bg-gold-soft transition-colors"
         >
           BUY NOW

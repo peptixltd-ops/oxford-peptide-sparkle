@@ -1,18 +1,21 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type CartItem = { slug: string; qty: number };
+export type CartItem = { slug: string; variantId: string; qty: number };
 
 type CartCtx = {
   items: CartItem[];
   count: number;
-  add: (slug: string, qty?: number) => void;
-  remove: (slug: string) => void;
-  setQty: (slug: string, qty: number) => void;
+  add: (slug: string, variantId: string, qty?: number) => void;
+  remove: (slug: string, variantId: string) => void;
+  setQty: (slug: string, variantId: string, qty: number) => void;
   clear: () => void;
 };
 
 const Ctx = createContext<CartCtx | null>(null);
-const KEY = "orp_cart_v1";
+const KEY = "orp_cart_v2";
+
+const same = (a: CartItem, slug: string, variantId: string) =>
+  a.slug === slug && a.variantId === variantId;
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -30,16 +33,21 @@ export function CartProvider({ children }: { children: ReactNode }) {
     } catch {}
   }, [items]);
 
-  const add = (slug: string, qty = 1) =>
+  const add = (slug: string, variantId: string, qty = 1) =>
     setItems(prev => {
-      const existing = prev.find(i => i.slug === slug);
-      if (existing) return prev.map(i => i.slug === slug ? { ...i, qty: i.qty + qty } : i);
-      return [...prev, { slug, qty }];
+      const existing = prev.find(i => same(i, slug, variantId));
+      if (existing) return prev.map(i => same(i, slug, variantId) ? { ...i, qty: i.qty + qty } : i);
+      return [...prev, { slug, variantId, qty }];
     });
 
-  const remove = (slug: string) => setItems(prev => prev.filter(i => i.slug !== slug));
-  const setQty = (slug: string, qty: number) =>
-    setItems(prev => qty <= 0 ? prev.filter(i => i.slug !== slug) : prev.map(i => i.slug === slug ? { ...i, qty } : i));
+  const remove = (slug: string, variantId: string) =>
+    setItems(prev => prev.filter(i => !same(i, slug, variantId)));
+
+  const setQty = (slug: string, variantId: string, qty: number) =>
+    setItems(prev => qty <= 0
+      ? prev.filter(i => !same(i, slug, variantId))
+      : prev.map(i => same(i, slug, variantId) ? { ...i, qty } : i));
+
   const clear = () => setItems([]);
 
   const count = items.reduce((s, i) => s + i.qty, 0);

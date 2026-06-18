@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { useCart } from "@/lib/cart";
-import { getProduct } from "@/lib/products";
+import { getProduct, getVariant } from "@/lib/products";
 import { Trash2 } from "lucide-react";
 
 export const Route = createFileRoute("/cart")({
@@ -12,10 +12,19 @@ export const Route = createFileRoute("/cart")({
 
 function CartPage() {
   const { items, setQty, remove, clear } = useCart();
-  const lines = items.map(i => ({ item: i, product: getProduct(i.slug)! })).filter(l => l.product);
-  const subtotal = lines.reduce((s, l) => s + l.product.price * l.item.qty, 0);
+  const lines = items
+    .map(i => {
+      const product = getProduct(i.slug);
+      if (!product) return null;
+      const variant = getVariant(product, i.variantId);
+      return { item: i, product, variant };
+    })
+    .filter((l): l is NonNullable<typeof l> => !!l);
+
+  const subtotal = lines.reduce((s, l) => s + l.variant.price * l.item.qty, 0);
   const shipping = subtotal > 0 ? 8 : 0;
   const total = subtotal + shipping;
+  const fmt = (n: number) => `£${n.toFixed(2)}`;
 
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
@@ -34,8 +43,8 @@ function CartPage() {
           ) : (
             <div className="grid lg:grid-cols-[1fr_360px] gap-8">
               <div className="bg-white border border-border">
-                {lines.map(({ item, product }) => (
-                  <div key={item.slug} className="flex items-center gap-4 p-5 border-b border-border last:border-b-0">
+                {lines.map(({ item, product, variant }) => (
+                  <div key={`${item.slug}::${item.variantId}`} className="flex items-center gap-4 p-5 border-b border-border last:border-b-0">
                     <Link to="/products/$slug" params={{ slug: product.slug }} className="w-20 h-20 bg-muted/40 flex items-center justify-center shrink-0">
                       <img src={product.img} alt={product.name} className="max-h-full object-contain" />
                     </Link>
@@ -43,15 +52,15 @@ function CartPage() {
                       <Link to="/products/$slug" params={{ slug: product.slug }} className="font-display text-lg font-semibold hover:text-gold transition-colors">
                         {product.name}
                       </Link>
-                      <div className="text-xs text-muted-foreground">{product.dose} · {product.purity}</div>
+                      <div className="text-xs text-muted-foreground">{variant.label} · {product.purity}</div>
                     </div>
                     <div className="flex items-center border border-border">
-                      <button onClick={() => setQty(item.slug, item.qty - 1)} className="px-2.5 py-1.5 hover:bg-muted">−</button>
+                      <button onClick={() => setQty(item.slug, item.variantId, item.qty - 1)} className="px-2.5 py-1.5 hover:bg-muted">−</button>
                       <span className="px-3 py-1.5 min-w-[2.5rem] text-center text-sm">{item.qty}</span>
-                      <button onClick={() => setQty(item.slug, item.qty + 1)} className="px-2.5 py-1.5 hover:bg-muted">+</button>
+                      <button onClick={() => setQty(item.slug, item.variantId, item.qty + 1)} className="px-2.5 py-1.5 hover:bg-muted">+</button>
                     </div>
-                    <div className="w-20 text-right font-semibold">£{product.price * item.qty}</div>
-                    <button onClick={() => remove(item.slug)} aria-label="Remove" className="text-muted-foreground hover:text-destructive">
+                    <div className="w-24 text-right font-semibold">{fmt(variant.price * item.qty)}</div>
+                    <button onClick={() => remove(item.slug, item.variantId)} aria-label="Remove" className="text-muted-foreground hover:text-destructive">
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
@@ -64,11 +73,11 @@ function CartPage() {
               <aside className="bg-white border border-border p-6 h-fit">
                 <h2 className="text-xs font-bold tracking-[0.25em] mb-5">ORDER SUMMARY</h2>
                 <div className="space-y-3 text-sm border-b border-border pb-4 mb-4">
-                  <div className="flex justify-between"><span>Subtotal</span><span>£{subtotal}</span></div>
-                  <div className="flex justify-between"><span>Shipping</span><span>£{shipping}</span></div>
+                  <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
+                  <div className="flex justify-between"><span>Shipping</span><span>{fmt(shipping)}</span></div>
                 </div>
                 <div className="flex justify-between font-display text-xl font-medium mb-6">
-                  <span>Total</span><span>£{total}</span>
+                  <span>Total</span><span>{fmt(total)}</span>
                 </div>
                 <button className="w-full px-7 py-4 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors">
                   CHECKOUT
