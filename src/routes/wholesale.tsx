@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -15,6 +15,12 @@ export const Route = createFileRoute("/wholesale")({
 
 function WholesalePage() {
   const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("sent") === "1") {
+      setSent(true);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
@@ -35,24 +41,17 @@ function WholesalePage() {
             </div>
           ) : (
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.currentTarget;
-                const data = new FormData(form);
-                const name = String(data.get("name") || "");
-                const org = String(data.get("org") || "");
-                const email = String(data.get("email") || "");
-                const phone = String(data.get("phone") || "");
-                const requirements = String(data.get("requirements") || "");
-                const subject = encodeURIComponent(`Wholesale application — ${org || name}`);
-                const body = encodeURIComponent(
-                  `Name: ${name}\nOrganisation: ${org}\nEmail: ${email}\nPhone: ${phone}\n\nRequirements:\n${requirements}`
-                );
-                window.location.href = `mailto:oxfordresearchpeptides@gmail.com?subject=${subject}&body=${body}`;
-                setSent(true);
-              }}
+              action="https://formsubmit.co/oxfordresearchpeptides@gmail.com"
+              method="POST"
               className="bg-white border border-border p-8 space-y-4"
             >
+              {/* FormSubmit configuration */}
+              <input type="hidden" name="_subject" value="New Wholesale Application — Oxford Research Peptides" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value={typeof window !== "undefined" ? `${window.location.origin}/wholesale?sent=1` : "/wholesale?sent=1"} />
+              <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
               {[
                 { name: "name", label: "Full name", type: "text" },
                 { name: "org", label: "Organisation / institution", type: "text" },
