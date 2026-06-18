@@ -1,9 +1,8 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { getProduct } from "@/lib/products";
 import { useCart } from "@/lib/cart";
-import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { ClipboardCheck, FlaskConical, Truck, ShieldCheck } from "lucide-react";
 
@@ -16,7 +15,7 @@ export const Route = createFileRoute("/products/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.product.name} ${loaderData.product.dose} — Oxford Research Peptides` },
+          { title: `${loaderData.product.name} — Oxford Research Peptides` },
           { name: "description", content: loaderData.product.description },
           { property: "og:title", content: `${loaderData.product.name} — Oxford Research Peptides` },
           { property: "og:description", content: loaderData.product.description },
@@ -42,6 +41,9 @@ function ProductPage() {
   const { add } = useCart();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
+  const [variantId, setVariantId] = useState(product.variants[0].id);
+  const variant = product.variants.find(v => v.id === variantId) ?? product.variants[0];
+  const fmt = (n: number) => `£${n.toFixed(2)}`;
 
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
@@ -61,11 +63,37 @@ function ProductPage() {
               <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">RESEARCH PEPTIDE</div>
               <h1 className="font-display text-5xl font-medium mb-4">{product.name}</h1>
               <div className="flex items-center gap-3 mb-6">
-                <span className="bg-gold/20 text-navy-deep text-xs font-bold px-3 py-1.5">{product.dose}</span>
+                <span className="bg-gold/20 text-navy-deep text-xs font-bold px-3 py-1.5">{variant.label}</span>
                 <span className="text-sm text-muted-foreground">{product.purity}</span>
               </div>
-              <div className="text-4xl font-display font-medium mb-6">£{product.price}.00</div>
+              <div className="text-4xl font-display font-medium mb-6">{fmt(variant.price)}</div>
               <p className="text-base text-navy-deep/75 leading-relaxed mb-8">{product.description}</p>
+
+              <div className="mb-6">
+                <label className="block text-[11px] font-bold tracking-widest mb-3">SIZE / VARIANT</label>
+                <div className="flex flex-wrap gap-2">
+                  {product.variants.map(v => {
+                    const active = v.id === variantId;
+                    return (
+                      <button
+                        key={v.id}
+                        type="button"
+                        onClick={() => setVariantId(v.id)}
+                        className={`px-4 py-2.5 text-sm font-semibold border transition-colors ${
+                          active
+                            ? "border-navy-deep bg-navy-deep text-bone"
+                            : "border-border bg-white text-navy-deep hover:border-navy-deep"
+                        }`}
+                      >
+                        {v.label}
+                        <span className={`ml-2 text-xs font-normal ${active ? "text-bone/70" : "text-muted-foreground"}`}>
+                          {fmt(v.price)}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
               <div className="flex items-center gap-4 mb-6">
                 <label className="text-[11px] font-bold tracking-widest">QTY</label>
@@ -74,17 +102,18 @@ function ProductPage() {
                   <span className="px-4 py-2 min-w-[3rem] text-center">{qty}</span>
                   <button onClick={() => setQty(q => q + 1)} className="px-3 py-2 hover:bg-muted">+</button>
                 </div>
+                <span className="text-sm text-muted-foreground">Total: <span className="font-semibold text-navy-deep">{fmt(variant.price * qty)}</span></span>
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-8">
                 <button
-                  onClick={() => add(product.slug, qty)}
+                  onClick={() => add(product.slug, variant.id, qty)}
                   className="border border-navy-deep text-navy-deep py-4 text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors"
                 >
                   ADD TO CART
                 </button>
                 <button
-                  onClick={() => { add(product.slug, qty); navigate({ to: "/cart" }); }}
+                  onClick={() => { add(product.slug, variant.id, qty); navigate({ to: "/cart" }); }}
                   className="bg-gold text-navy-deep py-4 text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors"
                 >
                   BUY NOW
