@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Search, User, ShoppingBag, ShieldCheck, FlaskConical, ClipboardCheck,
-  Microscope, Truck, ArrowRight, Star, Calculator, Instagram, Twitter, Mail,
-  Atom, Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
+  ShieldCheck, FlaskConical, ClipboardCheck,
+  Microscope, Truck, ArrowRight, Star, Calculator,
+  Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
 } from "lucide-react";
 import heroVial from "@/assets/vial-retatrutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
@@ -12,12 +12,10 @@ import artVials from "@/assets/article-vials.jpg";
 import artBook from "@/assets/article-book.jpg";
 import artNetwork from "@/assets/article-network.jpg";
 import wholesaleVials from "@/assets/wholesale-vials.jpg";
-import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
-import vialRetatrutide from "@/assets/vial-retatrutide.png";
-import vialSemaglutide from "@/assets/vial-semaglutide.png";
-import vialTirzepatide from "@/assets/vial-tirzepatide.png";
-import vialGhkcu from "@/assets/vial-ghkcu.png";
-import vialBpc157 from "@/assets/vial-bpc157.png";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { ProductCard } from "@/components/product-card";
+import { products } from "@/lib/products";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,22 +37,12 @@ const trustBadges = [
   { icon: Truck, title: "Fast UK Dispatch", sub: "Order by 2pm, ships same day" },
 ];
 
-const products = [
-  { name: "Retatrutide", dose: "10mg", purity: ">99% Purity", img: vialRetatrutide, accent: "#1d4f8a" },
-  { name: "Semaglutide", dose: "10mg", purity: ">99% Purity", img: vialSemaglutide, accent: "#7a1f2b" },
-  { name: "Tirzepatide", dose: "10mg", purity: ">99% Purity", img: vialTirzepatide, accent: "#a37423" },
-  { name: "GHK-Cu",      dose: "5mg",  purity: ">98% Purity", img: vialGhkcu,       accent: "#1f6b6b" },
-  { name: "BPC-157",     dose: "5mg",  purity: ">99% Purity", img: vialBpc157,      accent: "#5a3a8a" },
-  { name: "CJC-1295 (no DAC)", dose: "5mg", purity: ">99% Purity", img: vialRetatrutide, accent: "#1d4f8a" },
-];
-
-// Neutral, research-only categorisations — no therapeutic claims.
 const researchAreas = [
-  { icon: Dna,            title: "Peptide Chemistry",    items: ["Synthetic peptides", "Modified analogues", "Reference standards"] },
-  { icon: Beaker,         title: "Receptor Studies",     items: ["GLP-1 ligands", "GHSR ligands", "Melanocortin ligands"] },
-  { icon: TestTube,       title: "Assay Development",    items: ["HPLC standards", "MS reference", "Calibration peptides"] },
-  { icon: Thermometer,    title: "Stability Research",   items: ["Lyophilised powders", "Reconstitution studies", "Long-term storage"] },
-  { icon: MoreHorizontal, title: "Specialty Compounds",  items: ["Copper peptides", "Cyclic peptides", "Custom syntheses"] },
+  { icon: Dna, title: "Peptide Chemistry", items: ["Synthetic peptides", "Modified analogues", "Reference standards"] },
+  { icon: Beaker, title: "Receptor Studies", items: ["GLP-1 ligands", "GHSR ligands", "Melanocortin ligands"] },
+  { icon: TestTube, title: "Assay Development", items: ["HPLC standards", "MS reference", "Calibration peptides"] },
+  { icon: Thermometer, title: "Stability Research", items: ["Lyophilised powders", "Reconstitution studies", "Long-term storage"] },
+  { icon: MoreHorizontal, title: "Specialty Compounds", items: ["Copper peptides", "Cyclic peptides", "Custom syntheses"] },
 ];
 
 const articles = [
@@ -71,80 +59,10 @@ const reviews = [
   { text: "Outstanding documentation and transparency. The best peptide supplier we've sourced from in the UK.", who: "Verified Buyer" },
 ];
 
-/* ---------- Logo (uses uploaded brand asset) ---------- */
-function Logo({ light = false }: { light?: boolean }) {
-  return (
-    <Link to="/" className="flex items-center gap-3 group" aria-label="Oxford Research Peptides — Home">
-      <img
-        src={oxfordLogo.url}
-        alt="Oxford Research Peptides"
-        width={56}
-        height={56}
-        className={`h-12 w-12 object-contain rounded-sm ${light ? "" : "bg-navy-deep p-1"}`}
-      />
-      <div className="leading-tight hidden sm:block" style={{ color: light ? "var(--bone)" : "var(--navy-deep)" }}>
-        <div className="font-display text-[20px] font-semibold tracking-[0.08em] leading-none">OXFORD</div>
-        <div className="text-[9px] tracking-[0.32em] mt-1.5 text-gold">RESEARCH PEPTIDES</div>
-      </div>
-    </Link>
-  );
-}
-
-/* ---------- Pharma vial component ---------- */
-function Vial({ cap, accent, label }: { cap: string; accent: string; label: string }) {
-  return (
-    <div className="relative w-[88px] h-[140px] mx-auto">
-      {/* Cap */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[44px] h-[18px] rounded-[3px]"
-        style={{ background: `linear-gradient(180deg, ${cap} 0%, #000 100%)`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2)" }} />
-      <div className="absolute left-1/2 -translate-x-1/2 top-[14px] w-[48px] h-[6px] rounded-[2px]"
-        style={{ background: `linear-gradient(180deg, #c9c9c9, #6e6e6e)`, boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.3)" }} />
-      {/* Glass body */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[20px] w-[72px] h-[118px] rounded-b-[10px] rounded-t-[3px] overflow-hidden"
-        style={{
-          background: "linear-gradient(180deg, rgba(220,230,240,0.55) 0%, rgba(180,195,210,0.35) 50%, rgba(140,160,180,0.55) 100%)",
-          boxShadow: "inset 2px 0 4px rgba(255,255,255,0.5), inset -2px 0 4px rgba(0,0,0,0.15), inset 0 -6px 8px rgba(0,0,0,0.2)",
-          border: "1px solid rgba(180,195,210,0.4)",
-        }}>
-        {/* highlight */}
-        <div className="absolute left-1 top-2 w-1.5 h-20 rounded-full bg-white/60 blur-[1px]" />
-        {/* Label */}
-        <div className="absolute inset-x-1 top-7 bottom-3 bg-white border-t border-b border-muted-foreground/30 px-1.5 py-2 flex flex-col">
-          <div className="h-[3px] w-full mb-1.5" style={{ background: accent }} />
-          <div className="text-[8.5px] font-bold tracking-tight text-navy-deep leading-tight">{label}</div>
-          <div className="text-[6px] text-muted-foreground mt-auto tracking-widest">RESEARCH USE ONLY</div>
-        </div>
-      </div>
-      {/* Shadow */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-[-6px] w-[80px] h-2 bg-black/20 rounded-full blur-md" />
-    </div>
-  );
-}
-
 function Home() {
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
-      {/* Header */}
-      <header className="bg-white border-b border-border">
-        <div className="container-x flex items-center justify-between h-20">
-          <Logo />
-          <nav className="hidden lg:flex items-center gap-8 text-xs font-semibold tracking-widest">
-            <a href="#" className="hover:text-gold transition-colors">SHOP PEPTIDES ▾</a>
-            <a href="#" className="hover:text-gold transition-colors">RESEARCH HUB ▾</a>
-            <a href="#" className="hover:text-gold transition-colors">LAB TESTING</a>
-            <a href="#" className="hover:text-gold transition-colors">ABOUT US</a>
-            <a href="#" className="hover:text-gold transition-colors">WHOLESALE</a>
-          </nav>
-          <div className="flex items-center gap-5">
-            <button aria-label="Search"><Search className="w-5 h-5" /></button>
-            <button aria-label="Account"><User className="w-5 h-5" /></button>
-            <button aria-label="Cart" className="relative">
-              <ShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-2 -right-2 bg-gold text-navy-deep text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
-            </button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Trust strip */}
       <div className="bg-navy-deep text-bone border-b border-white/10">
@@ -161,9 +79,8 @@ function Home() {
         </div>
       </div>
 
-      {/* Hero — single vial, calm background */}
+      {/* Hero */}
       <section className="relative text-bone overflow-hidden min-h-[680px] flex items-center bg-navy-deep">
-        {/* Soft radial glow behind vial */}
         <div className="absolute inset-0" style={{
           background: "radial-gradient(ellipse at 75% 50%, rgba(180,140,70,0.18) 0%, transparent 55%), linear-gradient(180deg, #0a0f1a 0%, #0e1729 100%)"
         }} />
@@ -180,12 +97,12 @@ function Home() {
               Premium research peptides manufactured in the UK with the highest standards of quality, documentation and transparency. Strictly for in-vitro laboratory research.
             </p>
             <div className="flex flex-wrap gap-3 mb-8">
-              <button className="px-7 py-3.5 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors">
+              <Link to="/shop" className="px-7 py-3.5 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors">
                 SHOP PEPTIDES
-              </button>
-              <button className="px-7 py-3.5 border border-bone/40 text-bone text-xs font-bold tracking-widest hover:bg-bone hover:text-navy-deep transition-colors">
+              </Link>
+              <Link to="/lab-testing" className="px-7 py-3.5 border border-bone/40 text-bone text-xs font-bold tracking-widest hover:bg-bone hover:text-navy-deep transition-colors">
                 VIEW LAB REPORTS
-              </button>
+              </Link>
             </div>
             <div className="flex items-center gap-3 text-sm">
               <span className="font-semibold">Excellent</span>
@@ -195,8 +112,6 @@ function Home() {
               <span className="text-bone/70">4.9/5 based on 120+ reviews</span>
             </div>
           </div>
-
-          {/* Right column — single hero vial */}
           <div className="relative flex items-center justify-center min-h-[480px]">
             <div className="absolute w-[380px] h-[380px] rounded-full" style={{
               background: "radial-gradient(circle, rgba(212,175,99,0.25) 0%, transparent 65%)"
@@ -210,43 +125,29 @@ function Home() {
         </div>
       </section>
 
-
-
       {/* Best Sellers */}
       <section className="bg-bone py-16">
         <div className="container-x">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-xs font-bold tracking-[0.25em]">BEST SELLING RESEARCH PEPTIDES</h2>
-            <a href="#" className="text-xs font-bold tracking-widest flex items-center gap-2 hover:text-gold transition-colors">
+            <Link to="/shop" className="text-xs font-bold tracking-widest flex items-center gap-2 hover:text-gold transition-colors">
               VIEW ALL PRODUCTS <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {products.map((p) => (
-              <div key={p.name} className="bg-white border border-border p-5 flex flex-col group hover:border-gold transition-colors">
-                <div className="aspect-square flex items-center justify-center mb-4 relative bg-gradient-to-b from-navy-deep/5 to-transparent overflow-hidden">
-                  <img src={p.img} alt={`${p.name} research peptide vial`} className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                </div>
-                <h3 className="font-display text-base font-semibold mb-2 leading-tight">{p.name}</h3>
-                <span className="inline-block bg-gold/20 text-navy-deep text-[10px] font-bold px-2 py-1 mb-1 w-fit">{p.dose}</span>
-                <div className="text-xs text-muted-foreground mb-4">{p.purity}</div>
-                <button className="mt-auto border border-border py-2.5 text-[10px] font-bold tracking-widest hover:bg-navy-deep hover:text-bone hover:border-navy-deep transition-colors">
-                  VIEW PRODUCT
-                </button>
-              </div>
-            ))}
+            {products.map((p) => <ProductCard key={p.slug} p={p} />)}
           </div>
         </div>
       </section>
 
-      {/* Research areas — neutral categorisations */}
+      {/* Research areas */}
       <section className="bg-muted/40 py-16">
         <div className="container-x">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-xs font-bold tracking-[0.25em]">EXPLORE BY RESEARCH AREA</h2>
-            <a href="#" className="text-xs font-bold tracking-widest flex items-center gap-2 hover:text-gold">
+            <Link to="/shop" className="text-xs font-bold tracking-widest flex items-center gap-2 hover:text-gold">
               VIEW ALL <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {researchAreas.map((a) => (
@@ -258,9 +159,9 @@ function Home() {
                 <ul className="text-sm space-y-1 text-muted-foreground mb-6">
                   {a.items.map(it => <li key={it}>{it}</li>)}
                 </ul>
-                <a href="#" className="text-[10px] font-bold tracking-widest flex items-center gap-2 hover:text-gold">
+                <Link to="/shop" className="text-[10px] font-bold tracking-widest flex items-center gap-2 hover:text-gold">
                   EXPLORE <ArrowRight className="w-3 h-3" />
-                </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -292,9 +193,9 @@ function Home() {
                 </div>
               ))}
             </div>
-            <button className="px-7 py-3.5 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors">
+            <Link to="/about" className="inline-block px-7 py-3.5 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors">
               LEARN MORE ABOUT US
-            </button>
+            </Link>
           </div>
           <div className="bg-white text-navy-deep p-6 rounded-sm shadow-2xl">
             <div className="text-center font-display text-sm font-semibold tracking-widest border-b border-border pb-3 mb-4">
@@ -326,7 +227,7 @@ function Home() {
               </div>
             </div>
             <div className="text-center mt-5 pt-4 border-t border-border">
-              <a href="#" className="text-[10px] font-bold tracking-widest hover:text-gold">VIEW SAMPLE COA →</a>
+              <Link to="/lab-testing" className="text-[10px] font-bold tracking-widest hover:text-gold">VIEW SAMPLE COA →</Link>
             </div>
           </div>
         </div>
@@ -337,20 +238,20 @@ function Home() {
         <div className="container-x">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-xs font-bold tracking-[0.25em]">RESEARCH LIBRARY</h2>
-            <a href="#" className="text-xs font-bold tracking-widest flex items-center gap-2 hover:text-gold">
+            <Link to="/research-hub" className="text-xs font-bold tracking-widest flex items-center gap-2 hover:text-gold">
               VIEW ALL ARTICLES <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
             {articles.map((a) => (
-              <article key={a.title} className="group cursor-pointer">
+              <Link to="/research-hub" key={a.title} className="group cursor-pointer">
                 <div className="aspect-[4/3] overflow-hidden mb-3">
                   <img src={a.img} alt={a.title} width={400} height={300} loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="text-[10px] text-muted-foreground mb-1.5 tracking-wider">{a.date}</div>
                 <h3 className="font-display text-base font-semibold leading-snug group-hover:text-gold transition-colors">{a.title}</h3>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -418,62 +319,13 @@ function Home() {
               <span>✓ Consistent supply</span>
             </div>
           </div>
-          <button className="px-8 py-4 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors">
+          <Link to="/wholesale" className="px-8 py-4 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors">
             APPLY FOR WHOLESALE
-          </button>
+          </Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-navy-deep text-bone">
-        <div className="container-x py-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8">
-          <div className="col-span-2 lg:col-span-2">
-            <Logo light />
-            <p className="text-bone/60 text-xs mt-5 max-w-xs leading-relaxed">
-              Premium research peptides manufactured in the UK with the highest standards of quality and transparency. Strictly for laboratory research use.
-            </p>
-            <div className="flex gap-3 mt-5">
-              <a href="#" aria-label="Instagram" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Instagram className="w-4 h-4" /></a>
-              <a href="#" aria-label="Twitter" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Twitter className="w-4 h-4" /></a>
-              <a href="#" aria-label="Email" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Mail className="w-4 h-4" /></a>
-            </div>
-          </div>
-          {[
-            { h: "SHOP", links: ["All Peptides", "Bestsellers", "New Arrivals", "Peptide Blends", "Consumables"] },
-            { h: "RESEARCH HUB", links: ["Peptide Guides", "Research Articles", "Comparison Guides", "Beginner Guide", "Glossary"] },
-            { h: "LAB TESTING", links: ["Lab Testing Process", "Certificates (COA)", "Quality Standards", "Purity & Testing", "FAQs"] },
-            { h: "COMPANY", links: ["About Us", "Our Mission", "Careers", "Contact Us"] },
-            { h: "SUPPORT", links: ["Shipping & Delivery", "Returns & Refunds", "FAQs", "Terms & Conditions", "Privacy Policy"] },
-          ].map(col => (
-            <div key={col.h}>
-              <h4 className="text-[11px] font-bold tracking-[0.2em] text-gold mb-4">{col.h}</h4>
-              <ul className="space-y-2.5 text-xs text-bone/70">
-                {col.links.map(l => <li key={l}><a href="#" className="hover:text-gold transition-colors">{l}</a></li>)}
-              </ul>
-            </div>
-          ))}
-          <div className="col-span-2 lg:col-span-2">
-            <h4 className="text-[11px] font-bold tracking-[0.2em] text-gold mb-4">STAY UPDATED</h4>
-            <p className="text-xs text-bone/70 mb-4">Get the latest research notes, new catalogue additions and supply updates.</p>
-            <div className="flex">
-              <input type="email" placeholder="Enter your email"
-                className="flex-1 bg-white/5 border border-bone/20 px-3 py-2.5 text-xs outline-none focus:border-gold" />
-              <button className="px-4 bg-gold text-navy-deep" aria-label="Subscribe"><ArrowRight className="w-4 h-4" /></button>
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-bone/10">
-          <div className="container-x py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px] text-bone/50">
-            <div>© 2024 Oxford Research Peptides. All rights reserved.</div>
-            <div>Research Use Only. Not for Human or Animal Consumption.</div>
-            <div className="flex gap-2 opacity-70">
-              {["VISA","MC","AMEX","PP","AP","GP"].map(p => (
-                <span key={p} className="bg-white text-navy-deep text-[9px] font-bold px-2 py-1 rounded-sm">{p}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
