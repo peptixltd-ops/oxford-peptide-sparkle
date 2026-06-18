@@ -16,6 +16,12 @@ export const Route = createFileRoute("/wholesale")({
 function WholesalePage() {
   const [sent, setSent] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("sent") === "1") {
+      setSent(true);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
       <SiteHeader />
