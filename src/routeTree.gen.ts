@@ -14,6 +14,7 @@ import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ResearchHubRouteImport } from './routes/research-hub'
 import { Route as LabTestingRouteImport } from './routes/lab-testing'
+import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
@@ -43,6 +44,11 @@ const ResearchHubRoute = ResearchHubRouteImport.update({
 const LabTestingRoute = LabTestingRouteImport.update({
   id: '/lab-testing',
   path: '/lab-testing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/cart': typeof CartRoute
+  '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
   '/research-hub': typeof ResearchHubRoute
   '/search': typeof SearchRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/cart': typeof CartRoute
+  '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
   '/research-hub': typeof ResearchHubRoute
   '/search': typeof SearchRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/cart': typeof CartRoute
+  '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
   '/research-hub': typeof ResearchHubRoute
   '/search': typeof SearchRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/cart'
+    | '/faqs'
     | '/lab-testing'
     | '/research-hub'
     | '/search'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/cart'
+    | '/faqs'
     | '/lab-testing'
     | '/research-hub'
     | '/search'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/cart'
+    | '/faqs'
     | '/lab-testing'
     | '/research-hub'
     | '/search'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccountRoute: typeof AccountRoute
   CartRoute: typeof CartRoute
+  FaqsRoute: typeof FaqsRoute
   LabTestingRoute: typeof LabTestingRoute
   ResearchHubRoute: typeof ResearchHubRoute
   SearchRoute: typeof SearchRoute
@@ -197,6 +210,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LabTestingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cart': {
       id: '/cart'
       path: '/cart'
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccountRoute: AccountRoute,
   CartRoute: CartRoute,
+  FaqsRoute: FaqsRoute,
   LabTestingRoute: LabTestingRoute,
   ResearchHubRoute: ResearchHubRoute,
   SearchRoute: SearchRoute,
