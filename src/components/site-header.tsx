@@ -39,8 +39,7 @@ export function SiteHeader() {
 
   return (
     <header className="bg-white border-b border-border relative z-20">
-      <div className="container-x flex items-center justify-between h-20">
-        <Logo />
+      <div className="container-x grid grid-cols-[auto_1fr_auto] items-center h-20 gap-6">
         <nav className="hidden lg:flex items-center gap-8 text-xs font-semibold tracking-widest">
           {navLinks.map(l => (
             <Link
@@ -53,7 +52,7 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 justify-end">
           <button aria-label="Search" onClick={() => setSearchOpen(s => !s)}>
             <Search className="w-5 h-5" />
           </button>
@@ -63,6 +62,7 @@ export function SiteHeader() {
             <span className="absolute -top-2 -right-2 bg-gold text-navy-deep text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">{count}</span>
           </Link>
         </div>
+        <Logo />
       </div>
       {searchOpen && (
         <div className="absolute inset-x-0 top-full bg-white border-b border-border shadow-lg">
