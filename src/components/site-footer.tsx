@@ -19,6 +19,7 @@ const cols = [
   { h: "COMPANY", links: [
     { l: "About Us", to: "/about" },
     { l: "Contact Us", to: "/about" },
+    { l: "FAQs", to: "/faqs" },
   ] },
 ] as const;
 
