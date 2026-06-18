@@ -34,7 +34,25 @@ function WholesalePage() {
               <p className="text-muted-foreground">Thanks — our wholesale team will be in touch shortly.</p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="bg-white border border-border p-8 space-y-4">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const data = new FormData(form);
+                const name = String(data.get("name") || "");
+                const org = String(data.get("org") || "");
+                const email = String(data.get("email") || "");
+                const phone = String(data.get("phone") || "");
+                const requirements = String(data.get("requirements") || "");
+                const subject = encodeURIComponent(`Wholesale application — ${org || name}`);
+                const body = encodeURIComponent(
+                  `Name: ${name}\nOrganisation: ${org}\nEmail: ${email}\nPhone: ${phone}\n\nRequirements:\n${requirements}`
+                );
+                window.location.href = `mailto:oxfordresearchpeptides@gmail.com?subject=${subject}&body=${body}`;
+                setSent(true);
+              }}
+              className="bg-white border border-border p-8 space-y-4"
+            >
               {[
                 { name: "name", label: "Full name", type: "text" },
                 { name: "org", label: "Organisation / institution", type: "text" },
@@ -43,12 +61,12 @@ function WholesalePage() {
               ].map(f => (
                 <div key={f.name}>
                   <label className="block text-[11px] font-bold tracking-widest mb-1.5">{f.label.toUpperCase()}</label>
-                  <input required={f.name !== "phone"} type={f.type} className="w-full border border-border px-4 py-3 text-sm outline-none focus:border-gold" />
+                  <input name={f.name} required={f.name !== "phone"} type={f.type} className="w-full border border-border px-4 py-3 text-sm outline-none focus:border-gold" />
                 </div>
               ))}
               <div>
                 <label className="block text-[11px] font-bold tracking-widest mb-1.5">REQUIREMENTS</label>
-                <textarea rows={4} className="w-full border border-border px-4 py-3 text-sm outline-none focus:border-gold" placeholder="Estimated monthly volume, products of interest..." />
+                <textarea name="requirements" rows={4} className="w-full border border-border px-4 py-3 text-sm outline-none focus:border-gold" placeholder="Estimated monthly volume, products of interest..." />
               </div>
               <button type="submit" className="w-full px-7 py-3.5 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors">
                 SUBMIT APPLICATION
