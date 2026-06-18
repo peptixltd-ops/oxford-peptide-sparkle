@@ -134,8 +134,8 @@ function Home() {
               VIEW ALL PRODUCTS <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {products.map((p) => <ProductCard key={p.slug} p={p} />)}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.filter(p => ["retatrutide", "mots-c", "semaglutide"].includes(p.slug)).map((p) => <ProductCard key={p.slug} p={p} />)}
           </div>
         </div>
       </section>
