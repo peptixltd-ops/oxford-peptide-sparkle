@@ -1,8 +1,22 @@
-import vialRetatrutide from "@/assets/vial-retatrutide.png";
-import vialSemaglutide from "@/assets/vial-semaglutide.png";
-import vialTirzepatide from "@/assets/vial-tirzepatide.png";
-import vialGhkcu from "@/assets/vial-ghkcu.png";
-import vialBpc157 from "@/assets/vial-bpc157.png";
+import vialRetatrutide from "@/assets/vials/orp-retatrutide.png";
+import vialTirzepatide from "@/assets/vials/orp-tirzepatide.png";
+import vialGhkcu from "@/assets/vials/orp-ghk-cu.png";
+import vialMotsc from "@/assets/vials/orp-mots-c.png";
+import vialBacWater from "@/assets/vials/orp-bac-water.png";
+import vialNad from "@/assets/vials/orp-nad.png";
+import vialBpcTb500 from "@/assets/vials/orp-bpc-tb500-mix.png";
+import vialIpamorelin from "@/assets/vials/orp-ipamorelin.png";
+import vialSelank from "@/assets/vials/orp-selank.png";
+import vialSemaglutide from "@/assets/vials/orp-semaglutide.png";
+import vialTesamorelin from "@/assets/vials/orp-tesamorelin.png";
+import vialKlow from "@/assets/vials/orp-klow.png";
+import vialTb500 from "@/assets/vials/orp-tb-500.png";
+import vialIgfLr3 from "@/assets/vials/orp-igf-lr3.png";
+import vialCagrilintide from "@/assets/vials/orp-cagrilintide.png";
+import vialSs31 from "@/assets/vials/orp-ss-31.png";
+import vialPt141 from "@/assets/vials/orp-pt-141.png";
+import vialSemax from "@/assets/vials/orp-semax.png";
+import vialBpc157 from "@/assets/vials/orp-bpc-157.png";
 
 export type Variant = { id: string; label: string; price: number };
 
