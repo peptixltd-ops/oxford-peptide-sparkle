@@ -1,8 +1,22 @@
-import vialRetatrutide from "@/assets/vial-retatrutide.png";
-import vialSemaglutide from "@/assets/vial-semaglutide.png";
-import vialTirzepatide from "@/assets/vial-tirzepatide.png";
-import vialGhkcu from "@/assets/vial-ghkcu.png";
-import vialBpc157 from "@/assets/vial-bpc157.png";
+import vialRetatrutide from "@/assets/vials/orp-retatrutide.png";
+import vialTirzepatide from "@/assets/vials/orp-tirzepatide.png";
+import vialGhkcu from "@/assets/vials/orp-ghk-cu.png";
+import vialMotsc from "@/assets/vials/orp-mots-c.png";
+import vialBacWater from "@/assets/vials/orp-bac-water.png";
+import vialNad from "@/assets/vials/orp-nad.png";
+import vialBpcTb500 from "@/assets/vials/orp-bpc-tb500-mix.png";
+import vialIpamorelin from "@/assets/vials/orp-ipamorelin.png";
+import vialSelank from "@/assets/vials/orp-selank.png";
+import vialSemaglutide from "@/assets/vials/orp-semaglutide.png";
+import vialTesamorelin from "@/assets/vials/orp-tesamorelin.png";
+import vialKlow from "@/assets/vials/orp-klow.png";
+import vialTb500 from "@/assets/vials/orp-tb-500.png";
+import vialIgfLr3 from "@/assets/vials/orp-igf-lr3.png";
+import vialCagrilintide from "@/assets/vials/orp-cagrilintide.png";
+import vialSs31 from "@/assets/vials/orp-ss-31.png";
+import vialPt141 from "@/assets/vials/orp-pt-141.png";
+import vialSemax from "@/assets/vials/orp-semax.png";
+import vialBpc157 from "@/assets/vials/orp-bpc-157.png";
 
 export type Variant = { id: string; label: string; price: number };
 
@@ -50,7 +64,7 @@ export const products: Product[] = [
     slug: "mots-c",
     name: "MOTS-c",
     purity: ">99% Purity",
-    img: vialRetatrutide,
+    img: vialMotsc,
     accent: "#1d4f8a",
     description: "Mitochondrial-derived peptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("40mg", 200)],
@@ -59,7 +73,7 @@ export const products: Product[] = [
     slug: "bacteriostatic-water",
     name: "Bacteriostatic Water",
     purity: "0.9% Benzyl Alcohol",
-    img: vialGhkcu,
+    img: vialBacWater,
     accent: "#9aa0a6",
     description: "Sterile bacteriostatic water (3 mL) for laboratory reconstitution of lyophilised peptides.",
     variants: [v("3mL", 6)],
@@ -68,7 +82,7 @@ export const products: Product[] = [
     slug: "nad",
     name: "NAD+",
     purity: ">99% Purity",
-    img: vialSemaglutide,
+    img: vialNad,
     accent: "#7a1f2b",
     description: "Nicotinamide adenine dinucleotide reference standard. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("500mg", 70)],
@@ -77,7 +91,7 @@ export const products: Product[] = [
     slug: "bpc-tb500",
     name: "BPC-157 / TB-500 Mix",
     purity: ">99% Purity",
-    img: vialBpc157,
+    img: vialBpcTb500,
     accent: "#5a3a8a",
     description: "Combined BPC-157 and TB-500 reference standard blend. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("20mg-blend", 60, "20mg blend")],
@@ -86,7 +100,7 @@ export const products: Product[] = [
     slug: "ipamorelin",
     name: "Ipamorelin",
     purity: ">99% Purity",
-    img: vialBpc157,
+    img: vialIpamorelin,
     accent: "#5a3a8a",
     description: "Selective GHSR ligand reference peptide. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("10mg", 55)],
@@ -95,7 +109,7 @@ export const products: Product[] = [
     slug: "selank",
     name: "Selank",
     purity: ">99% Purity",
-    img: vialGhkcu,
+    img: vialSelank,
     accent: "#1f6b6b",
     description: "Synthetic heptapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("10mg", 30)],
@@ -113,7 +127,7 @@ export const products: Product[] = [
     slug: "tesamorelin",
     name: "Tesamorelin",
     purity: ">99% Purity",
-    img: vialTirzepatide,
+    img: vialTesamorelin,
     accent: "#a37423",
     description: "GHRH analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("10mg", 85)],
@@ -122,7 +136,7 @@ export const products: Product[] = [
     slug: "klow",
     name: "KLOW",
     purity: ">99% Purity",
-    img: vialSemaglutide,
+    img: vialKlow,
     accent: "#7a1f2b",
     description: "Multi-peptide research blend (KPV, LL-37, GHK-Cu, TB-500). Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("80mg-blend", 110, "80mg blend")],
@@ -131,7 +145,7 @@ export const products: Product[] = [
     slug: "tb-500",
     name: "TB-500",
     purity: ">99% Purity",
-    img: vialBpc157,
+    img: vialTb500,
     accent: "#5a3a8a",
     description: "Thymosin Beta-4 fragment reference peptide. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("10mg", 75)],
@@ -140,7 +154,7 @@ export const products: Product[] = [
     slug: "igf-lr3",
     name: "IGF-1 LR3",
     purity: ">99% Purity",
-    img: vialTirzepatide,
+    img: vialIgfLr3,
     accent: "#a37423",
     description: "Long Arg3 IGF-1 analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("1mg", 85)],
@@ -149,7 +163,7 @@ export const products: Product[] = [
     slug: "cagrilintide",
     name: "Cagrilintide",
     purity: ">99% Purity",
-    img: vialRetatrutide,
+    img: vialCagrilintide,
     accent: "#1d4f8a",
     description: "Long-acting amylin analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("10mg", 75)],
@@ -158,7 +172,7 @@ export const products: Product[] = [
     slug: "ss-31",
     name: "SS-31",
     purity: ">99% Purity",
-    img: vialSemaglutide,
+    img: vialSs31,
     accent: "#7a1f2b",
     description: "Mitochondria-targeted tetrapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("50mg", 150)],
@@ -167,7 +181,7 @@ export const products: Product[] = [
     slug: "pt-141",
     name: "PT-141",
     purity: ">99% Purity",
-    img: vialGhkcu,
+    img: vialPt141,
     accent: "#1f6b6b",
     description: "Melanocortin receptor ligand reference peptide. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("10mg", 40)],
@@ -176,7 +190,7 @@ export const products: Product[] = [
     slug: "semax",
     name: "Semax",
     purity: ">99% Purity",
-    img: vialBpc157,
+    img: vialSemax,
     accent: "#5a3a8a",
     description: "Synthetic ACTH(4-10) analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("30mg", 55)],
