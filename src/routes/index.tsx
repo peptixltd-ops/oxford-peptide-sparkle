@@ -120,13 +120,13 @@ function Home() {
                 background: "radial-gradient(circle, rgba(212,175,99,0.38) 0%, transparent 65%)"
               }} />
             </div>
-            <div className="relative flex items-end justify-center w-full">
+            <div className="relative flex items-end justify-center w-full gap-2 md:gap-3">
               <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[44%] md:w-[46%] lg:w-[48%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -mr-16 md:-mr-24 lg:-mr-28 translate-y-8 md:translate-y-12" />
+                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[58%] md:w-[60%] lg:w-[62%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-10" />
+                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-10" />
               <img src={heroVialSemaglutide} alt="Semaglutide research vial"
-                className="w-[44%] md:w-[46%] lg:w-[48%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -ml-16 md:-ml-24 lg:-ml-28 translate-y-8 md:translate-y-12" />
+                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
             </div>
           </div>
         </div>
