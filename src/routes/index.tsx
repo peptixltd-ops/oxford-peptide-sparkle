@@ -120,13 +120,13 @@ function Home() {
                 background: "radial-gradient(circle, rgba(212,175,99,0.38) 0%, transparent 65%)"
               }} />
             </div>
-            <div className="relative flex items-end justify-center w-full gap-2 md:gap-4">
+            <div className="relative flex items-end justify-center w-full gap-2 md:gap-3">
               <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[30%] md:w-[28%] lg:w-[26%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
+                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[30%] md:w-[28%] lg:w-[26%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-10" />
+                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-10" />
               <img src={heroVialSemaglutide} alt="Semaglutide research vial"
-                className="w-[30%] md:w-[28%] lg:w-[26%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
+                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
             </div>
           </div>
         </div>
