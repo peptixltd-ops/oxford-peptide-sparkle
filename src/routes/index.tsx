@@ -4,9 +4,9 @@ import {
   Microscope, Truck, ArrowRight, Star, Calculator,
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
 } from "lucide-react";
-import heroVialRetatrutide from "@/assets/vial-retatrutide.png";
-import heroVialTirzepatide from "@/assets/vial-tirzepatide.png";
-import heroVialSemaglutide from "@/assets/vial-semaglutide.png";
+import heroVialRetatrutide from "@/assets/vials/orp-retatrutide.png";
+import heroVialBpc from "@/assets/vials/orp-bpc-157.png";
+import heroVialSemaglutide from "@/assets/vials/orp-semaglutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
@@ -121,7 +121,7 @@ function Home() {
               }} />
             </div>
             <div className="relative flex items-end justify-center gap-2 md:gap-4 w-full">
-              <img src={heroVialTirzepatide} alt="Tirzepatide research vial"
+              <img src={heroVialBpc} alt="BPC-157 research vial"
                 className="w-[36%] max-h-[480px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.55)] -mr-4 md:-mr-6 translate-y-6" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
                 className="w-[44%] max-h-[620px] object-contain drop-shadow-[0_35px_70px_rgba(0,0,0,0.7)] z-10" />
