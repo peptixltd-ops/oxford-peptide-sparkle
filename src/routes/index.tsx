@@ -86,7 +86,7 @@ function Home() {
         <div className="absolute inset-0" style={{
           background: "radial-gradient(ellipse at 75% 50%, rgba(180,140,70,0.18) 0%, transparent 55%), linear-gradient(180deg, #0a0f1a 0%, #0e1729 100%)"
         }} />
-        <div className="container-x relative grid lg:grid-cols-[1.2fr_1fr] gap-10 py-24 items-center">
+        <div className="container-x relative grid lg:grid-cols-[1fr_1.1fr] gap-6 py-20 items-center">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-10 bg-gold" />
@@ -114,19 +114,19 @@ function Home() {
               <span className="text-bone/70">Trusted by researchers nationwide</span>
             </div>
           </div>
-          <div className="relative flex items-center justify-center min-h-[680px] -my-12">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[720px] h-[720px] rounded-full" style={{
-                background: "radial-gradient(circle, rgba(212,175,99,0.35) 0%, transparent 65%)"
+          <div className="relative flex items-center justify-center min-h-[720px] -my-16">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-[780px] h-[780px] rounded-full" style={{
+                background: "radial-gradient(circle, rgba(212,175,99,0.38) 0%, transparent 65%)"
               }} />
             </div>
-            <div className="relative flex items-end justify-center w-full h-full">
+            <div className="relative flex items-end justify-center w-full">
               <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[46%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -mr-10 md:-mr-16 translate-y-10" />
+                className="w-[48%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -mr-12 md:-mr-20 translate-y-12" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[58%] h-auto object-contain drop-shadow-[0_35px_70px_rgba(0,0,0,0.75)] z-10" />
+                className="w-[62%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-10" />
               <img src={heroVialSemaglutide} alt="Semaglutide research vial"
-                className="w-[46%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -ml-10 md:-ml-16 translate-y-10" />
+                className="w-[48%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -ml-12 md:-ml-20 translate-y-12" />
             </div>
           </div>
         </div>
