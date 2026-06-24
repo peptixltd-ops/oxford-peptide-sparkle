@@ -129,10 +129,11 @@ function ProductPage() {
                   ADD TO CART
                 </button>
                 <button
-                  onClick={() => { add(product.slug, variant.id, qty); navigate({ to: "/cart" }); }}
-                  className="bg-gold text-navy-deep py-4 text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors"
+                  onClick={buyNow}
+                  disabled={loading}
+                  className="bg-gold text-navy-deep py-4 text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
                 >
-                  BUY NOW
+                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "BUY NOW"}
                 </button>
               </div>
 
