@@ -4,9 +4,9 @@ import {
   Microscope, Truck, ArrowRight, Star, Calculator,
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
 } from "lucide-react";
-import heroVialRetatrutide from "@/assets/vial-retatrutide.png";
-import heroVialTirzepatide from "@/assets/vial-tirzepatide.png";
-import heroVialSemaglutide from "@/assets/vial-semaglutide.png";
+import heroVialRetatrutide from "@/assets/vials/orp-retatrutide.png";
+import heroVialBpc from "@/assets/vials/orp-bpc-157.png";
+import heroVialSemaglutide from "@/assets/vials/orp-semaglutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
