@@ -114,19 +114,19 @@ function Home() {
               <span className="text-bone/70">Trusted by researchers nationwide</span>
             </div>
           </div>
-          <div className="relative flex items-end justify-center min-h-[560px]">
+          <div className="relative flex items-center justify-center min-h-[600px]">
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[520px] h-[520px] rounded-full" style={{
-                background: "radial-gradient(circle, rgba(212,175,99,0.28) 0%, transparent 65%)"
+              <div className="w-[640px] h-[640px] rounded-full" style={{
+                background: "radial-gradient(circle, rgba(212,175,99,0.32) 0%, transparent 65%)"
               }} />
             </div>
-            <div className="relative flex items-end justify-center gap-2 md:gap-4 w-full">
+            <div className="relative flex items-end justify-center w-full h-full">
               <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[36%] max-h-[480px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.55)] -mr-4 md:-mr-6 translate-y-6" />
+                className="w-[42%] max-h-[520px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -mr-8 md:-mr-12 translate-y-8" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[44%] max-h-[620px] object-contain drop-shadow-[0_35px_70px_rgba(0,0,0,0.7)] z-10" />
+                className="w-[52%] max-h-[680px] object-contain drop-shadow-[0_35px_70px_rgba(0,0,0,0.75)] z-10" />
               <img src={heroVialSemaglutide} alt="Semaglutide research vial"
-                className="w-[36%] max-h-[480px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.55)] -ml-4 md:-ml-6 translate-y-6" />
+                className="w-[42%] max-h-[520px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -ml-8 md:-ml-12 translate-y-8" />
             </div>
           </div>
         </div>
