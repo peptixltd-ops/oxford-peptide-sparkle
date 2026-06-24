@@ -3,7 +3,10 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
-import { Trash2 } from "lucide-react";
+import { createCheckout, getVariantGid } from "@/lib/shopify";
+import { Trash2, Loader2 } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({ meta: [{ title: "Your Cart — Oxford Research Peptides" }] }),
@@ -12,6 +15,7 @@ export const Route = createFileRoute("/cart")({
 
 function CartPage() {
   const { items, setQty, remove, clear } = useCart();
+  const [loading, setLoading] = useState(false);
   const lines = items
     .map(i => {
       const product = getProduct(i.slug);
@@ -79,8 +83,32 @@ function CartPage() {
                 <div className="flex justify-between font-display text-xl font-medium mb-6">
                   <span>Total</span><span>{fmt(total)}</span>
                 </div>
-                <button className="w-full px-7 py-4 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors">
-                  CHECKOUT
+                <button
+                  onClick={async () => {
+                    setLoading(true);
+                    try {
+                      const shopLines = lines
+                        .map(l => {
+                          const gid = getVariantGid(l.product.slug, l.variant.id);
+                          return gid ? { merchandiseId: gid, quantity: l.item.qty } : null;
+                        })
+                        .filter((x): x is { merchandiseId: string; quantity: number } => !!x);
+                      if (shopLines.length === 0) {
+                        toast.error("No items available for checkout");
+                        return;
+                      }
+                      const url = await createCheckout(shopLines);
+                      window.open(url, "_blank");
+                    } catch (e) {
+                      toast.error(e instanceof Error ? e.message : "Checkout failed");
+                    } finally {
+                      setLoading(false);
+                    }
+                  }}
+                  disabled={loading || lines.length === 0}
+                  className="w-full px-7 py-4 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                >
+                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "CHECKOUT"}
                 </button>
                 <Link to="/shop" className="block text-center mt-3 text-xs text-muted-foreground hover:text-gold">Continue shopping</Link>
               </aside>

@@ -202,7 +202,7 @@ export const products: Product[] = [
     img: vialBpc157,
     accent: "#5a3a8a",
     description: "Synthetic pentadecapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
-    variants: [v("5mg", 19.95), v("10mg", 29.95)],
+    variants: [v("10mg", 29.95)],
   },
 ];
 

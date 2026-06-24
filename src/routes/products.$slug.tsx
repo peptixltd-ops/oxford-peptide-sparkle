@@ -1,10 +1,12 @@
-import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
+import { createCheckout, getVariantGid } from "@/lib/shopify";
 import { useState } from "react";
-import { ClipboardCheck, FlaskConical, Truck, ShieldCheck } from "lucide-react";
+import { toast } from "sonner";
+import { ClipboardCheck, FlaskConical, Truck, ShieldCheck, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -39,11 +41,25 @@ export const Route = createFileRoute("/products/$slug")({
 function ProductPage() {
   const { product } = Route.useLoaderData();
   const { add } = useCart();
-  const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [variantId, setVariantId] = useState(product.variants[0].id);
+  const [loading, setLoading] = useState(false);
   const variant = product.variants.find((v: Variant) => v.id === variantId) ?? product.variants[0];
   const fmt = (n: number) => `£${n.toFixed(2)}`;
+
+  const buyNow = async () => {
+    const gid = getVariantGid(product.slug, variant.id);
+    if (!gid) { toast.error("Unavailable for checkout"); return; }
+    setLoading(true);
+    try {
+      const url = await createCheckout([{ merchandiseId: gid, quantity: qty }]);
+      window.open(url, "_blank");
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Checkout failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
@@ -113,10 +129,11 @@ function ProductPage() {
                   ADD TO CART
                 </button>
                 <button
-                  onClick={() => { add(product.slug, variant.id, qty); navigate({ to: "/cart" }); }}
-                  className="bg-gold text-navy-deep py-4 text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors"
+                  onClick={buyNow}
+                  disabled={loading}
+                  className="bg-gold text-navy-deep py-4 text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
                 >
-                  BUY NOW
+                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "BUY NOW"}
                 </button>
               </div>
 

@@ -1,14 +1,32 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import type { Product } from "@/lib/products";
 import { fromPrice } from "@/lib/products";
 import { useCart } from "@/lib/cart";
+import { createCheckout, getVariantGid } from "@/lib/shopify";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 export function ProductCard({ p }: { p: Product }) {
   const { add } = useCart();
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const defaultVariant = p.variants[0];
   const min = fromPrice(p);
   const hasMultiple = p.variants.length > 1;
+
+  const buyNow = async () => {
+    const gid = getVariantGid(p.slug, defaultVariant.id);
+    if (!gid) { toast.error("Unavailable for checkout"); return; }
+    setLoading(true);
+    try {
+      const url = await createCheckout([{ merchandiseId: gid, quantity: 1 }]);
+      window.open(url, "_blank");
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Checkout failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-white border border-border p-5 flex flex-col group hover:border-gold transition-colors">
@@ -39,10 +57,11 @@ export function ProductCard({ p }: { p: Product }) {
           ADD TO CART
         </button>
         <button
-          onClick={() => { add(p.slug, defaultVariant.id); navigate({ to: "/cart" }); }}
-          className="bg-gold text-navy-deep py-2.5 text-[10px] font-bold tracking-widest hover:bg-gold-soft transition-colors"
+          onClick={buyNow}
+          disabled={loading}
+          className="bg-gold text-navy-deep py-2.5 text-[10px] font-bold tracking-widest hover:bg-gold-soft transition-colors disabled:opacity-60 flex items-center justify-center"
         >
-          BUY NOW
+          {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : "BUY NOW"}
         </button>
       </div>
     </div>
