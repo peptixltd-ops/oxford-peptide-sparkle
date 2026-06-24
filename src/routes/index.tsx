@@ -86,13 +86,13 @@ function Home() {
         <div className="absolute inset-0" style={{
           background: "radial-gradient(ellipse at 75% 50%, rgba(180,140,70,0.18) 0%, transparent 55%), linear-gradient(180deg, #0a0f1a 0%, #0e1729 100%)"
         }} />
-        <div className="container-x relative grid lg:grid-cols-[1fr_1.1fr] gap-6 py-20 items-center">
+        <div className="container-x relative grid grid-cols-[1fr_0.85fr] md:grid-cols-[1fr_0.9fr] lg:grid-cols-[1fr_1.05fr] gap-4 md:gap-6 py-16 md:py-20 items-center">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-10 bg-gold" />
               <span className="text-gold text-[11px] font-bold tracking-[0.3em]">PREMIUM RESEARCH PEPTIDES</span>
             </div>
-            <h1 className="font-display text-6xl md:text-7xl font-medium leading-[1.02] mb-7">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.02] mb-7">
               Research.<br />Quality.<br />Results<span className="text-gold">.</span>
             </h1>
             <p className="text-bone/75 text-base max-w-md mb-9 leading-relaxed">
@@ -114,19 +114,19 @@ function Home() {
               <span className="text-bone/70">Trusted by researchers nationwide</span>
             </div>
           </div>
-          <div className="relative flex items-center justify-center min-h-[720px] -my-16">
+          <div className="relative flex items-center justify-center min-h-[340px] sm:min-h-[480px] md:min-h-[600px] lg:min-h-[720px] -my-8 md:-my-16">
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[780px] h-[780px] rounded-full" style={{
+              <div className="w-[520px] h-[520px] md:w-[680px] md:h-[680px] lg:w-[780px] lg:h-[780px] rounded-full" style={{
                 background: "radial-gradient(circle, rgba(212,175,99,0.38) 0%, transparent 65%)"
               }} />
             </div>
             <div className="relative flex items-end justify-center w-full">
               <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[48%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -mr-12 md:-mr-20 translate-y-12" />
+                className="w-[44%] md:w-[46%] lg:w-[48%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -mr-16 md:-mr-24 lg:-mr-28 translate-y-8 md:translate-y-12" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[62%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-10" />
+                className="w-[58%] md:w-[60%] lg:w-[62%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-10" />
               <img src={heroVialSemaglutide} alt="Semaglutide research vial"
-                className="w-[48%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -ml-12 md:-ml-20 translate-y-12" />
+                className="w-[44%] md:w-[46%] lg:w-[48%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)] -ml-16 md:-ml-24 lg:-ml-28 translate-y-8 md:translate-y-12" />
             </div>
           </div>
         </div>
