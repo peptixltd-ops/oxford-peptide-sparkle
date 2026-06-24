@@ -4,7 +4,9 @@ import {
   Microscope, Truck, ArrowRight, Star, Calculator,
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
 } from "lucide-react";
-import heroVial from "@/assets/vial-retatrutide.png";
+import heroVialRetatrutide from "@/assets/vial-retatrutide.png";
+import heroVialTirzepatide from "@/assets/vial-tirzepatide.png";
+import heroVialSemaglutide from "@/assets/vial-semaglutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
@@ -109,18 +111,23 @@ function Home() {
               <div className="flex gap-0.5">
                 {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400" />)}
               </div>
-              <span className="text-bone/70">4.9/5 based on 120+ reviews</span>
+              <span className="text-bone/70">Trusted by researchers nationwide</span>
             </div>
           </div>
-          <div className="relative flex items-center justify-center min-h-[480px]">
-            <div className="absolute w-[380px] h-[380px] rounded-full" style={{
-              background: "radial-gradient(circle, rgba(212,175,99,0.25) 0%, transparent 65%)"
-            }} />
-            <img
-              src={heroVial}
-              alt="Oxford Research Peptides vial"
-              className="relative max-h-[560px] w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
-            />
+          <div className="relative flex items-end justify-center min-h-[560px]">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-[520px] h-[520px] rounded-full" style={{
+                background: "radial-gradient(circle, rgba(212,175,99,0.28) 0%, transparent 65%)"
+              }} />
+            </div>
+            <div className="relative flex items-end justify-center gap-2 md:gap-4 w-full">
+              <img src={heroVialTirzepatide} alt="Tirzepatide research vial"
+                className="w-[36%] max-h-[480px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.55)] -mr-4 md:-mr-6 translate-y-6" />
+              <img src={heroVialRetatrutide} alt="Retatrutide research vial"
+                className="w-[44%] max-h-[620px] object-contain drop-shadow-[0_35px_70px_rgba(0,0,0,0.7)] z-10" />
+              <img src={heroVialSemaglutide} alt="Semaglutide research vial"
+                className="w-[36%] max-h-[480px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.55)] -ml-4 md:-ml-6 translate-y-6" />
+            </div>
           </div>
         </div>
       </section>
