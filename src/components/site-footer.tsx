@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Twitter, Mail, ArrowRight } from "lucide-react";
 import { Logo } from "./site-header";
+import orsLogo from "@/assets/oxford-research-syndicate.png.asset.json";
+
 
 const cols = [
   { h: "SHOP", links: [
