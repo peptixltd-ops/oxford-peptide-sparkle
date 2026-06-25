@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Twitter, Mail, ArrowRight } from "lucide-react";
 import { Logo } from "./site-header";
+import orsLogo from "@/assets/oxford-research-syndicate.png.asset.json";
+
 
 const cols = [
   { h: "SHOP", links: [
@@ -37,8 +39,11 @@ export function SiteFooter() {
     <footer className="bg-navy-deep text-bone">
       <div className="container-x py-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
         <div className="col-span-2">
-          <Logo light />
+          <div className="bg-white inline-block p-3 rounded-sm">
+            <img src={orsLogo.url} alt="Oxford Research Syndicate Ltd" className="h-14 w-auto" />
+          </div>
           <p className="text-bone/60 text-xs mt-5 max-w-xs leading-relaxed">
+
             This brand is owned and operated by <strong className="text-bone/90">Oxford Research Syndicate Ltd</strong>, a company registered in England & Wales.
           </p>
           <ul className="text-bone/60 text-xs mt-4 space-y-1 leading-relaxed">
