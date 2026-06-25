@@ -8,18 +8,27 @@ const cols = [
     { l: "Bestsellers", to: "/shop" },
     { l: "Wholesale", to: "/wholesale" },
   ] },
-  { h: "RESEARCH HUB", links: [
-    { l: "Research Articles", to: "/research-hub" },
-    { l: "Peptide Guides", to: "/research-hub" },
-  ] },
-  { h: "LAB TESTING", links: [
-    { l: "Lab Testing Process", to: "/lab-testing" },
+  { h: "RESEARCH", links: [
+    { l: "Research Hub", to: "/research-hub" },
+    { l: "Lab Testing", to: "/lab-testing" },
     { l: "Certificates (COA)", to: "/lab-testing" },
   ] },
   { h: "COMPANY", links: [
     { l: "About Us", to: "/about" },
-    { l: "Contact Us", to: "/about" },
+    { l: "Contact Us", to: "/contact" },
     { l: "FAQs", to: "/faqs" },
+    { l: "Sitemap", to: "/sitemap" },
+  ] },
+  { h: "LEGAL", links: [
+    { l: "Privacy Policy", to: "/privacy-policy" },
+    { l: "Terms & Conditions", to: "/terms" },
+    { l: "Cookie Policy", to: "/cookie-policy" },
+    { l: "Disclaimer", to: "/disclaimer" },
+  ] },
+  { h: "POLICIES", links: [
+    { l: "Refund Policy", to: "/refund-policy" },
+    { l: "Shipping Policy", to: "/shipping-policy" },
+    { l: "Cancellation Policy", to: "/cancellation-policy" },
   ] },
 ] as const;
 
@@ -30,12 +39,18 @@ export function SiteFooter() {
         <div className="col-span-2">
           <Logo light />
           <p className="text-bone/60 text-xs mt-5 max-w-xs leading-relaxed">
-            Premium research peptides manufactured in the UK with the highest standards of quality and transparency. Strictly for laboratory research use.
+            This brand is owned and operated by <strong className="text-bone/90">Oxford Research Syndicate Ltd</strong>, a company registered in England & Wales.
           </p>
+          <ul className="text-bone/60 text-xs mt-4 space-y-1 leading-relaxed">
+            <li>Company Reg. No. <span className="text-bone/90">17207898</span></li>
+            <li>131a Movers Lane</li>
+            <li>Barking, Essex, IG11 7UQ</li>
+            <li>United Kingdom</li>
+          </ul>
           <div className="flex gap-3 mt-5">
             <a href="#" aria-label="Instagram" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Instagram className="w-4 h-4" /></a>
             <a href="#" aria-label="Twitter" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Twitter className="w-4 h-4" /></a>
-            <a href="#" aria-label="Email" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Mail className="w-4 h-4" /></a>
+            <a href="mailto:oxfordresearchpeptides@gmail.com" aria-label="Email" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Mail className="w-4 h-4" /></a>
           </div>
         </div>
         {cols.map(col => (
@@ -48,7 +63,7 @@ export function SiteFooter() {
             </ul>
           </div>
         ))}
-        <div>
+        <div className="lg:col-span-1">
           <h4 className="text-[11px] font-bold tracking-[0.2em] text-gold mb-4">STAY UPDATED</h4>
           <p className="text-xs text-bone/70 mb-4">Get the latest research notes and catalogue updates.</p>
           <div className="flex">
@@ -59,8 +74,8 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-bone/10">
-        <div className="container-x py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px] text-bone/50">
-          <div>© 2024 Oxford Research Peptides. All rights reserved.</div>
+        <div className="container-x py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px] text-bone/50 text-center md:text-left">
+          <div>© 2026 Oxford Research Syndicate Ltd. All Rights Reserved.</div>
           <div>Research Use Only. Not for Human or Animal Consumption.</div>
         </div>
       </div>
