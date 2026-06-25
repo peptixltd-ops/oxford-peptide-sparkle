@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider } from "@/lib/cart";
 import { Toaster } from "@/components/ui/sonner";
+import { CookieBanner } from "@/components/cookie-banner";
 
 function NotFoundComponent() {
   return (
@@ -99,6 +100,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { src: "https://www.googletagmanager.com/gtag/js?id=G-VKHQ1KX316", async: true },
       { children: "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-VKHQ1KX316');" },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Oxford Research Peptides",
+          legalName: "Oxford Research Syndicate Ltd",
+          url: "https://oxfordresearchpeptides.com",
+          email: "oxfordresearchpeptides@gmail.com",
+          taxID: "17207898",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "131a Movers Lane",
+            addressLocality: "Barking",
+            addressRegion: "Essex",
+            postalCode: "IG11 7UQ",
+            addressCountry: "GB",
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Oxford Research Peptides",
+          url: "https://oxfordresearchpeptides.com",
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -130,6 +160,7 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <Toaster />
+        <CookieBanner />
       </CartProvider>
     </QueryClientProvider>
   );

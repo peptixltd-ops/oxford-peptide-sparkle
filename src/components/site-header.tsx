@@ -17,11 +17,12 @@ export function Logo({ light = false }: { light?: boolean }) {
 }
 
 const navLinks = [
-  { to: "/shop", label: "SHOP PEPTIDES" },
-  { to: "/research-hub", label: "RESEARCH HUB" },
+  { to: "/shop", label: "SHOP" },
+  { to: "/research-hub", label: "RESEARCH" },
   { to: "/lab-testing", label: "LAB TESTING" },
-  { to: "/about", label: "ABOUT US" },
+  { to: "/about", label: "ABOUT" },
   { to: "/wholesale", label: "WHOLESALE" },
+  { to: "/contact", label: "CONTACT" },
   { to: "/faqs", label: "FAQS" },
 ] as const;
 
