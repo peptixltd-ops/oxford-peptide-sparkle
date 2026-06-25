@@ -81,9 +81,6 @@ function Home() {
 
       {/* Hero */}
       <section className="relative text-bone overflow-hidden min-h-[680px] flex items-center bg-navy-deep">
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 75% 50%, rgba(180,140,70,0.18) 0%, transparent 55%), linear-gradient(180deg, #0a0f1a 0%, #0e1729 100%)"
-        }} />
         <div className="container-x relative grid grid-cols-[1fr_0.85fr] md:grid-cols-[1fr_0.9fr] lg:grid-cols-[1fr_1.05fr] gap-4 md:gap-6 py-16 md:py-20 items-center">
           <div>
             <div className="flex items-center gap-3 mb-6">
@@ -113,19 +110,8 @@ function Home() {
             </div>
           </div>
           <div className="relative flex items-center justify-center min-h-[340px] sm:min-h-[480px] md:min-h-[600px] lg:min-h-[720px] -my-8 md:-my-16">
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[520px] h-[520px] md:w-[680px] md:h-[680px] lg:w-[780px] lg:h-[780px] rounded-full" style={{
-                background: "radial-gradient(circle, rgba(212,175,99,0.38) 0%, transparent 65%)"
-              }} />
-            </div>
-            <div className="relative flex items-end justify-center w-full gap-2 md:gap-3">
-              <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
-              <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-10" />
-              <img src={heroVialSemaglutide} alt="Semaglutide research vial"
-                className="w-[32%] md:w-[30%] lg:w-[30%] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]" />
-            </div>
+            <img src={heroVialRetatrutide} alt="Retatrutide research vial"
+              className="w-[75%] md:w-[65%] lg:w-[55%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)]" />
           </div>
         </div>
       </section>
