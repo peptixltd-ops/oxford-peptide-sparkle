@@ -109,9 +109,9 @@ function Home() {
               <span className="text-bone/70">Trusted by researchers nationwide</span>
             </div>
           </div>
-          <div className="relative flex items-center justify-center min-h-[340px] sm:min-h-[480px] md:min-h-[600px] lg:min-h-[720px] -my-8 md:-my-16">
+          <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[520px] md:min-h-[640px] lg:min-h-[760px] -my-8 md:-my-16">
             <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-              className="w-[75%] md:w-[65%] lg:w-[55%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)]" />
+              className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[78%] h-auto object-contain drop-shadow-[0_50px_100px_rgba(0,0,0,0.9)]" />
           </div>
         </div>
       </section>
