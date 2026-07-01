@@ -7,37 +7,60 @@ import {
   type ResearchCategoryId,
   type MechanismGroupId,
 } from "@/lib/taxonomy";
-
+import {
+  getRelated,
+  type EntityRef,
+  type KnowledgeEntity,
+} from "@/lib/knowledge-graph";
 
 interface Props {
-  /** Filter by category. */
+  /** Anchor entity — resolves related guides through the Knowledge Graph. */
+  entityRef?: EntityRef;
+  /** Legacy: filter by category. */
   categoryId?: ResearchCategoryId;
-  /** Filter by referenced compound slug. */
+  /** Legacy: filter by referenced compound slug. */
   compoundSlug?: string;
-  /** Filter by mechanism group. */
+  /** Legacy: filter by mechanism group. */
   mechanismId?: MechanismGroupId;
   heading?: string;
+  /** Set to render an explicit empty state instead of hiding the section. */
   emptyLabel?: string;
   limit?: number;
 }
 
+interface GuideLike {
+  slug: string;
+  title: string;
+  summary?: string;
+}
+
 /**
- * Consumes the central taxonomy to render a list of related guides — never
- * a static array. Empty state renders a labelled placeholder.
+ * Consumes the Knowledge Graph (Release 3.0) with a taxonomy fallback for
+ * legacy call sites. Renders nothing when there are no related guides unless
+ * an explicit `emptyLabel` is provided.
  */
 export function RelatedGuides({
+  entityRef,
   categoryId,
   compoundSlug,
   mechanismId,
   heading = "Related guides",
-  emptyLabel = "Related guides are populated in a future release.",
+  emptyLabel,
   limit = 6,
 }: Props) {
-  let list: Guide[] = [];
-  if (compoundSlug) list = guidesByCompound(compoundSlug);
-  else if (mechanismId) list = guidesByMechanism(mechanismId);
-  else if (categoryId) list = guidesInCategory(categoryId);
+  let list: GuideLike[] = [];
 
+  if (entityRef) {
+    list = getRelated(entityRef, { type: "guide", limit }).map(toGuideLike);
+  } else if (compoundSlug) {
+    list = guidesByCompound(compoundSlug);
+  } else if (mechanismId) {
+    list = guidesByMechanism(mechanismId);
+  } else if (categoryId) {
+    list = guidesInCategory(categoryId);
+  }
+
+  if (list.length === 0 && !emptyLabel) return null;
 
   return (
     <section
@@ -72,3 +95,10 @@ export function RelatedGuides({
     </section>
   );
 }
+
+function toGuideLike(e: KnowledgeEntity): GuideLike {
+  return { slug: e.slug, title: e.title, summary: e.description };
+}
+
+// Ensure the `Guide` import is used (satisfy strict TS during noop rebuilds).
+export type __GuideAlias = Guide;
