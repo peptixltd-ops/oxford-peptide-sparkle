@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ShieldCheck, FlaskConical, ClipboardCheck,
   Microscope, Truck, ArrowRight, Star, Calculator,
-  Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
+  Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award,
+  BookOpen, BarChart3, Users, FileText
 } from "lucide-react";
 import heroVialRetatrutide from "@/assets/vials/orp-retatrutide.png";
 import heroVialBpc from "@/assets/vials/orp-bpc-157.png";
