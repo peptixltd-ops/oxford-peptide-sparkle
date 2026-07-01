@@ -5,7 +5,9 @@ import {
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award,
   BookOpen, BarChart3, Users, FileText
 } from "lucide-react";
-import heroTrio from "@/assets/hero-vials-trio.png.asset.json";
+import heroVialBpc from "@/assets/vials/orp-bpc-157.png";
+import heroVialRet from "@/assets/vials/orp-retatrutide.png";
+import heroVialSem from "@/assets/vials/orp-semaglutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
