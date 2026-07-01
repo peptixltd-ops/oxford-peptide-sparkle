@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Search, User, ShoppingBag } from "lucide-react";
+import { Search, User, ShoppingBag, Menu } from "lucide-react";
 import { useState } from "react";
 import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
 import { useCart } from "@/lib/cart";
+import { MobileNav } from "./mobile-nav";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -16,11 +17,14 @@ export function Logo({ light = false }: { light?: boolean }) {
   );
 }
 
-const navLinks = [
-  { to: "/shop", label: "SHOP" },
+// Reordered per Release 1.1: education-first, commerce demoted.
+export const navLinks = [
   { to: "/research-hub", label: "RESEARCH" },
+  { to: "/compounds", label: "COMPOUNDS" },
+  { to: "/methodology", label: "METHODOLOGY" },
   { to: "/lab-testing", label: "LAB TESTING" },
   { to: "/about", label: "ABOUT" },
+  { to: "/shop", label: "SHOP" },
   { to: "/wholesale", label: "WHOLESALE" },
   { to: "/contact", label: "CONTACT" },
   { to: "/faqs", label: "FAQS" },
@@ -30,6 +34,7 @@ export function SiteHeader() {
   const { count } = useCart();
   const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [q, setQ] = useState("");
 
   const submitSearch = (e: React.FormEvent) => {
@@ -40,47 +45,88 @@ export function SiteHeader() {
 
   return (
     <header className="bg-white border-b border-border relative z-20">
-      <div className="container-x flex items-center justify-between h-20">
+      <div className="container-x flex items-center justify-between h-20 gap-4">
         <Logo />
-        <nav className="hidden lg:flex items-center gap-8 text-xs font-semibold tracking-widest">
-          {navLinks.map(l => (
+        <nav
+          aria-label="Primary"
+          className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs font-semibold tracking-widest"
+        >
+          {navLinks.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="hover:text-gold transition-colors"
+              className="hover:text-gold focus-visible:text-gold transition-colors focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-4"
               activeProps={{ className: "text-gold" }}
             >
               {l.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-5">
-          <button aria-label="Search" onClick={() => setSearchOpen(s => !s)}>
-            <Search className="w-5 h-5" />
+        <div className="flex items-center gap-4 md:gap-5">
+          <button
+            type="button"
+            aria-label="Search"
+            aria-expanded={searchOpen}
+            onClick={() => setSearchOpen((s) => !s)}
+            className="min-h-11 min-w-11 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-gold"
+          >
+            <Search className="w-5 h-5" aria-hidden="true" />
           </button>
-          <Link to="/account" aria-label="Account"><User className="w-5 h-5" /></Link>
-          <Link to="/cart" aria-label="Cart" className="relative">
-            <ShoppingBag className="w-5 h-5" />
-            <span className="absolute -top-2 -right-2 bg-gold text-navy-deep text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">{count}</span>
+          <Link
+            to="/account"
+            aria-label="Account"
+            className="min-h-11 min-w-11 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-gold"
+          >
+            <User className="w-5 h-5" aria-hidden="true" />
           </Link>
+          <Link
+            to="/cart"
+            aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
+            className="relative min-h-11 min-w-11 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-gold"
+          >
+            <ShoppingBag className="w-5 h-5" aria-hidden="true" />
+            <span
+              aria-hidden="true"
+              className="absolute top-1 right-1 bg-gold text-navy-deep text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center"
+            >
+              {count}
+            </span>
+          </Link>
+          <button
+            type="button"
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(true)}
+            className="lg:hidden min-h-11 min-w-11 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-gold"
+          >
+            <Menu className="w-6 h-6" aria-hidden="true" />
+          </button>
         </div>
       </div>
       {searchOpen && (
         <div className="absolute inset-x-0 top-full bg-white border-b border-border shadow-lg">
           <form onSubmit={submitSearch} className="container-x py-4 flex gap-3">
+            <label htmlFor="site-search" className="sr-only">
+              Search
+            </label>
             <input
+              id="site-search"
               autoFocus
               value={q}
-              onChange={e => setQ(e.target.value)}
+              onChange={(e) => setQ(e.target.value)}
               placeholder="Search peptides, articles, COAs..."
-              className="flex-1 border border-border px-4 py-3 text-sm outline-none focus:border-gold"
+              className="flex-1 border border-border px-4 py-3 text-sm outline-none focus:border-gold focus-visible:outline-2 focus-visible:outline-gold"
             />
-            <button type="submit" className="px-6 py-3 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors">
+            <button
+              type="submit"
+              className="px-6 py-3 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors focus-visible:outline-2 focus-visible:outline-gold"
+            >
               SEARCH
             </button>
           </form>
         </div>
       )}
+      <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} links={navLinks} />
     </header>
   );
 }
