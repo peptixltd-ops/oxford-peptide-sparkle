@@ -112,13 +112,13 @@ function Home() {
             </div>
           </div>
           <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[520px] md:min-h-[640px] lg:min-h-[760px] -my-8 md:-my-16">
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-full scale-[1.08]">
               <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[30%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -mr-6 md:-mr-10 translate-y-4" />
+                className="w-[34%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -mr-10 md:-mr-16 translate-y-5" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[42%] h-auto object-contain drop-shadow-[0_50px_100px_rgba(0,0,0,0.9)] relative z-10" />
+                className="w-[48%] h-auto object-contain drop-shadow-[0_50px_100px_rgba(0,0,0,0.9)] relative z-10" />
               <img src={heroVialSema} alt="Semaglutide research vial"
-                className="w-[30%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -ml-6 md:-ml-10 translate-y-4" />
+                className="w-[34%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -ml-10 md:-ml-16 translate-y-5" />
             </div>
           </div>
         </div>
