@@ -117,22 +117,22 @@ function Home() {
           </svg>
         </div>
 
-        <div className="container-x relative grid lg:grid-cols-[1fr_1.05fr] gap-8 py-16 md:py-20 items-center">
+        <div className="container-x relative grid grid-cols-[1fr_0.9fr] md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1.1fr] gap-6 md:gap-10 py-14 md:py-20 items-center">
           {/* Left column */}
           <div className="relative z-20">
-            <div className="text-gold text-xs font-bold tracking-[0.35em] mb-5">
+            <div className="text-gold text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.35em] mb-4 md:mb-5">
               RESEARCH <span className="opacity-50 mx-1">|</span> EDUCATION <span className="opacity-50 mx-1">|</span> INNOVATION
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-medium leading-[1.05] mb-6">
+            <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-medium leading-[1.05] mb-5 md:mb-6">
               The UK's Educational<br/>Authority on<br/>
               <span className="text-gold italic">Peptide Research<span className="not-italic">.</span></span>
             </h1>
-            <p className="text-bone/75 text-base max-w-md mb-8 leading-relaxed">
+            <p className="hidden sm:block text-bone/75 text-base max-w-md mb-8 leading-relaxed">
               Evidence-based guides, comparisons and scientific resources to advance knowledge and support laboratory research. Strictly for in-vitro use.
             </p>
 
             {/* Mini features */}
-            <div className="flex flex-wrap gap-8 mb-8">
+            <div className="hidden md:flex flex-wrap gap-8 mb-8">
               {[
                 { icon: BookOpen, l1: "In-Depth", l2: "Research Guides" },
                 { icon: BarChart3, l1: "Data-Driven", l2: "Comparisons" },
@@ -150,16 +150,16 @@ function Home() {
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-3 mb-8">
-              <Link to="/research-hub" className="px-7 py-3.5 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors inline-flex items-center gap-2">
+            <div className="flex flex-wrap gap-3 mb-6 md:mb-8">
+              <Link to="/research-hub" className="px-5 md:px-7 py-3 md:py-3.5 bg-gold text-navy-deep text-[10px] md:text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors inline-flex items-center gap-2">
                 EXPLORE RESEARCH HUB <ArrowRight className="w-3.5 h-3.5"/>
               </Link>
-              <Link to="/shop" className="px-7 py-3.5 border border-bone/40 text-bone text-xs font-bold tracking-widest hover:bg-bone hover:text-navy-deep transition-colors">
+              <Link to="/shop" className="px-5 md:px-7 py-3 md:py-3.5 border border-bone/40 text-bone text-[10px] md:text-xs font-bold tracking-widest hover:bg-bone hover:text-navy-deep transition-colors">
                 SHOP PEPTIDES
               </Link>
             </div>
 
-            <div className="flex items-center gap-3 text-sm">
+            <div className="hidden sm:flex items-center gap-3 text-sm">
               <span className="font-semibold">Excellent</span>
               <div className="flex gap-0.5">
                 {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400" />)}
@@ -169,9 +169,12 @@ function Home() {
           </div>
 
           {/* Right column — hero vial trio */}
-          <div className="relative flex items-end justify-center min-h-[420px] sm:min-h-[520px] lg:min-h-[640px]">
-            <img src={heroTrio.url} alt="Oxford Research Peptides — BPC-157, Retatrutide and Semaglutide research vials"
-              className="w-full h-auto object-contain drop-shadow-[0_40px_70px_rgba(0,0,0,0.7)]" />
+          <div className="relative flex items-center justify-end">
+            <img
+              src={heroTrio.url}
+              alt="Oxford Research Peptides — BPC-157, Retatrutide and Semaglutide research vials"
+              className="w-full max-w-none h-auto object-contain object-right drop-shadow-[0_40px_70px_rgba(0,0,0,0.7)] scale-[1.15] md:scale-[1.2] origin-right"
+            />
           </div>
         </div>
 
