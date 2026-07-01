@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalPage, P } from "@/components/legal-page";
+import { seo } from "@/lib/seo";
 
 function Page() {
   return (
@@ -22,13 +23,6 @@ function Page() {
 }
 
 export const Route = createFileRoute("/shipping-policy")({
-  head: () => ({
-    meta: [
-      { title: "Shipping Policy — Oxford Research Peptides" },
-      { name: "description", content: "Shipping and delivery information — please refer to our FAQ for full details." },
-      { property: "og:url", content: "https://oxfordresearchpeptides.com/shipping-policy" },
-    ],
-    links: [{ rel: "canonical", href: "https://oxfordresearchpeptides.com/shipping-policy" }],
-  }),
+  head: () => seo({ path: "/shipping-policy", title: 'Shipping Policy — Oxford Research Peptides', description: 'Shipping and delivery information — please refer to our FAQ for full details.' }),
   component: Page,
 });

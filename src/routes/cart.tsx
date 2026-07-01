@@ -1,15 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
 import { createCheckout, getVariantGid } from "@/lib/shopify";
 import { Trash2, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/cart")({
-  head: () => ({ meta: [{ title: "Your Cart — Oxford Research Peptides" }] }),
+  head: () =>
+    seo({
+      path: "/cart",
+      title: "Your Cart — Oxford Research Peptides",
+      description: "Review the items in your Oxford Research Peptides cart before checkout.",
+      noindex: true,
+    }),
   component: CartPage,
 });
 
@@ -33,6 +41,8 @@ function CartPage() {
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
       <SiteHeader />
+      <Breadcrumbs items={[{ label: "Cart" }]} />
+      <main id="main-content">
       <section className="py-12">
         <div className="container-x">
           <h1 className="font-display text-4xl font-medium mb-8">Your Cart</h1>
@@ -116,6 +126,7 @@ function CartPage() {
           )}
         </div>
       </section>
+      </main>
       <SiteFooter />
     </div>
   );

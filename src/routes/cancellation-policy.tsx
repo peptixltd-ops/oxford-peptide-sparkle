@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalPage, P } from "@/components/legal-page";
+import { seo } from "@/lib/seo";
 
 function Page() {
   return (
@@ -21,13 +22,6 @@ function Page() {
 }
 
 export const Route = createFileRoute("/cancellation-policy")({
-  head: () => ({
-    meta: [
-      { title: "Cancellation Policy — Oxford Research Peptides" },
-      { name: "description", content: "Order cancellation information — please refer to our FAQ for full details." },
-      { property: "og:url", content: "https://oxfordresearchpeptides.com/cancellation-policy" },
-    ],
-    links: [{ rel: "canonical", href: "https://oxfordresearchpeptides.com/cancellation-policy" }],
-  }),
+  head: () => seo({ path: "/cancellation-policy", title: 'Cancellation Policy — Oxford Research Peptides', description: 'Order cancellation information — please refer to our FAQ for full details.' }),
   component: Page,
 });

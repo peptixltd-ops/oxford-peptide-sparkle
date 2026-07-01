@@ -2,14 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/wholesale")({
-  head: () => ({
-    meta: [
-      { title: "Wholesale & Bulk Supply — Oxford Research Peptides" },
-      { name: "description", content: "Wholesale and bulk research peptide supply for laboratories, universities and research institutions." },
-    ],
-  }),
+  head: () =>
+    seo({
+      path: "/wholesale",
+      title: "Wholesale & Bulk Supply — Oxford Research Peptides",
+      description:
+        "Wholesale and bulk research peptide supply for laboratories, universities and research institutions.",
+    }),
   component: WholesalePage,
 });
 
@@ -25,6 +28,8 @@ function WholesalePage() {
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
       <SiteHeader />
+      <Breadcrumbs items={[{ label: "Wholesale" }]} />
+      <main id="main-content">
       <section className="bg-navy-deep text-bone py-14">
         <div className="container-x">
           <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">WHOLESALE</div>
@@ -74,6 +79,7 @@ function WholesalePage() {
           )}
         </div>
       </section>
+      </main>
       <SiteFooter />
     </div>
   );

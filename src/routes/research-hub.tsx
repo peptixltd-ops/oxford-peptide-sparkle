@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { ArticleCard } from "@/components/article-card";
+import { seo } from "@/lib/seo";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
 import artVials from "@/assets/article-vials.jpg";
@@ -16,38 +19,33 @@ const articles = [
 ];
 
 export const Route = createFileRoute("/research-hub")({
-  head: () => ({
-    meta: [
-      { title: "Research Hub — Oxford Research Peptides" },
-      { name: "description", content: "Laboratory guides, peptide chemistry notes and reference articles from Oxford Research Peptides." },
-    ],
-  }),
+  head: () =>
+    seo({
+      path: "/research-hub",
+      title: "Research Hub — Oxford Research Peptides",
+      description:
+        "Laboratory guides, peptide chemistry notes and reference articles from Oxford Research Peptides. Written for researchers working with peptide standards in vitro.",
+    }),
   component: () => (
     <div className="min-h-screen bg-bone text-navy-deep">
       <SiteHeader />
-      <section className="bg-navy-deep text-bone py-14">
-        <div className="container-x">
-          <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">RESEARCH HUB</div>
-          <h1 className="font-display text-5xl font-medium">Research Articles & Guides</h1>
-          <p className="text-bone/70 mt-3 max-w-2xl">Reference material, lab handling guides and structural notes — written for researchers working with peptide standards in vitro.</p>
-        </div>
-      </section>
-      <section className="py-14">
-        <div className="container-x grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.map(a => (
-            <article key={a.title} className="bg-white border border-border overflow-hidden group">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={a.img} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              </div>
-              <div className="p-6">
-                <div className="text-[10px] tracking-wider text-muted-foreground mb-2">{a.date}</div>
-                <h2 className="font-display text-xl font-semibold mb-3 leading-snug">{a.title}</h2>
-                <p className="text-sm text-muted-foreground">{a.excerpt}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <Breadcrumbs items={[{ label: "Research Hub" }]} />
+      <main id="main-content">
+        <section className="bg-navy-deep text-bone py-14">
+          <div className="container-x">
+            <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">RESEARCH HUB</div>
+            <h1 className="font-display text-5xl font-medium">Research Articles &amp; Guides</h1>
+            <p className="text-bone/70 mt-3 max-w-2xl">Reference material, lab handling guides and structural notes — written for researchers working with peptide standards in vitro.</p>
+          </div>
+        </section>
+        <section className="py-14">
+          <div className="container-x grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {articles.map(a => (
+              <ArticleCard key={a.title} article={a} variant="full" />
+            ))}
+          </div>
+        </section>
+      </main>
       <SiteFooter />
     </div>
   ),

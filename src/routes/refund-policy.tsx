@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalPage, P } from "@/components/legal-page";
+import { seo } from "@/lib/seo";
 
 function makePolicy(kind: "refund" | "shipping" | "cancellation") {
   const map = {
@@ -33,13 +34,6 @@ function makePolicy(kind: "refund" | "shipping" | "cancellation") {
 }
 
 export const Route = createFileRoute("/refund-policy")({
-  head: () => ({
-    meta: [
-      { title: "Refund Policy — Oxford Research Peptides" },
-      { name: "description", content: "Refund and returns information — please refer to our FAQ for full details." },
-      { property: "og:url", content: "https://oxfordresearchpeptides.com/refund-policy" },
-    ],
-    links: [{ rel: "canonical", href: "https://oxfordresearchpeptides.com/refund-policy" }],
-  }),
+  head: () => seo({ path: "/refund-policy", title: 'Refund Policy — Oxford Research Peptides', description: 'Refund and returns information — please refer to our FAQ for full details.' }),
   component: makePolicy("refund"),
 });

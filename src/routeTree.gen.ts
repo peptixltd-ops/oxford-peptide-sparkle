@@ -20,11 +20,13 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ResearchHubRouteImport } from './routes/research-hub'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as LabTestingRouteImport } from './routes/lab-testing'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CompoundsRouteImport } from './routes/compounds'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CancellationPolicyRouteImport } from './routes/cancellation-policy'
 import { Route as AccountRouteImport } from './routes/account'
@@ -87,6 +89,11 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LabTestingRoute = LabTestingRouteImport.update({
   id: '/lab-testing',
   path: '/lab-testing',
@@ -110,6 +117,11 @@ const CookiePolicyRoute = CookiePolicyRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompoundsRoute = CompoundsRouteImport.update({
+  id: '/compounds',
+  path: '/compounds',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -149,11 +161,13 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/compounds': typeof CompoundsRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
+  '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRoute
@@ -173,11 +187,13 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/compounds': typeof CompoundsRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
+  '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRoute
@@ -198,11 +214,13 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/compounds': typeof CompoundsRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
+  '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRoute
@@ -224,11 +242,13 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/compounds'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
     | '/faqs'
     | '/lab-testing'
+    | '/methodology'
     | '/privacy-policy'
     | '/refund-policy'
     | '/research-hub'
@@ -248,11 +268,13 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/compounds'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
     | '/faqs'
     | '/lab-testing'
+    | '/methodology'
     | '/privacy-policy'
     | '/refund-policy'
     | '/research-hub'
@@ -272,11 +294,13 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/compounds'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
     | '/faqs'
     | '/lab-testing'
+    | '/methodology'
     | '/privacy-policy'
     | '/refund-policy'
     | '/research-hub'
@@ -297,11 +321,13 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   CancellationPolicyRoute: typeof CancellationPolicyRoute
   CartRoute: typeof CartRoute
+  CompoundsRoute: typeof CompoundsRoute
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
   FaqsRoute: typeof FaqsRoute
   LabTestingRoute: typeof LabTestingRoute
+  MethodologyRoute: typeof MethodologyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
   ResearchHubRoute: typeof ResearchHubRoute
@@ -395,6 +421,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lab-testing': {
       id: '/lab-testing'
       path: '/lab-testing'
@@ -428,6 +461,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compounds': {
+      id: '/compounds'
+      path: '/compounds'
+      fullPath: '/compounds'
+      preLoaderRoute: typeof CompoundsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -481,11 +521,13 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   CancellationPolicyRoute: CancellationPolicyRoute,
   CartRoute: CartRoute,
+  CompoundsRoute: CompoundsRoute,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
   FaqsRoute: FaqsRoute,
   LabTestingRoute: LabTestingRoute,
+  MethodologyRoute: MethodologyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
   ResearchHubRoute: ResearchHubRoute,
@@ -502,13 +544,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

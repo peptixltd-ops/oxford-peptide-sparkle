@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage, H2, P, UL } from "@/components/legal-page";
+import { seo } from "@/lib/seo";
 
 function Page() {
   return (
@@ -110,14 +111,6 @@ function Page() {
 }
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms & Conditions — Oxford Research Peptides" },
-      { name: "description", content: "Terms & Conditions for purchases made through Oxford Research Peptides, operated by Oxford Research Syndicate Ltd." },
-      { property: "og:title", content: "Terms & Conditions — Oxford Research Peptides" },
-      { property: "og:url", content: "https://oxfordresearchpeptides.com/terms" },
-    ],
-    links: [{ rel: "canonical", href: "https://oxfordresearchpeptides.com/terms" }],
-  }),
+  head: () => seo({ path: "/terms", title: 'Terms & Conditions — Oxford Research Peptides', description: 'Terms & Conditions for purchases made through Oxford Research Peptides, operated by Oxford Research Syndicate Ltd.' }),
   component: Page,
 });

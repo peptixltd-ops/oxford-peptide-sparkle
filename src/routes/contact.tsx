@@ -3,8 +3,11 @@ import { useState } from "react";
 import { z } from "zod";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Mail, Phone, Clock, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { seo } from "@/lib/seo";
+
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -45,6 +48,8 @@ function ContactPage() {
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
       <SiteHeader />
+      <Breadcrumbs items={[{ label: "Contact" }]} />
+      <main id="main-content">
       <section className="bg-navy-deep text-bone py-14">
         <div className="container-x">
           <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">GET IN TOUCH</div>
@@ -119,21 +124,19 @@ function ContactPage() {
           </form>
         </div>
       </section>
+      </main>
       <SiteFooter />
     </div>
   );
 }
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact Us — Oxford Research Peptides" },
-      { name: "description", content: "Get in touch with Oxford Research Peptides — UK customer support, registered office and business enquiries." },
-      { property: "og:title", content: "Contact Us — Oxford Research Peptides" },
-      { property: "og:description", content: "UK customer support, registered office and business enquiries." },
-      { property: "og:url", content: "https://oxfordresearchpeptides.com/contact" },
-    ],
-    links: [{ rel: "canonical", href: "https://oxfordresearchpeptides.com/contact" }],
-  }),
+  head: () =>
+    seo({
+      path: "/contact",
+      title: "Contact Us — Oxford Research Peptides",
+      description:
+        "Get in touch with Oxford Research Peptides — UK customer support, registered office and business enquiries.",
+    }),
   component: ContactPage,
 });
