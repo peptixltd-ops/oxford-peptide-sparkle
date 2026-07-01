@@ -168,19 +168,10 @@ function Home() {
             </div>
           </div>
 
-          {/* Right column — vials on slate slab */}
-          <div className="relative flex items-end justify-center min-h-[420px] sm:min-h-[520px] lg:min-h-[620px]">
-            <div className="relative w-full flex items-end justify-center">
-              <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[26%] h-auto object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.75)] -mr-4 md:-mr-6 translate-y-1" />
-              <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[36%] h-auto object-contain drop-shadow-[0_40px_70px_rgba(0,0,0,0.85)] relative z-10" />
-              <img src={heroVialSema} alt="Semaglutide research vial"
-                className="w-[26%] h-auto object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.75)] -ml-4 md:-ml-6 translate-y-1" />
-            </div>
-            {/* Slate slab */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[92%] h-6 md:h-8 rounded-[50%] bg-gradient-to-b from-black/70 to-black/20 blur-md" />
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[80%] h-2 rounded-full bg-black/60" />
+          {/* Right column — hero vial trio */}
+          <div className="relative flex items-end justify-center min-h-[420px] sm:min-h-[520px] lg:min-h-[640px]">
+            <img src={heroTrio.url} alt="Oxford Research Peptides — BPC-157, Retatrutide and Semaglutide research vials"
+              className="w-full h-auto object-contain drop-shadow-[0_40px_70px_rgba(0,0,0,0.7)]" />
           </div>
         </div>
 
