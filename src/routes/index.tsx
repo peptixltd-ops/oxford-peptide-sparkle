@@ -82,9 +82,9 @@ function Home() {
       </div>
 
       {/* Hero */}
-      <section className="relative text-bone overflow-hidden min-h-[680px] flex items-center bg-navy-deep">
+      <section className="relative text-bone overflow-hidden min-h-screen flex items-center bg-navy-deep">
         <div className="container-x relative grid grid-cols-[1fr_0.85fr] md:grid-cols-[1fr_0.9fr] lg:grid-cols-[1fr_1.05fr] gap-4 md:gap-6 py-16 md:py-20 items-center">
-          <div>
+          <div className="relative z-20">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-10 bg-gold" />
               <span className="text-gold text-[11px] font-bold tracking-[0.3em]">PREMIUM RESEARCH PEPTIDES</span>
@@ -111,8 +111,8 @@ function Home() {
               <span className="text-bone/70">Trusted by researchers nationwide</span>
             </div>
           </div>
-          <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[520px] md:min-h-[640px] lg:min-h-[760px] -my-8 md:-my-16">
-            <div className="flex items-center justify-center w-full scale-[1.08]">
+          <div className="relative flex items-center justify-center min-h-[480px] sm:min-h-[640px] md:min-h-[780px] lg:min-h-[920px] -my-8 md:-my-16">
+            <div className="flex items-center justify-center w-full scale-[2]">
               <img src={heroVialBpc} alt="BPC-157 research vial"
                 className="w-[34%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -mr-10 md:-mr-16 translate-y-5" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
