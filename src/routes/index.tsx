@@ -34,7 +34,7 @@ const trustBadges = [
   { icon: FlaskConical, title: "Third-Party Tested", sub: "Independent laboratory testing" },
   { icon: ClipboardCheck, title: "Batch Verified", sub: "Every batch verified" },
   { icon: Microscope, title: "Research Use Only", sub: "For laboratory research only" },
-  { icon: Truck, title: "Fast UK Dispatch", sub: "Order by 2pm, ships same day" },
+  { icon: Truck, title: "Fast UK Dispatch", sub: "Order by 4pm for same day dispatch" },
 ];
 
 const researchAreas = [
