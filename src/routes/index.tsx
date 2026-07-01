@@ -5,6 +5,8 @@ import {
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
 } from "lucide-react";
 import heroVialRetatrutide from "@/assets/vials/orp-retatrutide.png";
+import heroVialBpc from "@/assets/vials/orp-bpc-157.png";
+import heroVialSema from "@/assets/vials/orp-semaglutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
@@ -34,7 +36,7 @@ const trustBadges = [
   { icon: FlaskConical, title: "Third-Party Tested", sub: "Independent laboratory testing" },
   { icon: ClipboardCheck, title: "Batch Verified", sub: "Every batch verified" },
   { icon: Microscope, title: "Research Use Only", sub: "For laboratory research only" },
-  { icon: Truck, title: "Fast UK Dispatch", sub: "Order by 2pm, ships same day" },
+  { icon: Truck, title: "Fast UK Dispatch", sub: "Order by 4pm for same day dispatch" },
 ];
 
 const researchAreas = [
@@ -110,8 +112,14 @@ function Home() {
             </div>
           </div>
           <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[520px] md:min-h-[640px] lg:min-h-[760px] -my-8 md:-my-16">
-            <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-              className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[78%] h-auto object-contain drop-shadow-[0_50px_100px_rgba(0,0,0,0.9)]" />
+            <div className="flex items-center justify-center w-full">
+              <img src={heroVialBpc} alt="BPC-157 research vial"
+                className="w-[30%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -mr-6 md:-mr-10 translate-y-4" />
+              <img src={heroVialRetatrutide} alt="Retatrutide research vial"
+                className="w-[42%] h-auto object-contain drop-shadow-[0_50px_100px_rgba(0,0,0,0.9)] relative z-10" />
+              <img src={heroVialSema} alt="Semaglutide research vial"
+                className="w-[30%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -ml-6 md:-ml-10 translate-y-4" />
+            </div>
           </div>
         </div>
       </section>
@@ -126,7 +134,12 @@ function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.filter(p => ["retatrutide", "mots-c", "semaglutide"].includes(p.slug)).map((p) => <ProductCard key={p.slug} p={p} />)}
+            {products.filter(p => ["retatrutide", "mots-c", "semaglutide", "bpc-157", "tirzepatide", "tb-500"].includes(p.slug)).map((p) => <ProductCard key={p.slug} p={p} />)}
+          </div>
+          <div className="flex justify-center mt-10">
+            <Link to="/shop" className="px-8 py-3.5 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-gold hover:text-navy-deep transition-colors inline-flex items-center gap-2">
+              SHOP ALL PRODUCTS <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </section>
