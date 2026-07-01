@@ -82,28 +82,85 @@ function Home() {
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="relative text-bone overflow-hidden min-h-screen flex items-center bg-navy-deep">
-        <div className="container-x relative grid grid-cols-[1fr_0.85fr] md:grid-cols-[1fr_0.9fr] lg:grid-cols-[1fr_1.05fr] gap-4 md:gap-6 py-16 md:py-20 items-center">
+      {/* Hero — inspired by Oxford Research Peptides brand direction */}
+      <section className="relative text-bone overflow-hidden bg-navy-deep">
+        {/* Decorative background: DNA helix + molecule glyphs */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.18]">
+          <svg viewBox="0 0 1600 900" className="absolute right-0 top-0 h-full w-full" preserveAspectRatio="xMaxYMid slice" aria-hidden>
+            <defs>
+              <linearGradient id="dnaG" x1="0" x2="1">
+                <stop offset="0" stopColor="#7BB8E8" stopOpacity="0.9"/>
+                <stop offset="1" stopColor="#7BB8E8" stopOpacity="0.2"/>
+              </linearGradient>
+            </defs>
+            {/* DNA double helix */}
+            <g stroke="url(#dnaG)" strokeWidth="1.5" fill="none">
+              {Array.from({length: 28}).map((_,i) => {
+                const y = 40 + i*30;
+                const x1 = 720 + Math.sin(i*0.5)*70;
+                const x2 = 720 - Math.sin(i*0.5)*70;
+                return <g key={i}><line x1={x1} y1={y} x2={x2} y2={y}/></g>;
+              })}
+              <path d={`M 720 40 ${Array.from({length: 60}).map((_,i) => `L ${720 + Math.sin(i*0.25)*70} ${40+i*15}`).join(' ')}`}/>
+              <path d={`M 720 40 ${Array.from({length: 60}).map((_,i) => `L ${720 - Math.sin(i*0.25)*70} ${40+i*15}`).join(' ')}`}/>
+            </g>
+            {/* Molecule diagram */}
+            <g stroke="#7BB8E8" strokeWidth="1.2" fill="none" opacity="0.7">
+              <polygon points="1150,180 1220,140 1290,180 1290,260 1220,300 1150,260"/>
+              <line x1="1290" y1="180" x2="1360" y2="140"/>
+              <line x1="1150" y1="180" x2="1080" y2="140"/>
+              <line x1="1220" y1="300" x2="1220" y2="370"/>
+              <circle cx="1360" cy="140" r="10"/>
+              <circle cx="1080" cy="140" r="10"/>
+              <circle cx="1220" cy="370" r="10"/>
+              <text x="1355" y="145" fill="#7BB8E8" fontSize="18" opacity="0.6">O</text>
+              <text x="1075" y="145" fill="#7BB8E8" fontSize="18" opacity="0.6">N</text>
+            </g>
+          </svg>
+        </div>
+
+        <div className="container-x relative grid lg:grid-cols-[1fr_1.05fr] gap-8 py-16 md:py-20 items-center">
+          {/* Left column */}
           <div className="relative z-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-10 bg-gold" />
-              <span className="text-gold text-[11px] font-bold tracking-[0.3em]">PREMIUM RESEARCH PEPTIDES</span>
+            <div className="text-gold text-xs font-bold tracking-[0.35em] mb-5">
+              RESEARCH <span className="opacity-50 mx-1">|</span> EDUCATION <span className="opacity-50 mx-1">|</span> INNOVATION
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.02] mb-7">
-              Research.<br />Quality.<br />Results<span className="text-gold">.</span>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-medium leading-[1.05] mb-6">
+              The UK's Educational<br/>Authority on<br/>
+              <span className="text-gold italic">Peptide Research<span className="not-italic">.</span></span>
             </h1>
-            <p className="text-bone/75 text-base max-w-md mb-9 leading-relaxed">
-              Premium research peptides manufactured in the UK with the highest standards of quality, documentation and transparency. Strictly for in-vitro laboratory research.
+            <p className="text-bone/75 text-base max-w-md mb-8 leading-relaxed">
+              Evidence-based guides, comparisons and scientific resources to advance knowledge and support laboratory research. Strictly for in-vitro use.
             </p>
+
+            {/* Mini features */}
+            <div className="flex flex-wrap gap-8 mb-8">
+              {[
+                { icon: BookOpen, l1: "In-Depth", l2: "Research Guides" },
+                { icon: BarChart3, l1: "Data-Driven", l2: "Comparisons" },
+                { icon: Microscope, l1: "Science-Led", l2: "Education" },
+              ].map(f => (
+                <div key={f.l2} className="flex flex-col items-start">
+                  <div className="w-12 h-12 rounded-full border border-bone/40 flex items-center justify-center mb-2">
+                    <f.icon className="w-5 h-5 text-bone/90" strokeWidth={1.4}/>
+                  </div>
+                  <div className="text-[13px] leading-tight">
+                    <div className="font-semibold">{f.l1}</div>
+                    <div className="text-bone/70">{f.l2}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <div className="flex flex-wrap gap-3 mb-8">
-              <Link to="/shop" className="px-7 py-3.5 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors">
+              <Link to="/research-hub" className="px-7 py-3.5 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors inline-flex items-center gap-2">
+                EXPLORE RESEARCH HUB <ArrowRight className="w-3.5 h-3.5"/>
+              </Link>
+              <Link to="/shop" className="px-7 py-3.5 border border-bone/40 text-bone text-xs font-bold tracking-widest hover:bg-bone hover:text-navy-deep transition-colors">
                 SHOP PEPTIDES
               </Link>
-              <Link to="/lab-testing" className="px-7 py-3.5 border border-bone/40 text-bone text-xs font-bold tracking-widest hover:bg-bone hover:text-navy-deep transition-colors">
-                VIEW LAB REPORTS
-              </Link>
             </div>
+
             <div className="flex items-center gap-3 text-sm">
               <span className="font-semibold">Excellent</span>
               <div className="flex gap-0.5">
@@ -112,15 +169,37 @@ function Home() {
               <span className="text-bone/70">Trusted by researchers nationwide</span>
             </div>
           </div>
-          <div className="relative flex items-center justify-center min-h-[480px] sm:min-h-[640px] md:min-h-[780px] lg:min-h-[920px] -my-8 md:-my-16">
-            <div className="flex items-center justify-center w-full scale-[2]">
+
+          {/* Right column — vials on slate slab */}
+          <div className="relative flex items-end justify-center min-h-[420px] sm:min-h-[520px] lg:min-h-[620px]">
+            <div className="relative w-full flex items-end justify-center">
               <img src={heroVialBpc} alt="BPC-157 research vial"
-                className="w-[34%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -mr-10 md:-mr-16 translate-y-5" />
+                className="w-[26%] h-auto object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.75)] -mr-4 md:-mr-6 translate-y-1" />
               <img src={heroVialRetatrutide} alt="Retatrutide research vial"
-                className="w-[48%] h-auto object-contain drop-shadow-[0_50px_100px_rgba(0,0,0,0.9)] relative z-10" />
+                className="w-[36%] h-auto object-contain drop-shadow-[0_40px_70px_rgba(0,0,0,0.85)] relative z-10" />
               <img src={heroVialSema} alt="Semaglutide research vial"
-                className="w-[34%] h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.8)] -ml-10 md:-ml-16 translate-y-5" />
+                className="w-[26%] h-auto object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.75)] -ml-4 md:-ml-6 translate-y-1" />
             </div>
+            {/* Slate slab */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[92%] h-6 md:h-8 rounded-[50%] bg-gradient-to-b from-black/70 to-black/20 blur-md" />
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[80%] h-2 rounded-full bg-black/60" />
+          </div>
+        </div>
+
+        {/* Feature strip */}
+        <div className="relative border-t border-white/10 bg-navy-deep/60">
+          <div className="container-x grid grid-cols-2 md:grid-cols-4 gap-6 py-5">
+            {[
+              { icon: BookOpen, l: "Comprehensive Research Library" },
+              { icon: ShieldCheck, l: "Evidence-Based Content" },
+              { icon: Users, l: "Transparent Methodology" },
+              { icon: FileText, l: "Cited by Researchers and AI Systems" },
+            ].map(f => (
+              <div key={f.l} className="flex items-center gap-3 text-bone/90">
+                <f.icon className="w-6 h-6 text-bone/80 shrink-0" strokeWidth={1.3}/>
+                <div className="text-xs md:text-sm font-medium leading-tight">{f.l}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
