@@ -1,59 +1,97 @@
 import { Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import {
   researchCategories,
-  guidesInCategory,
   glossaryTerms,
   type ResearchCategoryId,
 } from "@/lib/taxonomy";
+import {
+  getEntity,
+  getAncestors,
+  getChildren,
+  getSiblings,
+  getRelated,
+  getRecentlyUpdated,
+  getMostReferenced,
+  getFoundational,
+  type EntityRef,
+  type KnowledgeEntity,
+} from "@/lib/knowledge-graph";
 
 type SidebarBlock =
   | "category-tree"
-  | "related-guides"
-  | "recent-guides"
-  | "popular-guides"
+  | "parent"
+  | "children"
+  | "siblings"
+  | "related"
+  | "recent"
+  | "most-referenced"
+  | "foundational"
+  | "related-guides"   // legacy
+  | "recent-guides"    // legacy
+  | "popular-guides"   // legacy
   | "glossary"
   | "methodology";
 
 interface Props {
   /** Highlights the active category in the tree. */
   activeCategoryId?: ResearchCategoryId;
-  /** Which blocks to render (in order). Defaults to all. */
+  /** Anchor entity — powers parent/children/siblings/related blocks. */
+  entityRef?: EntityRef;
+  /** Which blocks to render (in order). Defaults to a sensible set. */
   blocks?: readonly SidebarBlock[];
-  /** Restrict related/recent/popular blocks to this category when provided. */
+  /** Legacy alias for the anchor category id. */
   scopeCategoryId?: ResearchCategoryId;
   className?: string;
 }
 
-const ALL_BLOCKS: readonly SidebarBlock[] = [
+const DEFAULT_BLOCKS: readonly SidebarBlock[] = [
   "category-tree",
-  "related-guides",
-  "recent-guides",
-  "popular-guides",
+  "parent",
+  "children",
+  "siblings",
+  "related",
+  "foundational",
+  "recent",
+  "most-referenced",
   "glossary",
   "methodology",
 ];
 
 /**
- * Reusable Research Hub sidebar.
+ * Knowledge sidebar — Release 3.0.
  *
- * Purely structural — every dataset it renders is derived from the taxonomy.
- * Empty states are labelled "Coming soon" instead of hidden so the layout is
- * stable while Release 2 populates the content.
+ * Every dataset is derived from the Knowledge Graph. Empty blocks are
+ * hidden rather than showing "coming soon" placeholders, so pages with
+ * sparse relationships don't get a wall of empty cards.
  */
 export function ResearchSidebar({
   activeCategoryId,
-  blocks = ALL_BLOCKS,
+  entityRef,
+  blocks = DEFAULT_BLOCKS,
   scopeCategoryId,
   className = "",
 }: Props) {
+  const anchor: EntityRef | undefined =
+    entityRef ??
+    (scopeCategoryId ? { type: "category", slug: scopeCategoryId } : undefined);
+
   const methodologyCategory = researchCategories.find((c) => c.id === "methodology");
 
-  return (
-    <aside
-      aria-label="Research navigation"
-      className={`space-y-6 text-sm ${className}`}
-    >
-      {blocks.includes("category-tree") && (
+  const parent = anchor ? getAncestors(anchor).slice(-1)[0] : undefined;
+  const children = anchor ? getChildren(anchor) : [];
+  const siblings = anchor ? getSiblings(anchor) : [];
+  const related = anchor ? getRelated(anchor, { limit: 8 }) : [];
+  const foundational = getFoundational(4);
+  const recent = getRecentlyUpdated({ limit: 4 });
+  const mostReferenced = getMostReferenced({ limit: 5 });
+
+  const sections: Array<{ key: SidebarBlock; node: ReactNode }> = [];
+
+  if (blocks.includes("category-tree")) {
+    sections.push({
+      key: "category-tree",
+      node: (
         <SidebarSection title="Category">
           <ul className="space-y-1.5">
             {researchCategories.map((c) => {
@@ -81,31 +119,93 @@ export function ResearchSidebar({
             })}
           </ul>
         </SidebarSection>
-      )}
+      ),
+    });
+  }
 
-      {blocks.includes("related-guides") && (
-        <SidebarSection title="Related guides">
-          <GuideList categoryId={scopeCategoryId} label="related" />
+  if (blocks.includes("parent") && parent) {
+    sections.push({
+      key: "parent",
+      node: (
+        <SidebarSection title="Parent topic">
+          <EntityLink e={parent} />
         </SidebarSection>
-      )}
+      ),
+    });
+  }
 
-      {blocks.includes("recent-guides") && (
-        <SidebarSection title="Recent guides">
-          <GuideList categoryId={scopeCategoryId} label="recent" />
+  if (blocks.includes("children") && children.length > 0) {
+    sections.push({
+      key: "children",
+      node: (
+        <SidebarSection title="Sub-topics">
+          <EntityList items={children} />
         </SidebarSection>
-      )}
+      ),
+    });
+  }
 
-      {blocks.includes("popular-guides") && (
-        <SidebarSection title="Popular guides">
-          <GuideList categoryId={scopeCategoryId} label="popular" />
+  if (blocks.includes("siblings") && siblings.length > 0) {
+    sections.push({
+      key: "siblings",
+      node: (
+        <SidebarSection title="Related in this category">
+          <EntityList items={siblings.slice(0, 6)} />
         </SidebarSection>
-      )}
+      ),
+    });
+  }
 
-      {blocks.includes("glossary") && (
-        <SidebarSection title="Glossary">
-          {glossaryTerms.length === 0 ? (
-            <EmptyRow label="Glossary populated in Release 2." />
-          ) : (
+  if (blocks.includes("related") && related.length > 0) {
+    sections.push({
+      key: "related",
+      node: (
+        <SidebarSection title="Related entities">
+          <EntityList items={related} />
+        </SidebarSection>
+      ),
+    });
+  }
+
+  if (blocks.includes("foundational") && foundational.length > 0) {
+    sections.push({
+      key: "foundational",
+      node: (
+        <SidebarSection title="Foundational concepts">
+          <EntityList items={foundational} />
+        </SidebarSection>
+      ),
+    });
+  }
+
+  if (blocks.includes("recent") && recent.length > 0) {
+    sections.push({
+      key: "recent",
+      node: (
+        <SidebarSection title="Recently updated">
+          <EntityList items={recent} />
+        </SidebarSection>
+      ),
+    });
+  }
+
+  if (blocks.includes("most-referenced") && mostReferenced.length > 0) {
+    sections.push({
+      key: "most-referenced",
+      node: (
+        <SidebarSection title="Most referenced">
+          <EntityList items={mostReferenced} />
+        </SidebarSection>
+      ),
+    });
+  }
+
+  if (blocks.includes("glossary")) {
+    if (glossaryTerms.length > 0) {
+      sections.push({
+        key: "glossary",
+        node: (
+          <SidebarSection title="Glossary">
             <ul className="space-y-1.5">
               {glossaryTerms.slice(0, 6).map((t) => (
                 <li key={t.slug}>
@@ -119,11 +219,16 @@ export function ResearchSidebar({
                 </li>
               ))}
             </ul>
-          )}
-        </SidebarSection>
-      )}
+          </SidebarSection>
+        ),
+      });
+    }
+  }
 
-      {blocks.includes("methodology") && methodologyCategory && (
+  if (blocks.includes("methodology") && methodologyCategory) {
+    sections.push({
+      key: "methodology",
+      node: (
         <SidebarSection title="Laboratory methodology">
           <Link
             to={methodologyCategory.path}
@@ -136,12 +241,25 @@ export function ResearchSidebar({
             Reconstitution, storage, HPLC purity and mass spectrometry procedures.
           </p>
         </SidebarSection>
-      )}
+      ),
+    });
+  }
+
+  if (sections.length === 0) return null;
+
+  return (
+    <aside
+      aria-label="Research navigation"
+      className={`space-y-6 text-sm ${className}`}
+    >
+      {sections.map((s) => (
+        <div key={s.key}>{s.node}</div>
+      ))}
     </aside>
   );
 }
 
-function SidebarSection({ title, children }: { title: string; children: React.ReactNode }) {
+function SidebarSection({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="bg-white border border-navy-deep/10 p-5">
       <div className="text-[10px] font-bold tracking-widest text-gold mb-3">
@@ -152,32 +270,28 @@ function SidebarSection({ title, children }: { title: string; children: React.Re
   );
 }
 
-function EmptyRow({ label }: { label: string }) {
-  return <div className="text-xs text-muted-foreground italic">{label}</div>;
-}
-
-function GuideList({
-  categoryId,
-  label,
-}: {
-  categoryId?: ResearchCategoryId;
-  label: "related" | "recent" | "popular";
-}) {
-  const list = categoryId ? guidesInCategory(categoryId) : [];
-  if (list.length === 0) {
-    return <EmptyRow label={`No ${label} guides yet — populated in Release 2.`} />;
+function EntityLink({ e }: { e: KnowledgeEntity }) {
+  if (!e.path) {
+    return (
+      <span className="text-navy-deep/70 text-sm">{e.title}</span>
+    );
   }
   return (
-    <ul className="space-y-2">
-      {list.slice(0, 5).map((g) => (
-        <li key={g.slug}>
-          <Link
-            to="/research-hub/guides/$slug"
-            params={{ slug: g.slug }}
-            className="text-sm text-navy-deep/85 hover:text-gold transition-colors focus-visible:outline-2 focus-visible:outline-gold"
-          >
-            {g.title}
-          </Link>
+    <Link
+      to={e.path}
+      className="text-sm text-navy-deep/85 hover:text-gold transition-colors focus-visible:outline-2 focus-visible:outline-gold"
+    >
+      {e.title}
+    </Link>
+  );
+}
+
+function EntityList({ items }: { items: readonly KnowledgeEntity[] }) {
+  return (
+    <ul className="space-y-1.5">
+      {items.map((e) => (
+        <li key={`${e.type}-${e.slug}`}>
+          <EntityLink e={e} />
         </li>
       ))}
     </ul>
