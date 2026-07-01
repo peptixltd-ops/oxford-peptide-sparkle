@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider } from "@/lib/cart";
 import { Toaster } from "@/components/ui/sonner";
 import { CookieBanner } from "@/components/cookie-banner";
+import { SkipToContent } from "@/components/skip-to-content";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -80,16 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Oxford Research Peptides — Premium UK Manufactured Research Peptides" },
-      { name: "description", content: "UK manufactured, third-party tested research peptides with >99% purity. Certificates of analysis included. For laboratory research use only." },
-      { property: "og:title", content: "Oxford Research Peptides — Premium UK Manufactured Research Peptides" },
-      { property: "og:description", content: "UK manufactured, third-party tested research peptides with >99% purity. Certificates of analysis included. For laboratory research use only." },
+      { property: "og:site_name", content: "Oxford Research Peptides" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: `${SITE_URL}/og-image.jpg` },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Oxford Research Peptides — Premium UK Manufactured Research Peptides" },
-      { name: "twitter:description", content: "UK manufactured, third-party tested research peptides with >99% purity. Certificates of analysis included. For laboratory research use only." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/95fdc2b9-5c7b-4056-9c49-9f5402709780/id-preview-2a8d1b73--70f68a7d-c3a1-4203-8c31-3449c83c8228.lovable.app-1781783878695.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/95fdc2b9-5c7b-4056-9c49-9f5402709780/id-preview-2a8d1b73--70f68a7d-c3a1-4203-8c31-3449c83c8228.lovable.app-1781783878695.png" },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.jpg` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -105,11 +102,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
+          "@id": `${SITE_URL}#organization`,
           name: "Oxford Research Peptides",
           legalName: "Oxford Research Syndicate Ltd",
-          url: "https://oxfordresearchpeptides.com",
+          url: SITE_URL,
+          logo: DEFAULT_OG_IMAGE,
           email: "oxfordresearchpeptides@gmail.com",
           taxID: "17207898",
+          founder: { "@type": "Organization", name: "Oxford Research Syndicate Ltd" },
+          areaServed: "GB",
+          knowsAbout: [
+            "Research peptides",
+            "Peptide chemistry",
+            "Peptide reference standards",
+            "HPLC purity analysis",
+            "Laboratory methodology",
+          ],
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            email: "oxfordresearchpeptides@gmail.com",
+            areaServed: "GB",
+            availableLanguage: "en-GB",
+          },
           address: {
             "@type": "PostalAddress",
             streetAddress: "131a Movers Lane",
@@ -125,8 +140,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
+          "@id": `${SITE_URL}#website`,
           name: "Oxford Research Peptides",
-          url: "https://oxfordresearchpeptides.com",
+          url: SITE_URL,
+          publisher: { "@id": `${SITE_URL}#organization` },
+          potentialAction: {
+            "@type": "SearchAction",
+            target: `${SITE_URL}/search?q={search_term_string}`,
+            "query-input": "required name=search_term_string",
+          },
         }),
       },
     ],
@@ -157,6 +179,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
+        <SkipToContent />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <Toaster />
