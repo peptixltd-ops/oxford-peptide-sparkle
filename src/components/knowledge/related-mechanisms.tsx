@@ -1,22 +1,46 @@
 import { Link } from "@tanstack/react-router";
 import { mechanismGroups, type MechanismGroupId } from "@/lib/taxonomy";
+import { getRelated, type EntityRef } from "@/lib/knowledge-graph";
+
+interface MechanismLike {
+  id: string;
+  label: string;
+  description?: string;
+}
 
 /**
- * Renders links to mechanism-of-action pages. Consumes taxonomy for labels
- * and descriptions.
+ * Renders links to mechanism pages. Consumes the Knowledge Graph when an
+ * `entityRef` is supplied, otherwise falls back to the mechanism id list.
+ * Hides itself when there is nothing to show and no `emptyLabel`.
  */
 export function RelatedMechanisms({
+  entityRef,
   mechanismIds,
   heading = "Related mechanisms",
-  emptyLabel = "No mechanisms linked yet.",
+  emptyLabel,
+  limit = 6,
 }: {
+  entityRef?: EntityRef;
   mechanismIds?: readonly MechanismGroupId[];
   heading?: string;
   emptyLabel?: string;
+  limit?: number;
 }) {
-  const list = mechanismIds && mechanismIds.length
-    ? mechanismGroups.filter((m) => mechanismIds.includes(m.id))
-    : [];
+  let list: MechanismLike[] = [];
+
+  if (entityRef) {
+    list = getRelated(entityRef, { type: "mechanism", limit }).map((e) => ({
+      id: e.slug,
+      label: e.title,
+      description: e.description,
+    }));
+  } else if (mechanismIds && mechanismIds.length) {
+    list = mechanismGroups
+      .filter((m) => mechanismIds.includes(m.id))
+      .map((m) => ({ id: m.id, label: m.label, description: m.description }));
+  }
+
+  if (list.length === 0 && !emptyLabel) return null;
 
   return (
     <section
@@ -40,7 +64,9 @@ export function RelatedMechanisms({
                 <div className="font-display text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
                   {m.label}
                 </div>
-                <p className="text-xs text-muted-foreground leading-snug">{m.description}</p>
+                {m.description && (
+                  <p className="text-xs text-muted-foreground leading-snug">{m.description}</p>
+                )}
               </Link>
             </li>
           ))}

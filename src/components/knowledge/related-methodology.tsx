@@ -1,19 +1,46 @@
 import { Link } from "@tanstack/react-router";
+import { getEntity, getRelated, type EntityRef } from "@/lib/knowledge-graph";
+
+interface MethodologyLike {
+  slug: string;
+  title: string;
+}
 
 /**
- * Placeholder for methodology cross-links. Consumes methodology guides from
- * the taxonomy when they exist (Release 2). Renders a link to the methodology
- * landing until then.
+ * Methodology cross-links. Consumes the Knowledge Graph when an `entityRef`
+ * is supplied; falls back to an explicit list of methodology slugs for
+ * legacy call sites. Hides when empty unless `emptyLabel` is set.
  */
 export function RelatedMethodology({
-  slugs = [],
+  entityRef,
+  slugs,
   heading = "Related methodology",
-  emptyLabel = "Methodology procedures are populated in a future release.",
+  emptyLabel,
+  limit = 6,
 }: {
+  entityRef?: EntityRef;
   slugs?: readonly string[];
   heading?: string;
   emptyLabel?: string;
+  limit?: number;
 }) {
+  let list: MethodologyLike[] = [];
+
+  if (entityRef) {
+    list = getRelated(entityRef, { type: "methodology", limit }).map((e) => ({
+      slug: e.slug,
+      title: e.title,
+    }));
+  } else if (slugs && slugs.length) {
+    list = slugs
+      .map((slug) => {
+        const entity = getEntity({ type: "methodology", slug });
+        return { slug, title: entity?.title ?? slug };
+      });
+  }
+
+  if (list.length === 0 && !emptyLabel) return null;
+
   return (
     <section
       aria-label={heading}
@@ -22,7 +49,7 @@ export function RelatedMethodology({
       <div className="text-[10px] font-bold tracking-widest text-gold mb-3">
         {heading.toUpperCase()}
       </div>
-      {slugs.length === 0 ? (
+      {list.length === 0 ? (
         <div className="text-sm text-muted-foreground">
           <p className="italic mb-3">{emptyLabel}</p>
           <Link
@@ -34,14 +61,14 @@ export function RelatedMethodology({
         </div>
       ) : (
         <ul className="space-y-2 text-sm">
-          {slugs.map((s) => (
-            <li key={s}>
+          {list.map((m) => (
+            <li key={m.slug}>
               <Link
                 to="/research-hub/methodology/$slug"
-                params={{ slug: s }}
+                params={{ slug: m.slug }}
                 className="text-navy-deep/85 hover:text-gold transition-colors focus-visible:outline-2 focus-visible:outline-gold"
               >
-                {s}
+                {m.title}
               </Link>
             </li>
           ))}

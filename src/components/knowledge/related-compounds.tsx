@@ -7,9 +7,11 @@ import {
   type CompoundFamilyId,
   type MechanismGroupId,
 } from "@/lib/taxonomy";
-
+import { getRelated, type EntityRef } from "@/lib/knowledge-graph";
 
 interface Props {
+  /** Anchor entity — resolves related compounds through the Knowledge Graph. */
+  entityRef?: EntityRef;
   familyId?: CompoundFamilyId;
   mechanismId?: MechanismGroupId;
   /** Explicit slug list wins when provided. */
@@ -19,19 +21,36 @@ interface Props {
   limit?: number;
 }
 
+interface CompoundLike {
+  slug: string;
+  name: string;
+}
+
 export function RelatedCompounds({
+  entityRef,
   familyId,
   mechanismId,
   slugs,
   heading = "Related compounds",
-  emptyLabel = "Compound monographs are populated in a future release.",
+  emptyLabel,
   limit = 8,
 }: Props) {
-  let list: CompoundEntry[] = [];
-  if (slugs && slugs.length) list = compoundEntries.filter((c) => slugs.includes(c.slug));
-  else if (familyId) list = compoundsInFamily(familyId);
-  else if (mechanismId) list = compoundsByMechanism(mechanismId);
+  let list: CompoundLike[] = [];
 
+  if (entityRef) {
+    list = getRelated(entityRef, { type: "compound", limit }).map((e) => ({
+      slug: e.slug,
+      name: e.title,
+    }));
+  } else if (slugs && slugs.length) {
+    list = compoundEntries.filter((c) => slugs.includes(c.slug)).map(toCompoundLike);
+  } else if (familyId) {
+    list = compoundsInFamily(familyId).map(toCompoundLike);
+  } else if (mechanismId) {
+    list = compoundsByMechanism(mechanismId).map(toCompoundLike);
+  }
+
+  if (list.length === 0 && !emptyLabel) return null;
 
   return (
     <section
@@ -60,4 +79,8 @@ export function RelatedCompounds({
       )}
     </section>
   );
+}
+
+function toCompoundLike(c: CompoundEntry): CompoundLike {
+  return { slug: c.slug, name: c.name };
 }
