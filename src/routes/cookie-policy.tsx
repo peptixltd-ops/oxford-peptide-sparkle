@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage, H2, P, UL } from "@/components/legal-page";
+import { seo } from "@/lib/seo";
 
 function Page() {
   return (
@@ -70,14 +71,6 @@ function Page() {
 }
 
 export const Route = createFileRoute("/cookie-policy")({
-  head: () => ({
-    meta: [
-      { title: "Cookie Policy — Oxford Research Peptides" },
-      { name: "description", content: "How Oxford Research Peptides uses cookies and how to manage your preferences." },
-      { property: "og:title", content: "Cookie Policy — Oxford Research Peptides" },
-      { property: "og:url", content: "https://oxfordresearchpeptides.com/cookie-policy" },
-    ],
-    links: [{ rel: "canonical", href: "https://oxfordresearchpeptides.com/cookie-policy" }],
-  }),
+  head: () => seo({ path: "/cookie-policy", title: 'Cookie Policy — Oxford Research Peptides', description: 'How Oxford Research Peptides uses cookies and how to manage your preferences.' }),
   component: Page,
 });

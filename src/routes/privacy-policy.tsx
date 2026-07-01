@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage, H2, P, UL } from "@/components/legal-page";
+import { seo } from "@/lib/seo";
 
 function Page() {
   return (
@@ -104,14 +105,6 @@ function Page() {
 }
 
 export const Route = createFileRoute("/privacy-policy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy — Oxford Research Peptides" },
-      { name: "description", content: "UK GDPR compliant Privacy Policy for Oxford Research Peptides, owned and operated by Oxford Research Syndicate Ltd." },
-      { property: "og:title", content: "Privacy Policy — Oxford Research Peptides" },
-      { property: "og:url", content: "https://oxfordresearchpeptides.com/privacy-policy" },
-    ],
-    links: [{ rel: "canonical", href: "https://oxfordresearchpeptides.com/privacy-policy" }],
-  }),
+  head: () => seo({ path: "/privacy-policy", title: 'Privacy Policy — Oxford Research Peptides', description: 'UK GDPR compliant Privacy Policy for Oxford Research Peptides, owned and operated by Oxford Research Syndicate Ltd.' }),
   component: Page,
 });

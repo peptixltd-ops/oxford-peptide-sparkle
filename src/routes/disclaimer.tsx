@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage, H2, P } from "@/components/legal-page";
+import { seo } from "@/lib/seo";
 
 function Page() {
   return (
@@ -55,14 +56,6 @@ function Page() {
 }
 
 export const Route = createFileRoute("/disclaimer")({
-  head: () => ({
-    meta: [
-      { title: "Disclaimer — Oxford Research Peptides" },
-      { name: "description", content: "Research-use-only disclaimer and limitation of liability for Oxford Research Peptides." },
-      { property: "og:title", content: "Disclaimer — Oxford Research Peptides" },
-      { property: "og:url", content: "https://oxfordresearchpeptides.com/disclaimer" },
-    ],
-    links: [{ rel: "canonical", href: "https://oxfordresearchpeptides.com/disclaimer" }],
-  }),
+  head: () => seo({ path: "/disclaimer", title: 'Disclaimer — Oxford Research Peptides', description: 'Research-use-only disclaimer and limitation of liability for Oxford Research Peptides.' }),
   component: Page,
 });
