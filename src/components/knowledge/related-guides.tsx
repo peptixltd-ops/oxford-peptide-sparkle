@@ -3,7 +3,6 @@ import {
   guidesInCategory,
   guidesByCompound,
   guidesByMechanism,
-  type Guide,
   type ResearchCategoryId,
   type MechanismGroupId,
 } from "@/lib/taxonomy";
