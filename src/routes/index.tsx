@@ -5,6 +5,8 @@ import {
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award
 } from "lucide-react";
 import heroVialRetatrutide from "@/assets/vials/orp-retatrutide.png";
+import heroVialBpc from "@/assets/vials/orp-bpc-157.png";
+import heroVialSema from "@/assets/vials/orp-semaglutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
