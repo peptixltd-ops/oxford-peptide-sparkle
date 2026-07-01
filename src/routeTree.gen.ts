@@ -33,7 +33,9 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResearchHubIndexRouteImport } from './routes/research-hub.index'
+import { Route as CompoundsIndexRouteImport } from './routes/compounds.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
 import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
 import { Route as ResearchHubMechanismsIndexRouteImport } from './routes/research-hub.mechanisms.index'
 import { Route as ResearchHubLiteratureIndexRouteImport } from './routes/research-hub.literature.index'
@@ -166,10 +168,20 @@ const ResearchHubIndexRoute = ResearchHubIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ResearchHubRoute,
 } as any)
+const CompoundsIndexRoute = CompoundsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CompoundsRoute,
+} as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const CompoundsSlugRoute = CompoundsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CompoundsRoute,
 } as any)
 const ResearchHubMethodologyIndexRoute =
   ResearchHubMethodologyIndexRouteImport.update({
@@ -241,7 +253,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
-  '/compounds': typeof CompoundsRoute
+  '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -259,7 +271,9 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
+  '/compounds/$slug': typeof CompoundsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/compounds/': typeof CompoundsIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
@@ -279,7 +293,6 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
-  '/compounds': typeof CompoundsRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -296,7 +309,9 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
+  '/compounds/$slug': typeof CompoundsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/compounds': typeof CompoundsIndexRoute
   '/research-hub': typeof ResearchHubIndexRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
@@ -317,7 +332,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
-  '/compounds': typeof CompoundsRoute
+  '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -335,7 +350,9 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
+  '/compounds/$slug': typeof CompoundsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/compounds/': typeof CompoundsIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
@@ -375,7 +392,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/wholesale'
+    | '/compounds/$slug'
     | '/products/$slug'
+    | '/compounds/'
     | '/research-hub/'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
@@ -395,7 +414,6 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
-    | '/compounds'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
@@ -412,7 +430,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/wholesale'
+    | '/compounds/$slug'
     | '/products/$slug'
+    | '/compounds'
     | '/research-hub'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
@@ -450,7 +470,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/wholesale'
+    | '/compounds/$slug'
     | '/products/$slug'
+    | '/compounds/'
     | '/research-hub/'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
@@ -471,7 +493,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   CancellationPolicyRoute: typeof CancellationPolicyRoute
   CartRoute: typeof CartRoute
-  CompoundsRoute: typeof CompoundsRoute
+  CompoundsRoute: typeof CompoundsRouteWithChildren
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
@@ -662,12 +684,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchHubIndexRouteImport
       parentRoute: typeof ResearchHubRoute
     }
+    '/compounds/': {
+      id: '/compounds/'
+      path: '/'
+      fullPath: '/compounds/'
+      preLoaderRoute: typeof CompoundsIndexRouteImport
+      parentRoute: typeof CompoundsRoute
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/products/$slug'
       fullPath: '/products/$slug'
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/compounds/$slug': {
+      id: '/compounds/$slug'
+      path: '/$slug'
+      fullPath: '/compounds/$slug'
+      preLoaderRoute: typeof CompoundsSlugRouteImport
+      parentRoute: typeof CompoundsRoute
     }
     '/research-hub/methodology/': {
       id: '/research-hub/methodology/'
@@ -749,6 +785,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface CompoundsRouteChildren {
+  CompoundsSlugRoute: typeof CompoundsSlugRoute
+  CompoundsIndexRoute: typeof CompoundsIndexRoute
+}
+
+const CompoundsRouteChildren: CompoundsRouteChildren = {
+  CompoundsSlugRoute: CompoundsSlugRoute,
+  CompoundsIndexRoute: CompoundsIndexRoute,
+}
+
+const CompoundsRouteWithChildren = CompoundsRoute._addFileChildren(
+  CompoundsRouteChildren,
+)
+
 interface ResearchHubRouteChildren {
   ResearchHubIndexRoute: typeof ResearchHubIndexRoute
   ResearchHubComparisonsSlugRoute: typeof ResearchHubComparisonsSlugRoute
@@ -789,7 +839,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   CancellationPolicyRoute: CancellationPolicyRoute,
   CartRoute: CartRoute,
-  CompoundsRoute: CompoundsRoute,
+  CompoundsRoute: CompoundsRouteWithChildren,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
