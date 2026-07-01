@@ -134,7 +134,12 @@ function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.filter(p => ["retatrutide", "mots-c", "semaglutide"].includes(p.slug)).map((p) => <ProductCard key={p.slug} p={p} />)}
+            {products.filter(p => ["retatrutide", "mots-c", "semaglutide", "bpc-157", "tirzepatide", "tb-500"].includes(p.slug)).map((p) => <ProductCard key={p.slug} p={p} />)}
+          </div>
+          <div className="flex justify-center mt-10">
+            <Link to="/shop" className="px-8 py-3.5 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-gold hover:text-navy-deep transition-colors inline-flex items-center gap-2">
+              SHOP ALL PRODUCTS <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </section>
