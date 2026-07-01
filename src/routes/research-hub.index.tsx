@@ -4,7 +4,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ReadingPathway } from "@/components/knowledge/reading-pathway";
 import { ResearchSidebar } from "@/components/knowledge/research-sidebar";
-import { KnowledgeSearch } from "@/components/knowledge/knowledge-search";
 import { ContinueReading } from "@/components/knowledge/continue-reading";
 import { researchCategories } from "@/lib/taxonomy";
 import { seo } from "@/lib/seo";
@@ -36,18 +35,13 @@ function ResearchHubIndex() {
             </h1>
             <p className="text-bone/75 max-w-2xl leading-relaxed">
               Categorised guides, compound monographs, mechanism references and laboratory
-              methodology — built as scaffolding that Release 2 will populate with peer-reviewed
-              scientific content.
+              methodology — an educational architecture that future releases will populate with
+              peer-reviewed scientific content.
             </p>
           </div>
         </section>
 
-        {/* Search */}
-        <section className="py-10 bg-bone">
-          <div className="container-x max-w-3xl">
-            <KnowledgeSearch />
-          </div>
-        </section>
+
 
         {/* Category grid + sidebar */}
         <section className="pb-10">
