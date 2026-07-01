@@ -1,125 +1,66 @@
-# Release 1.2 — Information Architecture Foundation
+# Release 1.2 — Knowledge Architecture Foundation
 
-Release 1.2 transitions Oxford Research Peptides from an ecommerce site into a
-scientific knowledge platform **without writing any long-form content**. This
-release delivers the reusable architecture — taxonomy, layouts, templates,
-routes and cross-linking components — that Release 2 will populate.
+Release 1.2 transitions Oxford Research Peptides from **"Shop with a Research
+Hub"** into **"A Research Platform with a Shop."**
 
-No visual identity changes. No Shopify changes. No homepage redesign.
+This release is **architecture only**. It delivers the taxonomy, layouts,
+templates, routes and reusable components that every future educational page
+will inherit. No long-form content, no visual redesign, no Compound Library
+launch, no Shopify changes.
 
 ---
 
-## 1. Shared taxonomy (single source of truth)
+## 1. Knowledge Architecture Registry — single source of truth
 
 `src/lib/taxonomy.ts`
 
-Every knowledge surface in this release consumes this file. Future releases
-add data here — they do not modify layouts.
+Every route, sidebar, breadcrumb, navigation element and related-content
+component in this release consumes this file. Future releases add DATA here
+— they never rebuild the layouts.
 
 | Export | Purpose |
 | --- | --- |
-| `researchCategories` | 8 categories: Research Guides, Compound Reference, Mechanisms of Action, Laboratory Methodology, Scientific Literature, Comparisons, FAQs, Glossary. |
+| `researchCategories` | 8 top-level categories: Research Guides, Compound Reference, Mechanisms of Action, Laboratory Methodology, Scientific Literature, Comparisons, FAQs, Glossary. Each carries `path`, `label`, `short`, `eyebrow`, `description`, `purpose`, `icon`, `related`, `populated`. |
 | `guideTypes` | Primer, Handling Guide, Mechanism Note, Structural Note, Comparison, Methodology. |
 | `compoundFamilies` | Incretin Mimetics, GH Secretagogues, Melanocortin Ligands, Tissue Repair, Copper Peptides, Cyclic Peptides, Reference Standards. |
 | `mechanismGroups` | GLP-1R, GIPR, GCGR, GHSR, MCR, Growth Factors, Copper-binding. |
 | `researchAreas` | Peptide Chemistry, Receptor Studies, Assay Development, Stability Research, Specialty Compounds. |
-| `guides`, `compoundEntries`, `glossaryTerms` | Empty arrays with typed shapes — populated in Release 2. |
+| `guides`, `compoundEntries`, `glossaryTerms` | Typed shapes. Empty in Release 1.2 — populated in Release 2. |
 | `defaultReadingPathway` | Start → Mechanism → Compound → Method → Comparison → Related Reading. |
 | Helpers | `getCategory`, `getRelatedCategories`, `guidesInCategory`, `guidesByCompound`, `guidesByMechanism`, `guidesByArea`, `compoundsInFamily`, `compoundsByMechanism`, `getGuide`, `getCompoundEntry`, `getGlossaryTerm`. |
 
-Every category carries a `populated: boolean` flag. Any category landing where
-`populated === false` emits `noindex` automatically.
+Every category carries a `populated: boolean` flag. Any category landing or
+`$slug` scaffold whose `populated` is `false` emits `robots: noindex, nofollow`
+via `seo()` — no thin scaffold pages are indexable.
 
 ---
 
-## 2. Reading pathway system
+## 2. Research Hub — genuine educational hub
 
-`src/components/knowledge/reading-pathway.tsx`
+`/research-hub` is now a real category root:
 
-Content-agnostic, component-driven pathway. Renders the taxonomy's
-`defaultReadingPathway` by default. Any consumer can pass a custom
-`PathwayStep[]` and highlight a step with `activeKind`. Used on the Hub
-landing and every category landing.
+- Hero + purpose
+- Category grid rendered from `researchCategories` (icons, populated flags)
+- Reading pathway
+- Sidebar
+- "Continue reading" module
 
----
-
-## 3. Knowledge navigation
-
-`src/components/knowledge/knowledge-nav.tsx`
-
-Secondary educational nav rendered inside every category page. Answers:
-"Where am I?", "What sits alongside this?", "What should I read next?" —
-all resolved from `getRelatedCategories()`.
+There is no long-form educational copy. No thin pages are indexable.
 
 ---
 
-## 4. Research sidebar
-
-`src/components/knowledge/research-sidebar.tsx`
-
-Reusable sidebar with slot-based blocks:
-
-- Category tree (from `researchCategories`)
-- Related guides / Recent guides / Popular guides (from `guidesInCategory`)
-- Glossary (from `glossaryTerms`)
-- Laboratory methodology quick-link
-
-Empty datasets render as labelled "populated in Release 2" placeholders so
-layouts remain stable.
-
----
-
-## 5. Layout templates
-
-| Template | Path | Slots |
-| --- | --- | --- |
-| `GuideLayout` | `src/components/knowledge/guide-layout.tsx` | Hero, Quick Summary, Table of Contents, Main Content, Figures, Evidence Summary, References, Related Guides, Related Compounds, Author, Reviewer, Last Updated, Sidebar. |
-| `CompoundLayout` | `src/components/knowledge/compound-layout.tsx` | Identity, Aliases, Chemical Metadata, Mechanism, Receptor Targets, Research Areas, Laboratory Notes, Evidence Summary, References, Related Guides, Related Products, Sidebar, Last Updated. |
-| `CategoryLanding` | `src/components/knowledge/category-landing.tsx` | Category-driven landing; requires only `categoryId`. |
-| `PlaceholderKnowledgePage` | `src/components/knowledge/placeholder-knowledge-page.tsx` | Generic scaffolded page for `$slug` leaves before content lands. |
-
-`GuideSlotPlaceholder` / `CompoundSlotPlaceholder` render short "populated in
-a future release" notices — never dummy paragraphs.
-
----
-
-## 6. Internal linking framework
-
-All consume the taxonomy — no static arrays.
-
-- `related-guides.tsx` — filters by `categoryId`, `compoundSlug` or `mechanismId`.
-- `related-compounds.tsx` — filters by `familyId`, `mechanismId` or explicit slug list.
-- `related-mechanisms.tsx` — chip links into `/research-hub/mechanisms/$slug`.
-- `related-methodology.tsx` — chip links into `/research-hub/methodology/$slug`.
-- `continue-reading.tsx` — prefers category guides, falls back to related categories.
-
----
-
-## 7. Search architecture
-
-`src/lib/knowledge-search.ts` (already present)
-`src/components/knowledge/knowledge-search.tsx`
-
-Adapter interface `KnowledgeSearchAdapter` decouples the UI from the index.
-Ships with `inMemoryKnowledgeSearch`, which queries the taxonomy directly.
-Release 2 can swap in a real index without touching the UI.
-
-Result kinds: `guide`, `compound`, `mechanism`, `glossary`, `methodology`, `category`.
-
----
-
-## 8. URL structure
+## 3. Educational URL structure
 
 Layout routes:
 
-- `/research-hub` (`src/routes/research-hub.tsx`) — `<Outlet />`
-- `/compounds` (`src/routes/compounds.tsx`) — `<Outlet />`
+- `/research-hub` — `src/routes/research-hub.tsx` — `<Outlet />`
+- `/compounds` — `src/routes/compounds.tsx` — `<Outlet />`
 
-Leaf routes (all use `seo()`, breadcrumbs, and templates from above):
+Leaf routes (each uses `seo()`, breadcrumbs, and templates from below):
 
-| URL | Route file | Component |
+| URL | Route file | Renders |
 | --- | --- | --- |
-| `/research-hub` | `research-hub.index.tsx` | Hub landing (categories + search + pathway) |
+| `/research-hub` | `research-hub.index.tsx` | Hub landing |
 | `/research-hub/guides` | `research-hub.guides.index.tsx` | `CategoryLanding` |
 | `/research-hub/guides/$slug` | `research-hub.guides.$slug.tsx` | `PlaceholderKnowledgePage` (noindex) |
 | `/research-hub/methodology` | `research-hub.methodology.index.tsx` | `CategoryLanding` |
@@ -131,17 +72,136 @@ Leaf routes (all use `seo()`, breadcrumbs, and templates from above):
 | `/research-hub/glossary` | `research-hub.glossary.index.tsx` | `CategoryLanding` |
 | `/research-hub/glossary/$slug` | `research-hub.glossary.$slug.tsx` | `PlaceholderKnowledgePage` (noindex) |
 | `/research-hub/literature` | `research-hub.literature.index.tsx` | `CategoryLanding` |
-| `/compounds` | `compounds.index.tsx` | Landing (families + template preview + pathway) |
-| `/compounds/$slug` | `compounds.$slug.tsx` | `CompoundLayout` — renders empty template when entry is not populated (noindex) |
+| `/research-hub/faqs` | `research-hub.faqs.index.tsx` | Category landing linking to `/faqs` |
+| `/compounds` | `compounds.index.tsx` | Landing (families + template preview) |
+| `/compounds/$slug` | `compounds.$slug.tsx` | `CompoundLayout` — empty template until populated (noindex) |
 
-Any category landing whose `populated` flag is `false` emits `noindex` via
-`seo()`, so search engines will not index the thin scaffolding.
+Existing operational routes (`/faqs`, `/shop`, `/wholesale`, etc.) are
+untouched.
 
 ---
 
-## 9. Files created / modified
+## 4. `GuideLayout`
 
-**Created — routes (13)**
+`src/components/knowledge/guide-layout.tsx`
+
+Reusable structural template. Every section is a slot. Slots that aren't
+passed are not rendered.
+
+Slots: `hero`, `quickAnswer`, `keyFacts`, `tableOfContents`, `mainContent`,
+`figures`, `evidenceSummary`, `researchLimitations`, `references`,
+`glossaryTerms`, `relatedGuides`, `relatedCompounds`, `author`,
+`scientificReviewer`, `publicationDate`, `lastUpdated`, `editorialNotice`,
+`versionHistory`, `sidebar`.
+
+Ships with `GuideSlotPlaceholder` for use during Release 2 authoring.
+
+---
+
+## 5. `CompoundLayout`
+
+`src/components/knowledge/compound-layout.tsx`
+
+Reusable structural template.
+
+Slots: `identity`, `aliases`, `researchClassification`, `iupacName`,
+`molecularFormula`, `molecularWeight`, `chemicalMetadata`, `mechanism`,
+`receptorTargets`, `researchAreas`, `laboratoryNotes`, `evidenceSummary`,
+`references`, `relatedGuides`, `relatedProducts`, `relatedComparisons`,
+`sidebar`, `lastUpdated`.
+
+Ships with `CompoundSlotPlaceholder`. The Compound Library is NOT launched
+— only the reusable monograph template.
+
+---
+
+## 6. Knowledge Navigation
+
+`src/components/knowledge/knowledge-nav.tsx`
+
+Secondary educational nav rendered inside every category page. Consumes
+`getCategory` + `getRelatedCategories` to answer:
+
+1. Where am I?
+2. What sits alongside this?
+3. What should I read next?
+
+`src/components/knowledge/reading-pathway.tsx` renders the taxonomy's
+default reading pathway (`Start → Mechanism → Compound → Method → Comparison
+→ Related Reading`). Consumers can override with any `PathwayStep[]` and
+highlight an active step.
+
+Cross-link renderers (all data-driven, no hardcoded lists):
+
+- `related-guides.tsx` — by category / compound / mechanism.
+- `related-compounds.tsx` — by family / mechanism / explicit slug list.
+- `related-mechanisms.tsx` — receptor / pathway links.
+- `related-methodology.tsx` — methodology procedure links.
+- `continue-reading.tsx` — prefers same-category guides, falls back to related categories.
+
+---
+
+## 7. Research Sidebar
+
+`src/components/knowledge/research-sidebar.tsx`
+
+Reusable, slot-based sidebar. Every dataset is derived from the taxonomy —
+no hardcoded links.
+
+Blocks: `category-tree`, `related-guides`, `recent-guides`, `popular-guides`,
+`glossary`, `methodology`.
+
+Empty datasets render as labelled "populated in Release 2" placeholders so
+the layout is stable during authoring.
+
+---
+
+## 8. Reusable page templates
+
+| Template | File | Purpose |
+| --- | --- | --- |
+| `CategoryLanding` | `category-landing.tsx` | One prop (`categoryId`). Renders the entire category landing (header, `KnowledgeNav`, purpose, related guides, reading pathway, sidebar). |
+| `PlaceholderKnowledgePage` | `placeholder-knowledge-page.tsx` | Generic scaffold rendered by every `$slug` leaf before real content lands — stable URL, chrome and sidebar. |
+| `GuideLayout` | `guide-layout.tsx` | Long-form guide template. |
+| `CompoundLayout` | `compound-layout.tsx` | Monograph template. |
+
+---
+
+## 9. Architecture standards
+
+- **Reusable.** Every layout is a component, not a copy-paste page.
+- **Configuration driven.** Every category, family, mechanism and pathway
+  lives in `taxonomy.ts`.
+- **Component driven.** Every list is rendered by a component that queries
+  the taxonomy.
+- **Future-proof.** Populating Release 2 is *data only* — flipping
+  `populated: true` and pushing to `guides` / `compoundEntries` /
+  `glossaryTerms` is enough.
+- **Scalable.** Adding a new category means: one entry in
+  `researchCategories`, one route file using `CategoryLanding`, one route
+  file for `$slug`.
+
+No duplicated route logic. No duplicated taxonomy. No duplicated navigation.
+
+---
+
+## 10. Explicitly out of scope
+
+- No educational articles.
+- No scientific copy or placeholder paragraphs.
+- No AI search.
+- No educational search (the earlier `KnowledgeSearch` component and its
+  adapter were removed to keep the release strictly structural).
+- No internal linking engine.
+- No homepage redesign.
+- No Shopify integration changes.
+- No Compound Library launch.
+
+---
+
+## 11. Files
+
+**Created — routes (15)**
 
 - `src/routes/research-hub.index.tsx`
 - `src/routes/research-hub.guides.index.tsx`
@@ -155,62 +215,48 @@ Any category landing whose `populated` flag is `false` emits `noindex` via
 - `src/routes/research-hub.glossary.index.tsx`
 - `src/routes/research-hub.glossary.$slug.tsx`
 - `src/routes/research-hub.literature.index.tsx`
+- `src/routes/research-hub.faqs.index.tsx`
 - `src/routes/compounds.index.tsx`
 - `src/routes/compounds.$slug.tsx`
 
 **Modified — routes**
 
-- `src/routes/research-hub.tsx` → converted to layout route with `<Outlet />`.
-- `src/routes/compounds.tsx` → converted to layout route with `<Outlet />`.
+- `src/routes/research-hub.tsx` → layout route (`<Outlet />`).
+- `src/routes/compounds.tsx` → layout route (`<Outlet />`).
 
-**Created — knowledge components (13)**
+**Created — knowledge components (12)**
 
-- `src/components/knowledge/reading-pathway.tsx`
-- `src/components/knowledge/knowledge-nav.tsx`
-- `src/components/knowledge/research-sidebar.tsx`
-- `src/components/knowledge/guide-layout.tsx`
-- `src/components/knowledge/compound-layout.tsx`
-- `src/components/knowledge/category-landing.tsx`
-- `src/components/knowledge/placeholder-knowledge-page.tsx`
-- `src/components/knowledge/related-guides.tsx`
-- `src/components/knowledge/related-compounds.tsx`
-- `src/components/knowledge/related-mechanisms.tsx`
-- `src/components/knowledge/related-methodology.tsx`
-- `src/components/knowledge/continue-reading.tsx`
+- `reading-pathway.tsx`
+- `knowledge-nav.tsx`
+- `research-sidebar.tsx`
+- `guide-layout.tsx`
+- `compound-layout.tsx`
+- `category-landing.tsx`
+- `placeholder-knowledge-page.tsx`
+- `related-guides.tsx`
+- `related-compounds.tsx`
+- `related-mechanisms.tsx`
+- `related-methodology.tsx`
+- `continue-reading.tsx`
+
+**Created — library**
+
+- `src/lib/taxonomy.ts` (Knowledge Architecture registry)
+
+**Removed**
+
 - `src/components/knowledge/knowledge-search.tsx`
-
-**Created — libraries**
-
-- `src/lib/taxonomy.ts`
 - `src/lib/knowledge-search.ts`
+  (Educational search is explicitly out of scope for Release 1.2.)
 
 ---
 
-## 10. Status
+## 12. Status
 
-- **Typecheck:** ✅ `bunx tsgo --noEmit` — clean.
+- **Typecheck:** ✅ `bunx tsgo --noEmit` clean.
 - **Build:** ✅ handled by the harness on merge.
-- **noindex coverage:** all placeholder categories and every `$slug` scaffold
-  route emit `robots: noindex, nofollow` until `populated === true`.
+- **noindex coverage:** every unpopulated category landing and every `$slug`
+  scaffold emits `robots: noindex, nofollow` via `seo()`.
 
----
-
-## 11. Recommendations for Release 2.0
-
-1. **Populate `guides`, `compoundEntries`, `glossaryTerms`.** No layouts need
-   to change — flipping `populated: true` is enough to remove the `noindex`.
-2. **First compound monograph pilots.** Ship 3–5 monographs to validate
-   `CompoundLayout` before scaling to the full library.
-3. **Author + Reviewer schema.** Extend `Guide` with `Person` metadata and
-   emit `Article` + `sdPublisher` JSON-LD in the guide route.
-4. **Real search index.** Swap `inMemoryKnowledgeSearch` for a MiniSearch or
-   Meilisearch adapter — the UI does not change.
-5. **Compound → Product linking.** When populating `CompoundEntry.productSlug`,
-   populate the `Related Products` slot in `CompoundLayout` from the product
-   database.
-6. **Homepage promotion.** Once at least a category has real guides, promote a
-   "Featured guide" module above the product grid on `/`.
-7. **Sitemap.** Extend `sitemap.xml.ts` to enumerate every populated guide,
-   compound, mechanism, glossary term and methodology procedure.
-8. **Editorial workflow.** MDX or a headless CMS is now viable — the layout
-   contracts are stable.
+See `KNOWLEDGE_ARCHITECTURE.md` for the canonical rules Release 2 authors
+must follow.

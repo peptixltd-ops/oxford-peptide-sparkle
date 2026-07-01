@@ -149,7 +149,8 @@ export const researchCategories: readonly ResearchCategory[] = [
   },
   {
     id: "faqs",
-    path: "/faqs",
+    path: "/research-hub/faqs",
+
     label: "FAQs",
     short: "FAQs",
     eyebrow: "FAQS",

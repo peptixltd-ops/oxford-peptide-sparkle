@@ -5,23 +5,49 @@ import type { ResearchCategoryId } from "@/lib/taxonomy";
 /**
  * Structural template for a single research GUIDE page.
  *
- * All content is passed in via slots. Nothing here contains dummy prose.
- * Release 2 populates guides by rendering this layout with real props.
+ * Every section is a slot. Nothing here contains dummy prose — a slot that
+ * isn't passed is not rendered. Release 2 populates guides by rendering
+ * this layout with real props.
  */
 export interface GuideLayoutProps {
   categoryId?: ResearchCategoryId;
+  /** Full-bleed hero: title, eyebrow, breadcrumb, cover image. */
   hero?: ReactNode;
-  quickSummary?: ReactNode;
+  /** One-paragraph "quick answer" for readers who want the TL;DR. */
+  quickAnswer?: ReactNode;
+  /** Fact block: identity, class, targets, key numbers. */
+  keyFacts?: ReactNode;
+  /** Table of contents (auto or manual). */
   tableOfContents?: ReactNode;
+  /** Main article body. */
   mainContent?: ReactNode;
+  /** Figures / diagrams / tables. */
   figures?: ReactNode;
+  /** Evidence summary: strength of evidence, study count, quality. */
   evidenceSummary?: ReactNode;
+  /** Research limitations, caveats and unresolved questions. */
+  researchLimitations?: ReactNode;
+  /** Reference list. */
   references?: ReactNode;
+  /** Inline glossary panel of terms used in this guide. */
+  glossaryTerms?: ReactNode;
+  /** Related guides card. */
   relatedGuides?: ReactNode;
+  /** Related compounds card. */
   relatedCompounds?: ReactNode;
+  /** Author byline / bio. */
   author?: ReactNode;
-  reviewer?: ReactNode;
+  /** Scientific reviewer credit. */
+  scientificReviewer?: ReactNode;
+  /** ISO date first published. */
+  publicationDate?: string;
+  /** ISO date last updated. */
   lastUpdated?: string;
+  /** Editorial notice: research-only use, no medical claims, etc. */
+  editorialNotice?: ReactNode;
+  /** Version history log. */
+  versionHistory?: ReactNode;
+  /** Sidebar override. Defaults to ResearchSidebar for the guide category. */
   sidebar?: ReactNode;
 }
 
@@ -29,17 +55,23 @@ export function GuideLayout(props: GuideLayoutProps) {
   const {
     categoryId,
     hero,
-    quickSummary,
+    quickAnswer,
+    keyFacts,
     tableOfContents,
     mainContent,
     figures,
     evidenceSummary,
+    researchLimitations,
     references,
+    glossaryTerms,
     relatedGuides,
     relatedCompounds,
     author,
-    reviewer,
+    scientificReviewer,
+    publicationDate,
     lastUpdated,
+    editorialNotice,
+    versionHistory,
     sidebar,
   } = props;
 
@@ -52,13 +84,16 @@ export function GuideLayout(props: GuideLayoutProps) {
       )}
 
       <div className="container-x py-10 md:py-14 grid lg:grid-cols-[1fr_320px] gap-10">
-        <article className="min-w-0 space-y-10">
-          {quickSummary && <Slot title="Quick summary">{quickSummary}</Slot>}
+        <article className="min-w-0 space-y-8">
+          {quickAnswer && <Slot title="Quick answer">{quickAnswer}</Slot>}
+          {keyFacts && <Slot title="Key facts">{keyFacts}</Slot>}
           {tableOfContents && <Slot title="Contents">{tableOfContents}</Slot>}
           {mainContent && <Slot>{mainContent}</Slot>}
           {figures && <Slot title="Figures">{figures}</Slot>}
           {evidenceSummary && <Slot title="Evidence summary">{evidenceSummary}</Slot>}
+          {researchLimitations && <Slot title="Research limitations">{researchLimitations}</Slot>}
           {references && <Slot title="References">{references}</Slot>}
+          {glossaryTerms && <Slot title="Glossary terms">{glossaryTerms}</Slot>}
 
           {(relatedGuides || relatedCompounds) && (
             <div className="grid md:grid-cols-2 gap-6">
@@ -67,11 +102,21 @@ export function GuideLayout(props: GuideLayoutProps) {
             </div>
           )}
 
-          {(author || reviewer || lastUpdated) && (
+          {editorialNotice && <Slot title="Editorial notice">{editorialNotice}</Slot>}
+          {versionHistory && <Slot title="Version history">{versionHistory}</Slot>}
+
+          {(author || scientificReviewer || publicationDate || lastUpdated) && (
             <footer className="border-t border-navy-deep/10 pt-6 text-xs text-muted-foreground flex flex-wrap gap-x-6 gap-y-2">
               {author && <span><strong className="text-navy-deep">Author:</strong> {author}</span>}
-              {reviewer && <span><strong className="text-navy-deep">Reviewer:</strong> {reviewer}</span>}
-              {lastUpdated && <span><strong className="text-navy-deep">Updated:</strong> {lastUpdated}</span>}
+              {scientificReviewer && (
+                <span><strong className="text-navy-deep">Scientific reviewer:</strong> {scientificReviewer}</span>
+              )}
+              {publicationDate && (
+                <span><strong className="text-navy-deep">Published:</strong> {publicationDate}</span>
+              )}
+              {lastUpdated && (
+                <span><strong className="text-navy-deep">Updated:</strong> {lastUpdated}</span>
+              )}
             </footer>
           )}
         </article>
