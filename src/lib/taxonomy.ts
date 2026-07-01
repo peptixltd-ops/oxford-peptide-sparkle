@@ -330,7 +330,26 @@ export interface CompoundEntry {
   populated: boolean;
 }
 
-export const compoundEntries: readonly CompoundEntry[] = [];
+export const compoundEntries: readonly CompoundEntry[] = [
+  {
+    slug: "retatrutide",
+    name: "Retatrutide",
+    aliases: ["LY3437943"],
+    familyId: "incretin-mimetics",
+    mechanismIds: ["glp1r", "gipr", "gcgr"],
+    areaIds: ["receptor-studies", "peptide-chemistry"],
+    populated: false,
+  },
+  {
+    slug: "bpc-157",
+    name: "BPC-157",
+    aliases: ["Body Protection Compound 157", "PL-14736"],
+    familyId: "tissue-repair",
+    mechanismIds: ["growth-factors"],
+    areaIds: ["peptide-chemistry"],
+    populated: false,
+  },
+];
 
 export interface GlossaryTerm {
   slug: string;
