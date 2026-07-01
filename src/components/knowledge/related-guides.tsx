@@ -98,6 +98,3 @@ export function RelatedGuides({
 function toGuideLike(e: KnowledgeEntity): GuideLike {
   return { slug: e.slug, title: e.title, summary: e.description };
 }
-
-// Ensure the `Guide` import is used (satisfy strict TS during noop rebuilds).
-export type __GuideAlias = Guide;
