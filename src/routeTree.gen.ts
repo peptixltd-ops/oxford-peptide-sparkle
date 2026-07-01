@@ -32,7 +32,21 @@ import { Route as CancellationPolicyRouteImport } from './routes/cancellation-po
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResearchHubIndexRouteImport } from './routes/research-hub.index'
+import { Route as CompoundsIndexRouteImport } from './routes/compounds.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
+import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
+import { Route as ResearchHubMechanismsIndexRouteImport } from './routes/research-hub.mechanisms.index'
+import { Route as ResearchHubLiteratureIndexRouteImport } from './routes/research-hub.literature.index'
+import { Route as ResearchHubGuidesIndexRouteImport } from './routes/research-hub.guides.index'
+import { Route as ResearchHubGlossaryIndexRouteImport } from './routes/research-hub.glossary.index'
+import { Route as ResearchHubComparisonsIndexRouteImport } from './routes/research-hub.comparisons.index'
+import { Route as ResearchHubMethodologySlugRouteImport } from './routes/research-hub.methodology.$slug'
+import { Route as ResearchHubMechanismsSlugRouteImport } from './routes/research-hub.mechanisms.$slug'
+import { Route as ResearchHubGuidesSlugRouteImport } from './routes/research-hub.guides.$slug'
+import { Route as ResearchHubGlossarySlugRouteImport } from './routes/research-hub.glossary.$slug'
+import { Route as ResearchHubComparisonsSlugRouteImport } from './routes/research-hub.comparisons.$slug'
 
 const WholesaleRoute = WholesaleRouteImport.update({
   id: '/wholesale',
@@ -149,11 +163,89 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchHubIndexRoute = ResearchHubIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ResearchHubRoute,
+} as any)
+const CompoundsIndexRoute = CompoundsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CompoundsRoute,
+} as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompoundsSlugRoute = CompoundsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CompoundsRoute,
+} as any)
+const ResearchHubMethodologyIndexRoute =
+  ResearchHubMethodologyIndexRouteImport.update({
+    id: '/methodology/',
+    path: '/methodology/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubMechanismsIndexRoute =
+  ResearchHubMechanismsIndexRouteImport.update({
+    id: '/mechanisms/',
+    path: '/mechanisms/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubLiteratureIndexRoute =
+  ResearchHubLiteratureIndexRouteImport.update({
+    id: '/literature/',
+    path: '/literature/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubGuidesIndexRoute = ResearchHubGuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => ResearchHubRoute,
+} as any)
+const ResearchHubGlossaryIndexRoute =
+  ResearchHubGlossaryIndexRouteImport.update({
+    id: '/glossary/',
+    path: '/glossary/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubComparisonsIndexRoute =
+  ResearchHubComparisonsIndexRouteImport.update({
+    id: '/comparisons/',
+    path: '/comparisons/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubMethodologySlugRoute =
+  ResearchHubMethodologySlugRouteImport.update({
+    id: '/methodology/$slug',
+    path: '/methodology/$slug',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubMechanismsSlugRoute =
+  ResearchHubMechanismsSlugRouteImport.update({
+    id: '/mechanisms/$slug',
+    path: '/mechanisms/$slug',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubGuidesSlugRoute = ResearchHubGuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => ResearchHubRoute,
+} as any)
+const ResearchHubGlossarySlugRoute = ResearchHubGlossarySlugRouteImport.update({
+  id: '/glossary/$slug',
+  path: '/glossary/$slug',
+  getParentRoute: () => ResearchHubRoute,
+} as any)
+const ResearchHubComparisonsSlugRoute =
+  ResearchHubComparisonsSlugRouteImport.update({
+    id: '/comparisons/$slug',
+    path: '/comparisons/$slug',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -161,7 +253,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
-  '/compounds': typeof CompoundsRoute
+  '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -170,7 +262,7 @@ export interface FileRoutesByFullPath {
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/research-hub': typeof ResearchHubRoute
+  '/research-hub': typeof ResearchHubRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -179,7 +271,21 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
+  '/compounds/$slug': typeof CompoundsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/compounds/': typeof CompoundsIndexRoute
+  '/research-hub/': typeof ResearchHubIndexRoute
+  '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
+  '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
+  '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
+  '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
+  '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/research-hub/comparisons/': typeof ResearchHubComparisonsIndexRoute
+  '/research-hub/glossary/': typeof ResearchHubGlossaryIndexRoute
+  '/research-hub/guides/': typeof ResearchHubGuidesIndexRoute
+  '/research-hub/literature/': typeof ResearchHubLiteratureIndexRoute
+  '/research-hub/mechanisms/': typeof ResearchHubMechanismsIndexRoute
+  '/research-hub/methodology/': typeof ResearchHubMethodologyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -187,7 +293,6 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
-  '/compounds': typeof CompoundsRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -196,7 +301,6 @@ export interface FileRoutesByTo {
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/research-hub': typeof ResearchHubRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -205,7 +309,21 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
+  '/compounds/$slug': typeof CompoundsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/compounds': typeof CompoundsIndexRoute
+  '/research-hub': typeof ResearchHubIndexRoute
+  '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
+  '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
+  '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
+  '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
+  '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/research-hub/comparisons': typeof ResearchHubComparisonsIndexRoute
+  '/research-hub/glossary': typeof ResearchHubGlossaryIndexRoute
+  '/research-hub/guides': typeof ResearchHubGuidesIndexRoute
+  '/research-hub/literature': typeof ResearchHubLiteratureIndexRoute
+  '/research-hub/mechanisms': typeof ResearchHubMechanismsIndexRoute
+  '/research-hub/methodology': typeof ResearchHubMethodologyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -214,7 +332,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
-  '/compounds': typeof CompoundsRoute
+  '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -223,7 +341,7 @@ export interface FileRoutesById {
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/refund-policy': typeof RefundPolicyRoute
-  '/research-hub': typeof ResearchHubRoute
+  '/research-hub': typeof ResearchHubRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -232,7 +350,21 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
+  '/compounds/$slug': typeof CompoundsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/compounds/': typeof CompoundsIndexRoute
+  '/research-hub/': typeof ResearchHubIndexRoute
+  '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
+  '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
+  '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
+  '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
+  '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/research-hub/comparisons/': typeof ResearchHubComparisonsIndexRoute
+  '/research-hub/glossary/': typeof ResearchHubGlossaryIndexRoute
+  '/research-hub/guides/': typeof ResearchHubGuidesIndexRoute
+  '/research-hub/literature/': typeof ResearchHubLiteratureIndexRoute
+  '/research-hub/mechanisms/': typeof ResearchHubMechanismsIndexRoute
+  '/research-hub/methodology/': typeof ResearchHubMethodologyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -260,7 +392,21 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/wholesale'
+    | '/compounds/$slug'
     | '/products/$slug'
+    | '/compounds/'
+    | '/research-hub/'
+    | '/research-hub/comparisons/$slug'
+    | '/research-hub/glossary/$slug'
+    | '/research-hub/guides/$slug'
+    | '/research-hub/mechanisms/$slug'
+    | '/research-hub/methodology/$slug'
+    | '/research-hub/comparisons/'
+    | '/research-hub/glossary/'
+    | '/research-hub/guides/'
+    | '/research-hub/literature/'
+    | '/research-hub/mechanisms/'
+    | '/research-hub/methodology/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -268,7 +414,6 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
-    | '/compounds'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
@@ -277,7 +422,6 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/privacy-policy'
     | '/refund-policy'
-    | '/research-hub'
     | '/robots.txt'
     | '/search'
     | '/shipping-policy'
@@ -286,7 +430,21 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/wholesale'
+    | '/compounds/$slug'
     | '/products/$slug'
+    | '/compounds'
+    | '/research-hub'
+    | '/research-hub/comparisons/$slug'
+    | '/research-hub/glossary/$slug'
+    | '/research-hub/guides/$slug'
+    | '/research-hub/mechanisms/$slug'
+    | '/research-hub/methodology/$slug'
+    | '/research-hub/comparisons'
+    | '/research-hub/glossary'
+    | '/research-hub/guides'
+    | '/research-hub/literature'
+    | '/research-hub/mechanisms'
+    | '/research-hub/methodology'
   id:
     | '__root__'
     | '/'
@@ -312,7 +470,21 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/wholesale'
+    | '/compounds/$slug'
     | '/products/$slug'
+    | '/compounds/'
+    | '/research-hub/'
+    | '/research-hub/comparisons/$slug'
+    | '/research-hub/glossary/$slug'
+    | '/research-hub/guides/$slug'
+    | '/research-hub/mechanisms/$slug'
+    | '/research-hub/methodology/$slug'
+    | '/research-hub/comparisons/'
+    | '/research-hub/glossary/'
+    | '/research-hub/guides/'
+    | '/research-hub/literature/'
+    | '/research-hub/mechanisms/'
+    | '/research-hub/methodology/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -321,7 +493,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   CancellationPolicyRoute: typeof CancellationPolicyRoute
   CartRoute: typeof CartRoute
-  CompoundsRoute: typeof CompoundsRoute
+  CompoundsRoute: typeof CompoundsRouteWithChildren
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
@@ -330,7 +502,7 @@ export interface RootRouteChildren {
   MethodologyRoute: typeof MethodologyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
-  ResearchHubRoute: typeof ResearchHubRoute
+  ResearchHubRoute: typeof ResearchHubRouteWithChildren
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SearchRoute: typeof SearchRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
@@ -505,6 +677,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research-hub/': {
+      id: '/research-hub/'
+      path: '/'
+      fullPath: '/research-hub/'
+      preLoaderRoute: typeof ResearchHubIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/compounds/': {
+      id: '/compounds/'
+      path: '/'
+      fullPath: '/compounds/'
+      preLoaderRoute: typeof CompoundsIndexRouteImport
+      parentRoute: typeof CompoundsRoute
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/products/$slug'
@@ -512,8 +698,140 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compounds/$slug': {
+      id: '/compounds/$slug'
+      path: '/$slug'
+      fullPath: '/compounds/$slug'
+      preLoaderRoute: typeof CompoundsSlugRouteImport
+      parentRoute: typeof CompoundsRoute
+    }
+    '/research-hub/methodology/': {
+      id: '/research-hub/methodology/'
+      path: '/methodology'
+      fullPath: '/research-hub/methodology/'
+      preLoaderRoute: typeof ResearchHubMethodologyIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/mechanisms/': {
+      id: '/research-hub/mechanisms/'
+      path: '/mechanisms'
+      fullPath: '/research-hub/mechanisms/'
+      preLoaderRoute: typeof ResearchHubMechanismsIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/literature/': {
+      id: '/research-hub/literature/'
+      path: '/literature'
+      fullPath: '/research-hub/literature/'
+      preLoaderRoute: typeof ResearchHubLiteratureIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/guides/': {
+      id: '/research-hub/guides/'
+      path: '/guides'
+      fullPath: '/research-hub/guides/'
+      preLoaderRoute: typeof ResearchHubGuidesIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/glossary/': {
+      id: '/research-hub/glossary/'
+      path: '/glossary'
+      fullPath: '/research-hub/glossary/'
+      preLoaderRoute: typeof ResearchHubGlossaryIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/comparisons/': {
+      id: '/research-hub/comparisons/'
+      path: '/comparisons'
+      fullPath: '/research-hub/comparisons/'
+      preLoaderRoute: typeof ResearchHubComparisonsIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/methodology/$slug': {
+      id: '/research-hub/methodology/$slug'
+      path: '/methodology/$slug'
+      fullPath: '/research-hub/methodology/$slug'
+      preLoaderRoute: typeof ResearchHubMethodologySlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/mechanisms/$slug': {
+      id: '/research-hub/mechanisms/$slug'
+      path: '/mechanisms/$slug'
+      fullPath: '/research-hub/mechanisms/$slug'
+      preLoaderRoute: typeof ResearchHubMechanismsSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/guides/$slug': {
+      id: '/research-hub/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/research-hub/guides/$slug'
+      preLoaderRoute: typeof ResearchHubGuidesSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/glossary/$slug': {
+      id: '/research-hub/glossary/$slug'
+      path: '/glossary/$slug'
+      fullPath: '/research-hub/glossary/$slug'
+      preLoaderRoute: typeof ResearchHubGlossarySlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/comparisons/$slug': {
+      id: '/research-hub/comparisons/$slug'
+      path: '/comparisons/$slug'
+      fullPath: '/research-hub/comparisons/$slug'
+      preLoaderRoute: typeof ResearchHubComparisonsSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
   }
 }
+
+interface CompoundsRouteChildren {
+  CompoundsSlugRoute: typeof CompoundsSlugRoute
+  CompoundsIndexRoute: typeof CompoundsIndexRoute
+}
+
+const CompoundsRouteChildren: CompoundsRouteChildren = {
+  CompoundsSlugRoute: CompoundsSlugRoute,
+  CompoundsIndexRoute: CompoundsIndexRoute,
+}
+
+const CompoundsRouteWithChildren = CompoundsRoute._addFileChildren(
+  CompoundsRouteChildren,
+)
+
+interface ResearchHubRouteChildren {
+  ResearchHubIndexRoute: typeof ResearchHubIndexRoute
+  ResearchHubComparisonsSlugRoute: typeof ResearchHubComparisonsSlugRoute
+  ResearchHubGlossarySlugRoute: typeof ResearchHubGlossarySlugRoute
+  ResearchHubGuidesSlugRoute: typeof ResearchHubGuidesSlugRoute
+  ResearchHubMechanismsSlugRoute: typeof ResearchHubMechanismsSlugRoute
+  ResearchHubMethodologySlugRoute: typeof ResearchHubMethodologySlugRoute
+  ResearchHubComparisonsIndexRoute: typeof ResearchHubComparisonsIndexRoute
+  ResearchHubGlossaryIndexRoute: typeof ResearchHubGlossaryIndexRoute
+  ResearchHubGuidesIndexRoute: typeof ResearchHubGuidesIndexRoute
+  ResearchHubLiteratureIndexRoute: typeof ResearchHubLiteratureIndexRoute
+  ResearchHubMechanismsIndexRoute: typeof ResearchHubMechanismsIndexRoute
+  ResearchHubMethodologyIndexRoute: typeof ResearchHubMethodologyIndexRoute
+}
+
+const ResearchHubRouteChildren: ResearchHubRouteChildren = {
+  ResearchHubIndexRoute: ResearchHubIndexRoute,
+  ResearchHubComparisonsSlugRoute: ResearchHubComparisonsSlugRoute,
+  ResearchHubGlossarySlugRoute: ResearchHubGlossarySlugRoute,
+  ResearchHubGuidesSlugRoute: ResearchHubGuidesSlugRoute,
+  ResearchHubMechanismsSlugRoute: ResearchHubMechanismsSlugRoute,
+  ResearchHubMethodologySlugRoute: ResearchHubMethodologySlugRoute,
+  ResearchHubComparisonsIndexRoute: ResearchHubComparisonsIndexRoute,
+  ResearchHubGlossaryIndexRoute: ResearchHubGlossaryIndexRoute,
+  ResearchHubGuidesIndexRoute: ResearchHubGuidesIndexRoute,
+  ResearchHubLiteratureIndexRoute: ResearchHubLiteratureIndexRoute,
+  ResearchHubMechanismsIndexRoute: ResearchHubMechanismsIndexRoute,
+  ResearchHubMethodologyIndexRoute: ResearchHubMethodologyIndexRoute,
+}
+
+const ResearchHubRouteWithChildren = ResearchHubRoute._addFileChildren(
+  ResearchHubRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -521,7 +839,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   CancellationPolicyRoute: CancellationPolicyRoute,
   CartRoute: CartRoute,
-  CompoundsRoute: CompoundsRoute,
+  CompoundsRoute: CompoundsRouteWithChildren,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
@@ -530,7 +848,7 @@ const rootRouteChildren: RootRouteChildren = {
   MethodologyRoute: MethodologyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
-  ResearchHubRoute: ResearchHubRoute,
+  ResearchHubRoute: ResearchHubRouteWithChildren,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SearchRoute: SearchRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,
