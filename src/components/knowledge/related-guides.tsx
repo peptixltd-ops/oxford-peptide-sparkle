@@ -3,9 +3,11 @@ import {
   guidesInCategory,
   guidesByCompound,
   guidesByMechanism,
+  type Guide,
   type ResearchCategoryId,
   type MechanismGroupId,
 } from "@/lib/taxonomy";
+
 
 interface Props {
   /** Filter by category. */
@@ -31,10 +33,11 @@ export function RelatedGuides({
   emptyLabel = "Related guides are populated in a future release.",
   limit = 6,
 }: Props) {
-  let list = [];
+  let list: Guide[] = [];
   if (compoundSlug) list = guidesByCompound(compoundSlug);
   else if (mechanismId) list = guidesByMechanism(mechanismId);
   else if (categoryId) list = guidesInCategory(categoryId);
+
 
   return (
     <section

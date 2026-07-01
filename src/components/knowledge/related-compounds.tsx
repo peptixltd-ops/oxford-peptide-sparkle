@@ -3,9 +3,11 @@ import {
   compoundEntries,
   compoundsInFamily,
   compoundsByMechanism,
+  type CompoundEntry,
   type CompoundFamilyId,
   type MechanismGroupId,
 } from "@/lib/taxonomy";
+
 
 interface Props {
   familyId?: CompoundFamilyId;
@@ -25,10 +27,11 @@ export function RelatedCompounds({
   emptyLabel = "Compound monographs are populated in a future release.",
   limit = 8,
 }: Props) {
-  let list = [];
+  let list: CompoundEntry[] = [];
   if (slugs && slugs.length) list = compoundEntries.filter((c) => slugs.includes(c.slug));
   else if (familyId) list = compoundsInFamily(familyId);
   else if (mechanismId) list = compoundsByMechanism(mechanismId);
+
 
   return (
     <section
