@@ -432,7 +432,7 @@ export function buildGuideLayoutProps(scaffold: GuideScaffold): GuideLayoutProps
       {scaffold.procedureSteps ? (
         <LaboratoryProcedure
           title="Procedure outline"
-          steps={scaffold.procedureSteps.map((step) => ({ title: step }))}
+          steps={scaffold.procedureSteps}
         />
       ) : null}
       {scaffold.comparisonRows ? (
