@@ -5,7 +5,9 @@ import {
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award,
   BookOpen, BarChart3, Users, FileText
 } from "lucide-react";
-import heroTrio from "@/assets/hero-vials-trio.png.asset.json";
+import heroVialBpc from "@/assets/vials/orp-bpc-157.png";
+import heroVialRet from "@/assets/vials/orp-retatrutide.png";
+import heroVialSem from "@/assets/vials/orp-semaglutide.png";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
 import artReconstitute from "@/assets/article-reconstitute.jpg";
@@ -169,11 +171,21 @@ function Home() {
           </div>
 
           {/* Right column — hero vial trio */}
-          <div className="relative flex items-center justify-end">
+          <div className="relative flex items-center justify-center gap-2 md:gap-4">
             <img
-              src={heroTrio.url}
-              alt="Oxford Research Peptides — BPC-157, Retatrutide and Semaglutide research vials"
-              className="w-full max-w-none h-auto object-contain object-right drop-shadow-[0_40px_70px_rgba(0,0,0,0.7)] scale-[1.15] md:scale-[1.2] origin-right"
+              src={heroVialBpc}
+              alt="BPC-157 research vial"
+              className="w-[28%] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] brightness-110"
+            />
+            <img
+              src={heroVialRet}
+              alt="Retatrutide research vial"
+              className="w-[36%] h-auto object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.6)] brightness-110 -mx-2 md:-mx-4 z-10"
+            />
+            <img
+              src={heroVialSem}
+              alt="Semaglutide research vial"
+              className="w-[28%] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] brightness-110"
             />
           </div>
         </div>
