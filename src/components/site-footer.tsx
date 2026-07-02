@@ -19,6 +19,9 @@ const cols = [
     { l: "About Us", to: "/about" },
     { l: "Contact Us", to: "/contact" },
     { l: "FAQs", to: "/faqs" },
+    { l: "Editorial Standards", to: "/editorial-standards" },
+    { l: "Research Methodology", to: "/research-methodology" },
+    { l: "Publication Workflow", to: "/publication-workflow" },
     { l: "Sitemap", to: "/sitemap" },
   ] },
   { h: "LEGAL", links: [

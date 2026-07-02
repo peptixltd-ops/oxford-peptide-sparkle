@@ -17,12 +17,15 @@ import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as ResearchMethodologyRouteImport } from './routes/research-methodology'
 import { Route as ResearchHubRouteImport } from './routes/research-hub'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as PublicationWorkflowRouteImport } from './routes/publication-workflow'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as LabTestingRouteImport } from './routes/lab-testing'
 import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as EditorialStandardsRouteImport } from './routes/editorial-standards'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -89,6 +92,11 @@ const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchMethodologyRoute = ResearchMethodologyRouteImport.update({
+  id: '/research-methodology',
+  path: '/research-methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchHubRoute = ResearchHubRouteImport.update({
   id: '/research-hub',
   path: '/research-hub',
@@ -97,6 +105,11 @@ const ResearchHubRoute = ResearchHubRouteImport.update({
 const RefundPolicyRoute = RefundPolicyRouteImport.update({
   id: '/refund-policy',
   path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicationWorkflowRoute = PublicationWorkflowRouteImport.update({
+  id: '/publication-workflow',
+  path: '/publication-workflow',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -117,6 +130,11 @@ const LabTestingRoute = LabTestingRouteImport.update({
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialStandardsRoute = EditorialStandardsRouteImport.update({
+  id: '/editorial-standards',
+  path: '/editorial-standards',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DisclaimerRoute = DisclaimerRouteImport.update({
@@ -263,12 +281,15 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-standards': typeof EditorialStandardsRoute
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/publication-workflow': typeof PublicationWorkflowRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRouteWithChildren
+  '/research-methodology': typeof ResearchMethodologyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -303,11 +324,14 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-standards': typeof EditorialStandardsRoute
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/publication-workflow': typeof PublicationWorkflowRoute
   '/refund-policy': typeof RefundPolicyRoute
+  '/research-methodology': typeof ResearchMethodologyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -344,12 +368,15 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-standards': typeof EditorialStandardsRoute
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/publication-workflow': typeof PublicationWorkflowRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRouteWithChildren
+  '/research-methodology': typeof ResearchMethodologyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
@@ -387,12 +414,15 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/editorial-standards'
     | '/faqs'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
+    | '/publication-workflow'
     | '/refund-policy'
     | '/research-hub'
+    | '/research-methodology'
     | '/robots.txt'
     | '/search'
     | '/shipping-policy'
@@ -427,11 +457,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/editorial-standards'
     | '/faqs'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
+    | '/publication-workflow'
     | '/refund-policy'
+    | '/research-methodology'
     | '/robots.txt'
     | '/search'
     | '/shipping-policy'
@@ -467,12 +500,15 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/editorial-standards'
     | '/faqs'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
+    | '/publication-workflow'
     | '/refund-policy'
     | '/research-hub'
+    | '/research-methodology'
     | '/robots.txt'
     | '/search'
     | '/shipping-policy'
@@ -509,12 +545,15 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  EditorialStandardsRoute: typeof EditorialStandardsRoute
   FaqsRoute: typeof FaqsRoute
   LabTestingRoute: typeof LabTestingRoute
   MethodologyRoute: typeof MethodologyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  PublicationWorkflowRoute: typeof PublicationWorkflowRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
   ResearchHubRoute: typeof ResearchHubRouteWithChildren
+  ResearchMethodologyRoute: typeof ResearchMethodologyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SearchRoute: typeof SearchRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
@@ -584,6 +623,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research-methodology': {
+      id: '/research-methodology'
+      path: '/research-methodology'
+      fullPath: '/research-methodology'
+      preLoaderRoute: typeof ResearchMethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research-hub': {
       id: '/research-hub'
       path: '/research-hub'
@@ -596,6 +642,13 @@ declare module '@tanstack/react-router' {
       path: '/refund-policy'
       fullPath: '/refund-policy'
       preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/publication-workflow': {
+      id: '/publication-workflow'
+      path: '/publication-workflow'
+      fullPath: '/publication-workflow'
+      preLoaderRoute: typeof PublicationWorkflowRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -624,6 +677,13 @@ declare module '@tanstack/react-router' {
       path: '/faqs'
       fullPath: '/faqs'
       preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial-standards': {
+      id: '/editorial-standards'
+      path: '/editorial-standards'
+      fullPath: '/editorial-standards'
+      preLoaderRoute: typeof EditorialStandardsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/disclaimer': {
@@ -864,12 +924,15 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
+  EditorialStandardsRoute: EditorialStandardsRoute,
   FaqsRoute: FaqsRoute,
   LabTestingRoute: LabTestingRoute,
   MethodologyRoute: MethodologyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  PublicationWorkflowRoute: PublicationWorkflowRoute,
   RefundPolicyRoute: RefundPolicyRoute,
   ResearchHubRoute: ResearchHubRouteWithChildren,
+  ResearchMethodologyRoute: ResearchMethodologyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SearchRoute: SearchRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,

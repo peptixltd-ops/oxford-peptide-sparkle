@@ -19,10 +19,6 @@ import {
   ResearchLimitations,
   ReferenceList,
   ReferenceProvider,
-  AuthorCard,
-  ScientificReviewerCard,
-  EditorialStandardsNotice,
-  RevisionHistory,
   RelatedDefinitions,
   ContinueReading,
   ScientificDisclaimer,
@@ -32,9 +28,7 @@ import {
   DefinitionBox,
 } from "@/components/publishing";
 import type {
-  Author,
   Reference,
-  RevisionEntry,
   EvidenceLevel,
   ResearchConfidence,
 } from "@/components/publishing/types";
@@ -42,29 +36,28 @@ import type { GuideLayoutProps } from "@/components/knowledge/guide-layout";
 import type { CompoundLayoutProps } from "@/components/knowledge/compound-layout";
 import type { RelatedDefinitionItem } from "@/components/publishing/article";
 import type { ContinueReadingItem } from "@/components/publishing/article";
+import { PageEditorial } from "@/components/editorial/page-editorial";
+import { allReferences, type EditorialRevision, type PageKind } from "@/lib/editorial";
 
 // ---------------------------------------------------------------------------
-// Shared editorial scaffolding (neutral, non-content).
+// Shared editorial scaffolding — scaffold pages inherit authors, reviewers,
+// review cadence, disclaimers and standards notices from the Release 3.1
+// editorial registry via <PageEditorial /> instead of hardcoding metadata.
 // ---------------------------------------------------------------------------
 
-const scaffoldAuthor: Author = {
-  name: "Editorial Team",
-  role: "Written by",
-  affiliation: "Oxford Research Peptides",
-};
-
-const scaffoldReviewer: Author = {
-  name: "Scientific Review Panel",
-  role: "Scientifically reviewed by",
-  affiliation: "Oxford Research Peptides",
-};
-
-const scaffoldRevisions: RevisionEntry[] = [
-  { version: "0.1", date: "2026-07-01", summary: "Scaffold created.", author: "Editorial Team" },
+const scaffoldRevisions: EditorialRevision[] = [
+  {
+    kind: "created",
+    version: "0.1",
+    date: "2026-07-01",
+    summary: "Scaffold created (structure only; no editorial content yet).",
+    author: "Editorial Team",
+  },
 ];
 
-// No real citations — reference system is wired but empty until Release 2.2+.
-const scaffoldReferences: Reference[] = [];
+// Scaffold pages don't seed citations — the shared registry is empty until
+// Release 4.0 populates it alongside the first flagship content cluster.
+const scaffoldReferences: Reference[] = allReferences();
 
 // ---------------------------------------------------------------------------
 // Types
@@ -73,6 +66,7 @@ const scaffoldReferences: Reference[] = [];
 export type ScaffoldKind = "compound" | "methodology" | "mechanism";
 
 interface BaseScaffold {
+  kind: ScaffoldKind;
   slug: string;
   title: string;
   eyebrow: string;
@@ -382,6 +376,12 @@ export function getGuideScaffold(
 // ---------------------------------------------------------------------------
 
 function commonSlots(base: BaseScaffold) {
+  const pageKind: PageKind =
+    base.kind === "compound"
+      ? "compound"
+      : base.kind === "methodology"
+        ? "methodology"
+        : "mechanism";
   return {
     quickAnswer: <QuickAnswer>{base.quickAnswer}</QuickAnswer>,
     keyFacts: <KeyFacts items={base.keyFacts} />,
@@ -402,12 +402,7 @@ function commonSlots(base: BaseScaffold) {
     continueReading: <ContinueReading items={base.continueReading} />,
     disclaimer: <ScientificDisclaimer />,
     editorial: (
-      <div className="space-y-3">
-        <AuthorCard author={scaffoldAuthor} role="Written by" />
-        <ScientificReviewerCard author={scaffoldReviewer} />
-        <EditorialStandardsNotice href="/about" />
-        <RevisionHistory entries={scaffoldRevisions} />
-      </div>
+      <PageEditorial pageKind={pageKind} revisions={scaffoldRevisions} />
     ),
     references: (
       <ReferenceProvider references={scaffoldReferences}>
