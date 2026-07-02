@@ -375,6 +375,12 @@ export function getGuideScaffold(
 // ---------------------------------------------------------------------------
 
 function commonSlots(base: BaseScaffold) {
+  const pageKind: PageKind =
+    base.kind === "compound"
+      ? "compound"
+      : base.kind === "methodology"
+        ? "methodology"
+        : "mechanism";
   return {
     quickAnswer: <QuickAnswer>{base.quickAnswer}</QuickAnswer>,
     keyFacts: <KeyFacts items={base.keyFacts} />,
