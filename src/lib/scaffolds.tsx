@@ -37,7 +37,7 @@ import type { CompoundLayoutProps } from "@/components/knowledge/compound-layout
 import type { RelatedDefinitionItem } from "@/components/publishing/article";
 import type { ContinueReadingItem } from "@/components/publishing/article";
 import { PageEditorial } from "@/components/editorial/page-editorial";
-import { allReferences, type EditorialRevision } from "@/lib/editorial";
+import { allReferences, type EditorialRevision, type PageKind } from "@/lib/editorial";
 
 // ---------------------------------------------------------------------------
 // Shared editorial scaffolding — scaffold pages inherit authors, reviewers,
