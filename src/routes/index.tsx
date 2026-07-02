@@ -108,7 +108,7 @@ function Home() {
             </svg>
           </div>
 
-          <div className="container-x relative grid grid-cols-[1fr_0.9fr] md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1.1fr] gap-6 md:gap-10 py-14 md:py-20 items-center">
+          <div className="container-x relative grid grid-cols-1 md:grid-cols-[1fr_1.3fr] lg:grid-cols-[1fr_1.5fr] gap-6 md:gap-10 py-14 md:py-20 items-center">
             <div className="relative z-20">
               <div className="text-gold text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.35em] mb-4 md:mb-5">
                 RESEARCH <span className="opacity-50 mx-1" aria-hidden="true">|</span> EDUCATION <span className="opacity-50 mx-1" aria-hidden="true">|</span> INNOVATION
