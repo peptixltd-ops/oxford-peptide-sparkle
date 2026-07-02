@@ -336,7 +336,7 @@ function Home() {
             <img src={wholesaleVials} alt="Wholesale research peptide vials" width={400} height={200} loading="lazy"
               className="w-full h-32 object-cover rounded-sm" />
             <div>
-Tool_calls>
+
               <div className="text-gold text-[11px] font-bold tracking-[0.25em] mb-2">WHOLESALE & BULK SUPPLY</div>
               <h2 className="font-display text-2xl md:text-3xl font-medium mb-3 leading-tight">
                 Supplying laboratories, universities and research institutions across the UK and worldwide.
