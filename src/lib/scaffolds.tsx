@@ -395,12 +395,7 @@ function commonSlots(base: BaseScaffold) {
     continueReading: <ContinueReading items={base.continueReading} />,
     disclaimer: <ScientificDisclaimer />,
     editorial: (
-      <div className="space-y-3">
-        <AuthorCard author={scaffoldAuthor} role="Written by" />
-        <ScientificReviewerCard author={scaffoldReviewer} />
-        <EditorialStandardsNotice href="/about" />
-        <RevisionHistory entries={scaffoldRevisions} />
-      </div>
+      <PageEditorial pageKind={pageKind} revisions={scaffoldRevisions} />
     ),
     references: (
       <ReferenceProvider references={scaffoldReferences}>
