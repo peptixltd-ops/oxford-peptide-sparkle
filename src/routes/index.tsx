@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
       links: [
         ...base.links,
         // Preload the LCP hero asset so it starts fetching in parallel with the HTML.
-        { rel: "preload", as: "image", href: heroTrio.url, fetchpriority: "high" },
+        { rel: "preload", as: "image", href: data-hero-trio-transparent },
       ],
     };
   },
@@ -186,18 +186,24 @@ function Home() {
           </div>
         </section>
 
-        {/* Research Library — promoted above commerce */}
-        <section className="bg-bone py-16">
+        {/* Featured Compounds */}
+        <section className="bg-muted/30 py-14">
           <div className="container-x">
             <SectionHeader
-              eyebrow="RESEARCH LIBRARY"
-              ctaLabel="VIEW ALL ARTICLES"
-              ctaTo="/research-hub"
+              eyebrow="FEATURED COMPOUNDS"
+              ctaLabel="VIEW ALL PRODUCTS"
+              ctaTo="/shop"
             />
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-              {articles.map(a => (
-                <ArticleCard key={a.title} article={{ ...a, to: "/research-hub" }} />
-              ))}
+            <p className="text-sm text-muted-foreground max-w-2xl -mt-6 mb-8">
+              A selection of the research peptides most frequently referenced by laboratories working with our material. Product listings support research — not the other way around.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.filter(p => ["retatrutide", "mots-c", "semaglutide", "bpc-157", "tirzepatide", "tb-500"].includes(p.slug)).map(p => <ProductCard key={p.slug} p={p} />)}
+            </div>
+            <div className="flex justify-center mt-10">
+              <Link to="/shop" className="px-8 py-3.5 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold">
+                SHOP ALL PRODUCTS <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </section>
@@ -262,24 +268,18 @@ function Home() {
           </div>
         </section>
 
-        {/* Featured Compounds — renamed from "Best Sellers", demoted below education */}
-        <section className="bg-muted/30 py-14">
+        {/* Research Library */}
+        <section className="bg-bone py-16">
           <div className="container-x">
             <SectionHeader
-              eyebrow="FEATURED COMPOUNDS"
-              ctaLabel="VIEW ALL PRODUCTS"
-              ctaTo="/shop"
+              eyebrow="RESEARCH LIBRARY"
+              ctaLabel="VIEW ALL ARTICLES"
+              ctaTo="/research-hub"
             />
-            <p className="text-sm text-muted-foreground max-w-2xl -mt-6 mb-8">
-              A selection of the research peptides most frequently referenced by laboratories working with our material. Product listings support research — not the other way around.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.filter(p => ["retatrutide", "mots-c", "semaglutide", "bpc-157", "tirzepatide", "tb-500"].includes(p.slug)).map(p => <ProductCard key={p.slug} p={p} />)}
-            </div>
-            <div className="flex justify-center mt-10">
-              <Link to="/shop" className="px-8 py-3.5 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold">
-                SHOP ALL PRODUCTS <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-              </Link>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+              {articles.map(a => (
+                <ArticleCard key={a.title} article={{ ...a, to: "/research-hub" }} />
+              ))}
             </div>
           </div>
         </section>
@@ -336,6 +336,7 @@ function Home() {
             <img src={wholesaleVials} alt="Wholesale research peptide vials" width={400} height={200} loading="lazy"
               className="w-full h-32 object-cover rounded-sm" />
             <div>
+Tool_calls>
               <div className="text-gold text-[11px] font-bold tracking-[0.25em] mb-2">WHOLESALE & BULK SUPPLY</div>
               <h2 className="font-display text-2xl md:text-3xl font-medium mb-3 leading-tight">
                 Supplying laboratories, universities and research institutions across the UK and worldwide.
