@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
       links: [
         ...base.links,
         // Preload the LCP hero asset so it starts fetching in parallel with the HTML.
-        { rel: "preload", as: "image", href: data-hero-trio-transparent },
+        { rel: "preload", as: "image", href: heroTrio.url },
       ],
     };
   },
