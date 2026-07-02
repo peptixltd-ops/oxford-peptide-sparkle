@@ -197,8 +197,8 @@ function Home() {
             <p className="text-sm text-muted-foreground max-w-2xl -mt-6 mb-8">
               A selection of the research peptides most frequently referenced by laboratories working with our material. Product listings support research — not the other way around.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.filter(p => ["retatrutide", "mots-c", "semaglutide", "bpc-157", "tirzepatide", "tb-500"].includes(p.slug)).map(p => <ProductCard key={p.slug} p={p} />)}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {products.filter(p => ["retatrutide", "mots-c", "semaglutide", "bpc-157"].includes(p.slug)).map(p => <ProductCard key={p.slug} p={p} />)}
             </div>
             <div className="flex justify-center mt-10">
               <Link to="/shop" className="px-8 py-3.5 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold">
