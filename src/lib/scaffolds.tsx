@@ -66,6 +66,7 @@ const scaffoldReferences: Reference[] = allReferences();
 export type ScaffoldKind = "compound" | "methodology" | "mechanism";
 
 interface BaseScaffold {
+  kind: ScaffoldKind;
   slug: string;
   title: string;
   eyebrow: string;
