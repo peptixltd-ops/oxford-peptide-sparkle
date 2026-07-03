@@ -8,20 +8,68 @@ import {
 } from "@/components/knowledge/compound-layout";
 import { RelatedGuides } from "@/components/knowledge/related-guides";
 import { RelatedMechanisms } from "@/components/knowledge/related-mechanisms";
-import { seo } from "@/lib/seo";
+import {
+  seo,
+  articleLd,
+  breadcrumbLd,
+  chemicalSubstanceLd,
+  faqLd,
+} from "@/lib/seo";
 import { getCompoundEntry } from "@/lib/taxonomy";
 import { getCompoundScaffold, buildCompoundLayoutProps } from "@/lib/scaffolds";
+import { getCompoundMonograph } from "@/content/retatrutide-cluster";
 
 /**
- * Reusable compound monograph route. Renders a scaffold-driven layout when
- * a scaffold entry exists for the slug; otherwise falls back to the empty
- * structural template. Scaffold pages are emitted with `noindex` until the
- * taxonomy marks the entry as populated.
+ * Reusable compound monograph route. Priority:
+ *   1. A fully populated monograph in the content registry (Release 4.0).
+ *   2. A scaffold entry from Release 2.1 (noindex).
+ *   3. The empty structural template.
  */
 export const Route = createFileRoute("/compounds/$slug")({
   head: ({ params }) => {
+    const monograph = getCompoundMonograph(params.slug);
     const entry = getCompoundEntry(params.slug);
     const scaffold = getCompoundScaffold(params.slug);
+
+    if (monograph) {
+      const m = monograph.meta;
+      return seo({
+        path: m.path,
+        title: `${m.title} — Compound Reference — Oxford Research Peptides`,
+        description: m.shortDescription,
+        ogType: "article",
+        jsonLd: [
+          chemicalSubstanceLd({
+            path: m.path,
+            name: m.title,
+            alternateName: m.aliases,
+            description: m.shortDescription,
+            molecularFormula: m.molecularFormula,
+            molecularWeight: m.molecularWeight,
+            identifier: [
+              { propertyID: "CAS", value: m.cas },
+              { propertyID: "developmentalCode", value: "LY3437943" },
+            ],
+          }),
+          articleLd({
+            path: m.path,
+            headline: `${m.title} — Compound Reference`,
+            description: m.shortDescription,
+            datePublished: m.datePublished,
+            dateModified: m.dateModified,
+            authorName: "Oxford Research Peptides Editorial Team",
+            reviewerName: "Scientific Review Panel",
+          }),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Compound Reference", path: "/compounds" },
+            { name: m.title, path: m.path },
+          ]),
+          faqLd(monograph.faqs),
+        ],
+      });
+    }
+
     return seo({
       path: `/compounds/${params.slug}`,
       title: entry
@@ -39,9 +87,10 @@ export const Route = createFileRoute("/compounds/$slug")({
 
 function CompoundPage() {
   const { slug } = Route.useParams();
+  const monograph = getCompoundMonograph(slug);
   const entry = getCompoundEntry(slug);
   const scaffold = getCompoundScaffold(slug);
-  const displayName = scaffold?.title ?? entry?.name ?? "Monograph Template";
+  const displayName = monograph?.meta.title ?? scaffold?.title ?? entry?.name ?? "Monograph Template";
 
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
@@ -53,7 +102,9 @@ function CompoundPage() {
         ]}
       />
       <main id="main-content">
-        {scaffold ? (
+        {monograph ? (
+          <CompoundLayout {...monograph.build()} />
+        ) : scaffold ? (
           <CompoundLayout
             {...buildCompoundLayoutProps(scaffold)}
             relatedGuides={<RelatedGuides compoundSlug={slug} heading="Related guides" />}

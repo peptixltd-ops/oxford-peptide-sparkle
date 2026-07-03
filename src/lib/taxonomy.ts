@@ -75,7 +75,7 @@ export const researchCategories: readonly ResearchCategory[] = [
       "Serve as the primary long-form reference material on the site — one guide, one topic, one clear reading pathway.",
     icon: BookOpen,
     related: ["compounds", "mechanisms", "methodology"],
-    populated: false,
+    populated: true,
   },
   {
     id: "compounds",
@@ -89,7 +89,7 @@ export const researchCategories: readonly ResearchCategory[] = [
       "Provide a canonical scientific reference page per compound that guides, methodology articles and comparisons can link into.",
     icon: FlaskConical,
     related: ["mechanisms", "guides", "comparisons"],
-    populated: false,
+    populated: true,
   },
   {
     id: "mechanisms",
@@ -316,7 +316,68 @@ export interface Guide {
   populated: boolean;
 }
 
-export const guides: readonly Guide[] = [];
+export const guides: readonly Guide[] = [
+  {
+    slug: "what-is-retatrutide",
+    title: "What is Retatrutide?",
+    categoryId: "guides",
+    typeId: "primer",
+    compoundSlugs: ["retatrutide"],
+    mechanismIds: ["glp1r", "gipr", "gcgr"],
+    areaIds: ["receptor-studies"],
+    summary:
+      "Introductory reference on Retatrutide (LY3437943) — a triple-agonist investigational peptide referenced in incretin pharmacology literature.",
+    readingMinutes: 6,
+    updated: "2026-07-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "retatrutide-mechanism-of-action",
+    title: "Retatrutide Mechanism of Action",
+    categoryId: "guides",
+    typeId: "mechanism-note",
+    compoundSlugs: ["retatrutide"],
+    mechanismIds: ["glp1r", "gipr", "gcgr"],
+    summary:
+      "Receptor-level explanation of Retatrutide's activity at GLP-1R, GIPR and GCGR as reported in the published preclinical and clinical literature.",
+    readingMinutes: 8,
+    updated: "2026-07-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "glp-1-receptor-explained",
+    title: "GLP-1 Receptor Explained",
+    categoryId: "guides",
+    typeId: "mechanism-note",
+    mechanismIds: ["glp1r"],
+    compoundSlugs: ["retatrutide"],
+    summary:
+      "Overview of the GLP-1 receptor: a Class B G-protein-coupled receptor central to incretin pharmacology and to a growing family of research peptides.",
+    readingMinutes: 7,
+    updated: "2026-07-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "laboratory-reconstitution-guide",
+    title: "Laboratory Reconstitution Guide",
+    categoryId: "guides",
+    typeId: "handling",
+    methodologySlugs: ["reconstitution"],
+    summary:
+      "Practical, aseptic procedure for reconstituting lyophilised peptide reference material — diluent selection, concentration calculation and post-reconstitution storage.",
+    readingMinutes: 6,
+    updated: "2026-07-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+];
 
 export interface CompoundEntry {
   slug: string;
@@ -338,7 +399,7 @@ export const compoundEntries: readonly CompoundEntry[] = [
     familyId: "incretin-mimetics",
     mechanismIds: ["glp1r", "gipr", "gcgr"],
     areaIds: ["receptor-studies", "peptide-chemistry"],
-    populated: false,
+    populated: true,
   },
   {
     slug: "bpc-157",

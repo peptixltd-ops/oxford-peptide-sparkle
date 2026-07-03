@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { products } from "@/lib/products";
+import { compoundEntries, guides } from "@/lib/taxonomy";
 
 const BASE_URL = "https://oxfordresearchpeptides.com";
 
@@ -34,6 +35,12 @@ export const Route = createFileRoute("/sitemap.xml")({
 
         for (const p of products) {
           entries.push({ path: `/products/${p.slug}`, changefreq: "weekly", priority: "0.8" });
+        }
+        for (const c of compoundEntries.filter((c) => c.populated)) {
+          entries.push({ path: `/compounds/${c.slug}`, changefreq: "monthly", priority: "0.8" });
+        }
+        for (const g of guides.filter((g) => g.populated)) {
+          entries.push({ path: `/research-hub/guides/${g.slug}`, changefreq: "monthly", priority: "0.7" });
         }
 
         const urls = entries.map(e =>
