@@ -525,11 +525,13 @@ export const compoundEntries: readonly CompoundEntry[] = [
   {
     slug: "bpc-157",
     name: "BPC-157",
-    aliases: ["Body Protection Compound 157", "PL-14736"],
+    aliases: ["Body Protection Compound 157", "PL 14736", "Pentadecapeptide BPC 157"],
     familyId: "tissue-repair",
     mechanismIds: ["growth-factors"],
-    areaIds: ["peptide-chemistry"],
-    populated: false,
+    areaIds: ["peptide-chemistry", "stability-research"],
+    guideSlugs: ["bpc-157-mechanism-of-action", "bpc-157-faq"],
+    productSlug: "bpc-157",
+    populated: true,
   },
 ];
 
@@ -542,7 +544,63 @@ export interface GlossaryTerm {
   populated: boolean;
 }
 
-export const glossaryTerms: readonly GlossaryTerm[] = [];
+export const glossaryTerms: readonly GlossaryTerm[] = [
+  {
+    slug: "angiogenesis",
+    term: "Angiogenesis",
+    short:
+      "Formation of new blood vessels from pre-existing vasculature, driven by endothelial proliferation and migration.",
+    relatedCompoundSlugs: ["bpc-157"],
+    populated: true,
+  },
+  {
+    slug: "vegfr2",
+    term: "VEGFR2",
+    short:
+      "Vascular endothelial growth factor receptor 2 — the principal endothelial receptor tyrosine kinase driving angiogenic signalling.",
+    relatedCompoundSlugs: ["bpc-157"],
+    populated: true,
+  },
+  {
+    slug: "nitric-oxide",
+    term: "Nitric Oxide",
+    short:
+      "Small gaseous signalling molecule (NO) produced by nitric-oxide synthases with vasodilatory, cytoprotective and cell-signalling roles.",
+    relatedCompoundSlugs: ["bpc-157"],
+    populated: true,
+  },
+  {
+    slug: "cytoprotection",
+    term: "Cytoprotection",
+    short:
+      "Research framework describing molecules that protect cells and tissues from injury independently of any specific receptor pathway.",
+    relatedCompoundSlugs: ["bpc-157"],
+    populated: true,
+  },
+  {
+    slug: "pentadecapeptide",
+    term: "Pentadecapeptide",
+    short: "A peptide composed of fifteen amino-acid residues.",
+    relatedCompoundSlugs: ["bpc-157"],
+    populated: true,
+  },
+  {
+    slug: "fibroblast",
+    term: "Fibroblast",
+    short:
+      "Connective-tissue cell that synthesises extracellular matrix and collagen and coordinates directed migration during tissue repair.",
+    relatedCompoundSlugs: ["bpc-157"],
+    populated: true,
+  },
+  {
+    slug: "fak-paxillin",
+    term: "FAK-Paxillin",
+    short:
+      "Focal-adhesion signalling axis coupling integrin engagement to directed cell migration and tissue-repair phenotypes.",
+    relatedCompoundSlugs: ["bpc-157"],
+    populated: true,
+  },
+];
 
 // ---------------------------------------------------------------------------
 // Reading pathways — component-driven, content-free.
