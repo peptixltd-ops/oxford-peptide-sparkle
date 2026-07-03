@@ -546,6 +546,70 @@ export const guides: readonly Guide[] = [
     reviewer: "scientific-review-panel",
     populated: true,
   },
+
+  // ---- Authority Sprint 2C — Semaglutide depth guides ----
+  {
+    slug: "semaglutide-pharmacokinetics",
+    title: "Semaglutide Pharmacokinetics",
+    categoryId: "guides",
+    typeId: "mechanism-note",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    areaIds: ["peptide-chemistry"],
+    summary:
+      "Reported pharmacokinetics of Semaglutide — half-life, albumin binding, C18 di-acid acylation, absorption for subcutaneous vs oral formulations, distribution, steady state and research limitations.",
+    readingMinutes: 8,
+    updated: "2026-10-01",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "semaglutide-research-applications",
+    title: "Semaglutide Research Applications",
+    categoryId: "guides",
+    typeId: "primer",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    areaIds: ["receptor-studies"],
+    summary:
+      "Overview of published Semaglutide research contexts — metabolic, cardiovascular, renal, neuroinflammation/CNS and NAFLD/MASH — with a clear preclinical vs human evidence split.",
+    readingMinutes: 9,
+    updated: "2026-10-01",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "albumin-binding-half-life-extension",
+    title: "Albumin Binding and Half-Life Extension",
+    categoryId: "guides",
+    typeId: "mechanism-note",
+    compoundSlugs: ["semaglutide", "retatrutide"],
+    mechanismIds: ["glp1r"],
+    summary:
+      "Reusable mechanism guide explaining how fatty-acid acylation supports reversible non-covalent binding to serum albumin, and how that extends the plasma half-life of GLP-1 peptides.",
+    readingMinutes: 7,
+    updated: "2026-10-01",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "incretin-effect-explained",
+    title: "Incretin Effect Explained",
+    categoryId: "guides",
+    typeId: "primer",
+    compoundSlugs: ["semaglutide", "retatrutide"],
+    mechanismIds: ["glp1r", "gipr"],
+    summary:
+      "Foundation guide to the incretin effect — how GLP-1 and GIP amplify glucose-dependent insulin secretion, the physiology of gut L- and K-cells, and how incretin biology underpins GLP-1 receptor agonist research.",
+    readingMinutes: 7,
+    updated: "2026-10-01",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
 ];
 
 export interface CompoundEntry {
