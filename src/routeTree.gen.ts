@@ -27,6 +27,7 @@ import { Route as LabTestingRouteImport } from './routes/lab-testing'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as EditorialStandardsRouteImport } from './routes/editorial-standards'
+import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -147,6 +148,11 @@ const ExploreRoute = ExploreRouteImport.update({
 const EditorialStandardsRoute = EditorialStandardsRouteImport.update({
   id: '/editorial-standards',
   path: '/editorial-standards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
+  id: '/editorial-policy',
+  path: '/editorial-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DisclaimerRoute = DisclaimerRouteImport.update({
@@ -323,6 +329,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
   '/explore': typeof ExploreRouteWithChildren
   '/faqs': typeof FaqsRoute
@@ -373,6 +380,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
@@ -423,6 +431,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
   '/explore': typeof ExploreRouteWithChildren
   '/faqs': typeof FaqsRoute
@@ -476,6 +485,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/editorial-policy'
     | '/editorial-standards'
     | '/explore'
     | '/faqs'
@@ -526,6 +536,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/editorial-policy'
     | '/editorial-standards'
     | '/faqs'
     | '/lab-testing'
@@ -575,6 +586,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/editorial-policy'
     | '/editorial-standards'
     | '/explore'
     | '/faqs'
@@ -627,6 +639,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  EditorialPolicyRoute: typeof EditorialPolicyRoute
   EditorialStandardsRoute: typeof EditorialStandardsRoute
   ExploreRoute: typeof ExploreRouteWithChildren
   FaqsRoute: typeof FaqsRoute
@@ -775,6 +788,13 @@ declare module '@tanstack/react-router' {
       path: '/editorial-standards'
       fullPath: '/editorial-standards'
       preLoaderRoute: typeof EditorialStandardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial-policy': {
+      id: '/editorial-policy'
+      path: '/editorial-policy'
+      fullPath: '/editorial-policy'
+      preLoaderRoute: typeof EditorialPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/disclaimer': {
@@ -1076,6 +1096,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
+  EditorialPolicyRoute: EditorialPolicyRoute,
   EditorialStandardsRoute: EditorialStandardsRoute,
   ExploreRoute: ExploreRouteWithChildren,
   FaqsRoute: FaqsRoute,
