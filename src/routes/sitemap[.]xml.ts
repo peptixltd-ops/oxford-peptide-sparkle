@@ -52,6 +52,9 @@ export const Route = createFileRoute("/sitemap.xml")({
         for (const g of guides.filter((g) => g.populated)) {
           entries.push({ path: `/research-hub/guides/${g.slug}`, changefreq: "monthly", priority: "0.7" });
         }
+        for (const t of glossaryTerms.filter((t) => t.populated)) {
+          entries.push({ path: `/research-hub/glossary/${t.slug}`, changefreq: "monthly", priority: "0.5" });
+        }
 
         const urls = entries.map(e =>
           `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`
