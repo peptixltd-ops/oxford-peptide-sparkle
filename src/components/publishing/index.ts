@@ -1,5 +1,5 @@
 /**
- * Scientific Publishing Component Library — Release 2.0
+ * Scientific Publishing Component Library — Release 2.0 → 4.1
  *
  * Central barrel for reusable publishing components used across guides,
  * compound monographs, methodology pages, literature reviews, comparisons,
@@ -21,3 +21,10 @@ export * from "./figures";
 export * from "./editorial";
 export * from "./article";
 export * from "./styling";
+
+// Release 4.1 additions
+export * from "./scientific-figures";
+export * from "./evidence-matrix";
+export * from "./enhanced-references";
+export * from "./article-utilities";
+export * from "./ai-readability";
