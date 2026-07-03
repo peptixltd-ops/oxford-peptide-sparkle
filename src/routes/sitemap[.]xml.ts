@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { products } from "@/lib/products";
-import { compoundEntries, guides, glossaryTerms } from "@/lib/taxonomy";
+import { compoundEntries, guides, glossaryTerms, comparisons, studies } from "@/lib/taxonomy";
 
 const BASE_URL = "https://oxfordresearchpeptides.com";
 
