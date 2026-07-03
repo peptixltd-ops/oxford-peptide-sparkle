@@ -466,6 +466,7 @@ export const guides: readonly Guide[] = [
     author: "orp-editorial-team",
     reviewer: "scientific-review-panel",
     populated: true,
+  },
   {
     slug: "bpc-157-mechanism-of-action",
     title: "BPC-157 Mechanism of Action",
