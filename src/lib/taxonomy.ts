@@ -131,7 +131,7 @@ export const researchCategories: readonly ResearchCategory[] = [
       "Give every scientific claim on the site a traceable citation and give researchers a single reading list per topic.",
     icon: Library,
     related: ["mechanisms", "compounds", "guides"],
-    populated: false,
+    populated: true,
   },
   {
     id: "comparisons",
@@ -145,7 +145,7 @@ export const researchCategories: readonly ResearchCategory[] = [
       "Answer the questions researchers most often ask — \"which peptide differs from which\" — with structured, cite-able tables.",
     icon: GitCompare,
     related: ["compounds", "mechanisms", "guides"],
-    populated: false,
+    populated: true,
   },
   {
     id: "faqs",
@@ -991,4 +991,250 @@ export function getCompoundEntry(slug: string): CompoundEntry | undefined {
 
 export function getGlossaryTerm(slug: string): GlossaryTerm | undefined {
   return glossaryTerms.find((t) => t.slug === slug);
+}
+
+// ---------------------------------------------------------------------------
+// Authority Sprint 2D — Comparison entities
+// ---------------------------------------------------------------------------
+
+export interface ComparisonEntry {
+  slug: string;
+  title: string;
+  summary: string;
+  compoundSlugs: readonly string[];
+  mechanismIds?: readonly MechanismGroupId[];
+  areaIds?: readonly ResearchAreaId[];
+  guideSlugs?: readonly string[];
+  studySlugs?: readonly string[];
+  readingMinutes?: number;
+  updated: string;
+  author: string;
+  reviewer: string;
+  populated: boolean;
+}
+
+export const comparisons: readonly ComparisonEntry[] = [
+  {
+    slug: "semaglutide-vs-retatrutide",
+    title: "Semaglutide vs Retatrutide",
+    summary:
+      "Side-by-side comparison of Semaglutide (GLP-1 mono-agonist) and Retatrutide (GLP-1/GIP/GCG triple agonist) — receptor coverage, structural chemistry, pharmacokinetics, evidence maturity and research applications.",
+    compoundSlugs: ["semaglutide", "retatrutide"],
+    mechanismIds: ["glp1r", "gipr", "gcgr"],
+    areaIds: ["receptor-studies"],
+    guideSlugs: [
+      "what-is-semaglutide",
+      "semaglutide-mechanism-of-action",
+      "triple-agonists-explained",
+      "glp-1-receptor-explained",
+    ],
+    studySlugs: ["sustain-6", "select-trial"],
+    readingMinutes: 9,
+    updated: "2026-10-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "semaglutide-vs-tirzepatide",
+    title: "Semaglutide vs Tirzepatide",
+    summary:
+      "Comparison of Semaglutide (GLP-1 mono-agonist) and Tirzepatide (GLP-1/GIP dual agonist) — receptor coverage, structural chemistry, pharmacokinetics and the published head-to-head evidence base.",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r", "gipr"],
+    areaIds: ["receptor-studies"],
+    guideSlugs: [
+      "what-is-semaglutide",
+      "semaglutide-mechanism-of-action",
+      "glp-1-receptor-explained",
+    ],
+    studySlugs: ["sustain-6", "step-programme"],
+    readingMinutes: 9,
+    updated: "2026-10-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "semaglutide-vs-liraglutide",
+    title: "Semaglutide vs Liraglutide",
+    summary:
+      "Comparison of Semaglutide (once-weekly, C18 di-acid) and Liraglutide (once-daily, C16 mono-acid) — shared receptor pharmacology, differing acylation chemistry, pharmacokinetics and evidence base.",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    areaIds: ["receptor-studies", "peptide-chemistry"],
+    guideSlugs: [
+      "albumin-binding-half-life-extension",
+      "semaglutide-pharmacokinetics",
+      "glp-1-receptor-explained",
+    ],
+    studySlugs: ["sustain-6"],
+    readingMinutes: 8,
+    updated: "2026-10-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+];
+
+export function getComparison(slug: string): ComparisonEntry | undefined {
+  return comparisons.find((c) => c.slug === slug);
+}
+
+export function comparisonsByCompound(compoundSlug: string): ComparisonEntry[] {
+  return comparisons.filter((c) => c.compoundSlugs.includes(compoundSlug));
+}
+
+// ---------------------------------------------------------------------------
+// Authority Sprint 2D — Study (literature) entities
+// ---------------------------------------------------------------------------
+
+export type StudyType =
+  | "randomised-controlled-trial"
+  | "cardiovascular-outcomes-trial"
+  | "kidney-outcomes-trial"
+  | "programme"
+  | "meta-analysis"
+  | "systematic-review"
+  | "preclinical"
+  | "mechanistic";
+
+export type EvidenceTier =
+  | "landmark-rct"
+  | "large-rct"
+  | "programme-summary"
+  | "supporting-rct"
+  | "preclinical"
+  | "review";
+
+export interface StudyEntry {
+  slug: string;
+  title: string;
+  shortName?: string;
+  /** Primary citation identifiers. Studies representing an umbrella programme
+   *  may leave PMID/DOI blank on the parent record. */
+  pmid?: string;
+  doi?: string;
+  journal?: string;
+  year: number;
+  studyType: StudyType;
+  evidenceTier: EvidenceTier;
+  summary: string;
+  compoundSlugs: readonly string[];
+  mechanismIds?: readonly MechanismGroupId[];
+  pathwayIds?: readonly string[];
+  areaIds?: readonly ResearchAreaId[];
+  guideSlugs?: readonly string[];
+  updated: string;
+  author: string;
+  reviewer: string;
+  populated: boolean;
+}
+
+export const studies: readonly StudyEntry[] = [
+  {
+    slug: "sustain-6",
+    title: "SUSTAIN-6 — Semaglutide and cardiovascular outcomes in type 2 diabetes",
+    shortName: "SUSTAIN-6",
+    pmid: "27633186",
+    doi: "10.1056/NEJMoa1607141",
+    journal: "New England Journal of Medicine",
+    year: 2016,
+    studyType: "cardiovascular-outcomes-trial",
+    evidenceTier: "landmark-rct",
+    summary:
+      "Randomised double-blind trial evaluating cardiovascular outcomes of once-weekly subcutaneous Semaglutide versus placebo in adults with type 2 diabetes at high cardiovascular risk.",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    pathwayIds: ["camp-pka", "glp1r-signalling"],
+    areaIds: ["receptor-studies"],
+    guideSlugs: [
+      "semaglutide-mechanism-of-action",
+      "semaglutide-research-applications",
+    ],
+    updated: "2026-10-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "step-programme",
+    title: "STEP programme — Semaglutide Treatment Effect in People with Obesity",
+    shortName: "STEP",
+    doi: "10.1056/NEJMoa2032183",
+    journal: "New England Journal of Medicine (STEP-1 lead publication)",
+    year: 2021,
+    studyType: "programme",
+    evidenceTier: "programme-summary",
+    summary:
+      "Randomised trial programme evaluating once-weekly subcutaneous Semaglutide for weight management in adults with overweight or obesity, across multiple populations and comparators (STEP-1 through STEP-8).",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    pathwayIds: ["glp1r-signalling"],
+    areaIds: ["receptor-studies"],
+    guideSlugs: [
+      "semaglutide-research-applications",
+      "what-is-semaglutide",
+    ],
+    updated: "2026-10-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "select-trial",
+    title: "SELECT — Semaglutide and cardiovascular outcomes in obesity without diabetes",
+    shortName: "SELECT",
+    pmid: "37952131",
+    doi: "10.1056/NEJMoa2307563",
+    journal: "New England Journal of Medicine",
+    year: 2023,
+    studyType: "cardiovascular-outcomes-trial",
+    evidenceTier: "landmark-rct",
+    summary:
+      "Randomised double-blind trial of once-weekly subcutaneous Semaglutide versus placebo in adults with overweight or obesity and established cardiovascular disease, without diabetes.",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    pathwayIds: ["glp1r-signalling"],
+    areaIds: ["receptor-studies"],
+    guideSlugs: ["semaglutide-research-applications"],
+    updated: "2026-10-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "flow-trial",
+    title: "FLOW — Semaglutide and kidney outcomes in type 2 diabetes",
+    shortName: "FLOW",
+    pmid: "38785209",
+    doi: "10.1056/NEJMoa2403347",
+    journal: "New England Journal of Medicine",
+    year: 2024,
+    studyType: "kidney-outcomes-trial",
+    evidenceTier: "landmark-rct",
+    summary:
+      "Randomised double-blind trial of once-weekly subcutaneous Semaglutide versus placebo evaluating kidney and cardiovascular outcomes in adults with type 2 diabetes and chronic kidney disease.",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    pathwayIds: ["glp1r-signalling"],
+    areaIds: ["receptor-studies"],
+    guideSlugs: ["semaglutide-research-applications"],
+    updated: "2026-10-15",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+];
+
+export function getStudy(slug: string): StudyEntry | undefined {
+  return studies.find((s) => s.slug === slug);
+}
+
+export function studiesByCompound(compoundSlug: string): StudyEntry[] {
+  return studies.filter((s) => s.compoundSlugs.includes(compoundSlug));
+}
+
+export function studiesByMechanism(mechanismId: MechanismGroupId): StudyEntry[] {
+  return studies.filter((s) => s.mechanismIds?.includes(mechanismId));
 }
