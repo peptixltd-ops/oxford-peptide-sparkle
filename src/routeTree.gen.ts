@@ -16,6 +16,7 @@ import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as ScientificAdvisoryBoardRouteImport } from './routes/scientific-advisory-board'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ResearchMethodologyRouteImport } from './routes/research-methodology'
 import { Route as ResearchHubRouteImport } from './routes/research-hub'
@@ -95,6 +96,11 @@ const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScientificAdvisoryBoardRoute = ScientificAdvisoryBoardRouteImport.update({
+  id: '/scientific-advisory-board',
+  path: '/scientific-advisory-board',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -355,6 +361,7 @@ export interface FileRoutesByFullPath {
   '/research-hub': typeof ResearchHubRouteWithChildren
   '/research-methodology': typeof ResearchMethodologyRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
@@ -406,6 +413,7 @@ export interface FileRoutesByTo {
   '/refund-policy': typeof RefundPolicyRoute
   '/research-methodology': typeof ResearchMethodologyRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
@@ -461,6 +469,7 @@ export interface FileRoutesById {
   '/research-hub': typeof ResearchHubRouteWithChildren
   '/research-methodology': typeof ResearchMethodologyRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
@@ -517,6 +526,7 @@ export interface FileRouteTypes {
     | '/research-hub'
     | '/research-methodology'
     | '/robots.txt'
+    | '/scientific-advisory-board'
     | '/search'
     | '/shipping-policy'
     | '/shop'
@@ -568,6 +578,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/research-methodology'
     | '/robots.txt'
+    | '/scientific-advisory-board'
     | '/search'
     | '/shipping-policy'
     | '/shop'
@@ -622,6 +633,7 @@ export interface FileRouteTypes {
     | '/research-hub'
     | '/research-methodology'
     | '/robots.txt'
+    | '/scientific-advisory-board'
     | '/search'
     | '/shipping-policy'
     | '/shop'
@@ -677,6 +689,7 @@ export interface RootRouteChildren {
   ResearchHubRoute: typeof ResearchHubRouteWithChildren
   ResearchMethodologyRoute: typeof ResearchMethodologyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
+  ScientificAdvisoryBoardRoute: typeof ScientificAdvisoryBoardRoute
   SearchRoute: typeof SearchRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
   ShopRoute: typeof ShopRoute
@@ -737,6 +750,13 @@ declare module '@tanstack/react-router' {
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scientific-advisory-board': {
+      id: '/scientific-advisory-board'
+      path: '/scientific-advisory-board'
+      fullPath: '/scientific-advisory-board'
+      preLoaderRoute: typeof ScientificAdvisoryBoardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/robots.txt': {
@@ -1150,6 +1170,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResearchHubRoute: ResearchHubRouteWithChildren,
   ResearchMethodologyRoute: ResearchMethodologyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
+  ScientificAdvisoryBoardRoute: ScientificAdvisoryBoardRoute,
   SearchRoute: SearchRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,
   ShopRoute: ShopRoute,
