@@ -581,6 +581,22 @@ export const compoundEntries: readonly CompoundEntry[] = [
     productSlug: "bpc-157",
     populated: true,
   },
+  {
+    slug: "semaglutide",
+    name: "Semaglutide",
+    aliases: ["NN9535", "Ozempic (brand)", "Wegovy (brand)", "Rybelsus (brand — oral)"],
+    familyId: "incretin-mimetics",
+    mechanismIds: ["glp1r"],
+    areaIds: ["receptor-studies", "peptide-chemistry"],
+    guideSlugs: [
+      "what-is-semaglutide",
+      "semaglutide-mechanism-of-action",
+      "semaglutide-faq",
+      "glp-1-receptor-explained",
+      "triple-agonists-explained",
+    ],
+    populated: true,
+  },
 ];
 
 export interface GlossaryTerm {
