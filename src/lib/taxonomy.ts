@@ -145,7 +145,7 @@ export const researchCategories: readonly ResearchCategory[] = [
       "Answer the questions researchers most often ask — \"which peptide differs from which\" — with structured, cite-able tables.",
     icon: GitCompare,
     related: ["compounds", "mechanisms", "guides"],
-    populated: false,
+    populated: true,
   },
   {
     id: "faqs",
