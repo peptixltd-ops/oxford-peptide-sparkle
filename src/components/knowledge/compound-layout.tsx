@@ -126,6 +126,15 @@ export function CompoundLayout(props: CompoundLayoutProps) {
         </div>
       </section>
 
+      <div className="bg-gold/10 border-y border-gold/30" role="note" aria-label="UK research-use-only notice">
+        <div className="container-x py-2.5 text-[12px] text-navy-deep/85 leading-snug">
+          <strong className="font-semibold text-navy-deep">UK Research Use Only.</strong>{" "}
+          Educational reference for qualified in-vitro laboratory research. Not a medicine.
+          Not for human or animal consumption, diagnosis, or therapeutic use.{" "}
+          <a href="/research-use-only" className="underline underline-offset-2 hover:text-gold">Learn more</a>.
+        </div>
+      </div>
+
       <div className="container-x py-10 md:py-14 grid lg:grid-cols-[1fr_320px] gap-10">
         <article className="min-w-0 space-y-8">
           {overview && <Slot title="Overview">{overview}</Slot>}

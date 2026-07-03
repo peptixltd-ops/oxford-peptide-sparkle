@@ -186,3 +186,74 @@ export function definedTermLd(
     ...(opts.sameAs?.length ? { sameAs: opts.sameAs } : {}),
   };
 }
+
+// ---------------------------------------------------------------------------
+// Trust / EEAT schema helpers — Person, AboutPage, WebPage, MedicalWebPage.
+// ---------------------------------------------------------------------------
+
+export interface PersonLdOpts {
+  name: string;
+  jobTitle?: string;
+  description?: string;
+  url?: string;
+  sameAs?: readonly string[];
+  affiliation?: string;
+}
+
+export function personLd(opts: PersonLdOpts): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: opts.name,
+    ...(opts.jobTitle ? { jobTitle: opts.jobTitle } : {}),
+    ...(opts.description ? { description: opts.description } : {}),
+    ...(opts.url ? { url: opts.url } : {}),
+    ...(opts.sameAs?.length ? { sameAs: opts.sameAs } : {}),
+    ...(opts.affiliation
+      ? { affiliation: { "@type": "Organization", name: opts.affiliation } }
+      : {}),
+  };
+}
+
+export function aboutPageLd(path: string, name: string, description: string): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${SITE_URL}${path}`,
+    url: `${SITE_URL}${path}`,
+    name,
+    description,
+    isPartOf: ORGANIZATION_LD,
+  };
+}
+
+export function webPageLd(path: string, name: string, description: string): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}${path}`,
+    url: `${SITE_URL}${path}`,
+    name,
+    description,
+    isPartOf: ORGANIZATION_LD,
+  };
+}
+
+export function medicalWebPageLd(
+  path: string,
+  name: string,
+  description: string,
+  aspect: string = "ResearchAspect",
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": `${SITE_URL}${path}`,
+    url: `${SITE_URL}${path}`,
+    name,
+    description,
+    aspect,
+    isPartOf: ORGANIZATION_LD,
+  };
+}
+

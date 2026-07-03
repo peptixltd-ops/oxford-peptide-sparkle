@@ -10,13 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WholesaleRouteImport } from './routes/wholesale'
+import { Route as TestingAndQualityControlRouteImport } from './routes/testing-and-quality-control'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as ScientificAdvisoryBoardRouteImport } from './routes/scientific-advisory-board'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as ResearchUseOnlyRouteImport } from './routes/research-use-only'
 import { Route as ResearchMethodologyRouteImport } from './routes/research-methodology'
 import { Route as ResearchHubRouteImport } from './routes/research-hub'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
@@ -24,13 +27,17 @@ import { Route as PublicationWorkflowRouteImport } from './routes/publication-wo
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as LabTestingRouteImport } from './routes/lab-testing'
+import { Route as FundingAndConflictsRouteImport } from './routes/funding-and-conflicts'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as EditorialStandardsRouteImport } from './routes/editorial-standards'
+import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as CorrectionsPolicyRouteImport } from './routes/corrections-policy'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompoundsRouteImport } from './routes/compounds'
+import { Route as CertificateOfAnalysisRouteImport } from './routes/certificate-of-analysis'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CancellationPolicyRouteImport } from './routes/cancellation-policy'
 import { Route as AccountRouteImport } from './routes/account'
@@ -64,6 +71,12 @@ const WholesaleRoute = WholesaleRouteImport.update({
   path: '/wholesale',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestingAndQualityControlRoute =
+  TestingAndQualityControlRouteImport.update({
+    id: '/testing-and-quality-control',
+    path: '/testing-and-quality-control',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -94,9 +107,19 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScientificAdvisoryBoardRoute = ScientificAdvisoryBoardRouteImport.update({
+  id: '/scientific-advisory-board',
+  path: '/scientific-advisory-board',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchUseOnlyRoute = ResearchUseOnlyRouteImport.update({
+  id: '/research-use-only',
+  path: '/research-use-only',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResearchMethodologyRoute = ResearchMethodologyRouteImport.update({
@@ -134,6 +157,11 @@ const LabTestingRoute = LabTestingRouteImport.update({
   path: '/lab-testing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FundingAndConflictsRoute = FundingAndConflictsRouteImport.update({
+  id: '/funding-and-conflicts',
+  path: '/funding-and-conflicts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
@@ -149,9 +177,19 @@ const EditorialStandardsRoute = EditorialStandardsRouteImport.update({
   path: '/editorial-standards',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
+  id: '/editorial-policy',
+  path: '/editorial-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DisclaimerRoute = DisclaimerRouteImport.update({
   id: '/disclaimer',
   path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorrectionsPolicyRoute = CorrectionsPolicyRouteImport.update({
+  id: '/corrections-policy',
+  path: '/corrections-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiePolicyRoute = CookiePolicyRouteImport.update({
@@ -167,6 +205,11 @@ const ContactRoute = ContactRouteImport.update({
 const CompoundsRoute = CompoundsRouteImport.update({
   id: '/compounds',
   path: '/compounds',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CertificateOfAnalysisRoute = CertificateOfAnalysisRouteImport.update({
+  id: '/certificate-of-analysis',
+  path: '/certificate-of-analysis',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -319,13 +362,17 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
   '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/corrections-policy': typeof CorrectionsPolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
   '/explore': typeof ExploreRouteWithChildren
   '/faqs': typeof FaqsRoute
+  '/funding-and-conflicts': typeof FundingAndConflictsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -333,13 +380,16 @@ export interface FileRoutesByFullPath {
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRouteWithChildren
   '/research-methodology': typeof ResearchMethodologyRoute
+  '/research-use-only': typeof ResearchUseOnlyRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -370,24 +420,31 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/corrections-policy': typeof CorrectionsPolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
   '/faqs': typeof FaqsRoute
+  '/funding-and-conflicts': typeof FundingAndConflictsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/publication-workflow': typeof PublicationWorkflowRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/research-methodology': typeof ResearchMethodologyRoute
+  '/research-use-only': typeof ResearchUseOnlyRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -419,13 +476,17 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
   '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/corrections-policy': typeof CorrectionsPolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
   '/explore': typeof ExploreRouteWithChildren
   '/faqs': typeof FaqsRoute
+  '/funding-and-conflicts': typeof FundingAndConflictsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -433,13 +494,16 @@ export interface FileRoutesById {
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRouteWithChildren
   '/research-methodology': typeof ResearchMethodologyRoute
+  '/research-use-only': typeof ResearchUseOnlyRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -472,13 +536,17 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/certificate-of-analysis'
     | '/compounds'
     | '/contact'
     | '/cookie-policy'
+    | '/corrections-policy'
     | '/disclaimer'
+    | '/editorial-policy'
     | '/editorial-standards'
     | '/explore'
     | '/faqs'
+    | '/funding-and-conflicts'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
@@ -486,13 +554,16 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/research-hub'
     | '/research-methodology'
+    | '/research-use-only'
     | '/robots.txt'
+    | '/scientific-advisory-board'
     | '/search'
     | '/shipping-policy'
     | '/shop'
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms'
+    | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
@@ -523,24 +594,31 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/certificate-of-analysis'
     | '/contact'
     | '/cookie-policy'
+    | '/corrections-policy'
     | '/disclaimer'
+    | '/editorial-policy'
     | '/editorial-standards'
     | '/faqs'
+    | '/funding-and-conflicts'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
     | '/publication-workflow'
     | '/refund-policy'
     | '/research-methodology'
+    | '/research-use-only'
     | '/robots.txt'
+    | '/scientific-advisory-board'
     | '/search'
     | '/shipping-policy'
     | '/shop'
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms'
+    | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
@@ -571,13 +649,17 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/certificate-of-analysis'
     | '/compounds'
     | '/contact'
     | '/cookie-policy'
+    | '/corrections-policy'
     | '/disclaimer'
+    | '/editorial-policy'
     | '/editorial-standards'
     | '/explore'
     | '/faqs'
+    | '/funding-and-conflicts'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
@@ -585,13 +667,16 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/research-hub'
     | '/research-methodology'
+    | '/research-use-only'
     | '/robots.txt'
+    | '/scientific-advisory-board'
     | '/search'
     | '/shipping-policy'
     | '/shop'
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms'
+    | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
@@ -623,13 +708,17 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   CancellationPolicyRoute: typeof CancellationPolicyRoute
   CartRoute: typeof CartRoute
+  CertificateOfAnalysisRoute: typeof CertificateOfAnalysisRoute
   CompoundsRoute: typeof CompoundsRouteWithChildren
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
+  CorrectionsPolicyRoute: typeof CorrectionsPolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  EditorialPolicyRoute: typeof EditorialPolicyRoute
   EditorialStandardsRoute: typeof EditorialStandardsRoute
   ExploreRoute: typeof ExploreRouteWithChildren
   FaqsRoute: typeof FaqsRoute
+  FundingAndConflictsRoute: typeof FundingAndConflictsRoute
   LabTestingRoute: typeof LabTestingRoute
   MethodologyRoute: typeof MethodologyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -637,13 +726,16 @@ export interface RootRouteChildren {
   RefundPolicyRoute: typeof RefundPolicyRoute
   ResearchHubRoute: typeof ResearchHubRouteWithChildren
   ResearchMethodologyRoute: typeof ResearchMethodologyRoute
+  ResearchUseOnlyRoute: typeof ResearchUseOnlyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
+  ScientificAdvisoryBoardRoute: typeof ScientificAdvisoryBoardRoute
   SearchRoute: typeof SearchRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
   ShopRoute: typeof ShopRoute
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  TestingAndQualityControlRoute: typeof TestingAndQualityControlRoute
   WholesaleRoute: typeof WholesaleRoute
   DashboardEditorialRoute: typeof DashboardEditorialRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
@@ -656,6 +748,13 @@ declare module '@tanstack/react-router' {
       path: '/wholesale'
       fullPath: '/wholesale'
       preLoaderRoute: typeof WholesaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testing-and-quality-control': {
+      id: '/testing-and-quality-control'
+      path: '/testing-and-quality-control'
+      fullPath: '/testing-and-quality-control'
+      preLoaderRoute: typeof TestingAndQualityControlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -700,11 +799,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scientific-advisory-board': {
+      id: '/scientific-advisory-board'
+      path: '/scientific-advisory-board'
+      fullPath: '/scientific-advisory-board'
+      preLoaderRoute: typeof ScientificAdvisoryBoardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/robots.txt': {
       id: '/robots.txt'
       path: '/robots.txt'
       fullPath: '/robots.txt'
       preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research-use-only': {
+      id: '/research-use-only'
+      path: '/research-use-only'
+      fullPath: '/research-use-only'
+      preLoaderRoute: typeof ResearchUseOnlyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/research-methodology': {
@@ -756,6 +869,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LabTestingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/funding-and-conflicts': {
+      id: '/funding-and-conflicts'
+      path: '/funding-and-conflicts'
+      fullPath: '/funding-and-conflicts'
+      preLoaderRoute: typeof FundingAndConflictsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faqs': {
       id: '/faqs'
       path: '/faqs'
@@ -777,11 +897,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorialStandardsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/editorial-policy': {
+      id: '/editorial-policy'
+      path: '/editorial-policy'
+      fullPath: '/editorial-policy'
+      preLoaderRoute: typeof EditorialPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/disclaimer': {
       id: '/disclaimer'
       path: '/disclaimer'
       fullPath: '/disclaimer'
       preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corrections-policy': {
+      id: '/corrections-policy'
+      path: '/corrections-policy'
+      fullPath: '/corrections-policy'
+      preLoaderRoute: typeof CorrectionsPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookie-policy': {
@@ -803,6 +937,13 @@ declare module '@tanstack/react-router' {
       path: '/compounds'
       fullPath: '/compounds'
       preLoaderRoute: typeof CompoundsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certificate-of-analysis': {
+      id: '/certificate-of-analysis'
+      path: '/certificate-of-analysis'
+      fullPath: '/certificate-of-analysis'
+      preLoaderRoute: typeof CertificateOfAnalysisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -1072,13 +1213,17 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   CancellationPolicyRoute: CancellationPolicyRoute,
   CartRoute: CartRoute,
+  CertificateOfAnalysisRoute: CertificateOfAnalysisRoute,
   CompoundsRoute: CompoundsRouteWithChildren,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
+  CorrectionsPolicyRoute: CorrectionsPolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
+  EditorialPolicyRoute: EditorialPolicyRoute,
   EditorialStandardsRoute: EditorialStandardsRoute,
   ExploreRoute: ExploreRouteWithChildren,
   FaqsRoute: FaqsRoute,
+  FundingAndConflictsRoute: FundingAndConflictsRoute,
   LabTestingRoute: LabTestingRoute,
   MethodologyRoute: MethodologyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
@@ -1086,13 +1231,16 @@ const rootRouteChildren: RootRouteChildren = {
   RefundPolicyRoute: RefundPolicyRoute,
   ResearchHubRoute: ResearchHubRouteWithChildren,
   ResearchMethodologyRoute: ResearchMethodologyRoute,
+  ResearchUseOnlyRoute: ResearchUseOnlyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
+  ScientificAdvisoryBoardRoute: ScientificAdvisoryBoardRoute,
   SearchRoute: SearchRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,
   ShopRoute: ShopRoute,
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  TestingAndQualityControlRoute: TestingAndQualityControlRoute,
   WholesaleRoute: WholesaleRoute,
   DashboardEditorialRoute: DashboardEditorialRoute,
   ProductsSlugRoute: ProductsSlugRoute,
@@ -1100,13 +1248,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
