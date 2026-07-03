@@ -174,7 +174,7 @@ export const researchCategories: readonly ResearchCategory[] = [
       "Give every piece of jargon on the site a single canonical definition that guides can hyperlink to.",
     icon: BookMarked,
     related: ["compounds", "mechanisms", "methodology"],
-    populated: false,
+    populated: true,
   },
 ];
 
