@@ -203,7 +203,7 @@ function FacetGroup({
               <Link
                 from="/explore/compounds"
                 to="."
-                search={(prev) => ({
+                search={(prev: Record<string, unknown>) => ({
                   ...prev,
                   [paramKey]: active ? undefined : o.id,
                 })}

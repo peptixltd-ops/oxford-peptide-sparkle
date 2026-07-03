@@ -25,6 +25,7 @@ import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as LabTestingRouteImport } from './routes/lab-testing'
 import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as EditorialStandardsRouteImport } from './routes/editorial-standards'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
@@ -36,8 +37,11 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResearchHubIndexRouteImport } from './routes/research-hub.index'
+import { Route as ExploreIndexRouteImport } from './routes/explore.index'
 import { Route as CompoundsIndexRouteImport } from './routes/compounds.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as ExploreMechanismsRouteImport } from './routes/explore.mechanisms'
+import { Route as ExploreCompoundsRouteImport } from './routes/explore.compounds'
 import { Route as DashboardEditorialRouteImport } from './routes/dashboard.editorial'
 import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
 import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
@@ -47,11 +51,13 @@ import { Route as ResearchHubGuidesIndexRouteImport } from './routes/research-hu
 import { Route as ResearchHubGlossaryIndexRouteImport } from './routes/research-hub.glossary.index'
 import { Route as ResearchHubFaqsIndexRouteImport } from './routes/research-hub.faqs.index'
 import { Route as ResearchHubComparisonsIndexRouteImport } from './routes/research-hub.comparisons.index'
+import { Route as ExplorePathwaysIndexRouteImport } from './routes/explore.pathways.index'
 import { Route as ResearchHubMethodologySlugRouteImport } from './routes/research-hub.methodology.$slug'
 import { Route as ResearchHubMechanismsSlugRouteImport } from './routes/research-hub.mechanisms.$slug'
 import { Route as ResearchHubGuidesSlugRouteImport } from './routes/research-hub.guides.$slug'
 import { Route as ResearchHubGlossarySlugRouteImport } from './routes/research-hub.glossary.$slug'
 import { Route as ResearchHubComparisonsSlugRouteImport } from './routes/research-hub.comparisons.$slug'
+import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
 
 const WholesaleRoute = WholesaleRouteImport.update({
   id: '/wholesale',
@@ -133,6 +139,11 @@ const FaqsRoute = FaqsRouteImport.update({
   path: '/faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EditorialStandardsRoute = EditorialStandardsRouteImport.update({
   id: '/editorial-standards',
   path: '/editorial-standards',
@@ -188,6 +199,11 @@ const ResearchHubIndexRoute = ResearchHubIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ResearchHubRoute,
 } as any)
+const ExploreIndexRoute = ExploreIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ExploreRoute,
+} as any)
 const CompoundsIndexRoute = CompoundsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -197,6 +213,16 @@ const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreMechanismsRoute = ExploreMechanismsRouteImport.update({
+  id: '/mechanisms',
+  path: '/mechanisms',
+  getParentRoute: () => ExploreRoute,
+} as any)
+const ExploreCompoundsRoute = ExploreCompoundsRouteImport.update({
+  id: '/compounds',
+  path: '/compounds',
+  getParentRoute: () => ExploreRoute,
 } as any)
 const DashboardEditorialRoute = DashboardEditorialRouteImport.update({
   id: '/dashboard/editorial',
@@ -248,6 +274,11 @@ const ResearchHubComparisonsIndexRoute =
     path: '/comparisons/',
     getParentRoute: () => ResearchHubRoute,
   } as any)
+const ExplorePathwaysIndexRoute = ExplorePathwaysIndexRouteImport.update({
+  id: '/pathways/',
+  path: '/pathways/',
+  getParentRoute: () => ExploreRoute,
+} as any)
 const ResearchHubMethodologySlugRoute =
   ResearchHubMethodologySlugRouteImport.update({
     id: '/methodology/$slug',
@@ -276,6 +307,11 @@ const ResearchHubComparisonsSlugRoute =
     path: '/comparisons/$slug',
     getParentRoute: () => ResearchHubRoute,
   } as any)
+const ExplorePathwaysTypeRoute = ExplorePathwaysTypeRouteImport.update({
+  id: '/pathways/$type',
+  path: '/pathways/$type',
+  getParentRoute: () => ExploreRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -288,6 +324,7 @@ export interface FileRoutesByFullPath {
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/editorial-standards': typeof EditorialStandardsRoute
+  '/explore': typeof ExploreRouteWithChildren
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
@@ -306,14 +343,19 @@ export interface FileRoutesByFullPath {
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
+  '/explore/compounds': typeof ExploreCompoundsRoute
+  '/explore/mechanisms': typeof ExploreMechanismsRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/compounds/': typeof CompoundsIndexRoute
+  '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
+  '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
   '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
   '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
   '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/explore/pathways/': typeof ExplorePathwaysIndexRoute
   '/research-hub/comparisons/': typeof ResearchHubComparisonsIndexRoute
   '/research-hub/faqs/': typeof ResearchHubFaqsIndexRoute
   '/research-hub/glossary/': typeof ResearchHubGlossaryIndexRoute
@@ -349,14 +391,19 @@ export interface FileRoutesByTo {
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
+  '/explore/compounds': typeof ExploreCompoundsRoute
+  '/explore/mechanisms': typeof ExploreMechanismsRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/compounds': typeof CompoundsIndexRoute
+  '/explore': typeof ExploreIndexRoute
   '/research-hub': typeof ResearchHubIndexRoute
+  '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
   '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
   '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
   '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/explore/pathways': typeof ExplorePathwaysIndexRoute
   '/research-hub/comparisons': typeof ResearchHubComparisonsIndexRoute
   '/research-hub/faqs': typeof ResearchHubFaqsIndexRoute
   '/research-hub/glossary': typeof ResearchHubGlossaryIndexRoute
@@ -377,6 +424,7 @@ export interface FileRoutesById {
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/editorial-standards': typeof EditorialStandardsRoute
+  '/explore': typeof ExploreRouteWithChildren
   '/faqs': typeof FaqsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
@@ -395,14 +443,19 @@ export interface FileRoutesById {
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
+  '/explore/compounds': typeof ExploreCompoundsRoute
+  '/explore/mechanisms': typeof ExploreMechanismsRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/compounds/': typeof CompoundsIndexRoute
+  '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
+  '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
   '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
   '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
   '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/explore/pathways/': typeof ExplorePathwaysIndexRoute
   '/research-hub/comparisons/': typeof ResearchHubComparisonsIndexRoute
   '/research-hub/faqs/': typeof ResearchHubFaqsIndexRoute
   '/research-hub/glossary/': typeof ResearchHubGlossaryIndexRoute
@@ -424,6 +477,7 @@ export interface FileRouteTypes {
     | '/cookie-policy'
     | '/disclaimer'
     | '/editorial-standards'
+    | '/explore'
     | '/faqs'
     | '/lab-testing'
     | '/methodology'
@@ -442,14 +496,19 @@ export interface FileRouteTypes {
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
+    | '/explore/compounds'
+    | '/explore/mechanisms'
     | '/products/$slug'
     | '/compounds/'
+    | '/explore/'
     | '/research-hub/'
+    | '/explore/pathways/$type'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
     | '/research-hub/guides/$slug'
     | '/research-hub/mechanisms/$slug'
     | '/research-hub/methodology/$slug'
+    | '/explore/pathways/'
     | '/research-hub/comparisons/'
     | '/research-hub/faqs/'
     | '/research-hub/glossary/'
@@ -485,14 +544,19 @@ export interface FileRouteTypes {
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
+    | '/explore/compounds'
+    | '/explore/mechanisms'
     | '/products/$slug'
     | '/compounds'
+    | '/explore'
     | '/research-hub'
+    | '/explore/pathways/$type'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
     | '/research-hub/guides/$slug'
     | '/research-hub/mechanisms/$slug'
     | '/research-hub/methodology/$slug'
+    | '/explore/pathways'
     | '/research-hub/comparisons'
     | '/research-hub/faqs'
     | '/research-hub/glossary'
@@ -512,6 +576,7 @@ export interface FileRouteTypes {
     | '/cookie-policy'
     | '/disclaimer'
     | '/editorial-standards'
+    | '/explore'
     | '/faqs'
     | '/lab-testing'
     | '/methodology'
@@ -530,14 +595,19 @@ export interface FileRouteTypes {
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
+    | '/explore/compounds'
+    | '/explore/mechanisms'
     | '/products/$slug'
     | '/compounds/'
+    | '/explore/'
     | '/research-hub/'
+    | '/explore/pathways/$type'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
     | '/research-hub/guides/$slug'
     | '/research-hub/mechanisms/$slug'
     | '/research-hub/methodology/$slug'
+    | '/explore/pathways/'
     | '/research-hub/comparisons/'
     | '/research-hub/faqs/'
     | '/research-hub/glossary/'
@@ -558,6 +628,7 @@ export interface RootRouteChildren {
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
   EditorialStandardsRoute: typeof EditorialStandardsRoute
+  ExploreRoute: typeof ExploreRouteWithChildren
   FaqsRoute: typeof FaqsRoute
   LabTestingRoute: typeof LabTestingRoute
   MethodologyRoute: typeof MethodologyRoute
@@ -692,6 +763,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/editorial-standards': {
       id: '/editorial-standards'
       path: '/editorial-standards'
@@ -769,6 +847,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchHubIndexRouteImport
       parentRoute: typeof ResearchHubRoute
     }
+    '/explore/': {
+      id: '/explore/'
+      path: '/'
+      fullPath: '/explore/'
+      preLoaderRoute: typeof ExploreIndexRouteImport
+      parentRoute: typeof ExploreRoute
+    }
     '/compounds/': {
       id: '/compounds/'
       path: '/'
@@ -782,6 +867,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/products/$slug'
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/explore/mechanisms': {
+      id: '/explore/mechanisms'
+      path: '/mechanisms'
+      fullPath: '/explore/mechanisms'
+      preLoaderRoute: typeof ExploreMechanismsRouteImport
+      parentRoute: typeof ExploreRoute
+    }
+    '/explore/compounds': {
+      id: '/explore/compounds'
+      path: '/compounds'
+      fullPath: '/explore/compounds'
+      preLoaderRoute: typeof ExploreCompoundsRouteImport
+      parentRoute: typeof ExploreRoute
     }
     '/dashboard/editorial': {
       id: '/dashboard/editorial'
@@ -846,6 +945,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchHubComparisonsIndexRouteImport
       parentRoute: typeof ResearchHubRoute
     }
+    '/explore/pathways/': {
+      id: '/explore/pathways/'
+      path: '/pathways'
+      fullPath: '/explore/pathways/'
+      preLoaderRoute: typeof ExplorePathwaysIndexRouteImport
+      parentRoute: typeof ExploreRoute
+    }
     '/research-hub/methodology/$slug': {
       id: '/research-hub/methodology/$slug'
       path: '/methodology/$slug'
@@ -881,6 +987,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchHubComparisonsSlugRouteImport
       parentRoute: typeof ResearchHubRoute
     }
+    '/explore/pathways/$type': {
+      id: '/explore/pathways/$type'
+      path: '/pathways/$type'
+      fullPath: '/explore/pathways/$type'
+      preLoaderRoute: typeof ExplorePathwaysTypeRouteImport
+      parentRoute: typeof ExploreRoute
+    }
   }
 }
 
@@ -897,6 +1010,25 @@ const CompoundsRouteChildren: CompoundsRouteChildren = {
 const CompoundsRouteWithChildren = CompoundsRoute._addFileChildren(
   CompoundsRouteChildren,
 )
+
+interface ExploreRouteChildren {
+  ExploreCompoundsRoute: typeof ExploreCompoundsRoute
+  ExploreMechanismsRoute: typeof ExploreMechanismsRoute
+  ExploreIndexRoute: typeof ExploreIndexRoute
+  ExplorePathwaysTypeRoute: typeof ExplorePathwaysTypeRoute
+  ExplorePathwaysIndexRoute: typeof ExplorePathwaysIndexRoute
+}
+
+const ExploreRouteChildren: ExploreRouteChildren = {
+  ExploreCompoundsRoute: ExploreCompoundsRoute,
+  ExploreMechanismsRoute: ExploreMechanismsRoute,
+  ExploreIndexRoute: ExploreIndexRoute,
+  ExplorePathwaysTypeRoute: ExplorePathwaysTypeRoute,
+  ExplorePathwaysIndexRoute: ExplorePathwaysIndexRoute,
+}
+
+const ExploreRouteWithChildren =
+  ExploreRoute._addFileChildren(ExploreRouteChildren)
 
 interface ResearchHubRouteChildren {
   ResearchHubIndexRoute: typeof ResearchHubIndexRoute
@@ -945,6 +1077,7 @@ const rootRouteChildren: RootRouteChildren = {
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
   EditorialStandardsRoute: EditorialStandardsRoute,
+  ExploreRoute: ExploreRouteWithChildren,
   FaqsRoute: FaqsRoute,
   LabTestingRoute: LabTestingRoute,
   MethodologyRoute: MethodologyRoute,
