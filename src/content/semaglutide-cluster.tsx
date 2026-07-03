@@ -517,7 +517,7 @@ export function semaglutideMonograph(): CompoundLayoutProps {
   const evidence = (
     <div className="space-y-4">
       <EvidenceSummary
-        level="established"
+        level="strong"
         confidence="high"
         summary="Semaglutide is one of the most extensively characterised GLP-1 receptor agonists in the published literature. Multiple large phase 3 outcome trials (SUSTAIN, STEP, SELECT, PIONEER, FLOW) report metabolic, cardiovascular and renal endpoints. Mechanistic pharmacology (GLP-1R agonism, cAMP / PKA signalling, β-arrestin recruitment, DPP-4 resistance and albumin binding) is well described. Independent laboratory replication is broad."
       />
@@ -778,7 +778,7 @@ const whatIsSemaglutide: GuideContent = {
     ),
     evidenceSummary: (
       <EvidenceSummary
-        level="established"
+        level="strong"
         confidence="high"
         summary="Semaglutide's identity, structure and receptor selectivity are established in the peer-reviewed literature. Its efficacy and safety have been evaluated in large randomised clinical trials across metabolic, cardiovascular and renal endpoints."
       />
@@ -965,7 +965,7 @@ const semaglutideMoA: GuideContent = {
     ),
     evidenceSummary: (
       <EvidenceSummary
-        level="established"
+        level="strong"
         confidence="high"
         summary="GLP-1R agonism by Semaglutide, downstream cAMP / PKA and EPAC2 signalling, glucose-dependent insulin and glucagon effects, delayed gastric emptying and central appetite modulation are all supported by a broad peer-reviewed literature."
       />
@@ -1186,7 +1186,7 @@ const semaglutideFaqGuide: GuideContent = {
     ),
     evidenceSummary: (
       <EvidenceSummary
-        level="established"
+        level="strong"
         confidence="high"
         summary="Answers summarise the published Semaglutide literature, including landmark outcome trials and widely accepted laboratory practice for acylated GLP-1 analogues."
       />
