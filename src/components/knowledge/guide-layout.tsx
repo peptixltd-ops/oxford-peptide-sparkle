@@ -15,6 +15,8 @@ export interface GuideLayoutProps {
   hero?: ReactNode;
   /** One-paragraph "quick answer" for readers who want the TL;DR. */
   quickAnswer?: ReactNode;
+  /** 120–180 word expanded answer, for generative-search extraction. */
+  extendedAnswer?: ReactNode;
   /** Fact block: identity, class, targets, key numbers. */
   keyFacts?: ReactNode;
   /** Table of contents (auto or manual). */
