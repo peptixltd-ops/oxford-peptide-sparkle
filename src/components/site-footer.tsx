@@ -30,6 +30,15 @@ const cols = [
     { l: "Cookie Policy", to: "/cookie-policy" },
     { l: "Disclaimer", to: "/disclaimer" },
   ] },
+  { h: "TRUST", links: [
+    { l: "Editorial Policy", to: "/editorial-policy" },
+    { l: "Corrections Policy", to: "/corrections-policy" },
+    { l: "Funding & Conflicts", to: "/funding-and-conflicts" },
+    { l: "Scientific Advisory Board", to: "/scientific-advisory-board" },
+    { l: "Testing & Quality Control", to: "/testing-and-quality-control" },
+    { l: "Certificate of Analysis", to: "/certificate-of-analysis" },
+    { l: "Research Use Only", to: "/research-use-only" },
+  ] },
   { h: "POLICIES", links: [
     { l: "Refund Policy", to: "/refund-policy" },
     { l: "Shipping Policy", to: "/shipping-policy" },

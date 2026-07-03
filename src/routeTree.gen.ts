@@ -19,6 +19,7 @@ import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ScientificAdvisoryBoardRouteImport } from './routes/scientific-advisory-board'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as ResearchUseOnlyRouteImport } from './routes/research-use-only'
 import { Route as ResearchMethodologyRouteImport } from './routes/research-methodology'
 import { Route as ResearchHubRouteImport } from './routes/research-hub'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
@@ -114,6 +115,11 @@ const ScientificAdvisoryBoardRoute = ScientificAdvisoryBoardRouteImport.update({
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchUseOnlyRoute = ResearchUseOnlyRouteImport.update({
+  id: '/research-use-only',
+  path: '/research-use-only',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResearchMethodologyRoute = ResearchMethodologyRouteImport.update({
@@ -374,6 +380,7 @@ export interface FileRoutesByFullPath {
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRouteWithChildren
   '/research-methodology': typeof ResearchMethodologyRoute
+  '/research-use-only': typeof ResearchUseOnlyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
@@ -428,6 +435,7 @@ export interface FileRoutesByTo {
   '/publication-workflow': typeof PublicationWorkflowRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/research-methodology': typeof ResearchMethodologyRoute
+  '/research-use-only': typeof ResearchUseOnlyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
@@ -486,6 +494,7 @@ export interface FileRoutesById {
   '/refund-policy': typeof RefundPolicyRoute
   '/research-hub': typeof ResearchHubRouteWithChildren
   '/research-methodology': typeof ResearchMethodologyRoute
+  '/research-use-only': typeof ResearchUseOnlyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/scientific-advisory-board': typeof ScientificAdvisoryBoardRoute
   '/search': typeof SearchRoute
@@ -545,6 +554,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/research-hub'
     | '/research-methodology'
+    | '/research-use-only'
     | '/robots.txt'
     | '/scientific-advisory-board'
     | '/search'
@@ -599,6 +609,7 @@ export interface FileRouteTypes {
     | '/publication-workflow'
     | '/refund-policy'
     | '/research-methodology'
+    | '/research-use-only'
     | '/robots.txt'
     | '/scientific-advisory-board'
     | '/search'
@@ -656,6 +667,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/research-hub'
     | '/research-methodology'
+    | '/research-use-only'
     | '/robots.txt'
     | '/scientific-advisory-board'
     | '/search'
@@ -714,6 +726,7 @@ export interface RootRouteChildren {
   RefundPolicyRoute: typeof RefundPolicyRoute
   ResearchHubRoute: typeof ResearchHubRouteWithChildren
   ResearchMethodologyRoute: typeof ResearchMethodologyRoute
+  ResearchUseOnlyRoute: typeof ResearchUseOnlyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   ScientificAdvisoryBoardRoute: typeof ScientificAdvisoryBoardRoute
   SearchRoute: typeof SearchRoute
@@ -798,6 +811,13 @@ declare module '@tanstack/react-router' {
       path: '/robots.txt'
       fullPath: '/robots.txt'
       preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research-use-only': {
+      id: '/research-use-only'
+      path: '/research-use-only'
+      fullPath: '/research-use-only'
+      preLoaderRoute: typeof ResearchUseOnlyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/research-methodology': {
@@ -1211,6 +1231,7 @@ const rootRouteChildren: RootRouteChildren = {
   RefundPolicyRoute: RefundPolicyRoute,
   ResearchHubRoute: ResearchHubRouteWithChildren,
   ResearchMethodologyRoute: ResearchMethodologyRoute,
+  ResearchUseOnlyRoute: ResearchUseOnlyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   ScientificAdvisoryBoardRoute: ScientificAdvisoryBoardRoute,
   SearchRoute: SearchRoute,
