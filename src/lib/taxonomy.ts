@@ -498,6 +498,54 @@ export const guides: readonly Guide[] = [
     reviewer: "scientific-review-panel",
     populated: true,
   },
+
+  // ---- Authority Sprint 2B — Semaglutide cluster (Wave 1) ----
+  {
+    slug: "what-is-semaglutide",
+    title: "What is Semaglutide?",
+    categoryId: "guides",
+    typeId: "primer",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    areaIds: ["receptor-studies"],
+    summary:
+      "Beginner-friendly research-focused introduction to Semaglutide — a long-acting GLP-1 receptor agonist derived from native GLP-1(7-37).",
+    readingMinutes: 6,
+    updated: "2026-09-02",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "semaglutide-mechanism-of-action",
+    title: "Semaglutide Mechanism of Action",
+    categoryId: "guides",
+    typeId: "mechanism-note",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    summary:
+      "Receptor-level explanation of Semaglutide's activity at GLP-1R — Gαs / cAMP / PKA / EPAC2 signalling, β-arrestin recruitment, insulinotropic and glucagonostatic effects, gastric emptying and central appetite modulation.",
+    readingMinutes: 8,
+    updated: "2026-09-02",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "semaglutide-faq",
+    title: "Semaglutide FAQ",
+    categoryId: "guides",
+    typeId: "primer",
+    compoundSlugs: ["semaglutide"],
+    mechanismIds: ["glp1r"],
+    summary:
+      "Comprehensive research-focused FAQ on Semaglutide — identity, receptor pharmacology, structural modifications, pharmacokinetics, laboratory handling, evidence base and regulatory status.",
+    readingMinutes: 7,
+    updated: "2026-09-02",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
 ];
 
 export interface CompoundEntry {
