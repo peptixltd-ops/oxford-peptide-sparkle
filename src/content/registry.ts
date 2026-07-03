@@ -18,6 +18,10 @@ import {
   bpc157GuideRegistry,
   bpc157CompoundRegistry,
 } from "@/content/bpc157-cluster";
+import {
+  semaglutideGuideRegistry,
+  semaglutideCompoundRegistry,
+} from "@/content/semaglutide-cluster";
 
 import {
   getExtendedAnswer as getRetatrutideExtendedAnswer,
@@ -28,6 +32,10 @@ import {
   getBpc157ExtendedAnswer,
   getBpc157FaqSupplement,
 } from "@/content/bpc157-cluster-ai";
+import {
+  getSemaglutideExtendedAnswer,
+  getSemaglutideFaqSupplement,
+} from "@/content/semaglutide-cluster-ai";
 
 // ---------------------------------------------------------------------------
 // Normalised compound-monograph record — one shape across clusters
