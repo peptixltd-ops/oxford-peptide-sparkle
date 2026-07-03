@@ -150,3 +150,39 @@ export function faqLd(
     })),
   };
 }
+
+export interface DefinedTermLdOpts {
+  path: string;
+  name: string;
+  description: string;
+  termCode?: string;
+  inDefinedTermSet?: string;
+  sameAs?: readonly string[];
+}
+
+/**
+ * Emits a schema.org DefinedTerm for glossary / receptor / concept pages.
+ * Helps AI search engines model page content as a named entity.
+ */
+export function definedTermLd(
+  opts: DefinedTermLdOpts,
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${SITE_URL}${opts.path}#term`,
+    name: opts.name,
+    description: opts.description,
+    url: `${SITE_URL}${opts.path}`,
+    ...(opts.termCode ? { termCode: opts.termCode } : {}),
+    ...(opts.inDefinedTermSet
+      ? {
+          inDefinedTermSet: {
+            "@type": "DefinedTermSet",
+            name: opts.inDefinedTermSet,
+          },
+        }
+      : {}),
+    ...(opts.sameAs?.length ? { sameAs: opts.sameAs } : {}),
+  };
+}

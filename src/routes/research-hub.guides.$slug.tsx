@@ -9,14 +9,28 @@ import {
   articleLd,
   breadcrumbLd,
   faqLd,
+  definedTermLd,
 } from "@/lib/seo";
 import { getGuideContent } from "@/content/retatrutide-cluster";
+import {
+  getExtendedAnswer,
+  getDefinedTerm,
+  getFaqSupplement,
+} from "@/content/retatrutide-cluster-ai";
 
 export const Route = createFileRoute("/research-hub/guides/$slug")({
   head: ({ params }) => {
     const content = getGuideContent(params.slug);
     if (content) {
       const path = `/research-hub/guides/${content.slug}`;
+      const supplement = getFaqSupplement(content.slug);
+      const existing = content.faqs ?? [];
+      const seenQuestions = new Set(existing.map((f) => f.question));
+      const mergedFaqs = [
+        ...existing,
+        ...supplement.filter((f) => !seenQuestions.has(f.question)),
+      ];
+      const definedTerm = getDefinedTerm(content.slug);
       return seo({
         path,
         title: `${content.title} — Research Guide — Oxford Research Peptides`,
@@ -38,7 +52,8 @@ export const Route = createFileRoute("/research-hub/guides/$slug")({
             { name: "Research Guides", path: "/research-hub/guides" },
             { name: content.title, path },
           ]),
-          ...(content.faqs?.length ? [faqLd(content.faqs)] : []),
+          ...(mergedFaqs.length ? [faqLd(mergedFaqs)] : []),
+          ...(definedTerm ? [definedTermLd(definedTerm)] : []),
         ],
       });
     }
@@ -55,6 +70,8 @@ export const Route = createFileRoute("/research-hub/guides/$slug")({
     if (!content) {
       return <PlaceholderKnowledgePage categoryId="guides" slug={slug} />;
     }
+    const layout = content.buildLayout();
+    const extendedAnswer = getExtendedAnswer(slug);
     return (
       <div className="min-h-screen bg-bone text-navy-deep">
         <SiteHeader />
@@ -66,7 +83,10 @@ export const Route = createFileRoute("/research-hub/guides/$slug")({
           ]}
         />
         <main id="main-content">
-          <GuideLayout {...content.buildLayout()} />
+          <GuideLayout
+            {...layout}
+            extendedAnswer={extendedAnswer ?? layout.extendedAnswer}
+          />
         </main>
         <SiteFooter />
       </div>
