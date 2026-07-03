@@ -466,6 +466,36 @@ export const guides: readonly Guide[] = [
     author: "orp-editorial-team",
     reviewer: "scientific-review-panel",
     populated: true,
+  {
+    slug: "bpc-157-mechanism-of-action",
+    title: "BPC-157 Mechanism of Action",
+    categoryId: "guides",
+    typeId: "mechanism-note",
+    compoundSlugs: ["bpc-157"],
+    mechanismIds: ["growth-factors"],
+    areaIds: ["peptide-chemistry"],
+    summary:
+      "Scientifically honest overview of BPC-157's reported mechanistic activity — nitric-oxide modulation, VEGFR2 up-regulation, FAK-paxillin signalling and the cytoprotection framework — with explicit note of what remains unresolved.",
+    readingMinutes: 7,
+    updated: "2026-08-05",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "bpc-157-faq",
+    title: "BPC-157 FAQ",
+    categoryId: "guides",
+    typeId: "primer",
+    compoundSlugs: ["bpc-157"],
+    mechanismIds: ["growth-factors"],
+    summary:
+      "Comprehensive research-focused FAQ on BPC-157 — identity, mechanism, laboratory handling, stability, evidence base, regulatory status and common misconceptions.",
+    readingMinutes: 6,
+    updated: "2026-08-05",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
   },
 ];
 
