@@ -131,7 +131,7 @@ export const researchCategories: readonly ResearchCategory[] = [
       "Give every scientific claim on the site a traceable citation and give researchers a single reading list per topic.",
     icon: Library,
     related: ["mechanisms", "compounds", "guides"],
-    populated: false,
+    populated: true,
   },
   {
     id: "comparisons",
