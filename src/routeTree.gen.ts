@@ -38,6 +38,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResearchHubIndexRouteImport } from './routes/research-hub.index'
 import { Route as CompoundsIndexRouteImport } from './routes/compounds.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as DashboardEditorialRouteImport } from './routes/dashboard.editorial'
 import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
 import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
 import { Route as ResearchHubMechanismsIndexRouteImport } from './routes/research-hub.mechanisms.index'
@@ -197,6 +198,11 @@ const ProductsSlugRoute = ProductsSlugRouteImport.update({
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardEditorialRoute = DashboardEditorialRouteImport.update({
+  id: '/dashboard/editorial',
+  path: '/dashboard/editorial',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CompoundsSlugRoute = CompoundsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -299,6 +305,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
+  '/dashboard/editorial': typeof DashboardEditorialRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/compounds/': typeof CompoundsIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
@@ -341,6 +348,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
+  '/dashboard/editorial': typeof DashboardEditorialRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/compounds': typeof CompoundsIndexRoute
   '/research-hub': typeof ResearchHubIndexRoute
@@ -386,6 +394,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
+  '/dashboard/editorial': typeof DashboardEditorialRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/compounds/': typeof CompoundsIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
@@ -432,6 +441,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/wholesale'
     | '/compounds/$slug'
+    | '/dashboard/editorial'
     | '/products/$slug'
     | '/compounds/'
     | '/research-hub/'
@@ -474,6 +484,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/wholesale'
     | '/compounds/$slug'
+    | '/dashboard/editorial'
     | '/products/$slug'
     | '/compounds'
     | '/research-hub'
@@ -518,6 +529,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/wholesale'
     | '/compounds/$slug'
+    | '/dashboard/editorial'
     | '/products/$slug'
     | '/compounds/'
     | '/research-hub/'
@@ -562,6 +574,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   WholesaleRoute: typeof WholesaleRoute
+  DashboardEditorialRoute: typeof DashboardEditorialRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
 }
 
@@ -770,6 +783,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/editorial': {
+      id: '/dashboard/editorial'
+      path: '/dashboard/editorial'
+      fullPath: '/dashboard/editorial'
+      preLoaderRoute: typeof DashboardEditorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compounds/$slug': {
       id: '/compounds/$slug'
       path: '/$slug'
@@ -941,6 +961,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   WholesaleRoute: WholesaleRoute,
+  DashboardEditorialRoute: DashboardEditorialRoute,
   ProductsSlugRoute: ProductsSlugRoute,
 }
 export const routeTree = rootRouteImport
