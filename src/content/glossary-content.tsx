@@ -1817,6 +1817,447 @@ const certificateOfAnalysis: GlossaryContent = {
 };
 
 // ---------------------------------------------------------------------------
+// Glossary Batch 2 — Semaglutide cluster (Authority Sprint 2B)
+// ---------------------------------------------------------------------------
+
+const SPRINT_2B_DATE = "2026-09-02";
+
+interface Batch2Def {
+  slug: string;
+  term: string;
+  aliases?: readonly string[];
+  short: string;
+  bodyParas: readonly string[];
+  why: string;
+  relatedGlossarySlugs?: readonly string[];
+  relatedCompoundSlugs?: readonly string[];
+  relatedGuideSlugs?: readonly string[];
+  sameAs?: readonly string[];
+  termCode?: string;
+}
+
+const batch2Defs: readonly Batch2Def[] = [
+  {
+    slug: "glp-1",
+    term: "GLP-1",
+    aliases: ["Glucagon-like peptide-1", "GLP-1(7-37)", "GLP-1(7-36)amide"],
+    short:
+      "Glucagon-like peptide-1 — an intestinal incretin hormone that potentiates glucose-dependent insulin secretion.",
+    bodyParas: [
+      "GLP-1 (glucagon-like peptide-1) is an incretin peptide hormone released from intestinal L-cells in response to nutrient intake. Its two principal circulating active forms are GLP-1(7-37) and GLP-1(7-36)amide, both derived by post-translational processing of proglucagon.",
+      "Native GLP-1 activates the GLP-1 receptor to potentiate glucose-dependent insulin secretion from pancreatic β-cells, suppress glucagon release from α-cells, slow gastric emptying and reduce food intake through central neural circuits. Its plasma half-life is very short (~1–2 minutes) because it is cleaved by dipeptidyl peptidase-4 (DPP-4).",
+      "Long-acting synthetic GLP-1 receptor agonists such as Semaglutide overcome this pharmacokinetic constraint by combining DPP-4 resistance with albumin-binding acylation.",
+    ],
+    why: "Understanding native GLP-1 anchors the entire pharmacology of GLP-1 receptor agonists, dual agonists and triple agonists.",
+    relatedGlossarySlugs: ["incretin", "incretin-effect", "glp-1-receptor-agonist", "native-glp-1", "insulinotropic"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+    relatedGuideSlugs: ["glp-1-receptor-explained", "what-is-semaglutide"],
+    sameAs: [
+      "https://www.wikidata.org/wiki/Q411057",
+      "https://en.wikipedia.org/wiki/Glucagon-like_peptide-1",
+    ],
+  },
+  {
+    slug: "incretin",
+    term: "Incretin",
+    aliases: ["Incretin hormone"],
+    short:
+      "Gut-derived peptide hormone that amplifies glucose-dependent insulin secretion in response to oral nutrient intake.",
+    bodyParas: [
+      "Incretins are peptide hormones secreted by the intestine in response to food intake that amplify insulin secretion from pancreatic β-cells beyond what an equivalent intravenous glucose challenge would achieve.",
+      "The two principal human incretins are glucagon-like peptide-1 (GLP-1, secreted by intestinal L-cells) and glucose-dependent insulinotropic polypeptide (GIP, secreted by K-cells). Together they mediate the incretin effect — the greater insulin release from oral than intravenous glucose at matched glycaemia.",
+    ],
+    why: "The incretin concept is the biological foundation for GLP-1, GIP and GLP-1 / GIP / glucagon receptor agonist pharmacology.",
+    relatedGlossarySlugs: ["glp-1", "incretin-effect", "insulinotropic", "glp-1-receptor-agonist"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+    sameAs: [
+      "https://www.wikidata.org/wiki/Q1662214",
+      "https://meshb.nlm.nih.gov/record/ui?ui=D054795",
+    ],
+  },
+  {
+    slug: "incretin-effect",
+    term: "Incretin Effect",
+    short:
+      "Greater insulin release from oral than intravenous glucose at equivalent glycaemia, mediated by GLP-1 and GIP.",
+    bodyParas: [
+      "The incretin effect is the observation that oral glucose evokes a substantially larger insulin response than intravenous glucose delivered to match the same blood glucose profile. In healthy adults, the incretin effect accounts for a significant fraction of postprandial insulin secretion.",
+      "Mechanistically it reflects the amplifying action of gut-secreted GLP-1 and GIP on pancreatic β-cells. The incretin effect is diminished in type 2 diabetes, motivating the clinical development of GLP-1 receptor agonists and dual GLP-1 / GIP agonists.",
+    ],
+    why: "The incretin effect is the physiological rationale for the entire GLP-1 receptor agonist and multi-agonist drug class.",
+    relatedGlossarySlugs: ["incretin", "glp-1", "insulinotropic", "glucagonostatic"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Incretin"],
+  },
+  {
+    slug: "glp-1-receptor-agonist",
+    term: "GLP-1 Receptor Agonist",
+    aliases: ["GLP-1 RA", "GLP-1R agonist"],
+    short:
+      "Pharmacological class of peptides and small molecules that activate the GLP-1 receptor.",
+    bodyParas: [
+      "GLP-1 receptor agonists (GLP-1 RAs) are compounds — mostly peptides — that bind and activate the glucagon-like peptide-1 receptor (GLP-1R), reproducing the physiological actions of native GLP-1 with markedly extended pharmacokinetics.",
+      "Modern long-acting GLP-1 RAs such as Semaglutide combine DPP-4 resistance with albumin-binding acylation to achieve plasma half-lives measured in days rather than minutes. Dual (Tirzepatide) and triple (Retatrutide) agonists extend the design principle to additional incretin-family receptors.",
+    ],
+    why: "The GLP-1 RA class is the central reference class against which every dual and triple incretin agonist is benchmarked.",
+    relatedGlossarySlugs: ["glp-1", "agonist", "incretin", "acylation", "albumin-binding"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+    relatedGuideSlugs: ["glp-1-receptor-explained", "triple-agonists-explained"],
+    sameAs: [
+      "https://www.wikidata.org/wiki/Q1418707",
+      "https://meshb.nlm.nih.gov/record/ui?ui=D000077203",
+    ],
+  },
+  {
+    slug: "biased-agonism",
+    term: "Biased Agonism",
+    aliases: ["Functional selectivity"],
+    short:
+      "Ligand-selective preference for one branch of a receptor's signalling output over another (e.g. G-protein vs β-arrestin).",
+    bodyParas: [
+      "Biased agonism (also called functional selectivity) describes the phenomenon in which two agonists at the same receptor engage its downstream signalling arms — for example G-protein coupling versus β-arrestin recruitment — in different proportions.",
+      "At GLP-1R and other class B GPCRs, biased agonism is an active research area with potential implications for separating desired pharmacology from receptor desensitisation and internalisation. The clinical significance of ligand bias at GLP-1R for existing agonists such as Semaglutide is not yet fully mapped.",
+    ],
+    why: "Biased agonism is a foundational conceptual framework for interpreting differences between GLP-1 receptor agonists at the signalling level.",
+    relatedGlossarySlugs: ["gpcr", "beta-arrestin", "receptor-internalisation", "desensitisation", "camp-pka-signalling"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Functional_selectivity"],
+  },
+  {
+    slug: "beta-arrestin",
+    term: "Beta-Arrestin",
+    aliases: ["β-arrestin", "Arrestin-2 / Arrestin-3"],
+    short:
+      "Adaptor protein family that binds phosphorylated GPCRs, driving receptor internalisation and arrestin-dependent signalling.",
+    bodyParas: [
+      "β-arrestins (β-arrestin-1 / ARRB1 and β-arrestin-2 / ARRB2) are cytoplasmic adaptor proteins that bind GPCRs after receptor phosphorylation by G-protein-coupled receptor kinases (GRKs). They uncouple the receptor from heterotrimeric G-proteins (desensitisation), scaffold clathrin-mediated endocytosis (internalisation) and act as signalling hubs in their own right.",
+      "At GLP-1R and related class B receptors, β-arrestin recruitment is an important component of the overall signalling response and a central variable in biased-agonism research.",
+    ],
+    why: "β-arrestin biology is central to understanding receptor desensitisation, internalisation and biased signalling at GLP-1R.",
+    relatedGlossarySlugs: ["gpcr", "biased-agonism", "receptor-internalisation", "desensitisation"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: [
+      "https://www.wikidata.org/wiki/Q806839",
+      "https://meshb.nlm.nih.gov/record/ui?ui=D057090",
+    ],
+  },
+  {
+    slug: "camp-pka-signalling",
+    term: "cAMP / PKA Signalling",
+    short:
+      "Canonical Gαs GPCR signalling module: cAMP is generated by adenylyl cyclase and activates protein kinase A.",
+    bodyParas: [
+      "The cAMP / PKA signalling module is the canonical downstream pathway of Gαs-coupled GPCRs. Agonist binding activates adenylyl cyclase, elevating intracellular cyclic AMP, which binds the regulatory subunits of protein kinase A (PKA) and releases active catalytic subunits.",
+      "Active PKA phosphorylates a wide range of substrates — ion channels, exocytotic proteins, metabolic enzymes and transcription factors such as CREB. At GLP-1R, cAMP / PKA signalling is a principal driver of β-cell insulin secretion and gene-expression changes.",
+    ],
+    why: "cAMP / PKA is the primary intracellular signalling module engaged by GLP-1 receptor activation.",
+    relatedGlossarySlugs: ["camp", "protein-kinase-a", "epac2", "gpcr", "second-messenger"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Cyclic_adenosine_monophosphate"],
+  },
+  {
+    slug: "epac2",
+    term: "EPAC2",
+    aliases: ["Exchange protein activated by cAMP 2", "RAPGEF4"],
+    short:
+      "PKA-independent cAMP effector important in pancreatic β-cell exocytosis and other cAMP-driven processes.",
+    bodyParas: [
+      "EPAC2 (exchange protein directly activated by cAMP, isoform 2) is a guanine-nucleotide exchange factor for Rap GTPases whose activity is directly regulated by cAMP binding, independent of protein kinase A.",
+      "In pancreatic β-cells, EPAC2 contributes to glucose-dependent insulin exocytosis downstream of GLP-1R activation, complementing the PKA pathway. The relative contribution of PKA versus EPAC2 to insulin release under different physiological contexts is an active research topic.",
+    ],
+    why: "EPAC2 defines the second, PKA-independent arm of GLP-1R signalling in β-cells.",
+    relatedGlossarySlugs: ["camp", "camp-pka-signalling", "protein-kinase-a", "insulinotropic"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://www.wikidata.org/wiki/Q14883734"],
+  },
+  {
+    slug: "gastric-emptying",
+    term: "Gastric Emptying",
+    short:
+      "Rate at which stomach contents pass into the duodenum; slowed by GLP-1 receptor activation via vagal pathways.",
+    bodyParas: [
+      "Gastric emptying is the rate at which food and liquid contents exit the stomach into the small intestine. It is a major determinant of postprandial glucose kinetics and of satiety signalling from gastric distension.",
+      "GLP-1 receptor activation slows gastric emptying via vagally-mediated pathways. This is a well-documented pharmacological effect of GLP-1 receptor agonists such as Semaglutide and contributes both to reduced postprandial glucose excursions and to increased satiety.",
+    ],
+    why: "Slowed gastric emptying is one of the principal peripheral pharmacological effects of GLP-1 receptor agonism.",
+    relatedGlossarySlugs: ["glp-1", "glp-1-receptor-agonist", "insulinotropic"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: [
+      "https://meshb.nlm.nih.gov/record/ui?ui=D005744",
+      "https://en.wikipedia.org/wiki/Gastric_emptying",
+    ],
+  },
+  {
+    slug: "pomc-neuron",
+    term: "POMC Neuron",
+    aliases: ["Proopiomelanocortin neuron"],
+    short:
+      "Hypothalamic arcuate-nucleus neuron expressing proopiomelanocortin; anorexigenic node in central appetite regulation.",
+    bodyParas: [
+      "POMC neurons of the hypothalamic arcuate nucleus express proopiomelanocortin, the precursor of α-melanocyte-stimulating hormone (α-MSH), and constitute a core anorexigenic population in the central regulation of food intake.",
+      "GLP-1 receptor agonists such as Semaglutide engage distributed neural circuits including POMC neurons; preclinical rodent mapping studies have documented Semaglutide-driven activation of these and related appetite-relevant populations.",
+    ],
+    why: "POMC neurons are a central-nervous-system substrate for GLP-1R-mediated reductions in food intake.",
+    relatedGlossarySlugs: ["npy-neuron", "glp-1", "gastric-emptying"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://www.wikidata.org/wiki/Q1128102"],
+  },
+  {
+    slug: "npy-neuron",
+    term: "NPY Neuron",
+    aliases: ["NPY / AgRP neuron"],
+    short:
+      "Hypothalamic arcuate-nucleus neuron co-expressing NPY and AgRP; orexigenic node in central appetite regulation.",
+    bodyParas: [
+      "Arcuate-nucleus NPY / AgRP neurons co-express neuropeptide Y and agouti-related peptide and constitute the principal orexigenic population opposite POMC neurons in the central regulation of food intake.",
+      "GLP-1 receptor agonism modulates activity across this circuit as part of its broader effect on appetite; preclinical mapping of Semaglutide has documented distributed engagement of appetite-relevant hypothalamic and brainstem populations.",
+    ],
+    why: "NPY / AgRP neurons anchor the opposing arm of the ARC appetite circuit engaged by GLP-1R agonists.",
+    relatedGlossarySlugs: ["pomc-neuron", "glp-1"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://www.wikidata.org/wiki/Q413414"],
+  },
+  {
+    slug: "insulinotropic",
+    term: "Insulinotropic",
+    short:
+      "Property of stimulating insulin secretion from pancreatic β-cells, typically in a glucose-dependent manner for incretins.",
+    bodyParas: [
+      "Insulinotropic is used to describe an agent that stimulates insulin secretion from pancreatic β-cells. For incretin hormones and GLP-1 receptor agonists the effect is glucose-dependent — insulin release is amplified only when blood glucose is elevated.",
+      "This glucose-dependence is central to the low intrinsic hypoglycaemia risk of GLP-1 receptor agonists as a pharmacological class in clinical studies.",
+    ],
+    why: "The insulinotropic effect is the primary β-cell pharmacology behind incretin therapies.",
+    relatedGlossarySlugs: ["glp-1", "incretin", "incretin-effect", "glucagonostatic"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Insulinotropic"],
+  },
+  {
+    slug: "glucagonostatic",
+    term: "Glucagonostatic",
+    short:
+      "Property of suppressing glucagon secretion from pancreatic α-cells, contributing to reduced hepatic glucose output.",
+    bodyParas: [
+      "Glucagonostatic describes an agent that suppresses glucagon secretion from pancreatic α-cells. GLP-1 receptor activation reduces glucagon release in a glucose-dependent manner and reduces hepatic glucose output as a result.",
+      "The glucagonostatic effect complements the insulinotropic effect and jointly explains the glucose-lowering pharmacology of GLP-1 receptor agonists.",
+    ],
+    why: "The glucagonostatic effect is the α-cell counterpart to the insulinotropic effect for incretin-class pharmacology.",
+    relatedGlossarySlugs: ["insulinotropic", "glp-1", "incretin"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+  },
+  {
+    slug: "acylation",
+    term: "Acylation",
+    short:
+      "Covalent attachment of an acyl (typically fatty-acid) group to a peptide side chain to modify pharmacokinetics.",
+    bodyParas: [
+      "Acylation is the covalent introduction of an acyl group — most often a long-chain fatty acid or fatty-di-acid — onto a peptide side chain, typically at a lysine ε-amino group via an amide bond or through a spacer such as γGlu-2xOEG.",
+      "In peptide drug design, acylation is used primarily to introduce reversible albumin binding, dramatically extending plasma half-life. Semaglutide's lysine-26 C18 fatty-di-acid modification is a canonical example.",
+    ],
+    why: "Acylation is the key medicinal-chemistry strategy behind long-acting GLP-1 receptor agonists.",
+    relatedGlossarySlugs: ["albumin-binding", "half-life", "peptide-bond", "glp-1-receptor-agonist"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://www.wikidata.org/wiki/Q412292"],
+  },
+  {
+    slug: "albumin-binding",
+    term: "Albumin Binding",
+    short:
+      "Reversible non-covalent association of a molecule with serum albumin, prolonging plasma residence.",
+    bodyParas: [
+      "Serum albumin is the most abundant plasma protein and binds a wide range of hydrophobic small molecules and fatty acids. Reversible non-covalent binding to albumin creates a slowly-releasing plasma reservoir that dramatically extends the effective half-life of the bound molecule.",
+      "For acylated peptides such as Semaglutide, albumin binding through the fatty-di-acid side chain is the principal mechanism sustaining once-weekly plasma exposure.",
+    ],
+    why: "Albumin binding is the pharmacokinetic mechanism that turns short-lived native GLP-1 into once-weekly Semaglutide.",
+    relatedGlossarySlugs: ["acylation", "half-life", "steady-state", "subcutaneous-administration"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Serum_albumin"],
+  },
+  {
+    slug: "snac",
+    term: "SNAC",
+    aliases: ["Sodium N-[8-(2-hydroxybenzoyl)amino]caprylate", "Salcaprozate sodium"],
+    short:
+      "Small-molecule absorption enhancer used in oral Semaglutide (Rybelsus) to enable gastric absorption of the peptide.",
+    bodyParas: [
+      "SNAC (sodium N-[8-(2-hydroxybenzoyl)amino]caprylate; salcaprozate sodium) is a small-molecule absorption enhancer developed for oral peptide delivery. It transiently raises local pH in the stomach, protects the co-formulated peptide from pepsin and increases membrane permeability enough to allow absorption of a small but pharmacologically sufficient fraction of the dose.",
+      "SNAC is the enabling excipient in oral Semaglutide (Rybelsus), the first oral GLP-1 receptor agonist product.",
+    ],
+    why: "SNAC is the reason an acylated GLP-1 peptide can be delivered orally at all.",
+    relatedGlossarySlugs: ["oral-semaglutide", "bioavailability", "acylation"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://www.wikidata.org/wiki/Q7401738"],
+  },
+  {
+    slug: "subcutaneous-administration",
+    term: "Subcutaneous Administration",
+    aliases: ["SC injection"],
+    short:
+      "Delivery of a drug into the subcutaneous fat, providing slow systemic absorption from the injection depot.",
+    bodyParas: [
+      "Subcutaneous administration introduces a drug into the fatty tissue beneath the skin. The drug is then absorbed slowly into the systemic circulation from the local depot, producing a smoother pharmacokinetic profile than intravenous administration.",
+      "Long-acting GLP-1 receptor agonists such as Semaglutide are administered subcutaneously once weekly, exploiting depot release together with intrinsic albumin binding to sustain plasma exposure.",
+    ],
+    why: "Subcutaneous depot absorption is the delivery route enabling once-weekly Semaglutide dosing.",
+    relatedGlossarySlugs: ["bioavailability", "half-life", "steady-state", "albumin-binding"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Subcutaneous_injection"],
+  },
+  {
+    slug: "steady-state",
+    term: "Steady State",
+    short:
+      "Pharmacokinetic condition in which drug input rate equals elimination rate — reached after ~5 half-lives of regular dosing.",
+    bodyParas: [
+      "At steady state, the rate at which a drug enters the systemic circulation equals the rate at which it is eliminated, and plasma concentrations fluctuate within a stable range across dosing intervals.",
+      "For a drug with linear pharmacokinetics, steady state is reached after approximately five elimination half-lives of regular dosing. For once-weekly Semaglutide with a plasma half-life of ~1 week, this corresponds to 4–5 weeks of consistent dosing.",
+    ],
+    why: "Understanding steady state is essential when reading Semaglutide pharmacokinetic data and dosing schedules.",
+    relatedGlossarySlugs: ["half-life", "bioavailability", "subcutaneous-administration"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Steady_state_(pharmacokinetics)"],
+  },
+  {
+    slug: "receptor-internalisation",
+    term: "Receptor Internalisation",
+    aliases: ["Receptor endocytosis"],
+    short:
+      "Endocytic removal of an activated receptor from the plasma membrane, typically after β-arrestin recruitment.",
+    bodyParas: [
+      "After agonist binding and phosphorylation, many GPCRs — including GLP-1R — recruit β-arrestin and are internalised into clathrin-coated pits and endosomes. Internalised receptors may be recycled back to the plasma membrane, sorted for degradation, or continue to signal from endosomal compartments.",
+      "The kinetics and trafficking fate of internalised receptors are a major determinant of sustained agonist effect versus desensitisation.",
+    ],
+    why: "Receptor internalisation shapes the duration and character of GLP-1R signalling under sustained agonism.",
+    relatedGlossarySlugs: ["beta-arrestin", "desensitisation", "biased-agonism", "gpcr"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Endocytosis"],
+  },
+  {
+    slug: "desensitisation",
+    term: "Desensitisation",
+    aliases: ["Receptor desensitisation", "Desensitization"],
+    short:
+      "Diminished receptor responsiveness during sustained agonist exposure, mediated by phosphorylation and internalisation.",
+    bodyParas: [
+      "Receptor desensitisation is the diminished responsiveness of a receptor during sustained or repeated agonist exposure. For GPCRs, it is typically initiated by GRK-mediated phosphorylation of the activated receptor, followed by β-arrestin binding, uncoupling from G-proteins and internalisation.",
+      "Different agonists at the same receptor can drive desensitisation to different degrees — a property closely linked to biased agonism.",
+    ],
+    why: "Desensitisation is the receptor-level counterpart to observed tachyphylaxis and shapes chronic dosing behaviour.",
+    relatedGlossarySlugs: ["beta-arrestin", "receptor-internalisation", "biased-agonism", "gpcr"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Desensitization_(medicine)"],
+  },
+  {
+    slug: "mace",
+    term: "MACE",
+    aliases: ["Major adverse cardiovascular events"],
+    short:
+      "Composite endpoint of cardiovascular death, non-fatal myocardial infarction and non-fatal stroke used in outcome trials.",
+    bodyParas: [
+      "MACE (major adverse cardiovascular events) is a composite trial endpoint most commonly defined as cardiovascular death, non-fatal myocardial infarction and non-fatal stroke, sometimes extended to include hospitalisation for unstable angina.",
+      "The Semaglutide SUSTAIN-6 and SELECT trials both used a MACE endpoint and reported significant reductions versus placebo in their respective populations. MACE is the standard trial currency for cardiovascular outcome comparisons across GLP-1 receptor agonists.",
+    ],
+    why: "MACE is the primary endpoint currency for interpreting Semaglutide's cardiovascular literature.",
+    relatedGlossarySlugs: ["glp-1-receptor-agonist"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Major_adverse_cardiovascular_events"],
+  },
+  {
+    slug: "dio-model",
+    term: "DIO Model",
+    aliases: ["Diet-induced obesity model"],
+    short:
+      "Rodent (typically mouse or rat) fed a high-fat diet to model obesity and metabolic dysregulation for preclinical research.",
+    bodyParas: [
+      "The diet-induced obesity (DIO) model is the standard rodent preclinical platform for evaluating anti-obesity and metabolic pharmacology. Mice or rats are fed a defined high-fat diet, typically for 8–20 weeks, to induce adiposity, insulin resistance and dyslipidaemia.",
+      "DIO models are used extensively to benchmark GLP-1 receptor agonists such as Semaglutide alongside dual and triple incretin agonists in vivo.",
+    ],
+    why: "DIO is the workhorse preclinical model for GLP-1 receptor agonist and multi-agonist metabolic pharmacology.",
+    relatedGlossarySlugs: ["glp-1-receptor-agonist", "incretin", "insulinotropic"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Diet-induced_obesity_model"],
+  },
+  {
+    slug: "native-glp-1",
+    term: "Native GLP-1",
+    aliases: ["Endogenous GLP-1", "GLP-1(7-37)", "GLP-1(7-36)amide"],
+    short:
+      "Endogenous glucagon-like peptide-1 hormone — rapidly degraded by DPP-4, with a plasma half-life of only 1–2 minutes.",
+    bodyParas: [
+      "Native GLP-1 refers to the endogenous incretin hormone glucagon-like peptide-1 secreted by intestinal L-cells, circulating principally as GLP-1(7-37) and GLP-1(7-36)amide.",
+      "It is rapidly cleaved by the plasma enzyme dipeptidyl peptidase-4 (DPP-4), giving a plasma half-life of only 1–2 minutes. This pharmacokinetic constraint motivated the design of long-acting GLP-1 receptor agonists such as Semaglutide.",
+    ],
+    why: "Native GLP-1 is the biological reference against which all GLP-1 receptor agonists are engineered.",
+    relatedGlossarySlugs: ["glp-1", "incretin", "half-life", "acylation"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://www.wikidata.org/wiki/Q411057"],
+  },
+  {
+    slug: "oral-semaglutide",
+    term: "Oral Semaglutide",
+    aliases: ["Rybelsus"],
+    short:
+      "Oral tablet formulation of Semaglutide co-formulated with the absorption enhancer SNAC.",
+    bodyParas: [
+      "Oral Semaglutide is a tablet formulation of the same Semaglutide peptide used in Ozempic and Wegovy, co-formulated with the absorption enhancer SNAC (sodium N-[8-(2-hydroxybenzoyl)amino]caprylate).",
+      "SNAC transiently raises local pH in the stomach, protects the peptide from pepsin and increases membrane permeability enough to allow absorption of a small but pharmacologically sufficient fraction of the dose. Oral Semaglutide is marketed as Rybelsus and is administered once daily.",
+    ],
+    why: "Oral Semaglutide is the first successful oral GLP-1 receptor agonist and a proof of principle for peptide oral delivery.",
+    relatedGlossarySlugs: ["snac", "bioavailability", "semaglutide"],
+    relatedCompoundSlugs: ["semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Semaglutide"],
+  },
+  {
+    slug: "semaglutide",
+    term: "Semaglutide",
+    aliases: ["NN9535", "Ozempic (brand)", "Wegovy (brand)", "Rybelsus (brand)"],
+    short:
+      "Long-acting synthetic GLP-1 receptor agonist derived from GLP-1(7-37) with a C18 fatty-di-acid supporting albumin binding.",
+    bodyParas: [
+      "Semaglutide is a synthetic long-acting glucagon-like peptide-1 (GLP-1) receptor agonist derived from native GLP-1(7-37) with three key modifications — Aib8, Arg34 and lysine-26 C18 fatty-di-acid acylation via a γGlu-2xOEG spacer.",
+      "The modifications confer DPP-4 resistance and reversible albumin binding, extending plasma half-life to approximately one week. Semaglutide is one of the most extensively studied compounds in the GLP-1 class.",
+      "Oxford Research Peptides supplies Semaglutide strictly as a lyophilised reference standard for in-vitro laboratory research; approved Semaglutide medicines are prescription therapeutics regulated by the MHRA in the United Kingdom.",
+    ],
+    why: "Semaglutide is the reference long-acting GLP-1 receptor agonist against which every subsequent incretin analogue is benchmarked.",
+    relatedGlossarySlugs: ["glp-1", "glp-1-receptor-agonist", "acylation", "albumin-binding", "native-glp-1", "oral-semaglutide"],
+    relatedCompoundSlugs: ["semaglutide", "retatrutide"],
+    relatedGuideSlugs: ["what-is-semaglutide", "semaglutide-mechanism-of-action", "semaglutide-faq"],
+    sameAs: [
+      "https://www.wikidata.org/wiki/Q27088395",
+      "https://en.wikipedia.org/wiki/Semaglutide",
+      "https://go.drugbank.com/drugs/DB13928",
+    ],
+  },
+];
+
+const batch2Entries: readonly GlossaryContent[] = batch2Defs.map((d) => ({
+  slug: d.slug,
+  term: d.term,
+  short: d.short,
+  aliases: d.aliases,
+  body: (
+    <>
+      {d.bodyParas.map((para, i) => (
+        <P key={i}>{para}</P>
+      ))}
+      <Why>{d.why}</Why>
+    </>
+  ),
+  relatedCompoundSlugs: d.relatedCompoundSlugs,
+  relatedGuideSlugs: d.relatedGuideSlugs,
+  relatedGlossarySlugs: d.relatedGlossarySlugs,
+  definedTerm: {
+    path: `/research-hub/glossary/${d.slug}`,
+    name: d.term,
+    description: d.short,
+    termCode: d.termCode ?? d.slug,
+    inDefinedTermSet: KG_SET,
+    sameAs: d.sameAs,
+  },
+  datePublished: SPRINT_2B_DATE,
+  dateModified: SPRINT_2B_DATE,
+}));
+
+// ---------------------------------------------------------------------------
 // Registry
 // ---------------------------------------------------------------------------
 
@@ -1863,6 +2304,8 @@ export const glossaryContentRegistry: readonly GlossaryContent[] = [
   endotoxin,
   lalAssay,
   certificateOfAnalysis,
+  // Authority Sprint 2B — Semaglutide cluster
+  ...batch2Entries,
 ];
 
 export function getGlossaryContent(slug: string): GlossaryContent | undefined {
