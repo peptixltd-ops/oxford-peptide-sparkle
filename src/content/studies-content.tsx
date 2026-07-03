@@ -775,7 +775,7 @@ const flowTrial: StudyContent = {
             appropriate.
           </P>
 
-          <h2 className="font-density text-2xl font-medium text-navy-deep">Population</h2>
+          <h2 className="font-display text-2xl font-medium text-navy-deep">Population</h2>
           <P>
             3,533 adults with type 2 diabetes and CKD, defined by
             estimated glomerular filtration rate (eGFR) and urinary
