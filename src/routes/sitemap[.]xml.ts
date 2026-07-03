@@ -31,6 +31,16 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/refund-policy", changefreq: "yearly", priority: "0.3" },
           { path: "/shipping-policy", changefreq: "yearly", priority: "0.3" },
           { path: "/cancellation-policy", changefreq: "yearly", priority: "0.3" },
+          { path: "/explore", changefreq: "weekly", priority: "0.7" },
+          { path: "/explore/compounds", changefreq: "weekly", priority: "0.7" },
+          { path: "/explore/mechanisms", changefreq: "weekly", priority: "0.7" },
+          { path: "/explore/pathways", changefreq: "monthly", priority: "0.6" },
+          { path: "/explore/pathways/beginner", changefreq: "monthly", priority: "0.5" },
+          { path: "/explore/pathways/intermediate", changefreq: "monthly", priority: "0.5" },
+          { path: "/explore/pathways/advanced", changefreq: "monthly", priority: "0.5" },
+          { path: "/explore/pathways/compound-focused", changefreq: "monthly", priority: "0.5" },
+          { path: "/explore/pathways/mechanism-focused", changefreq: "monthly", priority: "0.5" },
+          { path: "/explore/pathways/methodology-focused", changefreq: "monthly", priority: "0.5" },
         ];
 
         for (const p of products) {

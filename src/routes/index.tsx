@@ -3,8 +3,9 @@ import {
   ShieldCheck, FlaskConical, ClipboardCheck,
   Microscope, ArrowRight, Star, Calculator,
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award,
-  BookOpen, BarChart3, Users, FileText,
+  BookOpen, BarChart3, Users, FileText, Network, Compass,
 } from "lucide-react";
+import { explorerSections } from "@/lib/knowledge-explorer";
 import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
@@ -326,6 +327,59 @@ function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Explore the Knowledge Graph */}
+        <section className="bg-bone border-t border-navy-deep/10 py-16">
+          <div className="container-x">
+            <div className="grid lg:grid-cols-[1fr_1.6fr] gap-8 lg:gap-12 items-start">
+              <div>
+                <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3 inline-flex items-center gap-2">
+                  <Compass className="w-3.5 h-3.5" aria-hidden="true" /> KNOWLEDGE EXPLORER
+                </div>
+                <h2 className="font-display text-3xl md:text-4xl font-medium leading-tight mb-4">
+                  Explore the peptide research Knowledge Graph
+                </h2>
+                <p className="text-sm text-navy-deep/75 leading-relaxed mb-6">
+                  Every compound, receptor, mechanism, method and guide on Oxford Research
+                  Peptides is a node in a single graph. Traverse the relationships instead of
+                  searching for pages.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Link to="/explore" className="px-5 py-3 bg-navy-deep text-bone text-[10px] font-bold tracking-widest hover:bg-navy transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold">
+                    OPEN EXPLORER <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </Link>
+                  <Link to="/explore/pathways" className="px-5 py-3 border border-navy-deep/30 text-navy-deep text-[10px] font-bold tracking-widest hover:border-gold hover:text-gold transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold">
+                    LEARNING JOURNEYS
+                  </Link>
+                </div>
+              </div>
+
+              <ul className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {explorerSections().slice(0, 6).map((s) => (
+                  <li key={s.key}>
+                    <Link
+                      to={s.href}
+                      className="group block h-full p-4 bg-white border border-navy-deep/10 hover:border-gold transition-colors focus-visible:outline-2 focus-visible:outline-gold"
+                    >
+                      <div className="flex items-start justify-between mb-1">
+                        <div className="font-display text-sm font-semibold group-hover:text-gold">
+                          {s.title}
+                        </div>
+                        <Network className="w-3.5 h-3.5 text-muted-foreground shrink-0" aria-hidden="true" />
+                      </div>
+                      <p className="text-[11px] text-navy-deep/70 leading-snug">
+                        {s.description}
+                      </p>
+                      <div className="mt-2 text-[10px] font-bold tracking-widest text-muted-foreground">
+                        {s.count} entities
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
