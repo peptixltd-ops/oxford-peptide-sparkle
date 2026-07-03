@@ -17,17 +17,18 @@ import {
 } from "@/lib/seo";
 import { getCompoundEntry } from "@/lib/taxonomy";
 import { getCompoundScaffold, buildCompoundLayoutProps } from "@/lib/scaffolds";
-import { getCompoundMonograph } from "@/content/retatrutide-cluster";
+import { getCompoundMonographRecord } from "@/content/registry";
 
 /**
  * Reusable compound monograph route. Priority:
- *   1. A fully populated monograph in the content registry (Release 4.0).
+ *   1. A fully populated monograph in the shared content registry
+ *      (Retatrutide — Release 4.0; BPC-157 — Sprint 1B).
  *   2. A scaffold entry from Release 2.1 (noindex).
  *   3. The empty structural template.
  */
 export const Route = createFileRoute("/compounds/$slug")({
   head: ({ params }) => {
-    const monograph = getCompoundMonograph(params.slug);
+    const monograph = getCompoundMonographRecord(params.slug);
     const entry = getCompoundEntry(params.slug);
     const scaffold = getCompoundScaffold(params.slug);
 
@@ -46,10 +47,7 @@ export const Route = createFileRoute("/compounds/$slug")({
             description: m.shortDescription,
             molecularFormula: m.molecularFormula,
             molecularWeight: m.molecularWeight,
-            identifier: [
-              { propertyID: "CAS", value: m.cas },
-              { propertyID: "developmentalCode", value: "LY3437943" },
-            ],
+            identifier: m.identifiers,
           }),
           articleLd({
             path: m.path,
@@ -87,7 +85,7 @@ export const Route = createFileRoute("/compounds/$slug")({
 
 function CompoundPage() {
   const { slug } = Route.useParams();
-  const monograph = getCompoundMonograph(slug);
+  const monograph = getCompoundMonographRecord(slug);
   const entry = getCompoundEntry(slug);
   const scaffold = getCompoundScaffold(slug);
   const displayName = monograph?.meta.title ?? scaffold?.title ?? entry?.name ?? "Monograph Template";
