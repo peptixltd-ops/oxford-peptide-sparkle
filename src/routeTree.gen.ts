@@ -36,6 +36,7 @@ import { Route as CorrectionsPolicyRouteImport } from './routes/corrections-poli
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompoundsRouteImport } from './routes/compounds'
+import { Route as CertificateOfAnalysisRouteImport } from './routes/certificate-of-analysis'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CancellationPolicyRouteImport } from './routes/cancellation-policy'
 import { Route as AccountRouteImport } from './routes/account'
@@ -200,6 +201,11 @@ const CompoundsRoute = CompoundsRouteImport.update({
   path: '/compounds',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CertificateOfAnalysisRoute = CertificateOfAnalysisRouteImport.update({
+  id: '/certificate-of-analysis',
+  path: '/certificate-of-analysis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
@@ -350,6 +356,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
   '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
@@ -406,6 +413,7 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/corrections-policy': typeof CorrectionsPolicyRoute
@@ -460,6 +468,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
+  '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
   '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
@@ -518,6 +527,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/certificate-of-analysis'
     | '/compounds'
     | '/contact'
     | '/cookie-policy'
@@ -574,6 +584,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/certificate-of-analysis'
     | '/contact'
     | '/cookie-policy'
     | '/corrections-policy'
@@ -627,6 +638,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/cancellation-policy'
     | '/cart'
+    | '/certificate-of-analysis'
     | '/compounds'
     | '/contact'
     | '/cookie-policy'
@@ -684,6 +696,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   CancellationPolicyRoute: typeof CancellationPolicyRoute
   CartRoute: typeof CartRoute
+  CertificateOfAnalysisRoute: typeof CertificateOfAnalysisRoute
   CompoundsRoute: typeof CompoundsRouteWithChildren
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
@@ -904,6 +917,13 @@ declare module '@tanstack/react-router' {
       path: '/compounds'
       fullPath: '/compounds'
       preLoaderRoute: typeof CompoundsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certificate-of-analysis': {
+      id: '/certificate-of-analysis'
+      path: '/certificate-of-analysis'
+      fullPath: '/certificate-of-analysis'
+      preLoaderRoute: typeof CertificateOfAnalysisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -1173,6 +1193,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   CancellationPolicyRoute: CancellationPolicyRoute,
   CartRoute: CartRoute,
+  CertificateOfAnalysisRoute: CertificateOfAnalysisRoute,
   CompoundsRoute: CompoundsRouteWithChildren,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
