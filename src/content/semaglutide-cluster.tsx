@@ -1203,6 +1203,680 @@ const semaglutideFaqGuide: GuideContent = {
 };
 
 // ---------------------------------------------------------------------------
+// Authority Sprint 2C — Semaglutide depth guides
+// ---------------------------------------------------------------------------
+
+const sprint2cRevisions: EditorialRevision[] = [
+  {
+    kind: "published",
+    version: "1.0",
+    date: "2026-10-01",
+    summary:
+      "Authority Sprint 2C — depth publication: pharmacokinetics, research applications, albumin binding and incretin effect.",
+    author: "Editorial Team",
+  },
+];
+
+const commonRelatedLinks = (
+  <p className="text-sm text-navy-deep/80">
+    Related reading:{" "}
+    <a className="underline underline-offset-2" href="/compounds/semaglutide">Semaglutide monograph</a>,{" "}
+    <a className="underline underline-offset-2" href="/research-hub/guides/what-is-semaglutide">What is Semaglutide</a>,{" "}
+    <a className="underline underline-offset-2" href="/research-hub/guides/semaglutide-mechanism-of-action">Semaglutide mechanism of action</a>,{" "}
+    <a className="underline underline-offset-2" href="/research-hub/guides/glp-1-receptor-explained">GLP-1 receptor explained</a>,{" "}
+    <a className="underline underline-offset-2" href="/compounds/retatrutide">Retatrutide monograph</a>,{" "}
+    <a className="underline underline-offset-2" href="/research-hub/guides/triple-agonists-explained">Triple agonists explained</a>,{" "}
+    <a className="underline underline-offset-2" href="/research-use-only">Research Use Only</a>{" "}
+    and{" "}
+    <a className="underline underline-offset-2" href="/testing-and-quality-control">Testing &amp; Quality Control</a>.
+  </p>
+);
+
+// -- Guide 1: Semaglutide Pharmacokinetics -----------------------------------
+
+const semaglutidePK: GuideContent = {
+  slug: "semaglutide-pharmacokinetics",
+  title: "Semaglutide Pharmacokinetics",
+  description:
+    "Reported pharmacokinetics of Semaglutide — half-life, albumin binding, C18 di-acid acylation, absorption (SC vs oral), distribution, steady state and research limitations.",
+  categoryLabel: "Research Guides",
+  categoryPath: "/research-hub/guides",
+  datePublished: "2026-10-01",
+  dateModified: "2026-10-01",
+  faqs: [
+    {
+      question: "What is the half-life of Semaglutide in humans?",
+      answer:
+        "Semaglutide has a reported plasma half-life of approximately one week in humans, supporting once-weekly subcutaneous dosing regimens.",
+    },
+    {
+      question: "How is oral Semaglutide absorbed?",
+      answer:
+        "Oral Semaglutide is co-formulated with SNAC (sodium N-[8-(2-hydroxybenzoyl)amino]caprylate), an absorption enhancer that transiently buffers local pH in the stomach and enables absorption of a small but pharmacologically sufficient fraction of the dose.",
+    },
+  ],
+  buildLayout: () => ({
+    categoryId: "guides",
+    hero: (
+      <>
+        <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">MECHANISM NOTE</div>
+        <h1 className="font-display text-4xl md:text-5xl font-medium">Semaglutide Pharmacokinetics</h1>
+        <p className="mt-4 max-w-3xl text-bone/80 leading-relaxed">
+          How Semaglutide's structural modifications translate into its reported
+          absorption, distribution and elimination kinetics — with a clear
+          separation between well-documented human pharmacology and topics that
+          remain research questions.
+        </p>
+      </>
+    ),
+    quickAnswer: (
+      <QuickAnswer>
+        Semaglutide combines resistance to DPP-4 cleavage (via Aib8) with
+        reversible non-covalent binding to serum albumin (via a C18 fatty-di-acid
+        attached at Lys26). Together these features yield a plasma half-life of
+        approximately one week in humans, supporting once-weekly subcutaneous
+        dosing. An oral formulation co-administered with the absorption enhancer
+        SNAC enables once-daily oral dosing of the same active molecule.
+      </QuickAnswer>
+    ),
+    keyFacts: (
+      <KeyFacts
+        items={[
+          { label: "Plasma half-life (SC, human)", value: "≈ 1 week" },
+          { label: "Route (SC)", value: "Once-weekly subcutaneous" },
+          { label: "Route (oral)", value: "Once-daily oral (with SNAC)" },
+          { label: "Time to steady state", value: "≈ 4–5 weeks (SC)" },
+          { label: "Protein binding", value: "> 99% (predominantly albumin)" },
+          { label: "Elimination", value: "Proteolysis; renal and faecal excretion of metabolites" },
+        ]}
+      />
+    ),
+    mainContent: refWrap(
+      <Prose>
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Structural basis for the long half-life</h2>
+        <P>
+          Two engineered features of Semaglutide dominate its pharmacokinetic
+          profile. First, α-aminoisobutyric acid at position 8 (Aib8) renders
+          the peptide resistant to dipeptidyl peptidase-4 (DPP-4), the
+          serine protease that cleaves native GLP-1 between His7 and Ala8
+          within one to two minutes.<Cite refId="lau-2015" /> Second, a C18
+          fatty-di-acid attached at Lys26 through a γGlu-2xOEG spacer
+          supports reversible non-covalent binding to serum albumin at fatty
+          acid binding sites.<Cite refId="knudsen-2019" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Albumin binding and distribution</h2>
+        <P>
+          Albumin binding of Semaglutide is high — greater than 99% in
+          reported plasma. Albumin acts as a slow-release reservoir: only
+          the small unbound fraction is pharmacologically active at the
+          GLP-1 receptor, but the bound fraction is protected from renal
+          filtration and from most proteolytic clearance pathways. This
+          reservoir behaviour is the primary determinant of the extended
+          half-life.<Cite refId="knudsen-2019" /> Distribution is largely
+          confined to the vascular and interstitial compartments consistent
+          with an albumin-bound peptide.
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Subcutaneous absorption</h2>
+        <P>
+          After subcutaneous administration, Semaglutide is absorbed slowly
+          from the injection depot. Peak plasma concentrations are reached
+          over one to three days, with high bioavailability. Because the
+          plasma half-life is close to one week, once-weekly dosing produces
+          approximately three- to five-fold accumulation before steady
+          state, which is reached over roughly four to five weeks of
+          consistent weekly dosing.<Cite refId="knudsen-2019" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Oral absorption and SNAC</h2>
+        <P>
+          Oral Semaglutide (marketed as Rybelsus) is co-formulated with
+          SNAC — sodium N-[8-(2-hydroxybenzoyl)amino]caprylate. SNAC
+          transiently raises local pH in the stomach, reducing peptic
+          degradation, and interacts with the gastric epithelium in a way
+          that supports transcellular absorption of a small fraction of the
+          dose.<Cite refId="buckley-2018" /> Oral bioavailability is low
+          (approximately 1%), which is why oral doses are numerically much
+          larger than subcutaneous doses; the resulting plasma
+          concentrations are pharmacologically comparable.
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Elimination</h2>
+        <P>
+          Semaglutide is cleared primarily through proteolytic degradation
+          of both the peptide backbone and the fatty-acid side chain, with
+          metabolites excreted via urine and faeces. Renal impairment does
+          not markedly alter total exposure in reported studies, consistent
+          with proteolysis rather than renal filtration being the dominant
+          clearance mechanism.
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Research use vs approved therapeutic context</h2>
+        <P>
+          The pharmacokinetics summarised here derive from published human
+          and preclinical studies of Semaglutide administered as an
+          approved therapeutic (Ozempic, Wegovy, Rybelsus) under MHRA and
+          FDA authorisation. Oxford Research Peptides supplies Semaglutide
+          as a reference standard for in-vitro laboratory research only —
+          in-vivo pharmacokinetic parameters are contextual scientific
+          information and do not describe or endorse any human use of
+          research-grade material.
+        </P>
+
+        <LaboratoryNote title="In-vitro relevance">
+          Albumin binding is a critical variable in cell-based assays of
+          Semaglutide. Apparent EC<sub>50</sub> values shift substantially
+          with buffer albumin content and with plasticware surface area
+          because acylated GLP-1 analogues are surface-active. Report
+          buffer composition, incubation volume and container type
+          explicitly to enable cross-laboratory comparison.
+        </LaboratoryNote>
+
+        <ImportantNote title="Research-use framing">
+          This guide describes published pharmacology. It is not clinical
+          guidance and is not intended for any therapeutic decision. See{" "}
+          <a className="underline underline-offset-2" href="/research-use-only">Research Use Only</a>.
+        </ImportantNote>
+
+        {commonRelatedLinks}
+      </Prose>,
+    ),
+    evidenceSummary: (
+      <EvidenceSummary
+        level="strong"
+        confidence="high"
+        summary="Subcutaneous and oral pharmacokinetics of Semaglutide are well characterised in the peer-reviewed literature. Structural determinants (Aib8, C18 di-acid acylation, γGlu-2xOEG spacer) map cleanly onto the observed half-life and distribution behaviour."
+      />
+    ),
+    researchLimitations: (
+      <ResearchLimitations
+        items={[
+          "Precise partitioning between renal, hepatic and peripheral proteolysis is not fully quantified.",
+          "Oral bioavailability is low and sensitive to gastric conditions, timing relative to food, and co-administered fluids.",
+          "In-vitro potency of acylated GLP-1 analogues is highly sensitive to buffer albumin content and plasticware, limiting simple comparison across laboratories.",
+          "Human pharmacokinetic parameters cannot be extrapolated to research-use scenarios outside their approved therapeutic context.",
+        ]}
+      />
+    ),
+    relatedCompounds: (
+      <RelatedCompounds slugs={["semaglutide", "retatrutide"]} heading="Compound reference" />
+    ),
+    relatedGuides: <RelatedGuides compoundSlug="semaglutide" heading="Related guides" />,
+    versionHistory: <PageEditorial pageKind="guide" revisions={sprint2cRevisions} />,
+    editorialNotice: <ScientificDisclaimer />,
+    publicationDate: "2026-10-01",
+    lastUpdated: "2026-10-01",
+  }),
+};
+
+// -- Guide 2: Semaglutide Research Applications ------------------------------
+
+const semaglutideResearchApplications: GuideContent = {
+  slug: "semaglutide-research-applications",
+  title: "Semaglutide Research Applications",
+  description:
+    "Overview of published Semaglutide research contexts — metabolic, cardiovascular, renal, neuroinflammation/CNS and NAFLD/MASH — with a clear preclinical vs human evidence split.",
+  categoryLabel: "Research Guides",
+  categoryPath: "/research-hub/guides",
+  datePublished: "2026-10-01",
+  dateModified: "2026-10-01",
+  faqs: [
+    {
+      question: "In which research areas has Semaglutide been studied?",
+      answer:
+        "Published Semaglutide research spans metabolic (type 2 diabetes, obesity), cardiovascular (SUSTAIN-6, SELECT), renal (FLOW), CNS/neuroinflammation (preclinical) and hepatic (NAFLD/MASH) contexts, with the strongest evidence in metabolic and cardiovascular endpoints.",
+    },
+    {
+      question: "Is Semaglutide human evidence or preclinical evidence?",
+      answer:
+        "Both. Metabolic, cardiovascular and renal endpoints have large randomised human trials. Neuroinflammation and central-nervous-system applications are currently preclinical or early-phase.",
+    },
+  ],
+  buildLayout: () => ({
+    categoryId: "guides",
+    hero: (
+      <>
+        <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">RESEARCH PRIMER</div>
+        <h1 className="font-display text-4xl md:text-5xl font-medium">Semaglutide Research Applications</h1>
+        <p className="mt-4 max-w-3xl text-bone/80 leading-relaxed">
+          A map of the published research landscape for Semaglutide — where
+          the human evidence is strongest, where preclinical work leads the
+          field, and how these areas connect to the wider incretin literature.
+        </p>
+      </>
+    ),
+    quickAnswer: (
+      <QuickAnswer>
+        Semaglutide has been evaluated across metabolic (type 2 diabetes,
+        obesity), cardiovascular (SUSTAIN-6, SELECT), renal (FLOW),
+        hepatic (NAFLD/MASH) and central-nervous-system research contexts.
+        The metabolic, cardiovascular and renal literature comprises large
+        randomised human outcome trials; NAFLD/MASH evidence combines
+        randomised imaging and biopsy studies with mechanistic preclinical
+        work; CNS applications remain predominantly preclinical.
+      </QuickAnswer>
+    ),
+    keyFacts: (
+      <KeyFacts
+        items={[
+          { label: "Metabolic (human)", value: "SUSTAIN-6, STEP-1, PIONEER 6" },
+          { label: "Cardiovascular (human)", value: "SUSTAIN-6, SELECT" },
+          { label: "Renal (human)", value: "FLOW" },
+          { label: "Hepatic (human)", value: "MASH imaging and biopsy studies" },
+          { label: "CNS (preclinical)", value: "Rodent neural circuit mapping" },
+        ]}
+      />
+    ),
+    mainContent: refWrap(
+      <Prose>
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Metabolic research</h2>
+        <P>
+          Metabolic endpoints form the core Semaglutide evidence base.
+          SUSTAIN-6 evaluated cardiovascular outcomes and glycaemic control
+          in patients with type 2 diabetes at high cardiovascular
+          risk.<Cite refId="marso-2016" /> STEP-1 examined weight change in
+          adults with overweight or obesity without diabetes.<Cite refId="wilding-2021" />
+          PIONEER 6 evaluated the oral formulation in type 2 diabetes with
+          cardiovascular risk.<Cite refId="husain-2019" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Cardiovascular research</h2>
+        <P>
+          SELECT reported cardiovascular outcomes with Semaglutide in
+          adults with overweight or obesity <em>without</em> diabetes and
+          with established cardiovascular disease — the first large trial
+          demonstrating cardiovascular benefit of a GLP-1 receptor agonist
+          in this specific population.<Cite refId="lincoff-2023" /> Together
+          with SUSTAIN-6, it forms a substantial cardiovascular evidence
+          base for the GLP-1 mono-agonist class.
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Renal research</h2>
+        <P>
+          The FLOW trial reported effects of Semaglutide on kidney disease
+          progression and cardiovascular events in adults with type 2
+          diabetes and chronic kidney disease.<Cite refId="perkovic-2024" />
+          This is a landmark renal outcomes trial for a GLP-1 receptor
+          agonist and complements existing SGLT2-inhibitor renal evidence
+          rather than replacing it.
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Hepatic research (NAFLD / MASH)</h2>
+        <P>
+          Semaglutide has been evaluated in imaging and biopsy studies for
+          non-alcoholic fatty liver disease and metabolic-dysfunction-
+          associated steatohepatitis (MASH). Reported outcomes include
+          improvements in histological features of steatohepatitis; effects
+          on advanced fibrosis remain an active research question in the
+          peer-reviewed literature.
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Neuroinflammation and CNS research</h2>
+        <P>
+          Preclinical rodent work by Gabery and colleagues mapped
+          Semaglutide's central activity to distributed neural circuits
+          including brainstem and hypothalamic populations relevant to
+          appetite regulation.<Cite refId="gabery-2020" /> Broader CNS
+          applications — including neuroinflammation and neurodegeneration
+          — remain predominantly preclinical or early clinical, and
+          extrapolation to research contexts requires caution.
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Preclinical vs human evidence — a clear split</h2>
+        <UL>
+          <li><strong>Strong human evidence:</strong> glycaemic control, weight change, cardiovascular outcomes, renal outcomes.</li>
+          <li><strong>Mixed / emerging human evidence:</strong> MASH histology, sleep-disordered breathing, addiction-adjacent behaviours.</li>
+          <li><strong>Primarily preclinical:</strong> central neuroinflammation, neurodegeneration models, direct anti-fibrotic mechanisms.</li>
+        </UL>
+
+        <ImportantNote title="Research-use framing">
+          This overview describes the published research landscape.
+          Oxford Research Peptides supplies Semaglutide as a lyophilised
+          reference standard for in-vitro laboratory research only. Nothing
+          on this page is medical advice or an endorsement of a therapeutic
+          use.
+        </ImportantNote>
+
+        {commonRelatedLinks}
+      </Prose>,
+    ),
+    evidenceSummary: (
+      <EvidenceSummary
+        level="strong"
+        confidence="high"
+        summary="Metabolic, cardiovascular and renal endpoints are supported by large randomised outcome trials. Hepatic and CNS applications rely more heavily on preclinical or early clinical evidence."
+      />
+    ),
+    researchLimitations: (
+      <ResearchLimitations
+        items={[
+          "Cardiovascular and renal outcome trials enrolled specific high-risk populations; generalisation to broader populations is limited.",
+          "Central-nervous-system claims currently rest largely on rodent models and small human studies.",
+          "MASH endpoints depend on histological interpretation, which carries measurement variability.",
+          "Approved-therapeutic outcome data do not describe or endorse research-use handling of reference-standard material.",
+        ]}
+      />
+    ),
+    relatedCompounds: (
+      <RelatedCompounds slugs={["semaglutide", "retatrutide"]} heading="Compound reference" />
+    ),
+    relatedGuides: <RelatedGuides compoundSlug="semaglutide" heading="Related guides" />,
+    versionHistory: <PageEditorial pageKind="guide" revisions={sprint2cRevisions} />,
+    editorialNotice: <ScientificDisclaimer />,
+    publicationDate: "2026-10-01",
+    lastUpdated: "2026-10-01",
+  }),
+};
+
+// -- Guide 3: Albumin Binding and Half-Life Extension ------------------------
+
+const albuminBindingGuide: GuideContent = {
+  slug: "albumin-binding-half-life-extension",
+  title: "Albumin Binding and Half-Life Extension",
+  description:
+    "How fatty-acid acylation of peptide drugs supports reversible non-covalent binding to serum albumin, and how that mechanism underpins the once-weekly kinetics of long-acting GLP-1 receptor agonists.",
+  categoryLabel: "Research Guides",
+  categoryPath: "/research-hub/guides",
+  datePublished: "2026-10-01",
+  dateModified: "2026-10-01",
+  faqs: [
+    {
+      question: "Why do peptides bind albumin when they carry a fatty-acid side chain?",
+      answer:
+        "Serum albumin has multiple hydrophobic binding sites that evolved to transport long-chain fatty acids. A fatty-acid moiety attached to a peptide occupies these sites reversibly, producing high-affinity but non-covalent binding that behaves as a slow-release reservoir.",
+    },
+    {
+      question: "Does albumin binding change the receptor pharmacology?",
+      answer:
+        "Not fundamentally. The unbound fraction retains normal receptor pharmacology. Albumin binding primarily changes distribution and clearance rather than intrinsic receptor activity.",
+    },
+  ],
+  buildLayout: () => ({
+    categoryId: "guides",
+    hero: (
+      <>
+        <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">MECHANISM NOTE</div>
+        <h1 className="font-display text-4xl md:text-5xl font-medium">Albumin Binding and Half-Life Extension</h1>
+        <p className="mt-4 max-w-3xl text-bone/80 leading-relaxed">
+          A reusable explanation of how fatty-acid acylation of peptide
+          drugs produces reversible non-covalent binding to serum albumin,
+          and how that mechanism underpins the long duration of action of
+          Semaglutide, Liraglutide and related GLP-1 receptor agonists.
+        </p>
+      </>
+    ),
+    quickAnswer: (
+      <QuickAnswer>
+        Attaching a fatty-acid moiety to a peptide backbone exploits the
+        native fatty-acid transport role of serum albumin. The resulting
+        reversible non-covalent binding shields the peptide from renal
+        filtration and proteolysis, effectively lengthening its plasma
+        residence without changing its receptor pharmacology at the free
+        (unbound) fraction. This mechanism underpins the once-weekly
+        kinetics of Semaglutide and the once-daily kinetics of Liraglutide.
+      </QuickAnswer>
+    ),
+    keyFacts: (
+      <KeyFacts
+        items={[
+          { label: "Mechanism", value: "Reversible non-covalent binding to serum albumin" },
+          { label: "Structural element", value: "Fatty-acid side chain (mono-acid or di-acid) via a linker" },
+          { label: "Example — Liraglutide", value: "C16 mono-acid → half-life ≈ 13 h" },
+          { label: "Example — Semaglutide", value: "C18 di-acid + γGlu-2xOEG → half-life ≈ 1 week" },
+          { label: "Effect", value: "Extends plasma half-life; largely preserves receptor pharmacology" },
+        ]}
+      />
+    ),
+    mainContent: refWrap(
+      <Prose>
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Why albumin?</h2>
+        <P>
+          Human serum albumin is the most abundant plasma protein and
+          carries endogenous long-chain fatty acids between tissues. It
+          has multiple well-characterised hydrophobic binding sites that
+          bind saturated and unsaturated fatty acids with dissociation
+          constants in the low-micromolar range. A peptide functionalised
+          with a fatty-acid moiety can occupy these sites and inherit the
+          slow turnover of the endogenous fatty-acid pool.<Cite refId="knudsen-2019" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Reversible, non-covalent, saturable</h2>
+        <P>
+          Albumin binding here is reversible and non-covalent. The
+          equilibrium continuously releases small amounts of free peptide,
+          which is the fraction available to engage the receptor and to be
+          cleared. Because most of the peptide is albumin-bound at any
+          moment, renal filtration and proteolytic clearance are
+          dramatically reduced compared with the native peptide.
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Chemistry — mono-acid vs di-acid</h2>
+        <UL>
+          <li>
+            <strong>Liraglutide</strong> uses a C16 mono-acid attached at Lys26 via a γGlu linker. The resulting albumin affinity supports a plasma half-life of approximately 13 hours in humans — long enough for once-daily dosing.
+          </li>
+          <li>
+            <strong>Semaglutide</strong> uses a C18 fatty-di-acid attached at Lys26 through a longer γGlu-2xOEG linker. The di-acid geometry and longer spacer support tighter, more sustained albumin binding, yielding a plasma half-life of approximately one week and once-weekly dosing.<Cite refId="lau-2015" /><Cite refId="knudsen-2019" />
+          </li>
+        </UL>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Why DPP-4 resistance also matters</h2>
+        <P>
+          Albumin binding alone would not be sufficient if the small free
+          fraction were still rapidly degraded by DPP-4. Long-acting
+          GLP-1 analogues therefore combine albumin binding with a
+          DPP-4-resistant substitution (Aib8 or an equivalent
+          modification), so that both distribution and enzymatic clearance
+          are addressed simultaneously.<Cite refId="lau-2015" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Assay implications</h2>
+        <P>
+          In cell-based assays, apparent potency of albumin-binding
+          peptides depends strongly on the albumin concentration in the
+          buffer. Reported EC<sub>50</sub> values in high-albumin media can
+          be an order of magnitude higher than in albumin-free media
+          because a large fraction of nominal ligand is sequestered.
+          Comparability between laboratories requires reporting buffer
+          composition, plasticware and incubation geometry.
+        </P>
+
+        <LaboratoryNote title="In-vitro practical note">
+          For research assays involving Semaglutide, Liraglutide or other
+          acylated GLP-1 analogues, document the bovine serum albumin (BSA)
+          concentration and consider control experiments at two BSA
+          concentrations to quantify the reservoir effect.
+        </LaboratoryNote>
+
+        {commonRelatedLinks}
+      </Prose>,
+    ),
+    evidenceSummary: (
+      <EvidenceSummary
+        level="strong"
+        confidence="high"
+        summary="Fatty-acid acylation as a half-life extension strategy is well established across multiple peptide drugs. Structural chemistry and reported human pharmacokinetics agree closely for Liraglutide and Semaglutide."
+      />
+    ),
+    researchLimitations: (
+      <ResearchLimitations
+        items={[
+          "Quantitative albumin binding parameters vary by measurement method (equilibrium dialysis vs ultrafiltration vs surface plasmon resonance).",
+          "Interspecies differences in albumin fatty-acid binding site occupancy limit direct rodent-to-human extrapolation.",
+          "The precise contribution of albumin binding vs FcRn-mediated recycling to plasma persistence is compound-specific.",
+        ]}
+      />
+    ),
+    relatedCompounds: (
+      <RelatedCompounds slugs={["semaglutide", "retatrutide"]} heading="Compound reference" />
+    ),
+    relatedGuides: <RelatedGuides compoundSlug="semaglutide" heading="Related guides" />,
+    versionHistory: <PageEditorial pageKind="guide" revisions={sprint2cRevisions} />,
+    editorialNotice: <ScientificDisclaimer />,
+    publicationDate: "2026-10-01",
+    lastUpdated: "2026-10-01",
+  }),
+};
+
+// -- Guide 4: Incretin Effect Explained --------------------------------------
+
+const incretinEffectGuide: GuideContent = {
+  slug: "incretin-effect-explained",
+  title: "Incretin Effect Explained",
+  description:
+    "Foundation guide to the incretin effect — how GLP-1 and GIP amplify glucose-dependent insulin secretion, the physiology of gut L- and K-cells, and how incretin biology underpins GLP-1 receptor agonist research.",
+  categoryLabel: "Research Guides",
+  categoryPath: "/research-hub/guides",
+  datePublished: "2026-10-01",
+  dateModified: "2026-10-01",
+  faqs: [
+    {
+      question: "What is the incretin effect?",
+      answer:
+        "The incretin effect describes the greater insulin response to oral glucose compared with an equivalent intravenous glucose challenge. It is mediated primarily by two gut peptides, GLP-1 and GIP, released after nutrient intake.",
+    },
+    {
+      question: "Why is the incretin effect important for GLP-1 receptor agonists?",
+      answer:
+        "GLP-1 receptor agonists such as Semaglutide are engineered to mimic and prolong incretin signalling. Understanding the endogenous incretin effect is foundational to interpreting their pharmacology.",
+    },
+  ],
+  buildLayout: () => ({
+    categoryId: "guides",
+    hero: (
+      <>
+        <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">RESEARCH PRIMER</div>
+        <h1 className="font-display text-4xl md:text-5xl font-medium">The Incretin Effect Explained</h1>
+        <p className="mt-4 max-w-3xl text-bone/80 leading-relaxed">
+          A foundation guide to incretin biology — the physiological basis
+          on which GLP-1 receptor agonist and dual/triple agonist research
+          is built.
+        </p>
+      </>
+    ),
+    quickAnswer: (
+      <QuickAnswer>
+        The incretin effect describes the observation that oral glucose
+        provokes a substantially larger insulin response than an equivalent
+        intravenous glucose challenge. Two gut-derived peptides mediate
+        this effect: glucagon-like peptide-1 (GLP-1), released from
+        intestinal L-cells, and glucose-dependent insulinotropic
+        polypeptide (GIP), released from K-cells. Both amplify
+        glucose-dependent insulin secretion from pancreatic β-cells and
+        together account for a large fraction of postprandial insulin
+        release in healthy individuals.
+      </QuickAnswer>
+    ),
+    keyFacts: (
+      <KeyFacts
+        items={[
+          { label: "Incretin peptides", value: "GLP-1 and GIP" },
+          { label: "GLP-1 source", value: "Intestinal L-cells (distal small intestine and colon)" },
+          { label: "GIP source", value: "Intestinal K-cells (proximal small intestine)" },
+          { label: "Primary effect", value: "Glucose-dependent amplification of insulin secretion" },
+          { label: "Native GLP-1 half-life", value: "≈ 1–2 minutes (DPP-4 cleavage)" },
+        ]}
+      />
+    ),
+    mainContent: refWrap(
+      <Prose>
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Historical observation</h2>
+        <P>
+          Classical experiments showed that a defined oral glucose load
+          triggered substantially more insulin secretion than the same
+          amount of glucose delivered intravenously to produce comparable
+          plasma glucose levels. The difference — attributed to
+          gut-derived signals released during nutrient absorption — was
+          named the <em>incretin effect</em>.<Cite refId="baggio-2007" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">The two incretin hormones</h2>
+        <UL>
+          <li>
+            <strong>GLP-1 (glucagon-like peptide-1)</strong> — a 30- or 31-residue peptide cleaved from proglucagon in intestinal L-cells and released in response to carbohydrate and lipid absorption.
+          </li>
+          <li>
+            <strong>GIP (glucose-dependent insulinotropic polypeptide)</strong> — a 42-residue peptide released from intestinal K-cells in response predominantly to carbohydrate and lipid ingestion.
+          </li>
+        </UL>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Effects on pancreatic islets</h2>
+        <P>
+          Both incretins act at class B G-protein-coupled receptors on
+          pancreatic β-cells to amplify glucose-dependent insulin
+          secretion. GLP-1 additionally suppresses glucagon secretion from
+          α-cells in a glucose-dependent manner. The strict
+          glucose-dependence of these effects is central to the low
+          intrinsic hypoglycaemia risk of GLP-1-based
+          pharmacology.<Cite refId="drucker-2018" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Extra-pancreatic effects of GLP-1</h2>
+        <P>
+          GLP-1 signalling is not confined to the islet. GLP-1 receptors
+          are expressed in gastrointestinal smooth muscle (slowing gastric
+          emptying), in vagal afferents and in the central nervous
+          system, where distributed brainstem and hypothalamic populations
+          integrate satiety signals.<Cite refId="baggio-2007" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Why native incretins are short-lived</h2>
+        <P>
+          Both GLP-1 and GIP are cleaved rapidly by dipeptidyl peptidase-4
+          (DPP-4). Native GLP-1 has a plasma half-life of only one to two
+          minutes. Long-acting GLP-1 receptor agonists such as Semaglutide
+          overcome this by combining a DPP-4-resistant substitution with a
+          fatty-acid side chain that supports albumin
+          binding.<Cite refId="lau-2015" /><Cite refId="knudsen-2019" />
+        </P>
+
+        <h2 className="font-display text-2xl font-medium text-navy-deep">Why the incretin effect matters for research</h2>
+        <P>
+          Every GLP-1 receptor agonist, GLP-1/GIP dual agonist and GLP-1/
+          GIP/glucagon triple agonist is designed against a specific view
+          of incretin biology. Interpreting in-vitro assay data, receptor
+          pharmacology and pathway readouts for these compounds requires
+          the incretin framework as background.
+        </P>
+
+        <ImportantNote title="Research-use framing">
+          This is a foundation science primer. It is not clinical guidance
+          on diabetes or metabolic disease. See{" "}
+          <a className="underline underline-offset-2" href="/research-use-only">Research Use Only</a>.
+        </ImportantNote>
+
+        {commonRelatedLinks}
+      </Prose>,
+    ),
+    evidenceSummary: (
+      <EvidenceSummary
+        level="strong"
+        confidence="high"
+        summary="The incretin effect and the roles of GLP-1 and GIP are supported by decades of peer-reviewed physiology and pharmacology literature."
+      />
+    ),
+    researchLimitations: (
+      <ResearchLimitations
+        items={[
+          "The relative contribution of GLP-1 vs GIP to the postprandial incretin effect varies between individuals and physiological states.",
+          "Extrapolation from healthy human physiology to disease states (e.g. type 2 diabetes, obesity) is not always direct.",
+          "Peripheral vs central effects of GLP-1 signalling in vivo cannot be fully separated in most experimental designs.",
+        ]}
+      />
+    ),
+    relatedCompounds: (
+      <RelatedCompounds slugs={["semaglutide", "retatrutide"]} heading="Compound reference" />
+    ),
+    relatedGuides: <RelatedGuides compoundSlug="semaglutide" heading="Related guides" />,
+    versionHistory: <PageEditorial pageKind="guide" revisions={sprint2cRevisions} />,
+    editorialNotice: <ScientificDisclaimer />,
+    publicationDate: "2026-10-01",
+    lastUpdated: "2026-10-01",
+  }),
+};
+
+// ---------------------------------------------------------------------------
 // Registries
 // ---------------------------------------------------------------------------
 
@@ -1210,6 +1884,10 @@ export const semaglutideGuideRegistry: readonly GuideContent[] = [
   whatIsSemaglutide,
   semaglutideMoA,
   semaglutideFaqGuide,
+  semaglutidePK,
+  semaglutideResearchApplications,
+  albuminBindingGuide,
+  incretinEffectGuide,
 ];
 
 export const semaglutideCompoundRegistry: Record<
