@@ -11,12 +11,12 @@ import {
   faqLd,
   definedTermLd,
 } from "@/lib/seo";
-import { getGuideContent } from "@/content/retatrutide-cluster";
 import {
+  getGuideContent,
   getExtendedAnswer,
   getDefinedTerm,
   getFaqSupplement,
-} from "@/content/retatrutide-cluster-ai";
+} from "@/content/registry";
 
 export const Route = createFileRoute("/research-hub/guides/$slug")({
   head: ({ params }) => {

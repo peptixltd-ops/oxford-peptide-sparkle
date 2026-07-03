@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { products } from "@/lib/products";
-import { compoundEntries, guides } from "@/lib/taxonomy";
+import { compoundEntries, guides, glossaryTerms } from "@/lib/taxonomy";
 
 const BASE_URL = "https://oxfordresearchpeptides.com";
 
@@ -51,6 +51,9 @@ export const Route = createFileRoute("/sitemap.xml")({
         }
         for (const g of guides.filter((g) => g.populated)) {
           entries.push({ path: `/research-hub/guides/${g.slug}`, changefreq: "monthly", priority: "0.7" });
+        }
+        for (const t of glossaryTerms.filter((t) => t.populated)) {
+          entries.push({ path: `/research-hub/glossary/${t.slug}`, changefreq: "monthly", priority: "0.5" });
         }
 
         const urls = entries.map(e =>
