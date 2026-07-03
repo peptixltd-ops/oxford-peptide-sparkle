@@ -2,16 +2,27 @@ import type { ReactNode } from "react";
 import { ResearchSidebar } from "./research-sidebar";
 
 /**
- * Structural template for a single COMPOUND monograph.
+ * Structural template for a single COMPOUND monograph — Release 4.0
+ * Compound Authority Framework.
  *
  * Every section is a slot. Nothing renders dummy scientific content.
+ * A slot that isn't passed is not rendered — so the same layout serves
+ * both minimal reference stubs and fully populated authority monographs.
  */
 export interface CompoundLayoutProps {
   name: string;
+  /** Short hero-line under the title. */
+  eyebrow?: string;
+  /** One-line quick definition rendered inside the hero. */
+  quickDefinition?: ReactNode;
   /** Identity summary paragraph. */
   identity?: ReactNode;
+  /** Overview / editorial abstract. */
+  overview?: ReactNode;
   /** Comma-separated aliases / trade names / research codes. */
   aliases?: ReactNode;
+  /** Structured synonyms card. */
+  synonyms?: ReactNode;
   /** Research classification — family, class, mechanism group tags. */
   researchClassification?: ReactNode;
   /** IUPAC systematic name. */
@@ -26,12 +37,26 @@ export interface CompoundLayoutProps {
   mechanism?: ReactNode;
   /** Receptor targets card. */
   receptorTargets?: ReactNode;
-  /** Applicable research areas. */
+  /** Related mechanisms card (Knowledge Graph). */
+  relatedMechanisms?: ReactNode;
+  /** Pharmacology (PK/PD, receptor selectivity). */
+  pharmacology?: ReactNode;
+  /** Applicable research areas / research applications. */
   researchAreas?: ReactNode;
+  /** Research applications (in-vitro / model systems). */
+  researchApplications?: ReactNode;
+  /** Laboratory methodology overview. */
+  laboratoryMethodology?: ReactNode;
   /** Laboratory handling notes: reconstitution, storage, purity. */
   laboratoryNotes?: ReactNode;
+  /** Storage & handling specifics. */
+  storage?: ReactNode;
+  /** Reconstitution procedure summary. */
+  reconstitution?: ReactNode;
   /** Evidence summary. */
   evidenceSummary?: ReactNode;
+  /** Frequently asked questions. */
+  faqs?: ReactNode;
   /** Reference list. */
   references?: ReactNode;
   /** Related guides card. */
@@ -40,6 +65,8 @@ export interface CompoundLayoutProps {
   relatedProducts?: ReactNode;
   /** Related comparisons card. */
   relatedComparisons?: ReactNode;
+  /** Editorial metadata block (authors, reviewers, revisions). */
+  editorial?: ReactNode;
   /** Sidebar override. */
   sidebar?: ReactNode;
   /** ISO date last updated. */
@@ -49,8 +76,12 @@ export interface CompoundLayoutProps {
 export function CompoundLayout(props: CompoundLayoutProps) {
   const {
     name,
+    eyebrow = "COMPOUND REFERENCE",
+    quickDefinition,
     identity,
+    overview,
     aliases,
+    synonyms,
     researchClassification,
     iupacName,
     molecularFormula,
@@ -58,13 +89,21 @@ export function CompoundLayout(props: CompoundLayoutProps) {
     chemicalMetadata,
     mechanism,
     receptorTargets,
+    relatedMechanisms,
+    pharmacology,
     researchAreas,
+    researchApplications,
+    laboratoryMethodology,
     laboratoryNotes,
+    storage,
+    reconstitution,
     evidenceSummary,
+    faqs,
     references,
     relatedGuides,
     relatedProducts,
     relatedComparisons,
+    editorial,
     sidebar,
     lastUpdated,
   } = props;
@@ -73,7 +112,7 @@ export function CompoundLayout(props: CompoundLayoutProps) {
     <div className="bg-bone">
       <section aria-label="Compound hero" className="bg-navy-deep text-bone py-12 md:py-16">
         <div className="container-x">
-          <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">COMPOUND REFERENCE</div>
+          <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">{eyebrow}</div>
           <h1 className="font-display text-4xl md:text-5xl font-medium">{name}</h1>
           {aliases && (
             <div className="mt-3 text-sm text-bone/70">
@@ -81,12 +120,17 @@ export function CompoundLayout(props: CompoundLayoutProps) {
               {aliases}
             </div>
           )}
+          {quickDefinition && (
+            <div className="mt-6 max-w-3xl text-bone/85 leading-relaxed">{quickDefinition}</div>
+          )}
         </div>
       </section>
 
       <div className="container-x py-10 md:py-14 grid lg:grid-cols-[1fr_320px] gap-10">
         <article className="min-w-0 space-y-8">
+          {overview && <Slot title="Overview">{overview}</Slot>}
           {identity && <Slot title="Identity">{identity}</Slot>}
+          {synonyms && <Slot title="Synonyms">{synonyms}</Slot>}
           {researchClassification && (
             <Slot title="Research classification">{researchClassification}</Slot>
           )}
@@ -117,20 +161,29 @@ export function CompoundLayout(props: CompoundLayoutProps) {
             </Slot>
           )}
 
-          {mechanism && <Slot title="Mechanism">{mechanism}</Slot>}
+          {mechanism && <Slot title="Mechanism of action">{mechanism}</Slot>}
           {receptorTargets && <Slot title="Receptor targets">{receptorTargets}</Slot>}
+          {pharmacology && <Slot title="Pharmacology">{pharmacology}</Slot>}
+          {researchApplications && <Slot title="Research applications">{researchApplications}</Slot>}
           {researchAreas && <Slot title="Research areas">{researchAreas}</Slot>}
+          {laboratoryMethodology && <Slot title="Laboratory methodology">{laboratoryMethodology}</Slot>}
+          {storage && <Slot title="Storage">{storage}</Slot>}
+          {reconstitution && <Slot title="Reconstitution">{reconstitution}</Slot>}
           {laboratoryNotes && <Slot title="Laboratory notes">{laboratoryNotes}</Slot>}
           {evidenceSummary && <Slot title="Evidence summary">{evidenceSummary}</Slot>}
+          {faqs && <Slot title="Frequently asked questions">{faqs}</Slot>}
           {references && <Slot title="References">{references}</Slot>}
 
-          {(relatedGuides || relatedProducts || relatedComparisons) && (
+          {(relatedGuides || relatedMechanisms || relatedProducts || relatedComparisons) && (
             <div className="grid md:grid-cols-2 gap-6">
+              {relatedMechanisms}
               {relatedGuides}
-              {relatedCompounds(relatedProducts)}
+              {relatedProducts}
               {relatedComparisons}
             </div>
           )}
+
+          {editorial && <Slot title="Editorial">{editorial}</Slot>}
 
           {lastUpdated && (
             <footer className="border-t border-navy-deep/10 pt-6 text-xs text-muted-foreground">
@@ -151,11 +204,6 @@ export function CompoundLayout(props: CompoundLayoutProps) {
       </div>
     </div>
   );
-}
-
-function relatedCompounds(node: ReactNode): ReactNode {
-  // trivial passthrough — keeps grid ordering explicit in JSX above.
-  return node;
 }
 
 function Slot({ title, children }: { title: string; children: ReactNode }) {
