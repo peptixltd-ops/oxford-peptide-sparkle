@@ -62,6 +62,12 @@ export const Route = createFileRoute("/sitemap.xml")({
         for (const t of glossaryTerms.filter((t) => t.populated)) {
           entries.push({ path: `/research-hub/glossary/${t.slug}`, changefreq: "monthly", priority: "0.5" });
         }
+        for (const c of comparisons.filter((c) => c.populated)) {
+          entries.push({ path: `/research-hub/comparisons/${c.slug}`, changefreq: "monthly", priority: "0.7" });
+        }
+        for (const s of studies.filter((s) => s.populated)) {
+          entries.push({ path: `/research-hub/literature/${s.slug}`, changefreq: "monthly", priority: "0.6" });
+        }
 
         const urls = entries.map(e =>
           `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`
