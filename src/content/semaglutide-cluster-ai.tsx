@@ -79,6 +79,78 @@ export const semaglutideGuideExtendedAnswers: Record<string, ReactNode> = {
       plasticware.
     </EA>
   ),
+  "semaglutide-pharmacokinetics": (
+    <EA question="What are the pharmacokinetics of Semaglutide?">
+      Semaglutide has a plasma half-life of approximately one week in
+      humans, dominated by two structural features: an Aib8 substitution
+      that resists DPP-4 cleavage and a C18 fatty-di-acid at Lys26 that
+      supports reversible non-covalent binding to serum albumin. Albumin
+      binding exceeds 99%, so most of the peptide is sequestered from
+      renal filtration and proteolysis while a small unbound fraction
+      engages the GLP-1 receptor. Subcutaneous administration reaches peak
+      plasma concentrations over one to three days, with steady state at
+      roughly four to five weeks of once-weekly dosing. Oral Semaglutide
+      is co-formulated with the absorption enhancer SNAC, giving ~1%
+      bioavailability that is pharmacologically sufficient at the
+      larger oral dose. Elimination is primarily proteolytic, with
+      metabolites excreted in urine and faeces.
+    </EA>
+  ),
+  "semaglutide-research-applications": (
+    <EA question="Where has Semaglutide been studied in published research?">
+      Semaglutide's published research base is broad. Metabolic evidence
+      is strongest: SUSTAIN-6 (type 2 diabetes cardiovascular outcomes),
+      STEP-1 (weight change in overweight and obesity) and PIONEER 6
+      (oral Semaglutide in high-risk type 2 diabetes) are large
+      randomised human trials. Cardiovascular evidence in obesity without
+      diabetes derives from the SELECT trial. Renal outcomes are
+      addressed by FLOW in type 2 diabetes with chronic kidney disease.
+      Hepatic MASH endpoints combine randomised imaging and biopsy
+      studies with mechanistic preclinical work. Central-nervous-system
+      applications — including neuroinflammation — remain predominantly
+      preclinical, resting on rodent circuit-mapping work such as Gabery
+      and colleagues. Oxford Research Peptides describes this literature
+      as scientific context; research-grade Semaglutide is supplied as an
+      in-vitro reference standard only.
+    </EA>
+  ),
+  "albumin-binding-half-life-extension": (
+    <EA question="How does albumin binding extend the half-life of GLP-1 peptides?">
+      Serum albumin evolved to transport long-chain fatty acids and
+      carries multiple hydrophobic binding sites of low-micromolar
+      affinity. A peptide fitted with a fatty-acid side chain — a C16
+      mono-acid on Liraglutide, a C18 di-acid with a γGlu-2xOEG spacer on
+      Semaglutide — occupies these sites reversibly and inherits albumin's
+      slow turnover. Because binding is reversible and non-covalent, only
+      the small unbound fraction is available to engage the receptor and
+      to be cleared, so intrinsic receptor pharmacology is largely
+      preserved while renal filtration and proteolysis are dramatically
+      reduced. The chemistry of the acylation modulates the effect:
+      Liraglutide's mono-acid supports a ~13 h half-life and once-daily
+      dosing, while Semaglutide's di-acid with a longer spacer supports a
+      ~1 week half-life and once-weekly dosing. Combining albumin binding
+      with DPP-4 resistance is what makes this class practical.
+    </EA>
+  ),
+  "incretin-effect-explained": (
+    <EA question="What is the incretin effect and why does it matter?">
+      The incretin effect describes the observation that oral glucose
+      provokes substantially more insulin secretion than an equivalent
+      intravenous glucose challenge. Two gut peptides mediate it:
+      glucagon-like peptide-1 (GLP-1) released from intestinal L-cells,
+      and glucose-dependent insulinotropic polypeptide (GIP) released
+      from K-cells. Both amplify glucose-dependent insulin secretion from
+      pancreatic β-cells at class B G-protein-coupled receptors, and
+      GLP-1 additionally suppresses glucagon secretion, slows gastric
+      emptying and modulates central appetite pathways. Native GLP-1 has
+      a plasma half-life of only one to two minutes because it is
+      rapidly cleaved by DPP-4 — the fundamental problem long-acting
+      analogues such as Semaglutide were engineered to solve.
+      Understanding incretin biology is foundational to interpreting the
+      pharmacology of every GLP-1 receptor agonist and every dual or
+      triple agonist that builds on this class.
+    </EA>
+  ),
 };
 
 export const semaglutideGuideFaqSupplements: Record<
