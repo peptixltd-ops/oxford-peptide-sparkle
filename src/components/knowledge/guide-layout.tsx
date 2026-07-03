@@ -58,6 +58,7 @@ export function GuideLayout(props: GuideLayoutProps) {
     categoryId,
     hero,
     quickAnswer,
+    extendedAnswer,
     keyFacts,
     tableOfContents,
     mainContent,
@@ -88,6 +89,7 @@ export function GuideLayout(props: GuideLayoutProps) {
       <div className="container-x py-10 md:py-14 grid lg:grid-cols-[1fr_320px] gap-10">
         <article className="min-w-0 space-y-8">
           {quickAnswer && <Slot title="Quick answer">{quickAnswer}</Slot>}
+          {extendedAnswer && <Slot title="Extended answer">{extendedAnswer}</Slot>}
           {keyFacts && <Slot title="Key facts">{keyFacts}</Slot>}
           {tableOfContents && <Slot title="Contents">{tableOfContents}</Slot>}
           {mainContent && <Slot>{mainContent}</Slot>}
