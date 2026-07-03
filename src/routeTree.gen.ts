@@ -24,6 +24,7 @@ import { Route as PublicationWorkflowRouteImport } from './routes/publication-wo
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as LabTestingRouteImport } from './routes/lab-testing'
+import { Route as FundingAndConflictsRouteImport } from './routes/funding-and-conflicts'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as EditorialStandardsRouteImport } from './routes/editorial-standards'
@@ -134,6 +135,11 @@ const MethodologyRoute = MethodologyRouteImport.update({
 const LabTestingRoute = LabTestingRouteImport.update({
   id: '/lab-testing',
   path: '/lab-testing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FundingAndConflictsRoute = FundingAndConflictsRouteImport.update({
+  id: '/funding-and-conflicts',
+  path: '/funding-and-conflicts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqsRoute = FaqsRouteImport.update({
@@ -340,6 +346,7 @@ export interface FileRoutesByFullPath {
   '/editorial-standards': typeof EditorialStandardsRoute
   '/explore': typeof ExploreRouteWithChildren
   '/faqs': typeof FaqsRoute
+  '/funding-and-conflicts': typeof FundingAndConflictsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -391,6 +398,7 @@ export interface FileRoutesByTo {
   '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
   '/faqs': typeof FaqsRoute
+  '/funding-and-conflicts': typeof FundingAndConflictsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -444,6 +452,7 @@ export interface FileRoutesById {
   '/editorial-standards': typeof EditorialStandardsRoute
   '/explore': typeof ExploreRouteWithChildren
   '/faqs': typeof FaqsRoute
+  '/funding-and-conflicts': typeof FundingAndConflictsRoute
   '/lab-testing': typeof LabTestingRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -499,6 +508,7 @@ export interface FileRouteTypes {
     | '/editorial-standards'
     | '/explore'
     | '/faqs'
+    | '/funding-and-conflicts'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
@@ -550,6 +560,7 @@ export interface FileRouteTypes {
     | '/editorial-policy'
     | '/editorial-standards'
     | '/faqs'
+    | '/funding-and-conflicts'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
@@ -602,6 +613,7 @@ export interface FileRouteTypes {
     | '/editorial-standards'
     | '/explore'
     | '/faqs'
+    | '/funding-and-conflicts'
     | '/lab-testing'
     | '/methodology'
     | '/privacy-policy'
@@ -656,6 +668,7 @@ export interface RootRouteChildren {
   EditorialStandardsRoute: typeof EditorialStandardsRoute
   ExploreRoute: typeof ExploreRouteWithChildren
   FaqsRoute: typeof FaqsRoute
+  FundingAndConflictsRoute: typeof FundingAndConflictsRoute
   LabTestingRoute: typeof LabTestingRoute
   MethodologyRoute: typeof MethodologyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -780,6 +793,13 @@ declare module '@tanstack/react-router' {
       path: '/lab-testing'
       fullPath: '/lab-testing'
       preLoaderRoute: typeof LabTestingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/funding-and-conflicts': {
+      id: '/funding-and-conflicts'
+      path: '/funding-and-conflicts'
+      fullPath: '/funding-and-conflicts'
+      preLoaderRoute: typeof FundingAndConflictsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faqs': {
@@ -1121,6 +1141,7 @@ const rootRouteChildren: RootRouteChildren = {
   EditorialStandardsRoute: EditorialStandardsRoute,
   ExploreRoute: ExploreRouteWithChildren,
   FaqsRoute: FaqsRoute,
+  FundingAndConflictsRoute: FundingAndConflictsRoute,
   LabTestingRoute: LabTestingRoute,
   MethodologyRoute: MethodologyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
