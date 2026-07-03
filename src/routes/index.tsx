@@ -3,8 +3,9 @@ import {
   ShieldCheck, FlaskConical, ClipboardCheck,
   Microscope, ArrowRight, Star, Calculator,
   Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award,
-  BookOpen, BarChart3, Users, FileText,
+  BookOpen, BarChart3, Users, FileText, Network, Compass,
 } from "lucide-react";
+import { explorerSections } from "@/lib/knowledge-explorer";
 import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
 import artMolecule from "@/assets/article-molecule.jpg";
