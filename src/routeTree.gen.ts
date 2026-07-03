@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WholesaleRouteImport } from './routes/wholesale'
+import { Route as TestingAndQualityControlRouteImport } from './routes/testing-and-quality-control'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SitemapRouteImport } from './routes/sitemap'
@@ -68,6 +69,12 @@ const WholesaleRoute = WholesaleRouteImport.update({
   path: '/wholesale',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestingAndQualityControlRoute =
+  TestingAndQualityControlRouteImport.update({
+    id: '/testing-and-quality-control',
+    path: '/testing-and-quality-control',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -368,6 +375,7 @@ export interface FileRoutesByFullPath {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -420,6 +428,7 @@ export interface FileRoutesByTo {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -476,6 +485,7 @@ export interface FileRoutesById {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -533,6 +543,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms'
+    | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
@@ -585,6 +596,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms'
+    | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
@@ -640,6 +652,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/terms'
+    | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
     | '/dashboard/editorial'
@@ -696,6 +709,7 @@ export interface RootRouteChildren {
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  TestingAndQualityControlRoute: typeof TestingAndQualityControlRoute
   WholesaleRoute: typeof WholesaleRoute
   DashboardEditorialRoute: typeof DashboardEditorialRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
@@ -708,6 +722,13 @@ declare module '@tanstack/react-router' {
       path: '/wholesale'
       fullPath: '/wholesale'
       preLoaderRoute: typeof WholesaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testing-and-quality-control': {
+      id: '/testing-and-quality-control'
+      path: '/testing-and-quality-control'
+      fullPath: '/testing-and-quality-control'
+      preLoaderRoute: typeof TestingAndQualityControlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -1177,6 +1198,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  TestingAndQualityControlRoute: TestingAndQualityControlRoute,
   WholesaleRoute: WholesaleRoute,
   DashboardEditorialRoute: DashboardEditorialRoute,
   ProductsSlugRoute: ProductsSlugRoute,
