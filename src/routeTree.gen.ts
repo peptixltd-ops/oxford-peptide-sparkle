@@ -29,6 +29,7 @@ import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as EditorialStandardsRouteImport } from './routes/editorial-standards'
 import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as CorrectionsPolicyRouteImport } from './routes/corrections-policy'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompoundsRouteImport } from './routes/compounds'
@@ -158,6 +159,11 @@ const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
 const DisclaimerRoute = DisclaimerRouteImport.update({
   id: '/disclaimer',
   path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorrectionsPolicyRoute = CorrectionsPolicyRouteImport.update({
+  id: '/corrections-policy',
+  path: '/corrections-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiePolicyRoute = CookiePolicyRouteImport.update({
@@ -328,6 +334,7 @@ export interface FileRoutesByFullPath {
   '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/corrections-policy': typeof CorrectionsPolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
@@ -379,6 +386,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/corrections-policy': typeof CorrectionsPolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
@@ -430,6 +438,7 @@ export interface FileRoutesById {
   '/compounds': typeof CompoundsRouteWithChildren
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/corrections-policy': typeof CorrectionsPolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/editorial-policy': typeof EditorialPolicyRoute
   '/editorial-standards': typeof EditorialStandardsRoute
@@ -484,6 +493,7 @@ export interface FileRouteTypes {
     | '/compounds'
     | '/contact'
     | '/cookie-policy'
+    | '/corrections-policy'
     | '/disclaimer'
     | '/editorial-policy'
     | '/editorial-standards'
@@ -535,6 +545,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/contact'
     | '/cookie-policy'
+    | '/corrections-policy'
     | '/disclaimer'
     | '/editorial-policy'
     | '/editorial-standards'
@@ -585,6 +596,7 @@ export interface FileRouteTypes {
     | '/compounds'
     | '/contact'
     | '/cookie-policy'
+    | '/corrections-policy'
     | '/disclaimer'
     | '/editorial-policy'
     | '/editorial-standards'
@@ -638,6 +650,7 @@ export interface RootRouteChildren {
   CompoundsRoute: typeof CompoundsRouteWithChildren
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
+  CorrectionsPolicyRoute: typeof CorrectionsPolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
   EditorialPolicyRoute: typeof EditorialPolicyRoute
   EditorialStandardsRoute: typeof EditorialStandardsRoute
@@ -802,6 +815,13 @@ declare module '@tanstack/react-router' {
       path: '/disclaimer'
       fullPath: '/disclaimer'
       preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corrections-policy': {
+      id: '/corrections-policy'
+      path: '/corrections-policy'
+      fullPath: '/corrections-policy'
+      preLoaderRoute: typeof CorrectionsPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookie-policy': {
@@ -1095,6 +1115,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompoundsRoute: CompoundsRouteWithChildren,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
+  CorrectionsPolicyRoute: CorrectionsPolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
   EditorialPolicyRoute: EditorialPolicyRoute,
   EditorialStandardsRoute: EditorialStandardsRoute,
