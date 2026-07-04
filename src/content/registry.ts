@@ -187,6 +187,7 @@ const combinedGuides: readonly GuideContent[] = [
   ...retatrutideGuides,
   ...bpc157GuideRegistry,
   ...semaglutideGuideRegistry,
+  ...tirzepatideGuideRegistry,
 ];
 
 export function getGuideContent(slug: string): GuideContent | undefined {
@@ -201,7 +202,8 @@ export function getExtendedAnswer(slug: string): ReactNode | undefined {
   return (
     getRetatrutideExtendedAnswer(slug) ??
     getBpc157ExtendedAnswer(slug) ??
-    getSemaglutideExtendedAnswer(slug)
+    getSemaglutideExtendedAnswer(slug) ??
+    getTirzepatideExtendedAnswer(slug)
   );
 }
 
@@ -216,6 +218,8 @@ export function getFaqSupplement(
   if (r.length) return r;
   const b = getBpc157FaqSupplement(slug);
   if (b.length) return b;
-  return getSemaglutideFaqSupplement(slug);
+  const s = getSemaglutideFaqSupplement(slug);
+  if (s.length) return s;
+  return getTirzepatideFaqSupplement(slug);
 }
 
