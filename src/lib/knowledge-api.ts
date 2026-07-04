@@ -648,19 +648,16 @@ export function getReviewer(
     relationships: {
       ...emptyRelationships(),
       guides:
-        profile?.publications
-          .filter((p) => p.type === "guide")
-          .map((p) => ({ type: "guide" as EntityType, slug: p.slug })) ?? [],
+        profile?.reviewedGuides.map((p) => ({ type: "guide" as EntityType, slug: p.slug })) ?? [],
       studies:
-        profile?.publications
-          .filter((p) => p.type === "study")
-          .map(
-            (p) => ({ type: "study" as KnowledgeEntityType, slug: p.slug }) as EntityRef,
-          ) ?? [],
+        profile?.reviewedStudies.map(
+          (p) => ({ type: "study" as KnowledgeEntityType, slug: p.slug }) as EntityRef,
+        ) ?? [],
       comparisons:
-        profile?.publications
-          .filter((p) => p.type === "comparison")
-          .map((p) => ({ type: "comparison" as EntityType, slug: p.slug })) ?? [],
+        profile?.reviewedComparisons.map((p) => ({
+          type: "comparison" as EntityType,
+          slug: p.slug,
+        })) ?? [],
     },
     references: [],
     raw: reviewer,
