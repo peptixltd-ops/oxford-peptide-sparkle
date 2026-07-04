@@ -22,6 +22,10 @@ import {
   semaglutideGuideRegistry,
   semaglutideCompoundRegistry,
 } from "@/content/semaglutide-cluster";
+import {
+  tirzepatideGuideRegistry,
+  tirzepatideCompoundRegistry,
+} from "@/content/tirzepatide-cluster";
 
 import {
   getExtendedAnswer as getRetatrutideExtendedAnswer,
@@ -36,6 +40,10 @@ import {
   getSemaglutideExtendedAnswer,
   getSemaglutideFaqSupplement,
 } from "@/content/semaglutide-cluster-ai";
+import {
+  getTirzepatideExtendedAnswer,
+  getTirzepatideFaqSupplement,
+} from "@/content/tirzepatide-cluster-ai";
 
 // ---------------------------------------------------------------------------
 // Normalised compound-monograph record — one shape across clusters
