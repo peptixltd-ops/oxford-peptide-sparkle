@@ -227,3 +227,202 @@ function EditorialDashboardPage() {
     </div>
   );
 }
+
+function SectionShell({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
+  return (
+    <section className="mt-10">
+      <h2 className="mb-1 font-display text-xl">{title}</h2>
+      <p className="mb-3 text-xs text-muted-foreground">{description}</p>
+      {children}
+    </section>
+  );
+}
+
+function toneFor(sev: "error" | "warning" | "info"): string {
+  return sev === "error"
+    ? "text-destructive"
+    : sev === "warning"
+      ? "text-amber-700 dark:text-amber-300"
+      : "text-muted-foreground";
+}
+
+function ExtendedGovernanceSection() {
+  const rows = runExtendedGovernance();
+  return (
+    <SectionShell
+      title="Extended governance"
+      description="Reciprocal links, weak relationships, glossary coverage per compound, and compounds with no linked studies."
+    >
+      {rows.length === 0 ? (
+        <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+          No extended governance issues detected.
+        </div>
+      ) : (
+        <div className="overflow-x-auto rounded-lg border border-border bg-card">
+          <table className="w-full border-collapse text-left text-sm">
+            <thead className="bg-muted/40">
+              <tr>
+                <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Severity</th>
+                <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Code</th>
+                <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Entity</th>
+                <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((i, idx) => (
+                <tr key={idx} className="border-t border-border">
+                  <td className={`px-3 py-2 text-xs font-semibold uppercase ${toneFor(i.severity)}`}>{i.severity}</td>
+                  <td className="px-3 py-2 text-xs text-muted-foreground">{i.code}</td>
+                  <td className="px-3 py-2 text-xs text-muted-foreground">{i.entity.type}:{i.entity.slug}</td>
+                  <td className="px-3 py-2 text-sm text-foreground">{i.message}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </SectionShell>
+  );
+}
+
+function StudyCitationSection() {
+  const rows = runStudyCitationAudit();
+  return (
+    <SectionShell
+      title="Study citation audit"
+      description="Every populated study checked for DOI, PMID, journal, compound + mechanism relationships and guide linkage."
+    >
+      {rows.length === 0 ? (
+        <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+          All studies pass citation checks.
+        </div>
+      ) : (
+        <div className="overflow-x-auto rounded-lg border border-border bg-card">
+          <table className="w-full border-collapse text-left text-sm">
+            <thead className="bg-muted/40">
+              <tr>
+                <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Severity</th>
+                <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Study</th>
+                <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((i, idx) => (
+                <tr key={idx} className="border-t border-border">
+                  <td className={`px-3 py-2 text-xs font-semibold uppercase ${toneFor(i.severity)}`}>{i.severity}</td>
+                  <td className="px-3 py-2 text-xs text-muted-foreground">{i.studySlug}</td>
+                  <td className="px-3 py-2 text-sm text-foreground">{i.message}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </SectionShell>
+  );
+}
+
+function InternalLinkSection() {
+  const rows = runInternalLinkAudit();
+  const failing = rows.filter((r) => !r.passes);
+  return (
+    <SectionShell
+      title="Internal-link audit"
+      description="Targets: ≥5 outbound, ≥3 inbound, ≥3 glossary, ≥2 study references per populated educational page."
+    >
+      <div className="mb-2 flex flex-wrap gap-3 text-xs">
+        <span className="rounded-md border border-border bg-card px-3 py-1">
+          {rows.length} audited
+        </span>
+        <span className="rounded-md border border-border bg-card px-3 py-1 text-amber-700 dark:text-amber-300">
+          {failing.length} below target
+        </span>
+      </div>
+      <div className="overflow-x-auto rounded-lg border border-border bg-card">
+        <table className="w-full border-collapse text-left text-sm">
+          <thead className="bg-muted/40">
+            <tr>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Page</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Type</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Out</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">In</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Gloss</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Study</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Missing</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.path} className="border-t border-border">
+                <td className="px-3 py-2 text-xs">
+                  <a href={r.path} className="text-foreground hover:text-[color:var(--gold)]">{r.title}</a>
+                </td>
+                <td className="px-3 py-2 text-xs text-muted-foreground">{r.entityType}</td>
+                <td className="px-3 py-2 text-xs">{r.outboundLinks}</td>
+                <td className="px-3 py-2 text-xs">{r.inboundLinks}</td>
+                <td className="px-3 py-2 text-xs">{r.glossaryLinks}</td>
+                <td className="px-3 py-2 text-xs">{r.studyLinks}</td>
+                <td className={`px-3 py-2 text-xs ${r.passes ? "text-muted-foreground" : "text-amber-700 dark:text-amber-300"}`}>
+                  {r.passes ? "OK" : r.missing.join(", ")}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </SectionShell>
+  );
+}
+
+function CitationAuditSection() {
+  const rows = runCitationAudit();
+  const failing = rows.filter((r) => !r.passes);
+  return (
+    <SectionShell
+      title="Citation quality"
+      description="Every published study should expose DOI, journal, publication year and evidence tier."
+    >
+      <div className="mb-2 flex flex-wrap gap-3 text-xs">
+        <span className="rounded-md border border-border bg-card px-3 py-1">
+          {rows.length} studies
+        </span>
+        <span className="rounded-md border border-border bg-card px-3 py-1 text-amber-700 dark:text-amber-300">
+          {failing.length} incomplete
+        </span>
+      </div>
+      <div className="overflow-x-auto rounded-lg border border-border bg-card">
+        <table className="w-full border-collapse text-left text-sm">
+          <thead className="bg-muted/40">
+            <tr>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Study</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">DOI</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">PMID</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Journal</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Year</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Tier</th>
+              <th className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Passes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.slug} className="border-t border-border">
+                <td className="px-3 py-2 text-xs">
+                  <a href={`/research-hub/literature/${r.slug}`} className="text-foreground hover:text-[color:var(--gold)]">{r.title}</a>
+                </td>
+                <td className="px-3 py-2 text-xs">{r.hasDoi ? "✓" : "—"}</td>
+                <td className="px-3 py-2 text-xs">{r.hasPmid ? "✓" : "—"}</td>
+                <td className="px-3 py-2 text-xs">{r.hasJournal ? "✓" : "—"}</td>
+                <td className="px-3 py-2 text-xs">{r.hasYear ? "✓" : "—"}</td>
+                <td className="px-3 py-2 text-xs">{r.hasEvidenceTier ? "✓" : "—"}</td>
+                <td className={`px-3 py-2 text-xs ${r.passes ? "text-emerald-700 dark:text-emerald-300" : "text-amber-700 dark:text-amber-300"}`}>
+                  {r.passes ? "PASS" : "FAIL"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </SectionShell>
+  );
+}
+
