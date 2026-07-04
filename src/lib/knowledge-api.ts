@@ -157,7 +157,7 @@ export interface KnowledgeIdentity {
   /** Human-readable title. */
   title: string;
   /** Optional aliases used by search. */
-  aliases?: string[];
+  aliases?: readonly string[];
   /** Canonical path within the app (when the entity has a dedicated page). */
   path?: string;
 }
