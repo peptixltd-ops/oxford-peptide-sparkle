@@ -217,6 +217,11 @@ function EditorialDashboardPage() {
             </div>
           )}
         </section>
+
+        <ExtendedGovernanceSection />
+        <StudyCitationSection />
+        <InternalLinkSection />
+        <CitationAuditSection />
       </main>
       <SiteFooter />
     </div>
