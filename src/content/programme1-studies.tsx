@@ -259,7 +259,7 @@ function buildStudyContent(cfg: StudyConfig): StudyContent {
           heading="Compound reference"
         />
       ),
-      relatedMechanisms: undefined,
+      
       relatedGuides: (
         <>
           <RelatedGuides
