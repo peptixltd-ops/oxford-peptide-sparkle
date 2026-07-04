@@ -610,6 +610,54 @@ export const guides: readonly Guide[] = [
     reviewer: "scientific-review-panel",
     populated: true,
   },
+
+  // ---- Authority Sprint 3B — Tirzepatide cluster ----
+  {
+    slug: "what-is-tirzepatide",
+    title: "What is Tirzepatide?",
+    categoryId: "guides",
+    typeId: "primer",
+    compoundSlugs: ["tirzepatide"],
+    mechanismIds: ["glp1r", "gipr"],
+    areaIds: ["receptor-studies"],
+    summary:
+      "Beginner-friendly research-focused introduction to Tirzepatide — a dual GIP / GLP-1 receptor agonist positioned between Semaglutide and Retatrutide in incretin pharmacology.",
+    readingMinutes: 6,
+    updated: "2026-11-05",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "tirzepatide-mechanism-of-action",
+    title: "Tirzepatide Mechanism of Action",
+    categoryId: "guides",
+    typeId: "mechanism-note",
+    compoundSlugs: ["tirzepatide"],
+    mechanismIds: ["glp1r", "gipr"],
+    summary:
+      "Receptor-level explanation of Tirzepatide as a dual GIP / GLP-1 receptor agonist — dual cAMP / PKA signalling, biased β-arrestin engagement at GLP-1R, GIP-adipocyte biology and integrated satiety signalling.",
+    readingMinutes: 8,
+    updated: "2026-11-05",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
+  {
+    slug: "tirzepatide-faq",
+    title: "Tirzepatide FAQ",
+    categoryId: "guides",
+    typeId: "primer",
+    compoundSlugs: ["tirzepatide"],
+    mechanismIds: ["glp1r", "gipr"],
+    summary:
+      "Comprehensive research-focused FAQ on Tirzepatide — identity, dual-receptor pharmacology, structural modifications, pharmacokinetics, laboratory handling, evidence base and regulatory status.",
+    readingMinutes: 7,
+    updated: "2026-11-05",
+    author: "orp-editorial-team",
+    reviewer: "scientific-review-panel",
+    populated: true,
+  },
 ];
 
 export interface CompoundEntry {
