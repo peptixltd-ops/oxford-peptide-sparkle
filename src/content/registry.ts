@@ -144,6 +144,33 @@ const combinedCompoundMonographs: Record<string, CompoundMonographRecord> = {
       },
     ]),
   ),
+  ...Object.fromEntries(
+    Object.entries(tirzepatideCompoundRegistry).map(([slug, entry]) => [
+      slug,
+      {
+        meta: {
+          slug: entry.meta.slug,
+          title: entry.meta.title,
+          path: entry.meta.path,
+          shortDescription: entry.meta.shortDescription,
+          aliases: entry.meta.aliases,
+          molecularFormula: entry.meta.molecularFormula,
+          molecularWeight: entry.meta.molecularWeight,
+          cas: entry.meta.cas,
+          identifiers: [
+            { propertyID: "CAS", value: entry.meta.cas },
+            { propertyID: "developmentalCode", value: "LY3298176" },
+            { propertyID: "Wikidata", value: "Q97154240" },
+            { propertyID: "DrugBank", value: "DB15171" },
+          ],
+          datePublished: entry.meta.datePublished,
+          dateModified: entry.meta.dateModified,
+        },
+        build: entry.build,
+        faqs: entry.faqs,
+      },
+    ]),
+  ),
 };
 
 export function getCompoundMonographRecord(
