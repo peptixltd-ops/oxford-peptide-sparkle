@@ -10,6 +10,12 @@ import {
   type GovernanceIssue,
   type TopicCluster,
 } from "@/lib/topic-clusters";
+import {
+  runExtendedGovernance,
+  runInternalLinkAudit,
+  runStudyCitationAudit,
+} from "@/lib/study-graph";
+import { runCitationAudit } from "@/lib/editorial-graph";
 
 export const Route = createFileRoute("/dashboard/editorial")({
   head: () =>
