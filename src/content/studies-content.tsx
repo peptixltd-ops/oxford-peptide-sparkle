@@ -846,11 +846,14 @@ const flowTrial: StudyContent = {
 // Registry + lookup
 // ---------------------------------------------------------------------------
 
+import { programme1Studies } from "@/content/programme1-studies";
+
 const studyRegistry: readonly StudyContent[] = [
   sustain6,
   stepProgramme,
   selectTrial,
   flowTrial,
+  ...programme1Studies,
 ];
 
 export function getStudyContent(slug: string): StudyContent | undefined {
