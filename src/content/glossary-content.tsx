@@ -2258,8 +2258,184 @@ const batch2Entries: readonly GlossaryContent[] = batch2Defs.map((d) => ({
 }));
 
 // ---------------------------------------------------------------------------
+// Glossary Batch 3 — Tirzepatide cluster (Authority Sprint 3B)
+// ---------------------------------------------------------------------------
+
+const SPRINT_3B_DATE = "2026-11-05";
+
+const batch3Defs: readonly Batch2Def[] = [
+  {
+    slug: "dual-incretin-agonism",
+    term: "Dual Incretin Agonism",
+    aliases: ["Dual GIP/GLP-1 receptor agonism"],
+    short:
+      "Concurrent activation of the GIP and GLP-1 receptors by a single ligand, exemplified by Tirzepatide.",
+    bodyParas: [
+      "Dual incretin agonism describes the pharmacological strategy of activating both the glucose-dependent insulinotropic polypeptide (GIP) receptor and the glucagon-like peptide-1 (GLP-1) receptor with a single molecule. Tirzepatide is the first clinically approved dual incretin receptor agonist.",
+      "The rationale is complementary rather than additive coverage: GIP and GLP-1 receptors are expressed on overlapping but non-identical cell populations — β-cells, α-cells, adipocytes, vagal afferents and central satiety circuits — and combined engagement broadens the incretin response beyond what a mono-agonist such as Semaglutide can achieve.",
+    ],
+    why: "Dual incretin agonism is the defining pharmacological concept behind Tirzepatide and a stepping stone to triple agonists such as Retatrutide.",
+    relatedGlossarySlugs: ["incretin", "glp-1", "gip-adipocyte-axis", "glp-1-receptor-agonist"],
+    relatedCompoundSlugs: ["tirzepatide", "semaglutide"],
+    relatedGuideSlugs: ["what-is-tirzepatide", "tirzepatide-mechanism-of-action", "triple-agonists-explained"],
+  },
+  {
+    slug: "gip-adipocyte-axis",
+    term: "GIP-Adipocyte Axis",
+    aliases: ["GIP-adipose axis"],
+    short:
+      "GIP-receptor signalling on adipocytes that modulates lipid handling and insulin sensitivity in adipose tissue.",
+    bodyParas: [
+      "GIP receptors (GIPR) are expressed on adipocytes, where GIP signalling modulates triglyceride handling, lipoprotein lipase activity and insulin sensitivity. This adipose-tissue arm of GIP biology is one of the features that distinguishes GIP-active pharmacology from selective GLP-1 receptor agonism.",
+      "Dual GIP / GLP-1 agonists such as Tirzepatide engage the GIP-adipocyte axis directly. The clinical significance of this axis relative to central appetite signalling remains an active research question, with rodent and human data both contributing.",
+    ],
+    why: "The GIP-adipocyte axis is a distinguishing mechanistic feature of dual and triple agonists compared with GLP-1 mono-agonists.",
+    relatedGlossarySlugs: ["dual-incretin-agonism", "incretin", "glp-1-receptor-agonist"],
+    relatedCompoundSlugs: ["tirzepatide", "retatrutide"],
+    relatedGuideSlugs: ["tirzepatide-mechanism-of-action", "gip-receptor-explained"],
+  },
+  {
+    slug: "satiety-signalling",
+    term: "Satiety Signalling",
+    aliases: ["Satiety pathway"],
+    short:
+      "Integrated central-nervous-system pathways in the hypothalamus and hindbrain that translate incretin engagement into reduced food intake.",
+    bodyParas: [
+      "Satiety signalling refers to the central-nervous-system pathways that integrate peripheral and hormonal inputs into a sensation of fullness that reduces food intake. Key nodes include the nucleus of the solitary tract (NTS) and area postrema in the hindbrain and POMC / NPY-AgRP neurons in the hypothalamic arcuate nucleus.",
+      "Both GIP and GLP-1 receptors are expressed at these nodes. Dual GIP / GLP-1 agonists such as Tirzepatide engage more of the satiety network than GLP-1 mono-agonists, which is one hypothesised contributor to the reported effects on food intake in preclinical models.",
+    ],
+    why: "Satiety signalling is the central-nervous-system substrate through which incretin pharmacology reduces food intake.",
+    relatedGlossarySlugs: ["dual-incretin-agonism", "pomc-neuron", "npy-neuron", "gastric-emptying"],
+    relatedCompoundSlugs: ["tirzepatide", "semaglutide"],
+    relatedGuideSlugs: ["tirzepatide-mechanism-of-action", "semaglutide-mechanism-of-action"],
+  },
+  {
+    slug: "gs-protein",
+    term: "Gs Protein",
+    aliases: ["Gαs", "Stimulatory G protein"],
+    short:
+      "Stimulatory heterotrimeric G protein (Gαs) that couples class B GPCRs to adenylyl cyclase and cAMP production.",
+    bodyParas: [
+      "Gs protein (Gαs) is the stimulatory α-subunit of the heterotrimeric G protein family. When a class B G-protein-coupled receptor such as GLP-1R or GIPR is activated, Gαs dissociates from the βγ subunits and stimulates membrane-bound adenylyl cyclase, elevating intracellular cyclic AMP.",
+      "Elevated cAMP activates protein kinase A and EPAC2, driving downstream phosphorylation and exocytotic events. Gαs coupling is the canonical signalling arm of incretin receptors — both native and pharmacological.",
+    ],
+    why: "Gαs coupling is the foundational signal-transduction step for every GLP-1 and GIP receptor agonist.",
+    relatedGlossarySlugs: ["gpcr", "camp", "camp-pka-signalling", "protein-kinase-a", "second-messenger"],
+    relatedCompoundSlugs: ["tirzepatide", "semaglutide"],
+    sameAs: ["https://en.wikipedia.org/wiki/Gs_alpha_subunit"],
+  },
+  {
+    slug: "c20-fatty-diacid",
+    term: "C20 Fatty Diacid",
+    aliases: ["Eicosanedioic acid moiety", "C20 di-acid"],
+    short:
+      "Twenty-carbon dicarboxylic acid used as the albumin-binding side chain of Tirzepatide, attached at Lys20 via a γGlu-2xOEG spacer.",
+    bodyParas: [
+      "The C20 fatty-di-acid is a twenty-carbon dicarboxylic-acid moiety attached to Tirzepatide at the lysine-20 side chain through a γGlu-2xOEG spacer. It functions as the albumin-binding element, occupying serum-albumin fatty-acid binding sites reversibly.",
+      "The chemistry is a step longer than Semaglutide's C18 fatty-di-acid. The extended chain contributes to Tirzepatide's high plasma protein binding and its reported plasma half-life of approximately five days.",
+    ],
+    why: "The C20 di-acid side chain is the structural key to Tirzepatide's once-weekly kinetics.",
+    relatedGlossarySlugs: ["acylation", "albumin-binding", "weekly-dosing-pharmacokinetics", "half-life"],
+    relatedCompoundSlugs: ["tirzepatide"],
+    relatedGuideSlugs: ["albumin-binding-half-life-extension", "tirzepatide-mechanism-of-action"],
+  },
+  {
+    slug: "weekly-dosing-pharmacokinetics",
+    term: "Weekly Dosing Pharmacokinetics",
+    aliases: ["Once-weekly PK"],
+    short:
+      "Pharmacokinetic profile — typically half-life of several days plus reversible albumin binding — that supports once-weekly subcutaneous administration.",
+    bodyParas: [
+      "Weekly dosing pharmacokinetics describes the pharmacokinetic profile characteristic of long-acting incretin analogues such as Semaglutide (~1 week half-life) and Tirzepatide (~5 day half-life) that supports once-weekly subcutaneous administration.",
+      "The profile requires DPP-4 resistance (typically through Aib substitutions) combined with reversible non-covalent albumin binding (through a fatty-acid side chain). Steady state is reached after approximately five half-lives — four to five weeks for these analogues.",
+    ],
+    why: "Weekly dosing pharmacokinetics is a defining property of the modern long-acting incretin analogue class.",
+    relatedGlossarySlugs: ["half-life", "steady-state", "albumin-binding", "acylation", "subcutaneous-administration"],
+    relatedCompoundSlugs: ["tirzepatide", "semaglutide"],
+    relatedGuideSlugs: ["semaglutide-pharmacokinetics", "albumin-binding-half-life-extension"],
+  },
+  {
+    slug: "surpass-programme",
+    term: "SURPASS Programme",
+    aliases: ["SURPASS trials", "SURPASS-1", "SURPASS-2"],
+    short:
+      "Randomised trial programme evaluating Tirzepatide in adults with type 2 diabetes across monotherapy and active-comparator studies (SURPASS-1 through SURPASS-5).",
+    bodyParas: [
+      "The SURPASS programme is a series of randomised phase-3 clinical trials evaluating once-weekly subcutaneous Tirzepatide in adults with type 2 diabetes. SURPASS-1 (Rosenstock 2021) tested Tirzepatide as monotherapy against placebo; SURPASS-2 (Frías 2021) was a head-to-head comparison with once-weekly Semaglutide 1 mg.",
+      "The programme extends across multiple background-therapy and active-comparator arms (SURPASS-3 through SURPASS-5). Primary and key secondary endpoints centre on HbA1c change from baseline and body-weight change.",
+    ],
+    why: "SURPASS is the core evidence base for Tirzepatide in type 2 diabetes and includes the first head-to-head trial versus a long-acting GLP-1 mono-agonist.",
+    relatedGlossarySlugs: ["hba1c-endpoint", "dual-incretin-agonism", "glp-1-receptor-agonist"],
+    relatedCompoundSlugs: ["tirzepatide", "semaglutide"],
+    relatedGuideSlugs: ["tirzepatide-faq", "what-is-tirzepatide"],
+  },
+  {
+    slug: "surmount-programme",
+    term: "SURMOUNT Programme",
+    aliases: ["SURMOUNT trials", "SURMOUNT-1"],
+    short:
+      "Randomised trial programme evaluating Tirzepatide for weight management in adults with overweight or obesity (SURMOUNT-1 onwards).",
+    bodyParas: [
+      "The SURMOUNT programme is a series of randomised phase-3 clinical trials evaluating once-weekly subcutaneous Tirzepatide for weight management. SURMOUNT-1 (Jastreboff 2022) evaluated Tirzepatide versus placebo in adults with obesity or overweight with a weight-related complication, without type 2 diabetes.",
+      "The programme extends across additional populations and comparators. Primary endpoints centre on percent body-weight change and the proportion of participants achieving pre-specified weight-loss thresholds.",
+    ],
+    why: "SURMOUNT is the core evidence base for Tirzepatide as a weight-management pharmacotherapy.",
+    relatedGlossarySlugs: ["dual-incretin-agonism", "satiety-signalling", "dio-model"],
+    relatedCompoundSlugs: ["tirzepatide"],
+    relatedGuideSlugs: ["what-is-tirzepatide", "tirzepatide-faq"],
+  },
+  {
+    slug: "hba1c-endpoint",
+    term: "HbA1c Endpoint",
+    aliases: ["Glycated haemoglobin", "HbA1c"],
+    short:
+      "Glycated haemoglobin measured as a percentage; standard endpoint for glycaemic-control research reflecting average blood glucose over the preceding two to three months.",
+    bodyParas: [
+      "HbA1c (glycated haemoglobin) reflects the non-enzymatic glycation of the β-chain N-terminus of haemoglobin A. Because erythrocytes have an average lifespan of approximately 120 days, HbA1c integrates average blood glucose over roughly two to three months.",
+      "HbA1c is the standard primary endpoint in glycaemic-control trials of GLP-1 receptor agonists and dual incretin agonists, including the SURPASS programme for Tirzepatide and the SUSTAIN programme for Semaglutide. It is typically reported as a percentage (DCCT) or mmol/mol (IFCC).",
+    ],
+    why: "HbA1c is the reference outcome measure that anchors interpretation of every glycaemic-control trial in incretin pharmacology.",
+    relatedGlossarySlugs: ["surpass-programme", "dual-incretin-agonism", "glp-1-receptor-agonist"],
+    relatedCompoundSlugs: ["tirzepatide", "semaglutide"],
+    sameAs: [
+      "https://www.wikidata.org/wiki/Q412921",
+      "https://en.wikipedia.org/wiki/Glycated_hemoglobin",
+    ],
+  },
+];
+
+const batch3Entries: readonly GlossaryContent[] = batch3Defs.map((d) => ({
+  slug: d.slug,
+  term: d.term,
+  short: d.short,
+  aliases: d.aliases,
+  body: (
+    <>
+      {d.bodyParas.map((para, i) => (
+        <P key={i}>{para}</P>
+      ))}
+      <Why>{d.why}</Why>
+    </>
+  ),
+  relatedCompoundSlugs: d.relatedCompoundSlugs,
+  relatedGuideSlugs: d.relatedGuideSlugs,
+  relatedGlossarySlugs: d.relatedGlossarySlugs,
+  definedTerm: {
+    path: `/research-hub/glossary/${d.slug}`,
+    name: d.term,
+    description: d.short,
+    termCode: d.termCode ?? d.slug,
+    inDefinedTermSet: KG_SET,
+    sameAs: d.sameAs,
+  },
+  datePublished: SPRINT_3B_DATE,
+  dateModified: SPRINT_3B_DATE,
+}));
+
+// ---------------------------------------------------------------------------
 // Registry
 // ---------------------------------------------------------------------------
+
 
 export const glossaryContentRegistry: readonly GlossaryContent[] = [
   // Authority Sprint 1B
