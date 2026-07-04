@@ -2482,6 +2482,8 @@ export const glossaryContentRegistry: readonly GlossaryContent[] = [
   certificateOfAnalysis,
   // Authority Sprint 2B — Semaglutide cluster
   ...batch2Entries,
+  // Authority Sprint 3B — Tirzepatide cluster
+  ...batch3Entries,
 ];
 
 export function getGlossaryContent(slug: string): GlossaryContent | undefined {
