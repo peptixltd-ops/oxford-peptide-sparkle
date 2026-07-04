@@ -733,6 +733,8 @@ export const compoundEntries: readonly CompoundEntry[] = [
     populated: true,
   },
 ];
+
+export interface GlossaryTerm {
   slug: string;
   term: string;
   short: string;
