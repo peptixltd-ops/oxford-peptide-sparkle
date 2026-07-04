@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { products } from "@/lib/products";
 import { compoundEntries, guides, glossaryTerms, comparisons, studies } from "@/lib/taxonomy";
+import { programmeDefinitions } from "@/lib/programmes";
+import { studyCollections } from "@/lib/study-collections";
+import { authorProfileIds, reviewerProfileIds } from "@/lib/editorial-graph";
 
 const BASE_URL = "https://oxfordresearchpeptides.com";
 
@@ -67,6 +70,20 @@ export const Route = createFileRoute("/sitemap.xml")({
         }
         for (const s of studies.filter((s) => s.populated)) {
           entries.push({ path: `/research-hub/literature/${s.slug}`, changefreq: "monthly", priority: "0.6" });
+        }
+        entries.push({ path: "/research-hub/programmes", changefreq: "monthly", priority: "0.6" });
+        for (const p of programmeDefinitions) {
+          entries.push({ path: `/research-hub/programmes/${p.slug}`, changefreq: "monthly", priority: "0.6" });
+        }
+        entries.push({ path: "/research-hub/collections", changefreq: "monthly", priority: "0.6" });
+        for (const c of studyCollections) {
+          entries.push({ path: `/research-hub/collections/${c.slug}`, changefreq: "monthly", priority: "0.6" });
+        }
+        for (const id of authorProfileIds) {
+          entries.push({ path: `/editorial/authors/${id}`, changefreq: "monthly", priority: "0.5" });
+        }
+        for (const id of reviewerProfileIds) {
+          entries.push({ path: `/editorial/reviewers/${id}`, changefreq: "monthly", priority: "0.5" });
         }
 
         const urls = entries.map(e =>

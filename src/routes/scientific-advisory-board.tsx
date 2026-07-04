@@ -15,12 +15,17 @@ function isReviewer(p: Person): p is ScientificReviewer {
 }
 
 function PersonCard({ p }: { p: Person }) {
+  const profilePath = isReviewer(p)
+    ? `/editorial/reviewers/${p.id}`
+    : `/editorial/authors/${p.id}`;
   return (
     <article className="border border-navy-deep/15 bg-white p-5 rounded-sm">
       <div className="text-[10px] font-bold tracking-[0.25em] text-gold/90 uppercase mb-2">
         {p.role}
       </div>
-      <div className="font-display text-lg text-navy-deep">{p.name}</div>
+      <div className="font-display text-lg text-navy-deep">
+        <a href={profilePath} className="hover:text-gold">{p.name}</a>
+      </div>
       {p.credentials && (
         <div className="text-xs text-navy-deep/70 mt-1">{p.credentials}</div>
       )}
@@ -35,6 +40,11 @@ function PersonCard({ p }: { p: Person }) {
       {p.bio && (
         <p className="text-[13px] leading-relaxed text-navy-deep/80 mt-3">{p.bio}</p>
       )}
+      <div className="mt-3">
+        <a href={profilePath} className="text-xs text-gold hover:underline">
+          View {isReviewer(p) ? "reviewer" : "author"} profile →
+        </a>
+      </div>
     </article>
   );
 }

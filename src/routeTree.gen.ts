@@ -51,6 +51,7 @@ import { Route as ExploreMechanismsRouteImport } from './routes/explore.mechanis
 import { Route as ExploreCompoundsRouteImport } from './routes/explore.compounds'
 import { Route as DashboardEditorialRouteImport } from './routes/dashboard.editorial'
 import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
+import { Route as ResearchHubProgrammesIndexRouteImport } from './routes/research-hub.programmes.index'
 import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
 import { Route as ResearchHubMechanismsIndexRouteImport } from './routes/research-hub.mechanisms.index'
 import { Route as ResearchHubLiteratureIndexRouteImport } from './routes/research-hub.literature.index'
@@ -58,14 +59,19 @@ import { Route as ResearchHubGuidesIndexRouteImport } from './routes/research-hu
 import { Route as ResearchHubGlossaryIndexRouteImport } from './routes/research-hub.glossary.index'
 import { Route as ResearchHubFaqsIndexRouteImport } from './routes/research-hub.faqs.index'
 import { Route as ResearchHubComparisonsIndexRouteImport } from './routes/research-hub.comparisons.index'
+import { Route as ResearchHubCollectionsIndexRouteImport } from './routes/research-hub.collections.index'
 import { Route as ExplorePathwaysIndexRouteImport } from './routes/explore.pathways.index'
+import { Route as ResearchHubProgrammesSlugRouteImport } from './routes/research-hub.programmes.$slug'
 import { Route as ResearchHubMethodologySlugRouteImport } from './routes/research-hub.methodology.$slug'
 import { Route as ResearchHubMechanismsSlugRouteImport } from './routes/research-hub.mechanisms.$slug'
 import { Route as ResearchHubLiteratureSlugRouteImport } from './routes/research-hub.literature.$slug'
 import { Route as ResearchHubGuidesSlugRouteImport } from './routes/research-hub.guides.$slug'
 import { Route as ResearchHubGlossarySlugRouteImport } from './routes/research-hub.glossary.$slug'
 import { Route as ResearchHubComparisonsSlugRouteImport } from './routes/research-hub.comparisons.$slug'
+import { Route as ResearchHubCollectionsSlugRouteImport } from './routes/research-hub.collections.$slug'
 import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
+import { Route as EditorialReviewersIdRouteImport } from './routes/editorial.reviewers.$id'
+import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.authors.$id'
 
 const WholesaleRoute = WholesaleRouteImport.update({
   id: '/wholesale',
@@ -278,6 +284,12 @@ const CompoundsSlugRoute = CompoundsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => CompoundsRoute,
 } as any)
+const ResearchHubProgrammesIndexRoute =
+  ResearchHubProgrammesIndexRouteImport.update({
+    id: '/programmes/',
+    path: '/programmes/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
 const ResearchHubMethodologyIndexRoute =
   ResearchHubMethodologyIndexRouteImport.update({
     id: '/methodology/',
@@ -318,11 +330,23 @@ const ResearchHubComparisonsIndexRoute =
     path: '/comparisons/',
     getParentRoute: () => ResearchHubRoute,
   } as any)
+const ResearchHubCollectionsIndexRoute =
+  ResearchHubCollectionsIndexRouteImport.update({
+    id: '/collections/',
+    path: '/collections/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
 const ExplorePathwaysIndexRoute = ExplorePathwaysIndexRouteImport.update({
   id: '/pathways/',
   path: '/pathways/',
   getParentRoute: () => ExploreRoute,
 } as any)
+const ResearchHubProgrammesSlugRoute =
+  ResearchHubProgrammesSlugRouteImport.update({
+    id: '/programmes/$slug',
+    path: '/programmes/$slug',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
 const ResearchHubMethodologySlugRoute =
   ResearchHubMethodologySlugRouteImport.update({
     id: '/methodology/$slug',
@@ -357,10 +381,26 @@ const ResearchHubComparisonsSlugRoute =
     path: '/comparisons/$slug',
     getParentRoute: () => ResearchHubRoute,
   } as any)
+const ResearchHubCollectionsSlugRoute =
+  ResearchHubCollectionsSlugRouteImport.update({
+    id: '/collections/$slug',
+    path: '/collections/$slug',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
 const ExplorePathwaysTypeRoute = ExplorePathwaysTypeRouteImport.update({
   id: '/pathways/$type',
   path: '/pathways/$type',
   getParentRoute: () => ExploreRoute,
+} as any)
+const EditorialReviewersIdRoute = EditorialReviewersIdRouteImport.update({
+  id: '/editorial/reviewers/$id',
+  path: '/editorial/reviewers/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialAuthorsIdRoute = EditorialAuthorsIdRouteImport.update({
+  id: '/editorial/authors/$id',
+  path: '/editorial/authors/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -406,14 +446,19 @@ export interface FileRoutesByFullPath {
   '/compounds/': typeof CompoundsIndexRoute
   '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
+  '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
+  '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
+  '/research-hub/collections/$slug': typeof ResearchHubCollectionsSlugRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
   '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
   '/research-hub/literature/$slug': typeof ResearchHubLiteratureSlugRoute
   '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
   '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/research-hub/programmes/$slug': typeof ResearchHubProgrammesSlugRoute
   '/explore/pathways/': typeof ExplorePathwaysIndexRoute
+  '/research-hub/collections/': typeof ResearchHubCollectionsIndexRoute
   '/research-hub/comparisons/': typeof ResearchHubComparisonsIndexRoute
   '/research-hub/faqs/': typeof ResearchHubFaqsIndexRoute
   '/research-hub/glossary/': typeof ResearchHubGlossaryIndexRoute
@@ -421,6 +466,7 @@ export interface FileRoutesByFullPath {
   '/research-hub/literature/': typeof ResearchHubLiteratureIndexRoute
   '/research-hub/mechanisms/': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology/': typeof ResearchHubMethodologyIndexRoute
+  '/research-hub/programmes/': typeof ResearchHubProgrammesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -462,14 +508,19 @@ export interface FileRoutesByTo {
   '/compounds': typeof CompoundsIndexRoute
   '/explore': typeof ExploreIndexRoute
   '/research-hub': typeof ResearchHubIndexRoute
+  '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
+  '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
+  '/research-hub/collections/$slug': typeof ResearchHubCollectionsSlugRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
   '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
   '/research-hub/literature/$slug': typeof ResearchHubLiteratureSlugRoute
   '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
   '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/research-hub/programmes/$slug': typeof ResearchHubProgrammesSlugRoute
   '/explore/pathways': typeof ExplorePathwaysIndexRoute
+  '/research-hub/collections': typeof ResearchHubCollectionsIndexRoute
   '/research-hub/comparisons': typeof ResearchHubComparisonsIndexRoute
   '/research-hub/faqs': typeof ResearchHubFaqsIndexRoute
   '/research-hub/glossary': typeof ResearchHubGlossaryIndexRoute
@@ -477,6 +528,7 @@ export interface FileRoutesByTo {
   '/research-hub/literature': typeof ResearchHubLiteratureIndexRoute
   '/research-hub/mechanisms': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology': typeof ResearchHubMethodologyIndexRoute
+  '/research-hub/programmes': typeof ResearchHubProgrammesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -522,14 +574,19 @@ export interface FileRoutesById {
   '/compounds/': typeof CompoundsIndexRoute
   '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
+  '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
+  '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
+  '/research-hub/collections/$slug': typeof ResearchHubCollectionsSlugRoute
   '/research-hub/comparisons/$slug': typeof ResearchHubComparisonsSlugRoute
   '/research-hub/glossary/$slug': typeof ResearchHubGlossarySlugRoute
   '/research-hub/guides/$slug': typeof ResearchHubGuidesSlugRoute
   '/research-hub/literature/$slug': typeof ResearchHubLiteratureSlugRoute
   '/research-hub/mechanisms/$slug': typeof ResearchHubMechanismsSlugRoute
   '/research-hub/methodology/$slug': typeof ResearchHubMethodologySlugRoute
+  '/research-hub/programmes/$slug': typeof ResearchHubProgrammesSlugRoute
   '/explore/pathways/': typeof ExplorePathwaysIndexRoute
+  '/research-hub/collections/': typeof ResearchHubCollectionsIndexRoute
   '/research-hub/comparisons/': typeof ResearchHubComparisonsIndexRoute
   '/research-hub/faqs/': typeof ResearchHubFaqsIndexRoute
   '/research-hub/glossary/': typeof ResearchHubGlossaryIndexRoute
@@ -537,6 +594,7 @@ export interface FileRoutesById {
   '/research-hub/literature/': typeof ResearchHubLiteratureIndexRoute
   '/research-hub/mechanisms/': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology/': typeof ResearchHubMethodologyIndexRoute
+  '/research-hub/programmes/': typeof ResearchHubProgrammesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -583,14 +641,19 @@ export interface FileRouteTypes {
     | '/compounds/'
     | '/explore/'
     | '/research-hub/'
+    | '/editorial/authors/$id'
+    | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
+    | '/research-hub/collections/$slug'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
     | '/research-hub/guides/$slug'
     | '/research-hub/literature/$slug'
     | '/research-hub/mechanisms/$slug'
     | '/research-hub/methodology/$slug'
+    | '/research-hub/programmes/$slug'
     | '/explore/pathways/'
+    | '/research-hub/collections/'
     | '/research-hub/comparisons/'
     | '/research-hub/faqs/'
     | '/research-hub/glossary/'
@@ -598,6 +661,7 @@ export interface FileRouteTypes {
     | '/research-hub/literature/'
     | '/research-hub/mechanisms/'
     | '/research-hub/methodology/'
+    | '/research-hub/programmes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -639,14 +703,19 @@ export interface FileRouteTypes {
     | '/compounds'
     | '/explore'
     | '/research-hub'
+    | '/editorial/authors/$id'
+    | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
+    | '/research-hub/collections/$slug'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
     | '/research-hub/guides/$slug'
     | '/research-hub/literature/$slug'
     | '/research-hub/mechanisms/$slug'
     | '/research-hub/methodology/$slug'
+    | '/research-hub/programmes/$slug'
     | '/explore/pathways'
+    | '/research-hub/collections'
     | '/research-hub/comparisons'
     | '/research-hub/faqs'
     | '/research-hub/glossary'
@@ -654,6 +723,7 @@ export interface FileRouteTypes {
     | '/research-hub/literature'
     | '/research-hub/mechanisms'
     | '/research-hub/methodology'
+    | '/research-hub/programmes'
   id:
     | '__root__'
     | '/'
@@ -698,14 +768,19 @@ export interface FileRouteTypes {
     | '/compounds/'
     | '/explore/'
     | '/research-hub/'
+    | '/editorial/authors/$id'
+    | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
+    | '/research-hub/collections/$slug'
     | '/research-hub/comparisons/$slug'
     | '/research-hub/glossary/$slug'
     | '/research-hub/guides/$slug'
     | '/research-hub/literature/$slug'
     | '/research-hub/mechanisms/$slug'
     | '/research-hub/methodology/$slug'
+    | '/research-hub/programmes/$slug'
     | '/explore/pathways/'
+    | '/research-hub/collections/'
     | '/research-hub/comparisons/'
     | '/research-hub/faqs/'
     | '/research-hub/glossary/'
@@ -713,6 +788,7 @@ export interface FileRouteTypes {
     | '/research-hub/literature/'
     | '/research-hub/mechanisms/'
     | '/research-hub/methodology/'
+    | '/research-hub/programmes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -752,6 +828,8 @@ export interface RootRouteChildren {
   WholesaleRoute: typeof WholesaleRoute
   DashboardEditorialRoute: typeof DashboardEditorialRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
+  EditorialAuthorsIdRoute: typeof EditorialAuthorsIdRoute
+  EditorialReviewersIdRoute: typeof EditorialReviewersIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1050,6 +1128,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompoundsSlugRouteImport
       parentRoute: typeof CompoundsRoute
     }
+    '/research-hub/programmes/': {
+      id: '/research-hub/programmes/'
+      path: '/programmes'
+      fullPath: '/research-hub/programmes/'
+      preLoaderRoute: typeof ResearchHubProgrammesIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
     '/research-hub/methodology/': {
       id: '/research-hub/methodology/'
       path: '/methodology'
@@ -1099,12 +1184,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchHubComparisonsIndexRouteImport
       parentRoute: typeof ResearchHubRoute
     }
+    '/research-hub/collections/': {
+      id: '/research-hub/collections/'
+      path: '/collections'
+      fullPath: '/research-hub/collections/'
+      preLoaderRoute: typeof ResearchHubCollectionsIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
     '/explore/pathways/': {
       id: '/explore/pathways/'
       path: '/pathways'
       fullPath: '/explore/pathways/'
       preLoaderRoute: typeof ExplorePathwaysIndexRouteImport
       parentRoute: typeof ExploreRoute
+    }
+    '/research-hub/programmes/$slug': {
+      id: '/research-hub/programmes/$slug'
+      path: '/programmes/$slug'
+      fullPath: '/research-hub/programmes/$slug'
+      preLoaderRoute: typeof ResearchHubProgrammesSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
     }
     '/research-hub/methodology/$slug': {
       id: '/research-hub/methodology/$slug'
@@ -1148,12 +1247,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchHubComparisonsSlugRouteImport
       parentRoute: typeof ResearchHubRoute
     }
+    '/research-hub/collections/$slug': {
+      id: '/research-hub/collections/$slug'
+      path: '/collections/$slug'
+      fullPath: '/research-hub/collections/$slug'
+      preLoaderRoute: typeof ResearchHubCollectionsSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
     '/explore/pathways/$type': {
       id: '/explore/pathways/$type'
       path: '/pathways/$type'
       fullPath: '/explore/pathways/$type'
       preLoaderRoute: typeof ExplorePathwaysTypeRouteImport
       parentRoute: typeof ExploreRoute
+    }
+    '/editorial/reviewers/$id': {
+      id: '/editorial/reviewers/$id'
+      path: '/editorial/reviewers/$id'
+      fullPath: '/editorial/reviewers/$id'
+      preLoaderRoute: typeof EditorialReviewersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial/authors/$id': {
+      id: '/editorial/authors/$id'
+      path: '/editorial/authors/$id'
+      fullPath: '/editorial/authors/$id'
+      preLoaderRoute: typeof EditorialAuthorsIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -1193,12 +1313,15 @@ const ExploreRouteWithChildren =
 
 interface ResearchHubRouteChildren {
   ResearchHubIndexRoute: typeof ResearchHubIndexRoute
+  ResearchHubCollectionsSlugRoute: typeof ResearchHubCollectionsSlugRoute
   ResearchHubComparisonsSlugRoute: typeof ResearchHubComparisonsSlugRoute
   ResearchHubGlossarySlugRoute: typeof ResearchHubGlossarySlugRoute
   ResearchHubGuidesSlugRoute: typeof ResearchHubGuidesSlugRoute
   ResearchHubLiteratureSlugRoute: typeof ResearchHubLiteratureSlugRoute
   ResearchHubMechanismsSlugRoute: typeof ResearchHubMechanismsSlugRoute
   ResearchHubMethodologySlugRoute: typeof ResearchHubMethodologySlugRoute
+  ResearchHubProgrammesSlugRoute: typeof ResearchHubProgrammesSlugRoute
+  ResearchHubCollectionsIndexRoute: typeof ResearchHubCollectionsIndexRoute
   ResearchHubComparisonsIndexRoute: typeof ResearchHubComparisonsIndexRoute
   ResearchHubFaqsIndexRoute: typeof ResearchHubFaqsIndexRoute
   ResearchHubGlossaryIndexRoute: typeof ResearchHubGlossaryIndexRoute
@@ -1206,16 +1329,20 @@ interface ResearchHubRouteChildren {
   ResearchHubLiteratureIndexRoute: typeof ResearchHubLiteratureIndexRoute
   ResearchHubMechanismsIndexRoute: typeof ResearchHubMechanismsIndexRoute
   ResearchHubMethodologyIndexRoute: typeof ResearchHubMethodologyIndexRoute
+  ResearchHubProgrammesIndexRoute: typeof ResearchHubProgrammesIndexRoute
 }
 
 const ResearchHubRouteChildren: ResearchHubRouteChildren = {
   ResearchHubIndexRoute: ResearchHubIndexRoute,
+  ResearchHubCollectionsSlugRoute: ResearchHubCollectionsSlugRoute,
   ResearchHubComparisonsSlugRoute: ResearchHubComparisonsSlugRoute,
   ResearchHubGlossarySlugRoute: ResearchHubGlossarySlugRoute,
   ResearchHubGuidesSlugRoute: ResearchHubGuidesSlugRoute,
   ResearchHubLiteratureSlugRoute: ResearchHubLiteratureSlugRoute,
   ResearchHubMechanismsSlugRoute: ResearchHubMechanismsSlugRoute,
   ResearchHubMethodologySlugRoute: ResearchHubMethodologySlugRoute,
+  ResearchHubProgrammesSlugRoute: ResearchHubProgrammesSlugRoute,
+  ResearchHubCollectionsIndexRoute: ResearchHubCollectionsIndexRoute,
   ResearchHubComparisonsIndexRoute: ResearchHubComparisonsIndexRoute,
   ResearchHubFaqsIndexRoute: ResearchHubFaqsIndexRoute,
   ResearchHubGlossaryIndexRoute: ResearchHubGlossaryIndexRoute,
@@ -1223,6 +1350,7 @@ const ResearchHubRouteChildren: ResearchHubRouteChildren = {
   ResearchHubLiteratureIndexRoute: ResearchHubLiteratureIndexRoute,
   ResearchHubMechanismsIndexRoute: ResearchHubMechanismsIndexRoute,
   ResearchHubMethodologyIndexRoute: ResearchHubMethodologyIndexRoute,
+  ResearchHubProgrammesIndexRoute: ResearchHubProgrammesIndexRoute,
 }
 
 const ResearchHubRouteWithChildren = ResearchHubRoute._addFileChildren(
@@ -1266,6 +1394,8 @@ const rootRouteChildren: RootRouteChildren = {
   WholesaleRoute: WholesaleRoute,
   DashboardEditorialRoute: DashboardEditorialRoute,
   ProductsSlugRoute: ProductsSlugRoute,
+  EditorialAuthorsIdRoute: EditorialAuthorsIdRoute,
+  EditorialReviewersIdRoute: EditorialReviewersIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
