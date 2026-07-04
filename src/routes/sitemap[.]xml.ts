@@ -71,6 +71,20 @@ export const Route = createFileRoute("/sitemap.xml")({
         for (const s of studies.filter((s) => s.populated)) {
           entries.push({ path: `/research-hub/literature/${s.slug}`, changefreq: "monthly", priority: "0.6" });
         }
+        entries.push({ path: "/research-hub/programmes", changefreq: "monthly", priority: "0.6" });
+        for (const p of programmeDefinitions) {
+          entries.push({ path: `/research-hub/programmes/${p.slug}`, changefreq: "monthly", priority: "0.6" });
+        }
+        entries.push({ path: "/research-hub/collections", changefreq: "monthly", priority: "0.6" });
+        for (const c of studyCollections) {
+          entries.push({ path: `/research-hub/collections/${c.slug}`, changefreq: "monthly", priority: "0.6" });
+        }
+        for (const id of authorProfileIds) {
+          entries.push({ path: `/editorial/authors/${id}`, changefreq: "monthly", priority: "0.5" });
+        }
+        for (const id of reviewerProfileIds) {
+          entries.push({ path: `/editorial/reviewers/${id}`, changefreq: "monthly", priority: "0.5" });
+        }
 
         const urls = entries.map(e =>
           `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`
