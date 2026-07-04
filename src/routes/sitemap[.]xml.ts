@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { products } from "@/lib/products";
 import { compoundEntries, guides, glossaryTerms, comparisons, studies } from "@/lib/taxonomy";
+import { programmeDefinitions } from "@/lib/programmes";
+import { studyCollections } from "@/lib/study-collections";
+import { authorProfileIds, reviewerProfileIds } from "@/lib/editorial-graph";
 
 const BASE_URL = "https://oxfordresearchpeptides.com";
 
