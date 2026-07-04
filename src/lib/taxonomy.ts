@@ -713,9 +713,26 @@ export const compoundEntries: readonly CompoundEntry[] = [
     ],
     populated: true,
   },
+  {
+    slug: "tirzepatide",
+    name: "Tirzepatide",
+    aliases: ["LY3298176", "Mounjaro (brand)", "Zepbound (brand — obesity)"],
+    familyId: "incretin-mimetics",
+    mechanismIds: ["glp1r", "gipr"],
+    areaIds: ["receptor-studies", "peptide-chemistry"],
+    guideSlugs: [
+      "what-is-tirzepatide",
+      "tirzepatide-mechanism-of-action",
+      "tirzepatide-faq",
+      "glp-1-receptor-explained",
+      "gip-receptor-explained",
+      "triple-agonists-explained",
+      "albumin-binding-half-life-extension",
+      "incretin-effect-explained",
+    ],
+    populated: true,
+  },
 ];
-
-export interface GlossaryTerm {
   slug: string;
   term: string;
   short: string;
