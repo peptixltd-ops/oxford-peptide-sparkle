@@ -614,19 +614,16 @@ export function getAuthor(id: string): KnowledgeEntityResponse<EditorialAuthor> 
     relationships: {
       ...emptyRelationships(),
       guides:
-        profile?.publications
-          .filter((p) => p.type === "guide")
-          .map((p) => ({ type: "guide" as EntityType, slug: p.slug })) ?? [],
+        profile?.publishedGuides.map((p) => ({ type: "guide" as EntityType, slug: p.slug })) ?? [],
       studies:
-        profile?.publications
-          .filter((p) => p.type === "study")
-          .map(
-            (p) => ({ type: "study" as KnowledgeEntityType, slug: p.slug }) as EntityRef,
-          ) ?? [],
+        profile?.publishedStudies.map(
+          (p) => ({ type: "study" as KnowledgeEntityType, slug: p.slug }) as EntityRef,
+        ) ?? [],
       comparisons:
-        profile?.publications
-          .filter((p) => p.type === "comparison")
-          .map((p) => ({ type: "comparison" as EntityType, slug: p.slug })) ?? [],
+        profile?.publishedComparisons.map((p) => ({
+          type: "comparison" as EntityType,
+          slug: p.slug,
+        })) ?? [],
     },
     references: [],
     raw: author,
