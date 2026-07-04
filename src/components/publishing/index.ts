@@ -28,3 +28,6 @@ export * from "./evidence-matrix";
 export * from "./enhanced-references";
 export * from "./article-utilities";
 export * from "./ai-readability";
+
+// Research Asset Programme 1
+export * from "./research-figures";
