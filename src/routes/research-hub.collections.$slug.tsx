@@ -15,7 +15,7 @@ export const Route = createFileRoute("/research-hub/collections/$slug")({
     const c = getStudyCollection(params.slug);
     const path = `/research-hub/collections/${params.slug}`;
     if (!c) {
-      return seo({ path, title: "Collection — Oxford Research Peptides", noindex: true });
+      return seo({ path, title: "Collection — Oxford Research Peptides", description: "Collection not found.", noindex: true });
     }
     return seo({
       path,

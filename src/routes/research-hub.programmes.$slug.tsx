@@ -16,7 +16,7 @@ export const Route = createFileRoute("/research-hub/programmes/$slug")({
     const p = getProgramme(params.slug);
     const path = `/research-hub/programmes/${params.slug}`;
     if (!p) {
-      return seo({ path, title: "Programme — Oxford Research Peptides", noindex: true });
+      return seo({ path, title: "Programme — Oxford Research Peptides", description: "Programme not found.", noindex: true });
     }
     return seo({
       path,
