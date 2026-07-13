@@ -6,9 +6,10 @@ import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
 import { createCheckout, getVariantGid } from "@/lib/shopify";
 import { Trash2, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { seo } from "@/lib/seo";
+import { trackViewCart, trackBeginCheckout } from "@/lib/tracking";
 
 export const Route = createFileRoute("/cart")({
   head: () =>
