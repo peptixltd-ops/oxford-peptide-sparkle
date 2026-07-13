@@ -184,6 +184,7 @@ function RootComponent() {
         <Outlet />
         <Toaster />
         <CookieBanner />
+        <NewsletterPopup />
       </CartProvider>
     </QueryClientProvider>
   );
