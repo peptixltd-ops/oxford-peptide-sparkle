@@ -104,6 +104,7 @@ function CartPage() {
                 </div>
                 <button
                   onClick={async () => {
+                    trackBeginCheckout(lines.map(l => ({ product: l.product, variant: l.variant, quantity: l.item.qty })));
                     setLoading(true);
                     try {
                       const shopLines = lines
