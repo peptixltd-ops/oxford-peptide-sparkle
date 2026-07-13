@@ -175,7 +175,7 @@ export const products: Product[] = [
     img: vialSs31,
     accent: "#7a1f2b",
     description: "Mitochondria-targeted tetrapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
-    variants: [v("50mg", 150)],
+    variants: [v("10mg", 65), v("50mg", 150)],
   },
   {
     slug: "pt-141",

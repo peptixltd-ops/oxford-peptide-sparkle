@@ -28,6 +28,7 @@ export const VARIANT_GID: Record<string, string> = {
   "nad::500mg": "gid://shopify/ProductVariant/54181732843861",
   "pt-141::10mg": "gid://shopify/ProductVariant/54181734875477",
   "semax::30mg": "gid://shopify/ProductVariant/54181737431381",
+  "ss-31::10mg": "gid://shopify/ProductVariant/54366174937429",
   "ss-31::50mg": "gid://shopify/ProductVariant/54181738316117",
   "tb-500::10mg": "gid://shopify/ProductVariant/54181739987285",
   "tesamorelin::10mg": "gid://shopify/ProductVariant/54181746573653",
