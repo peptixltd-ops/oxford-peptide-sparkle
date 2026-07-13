@@ -6,9 +6,10 @@ import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import { createCheckout, getVariantGid } from "@/lib/shopify";
 import { seo, SITE_URL } from "@/lib/seo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ClipboardCheck, FlaskConical, Truck, ShieldCheck, Loader2 } from "lucide-react";
+import { trackViewItem, trackBeginCheckout } from "@/lib/tracking";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -74,7 +75,13 @@ function ProductPage() {
   const variant = product.variants.find((v: Variant) => v.id === variantId) ?? product.variants[0];
   const fmt = (n: number) => `£${n.toFixed(2)}`;
 
+  useEffect(() => {
+    trackViewItem(product, variant);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product.slug, variant.id]);
+
   const buyNow = async () => {
+    trackBeginCheckout([{ product, variant, quantity: qty }]);
     const gid = getVariantGid(product.slug, variant.id);
     if (!gid) { toast.error("Unavailable for checkout"); return; }
     setLoading(true);

@@ -96,6 +96,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" },
     ],
     scripts: [
+      // Google Tag Manager (server-side container via Stape)
+      {
+        children:
+          "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://bhs.oxfordresearchpeptides.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K8DXDC28');",
+      },
       { src: "https://www.googletagmanager.com/gtag/js?id=G-VKHQ1KX316", async: true },
       { children: "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-VKHQ1KX316');" },
       {
@@ -167,6 +172,15 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        {/* GTM (noscript) — must be immediately after opening <body> */}
+        <noscript>
+          <iframe
+            src="https://bhs.oxfordresearchpeptides.com/ns.html?id=GTM-K8DXDC28"
+            height={0}
+            width={0}
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
         <Scripts />
       </body>

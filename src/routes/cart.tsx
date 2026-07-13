@@ -6,9 +6,10 @@ import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
 import { createCheckout, getVariantGid } from "@/lib/shopify";
 import { Trash2, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { seo } from "@/lib/seo";
+import { trackViewCart, trackBeginCheckout } from "@/lib/tracking";
 
 export const Route = createFileRoute("/cart")({
   head: () =>
@@ -37,6 +38,14 @@ function CartPage() {
   const shipping = subtotal > 0 ? 8 : 0;
   const total = subtotal + shipping;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
+
+  useEffect(() => {
+    if (lines.length > 0) {
+      trackViewCart(lines.map(l => ({ product: l.product, variant: l.variant, quantity: l.item.qty })));
+    }
+    // Fire once on mount for the current cart snapshot.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
@@ -95,6 +104,7 @@ function CartPage() {
                 </div>
                 <button
                   onClick={async () => {
+                    trackBeginCheckout(lines.map(l => ({ product: l.product, variant: l.variant, quantity: l.item.qty })));
                     setLoading(true);
                     try {
                       const shopLines = lines
