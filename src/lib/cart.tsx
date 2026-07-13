@@ -1,4 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { getProduct, getVariant } from "./products";
+import { trackAddToCart, trackRemoveFromCart } from "./tracking";
 
 export type CartItem = { slug: string; variantId: string; qty: number };
 
