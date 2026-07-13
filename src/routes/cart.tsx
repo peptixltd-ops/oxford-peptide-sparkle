@@ -39,6 +39,14 @@ function CartPage() {
   const total = subtotal + shipping;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
 
+  useEffect(() => {
+    if (lines.length > 0) {
+      trackViewCart(lines.map(l => ({ product: l.product, variant: l.variant, quantity: l.item.qty })));
+    }
+    // Fire once on mount for the current cart snapshot.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
       <SiteHeader />
