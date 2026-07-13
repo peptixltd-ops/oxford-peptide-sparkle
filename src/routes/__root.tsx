@@ -172,6 +172,15 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        {/* GTM (noscript) — must be immediately after opening <body> */}
+        <noscript>
+          <iframe
+            src="https://bhs.oxfordresearchpeptides.com/ns.html?id=GTM-K8DXDC28"
+            height={0}
+            width={0}
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
         <Scripts />
       </body>
