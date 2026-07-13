@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      newsletter_subscribers: {
+        Row: {
+          code_used_at: string | null
+          discount_code: string
+          email: string
+          id: string
+          ip_hash: string | null
+          metadata: Json | null
+          phone: string | null
+          sms_consent: boolean
+          source: string
+          subscribed_at: string
+          user_agent: string | null
+        }
+        Insert: {
+          code_used_at?: string | null
+          discount_code: string
+          email: string
+          id?: string
+          ip_hash?: string | null
+          metadata?: Json | null
+          phone?: string | null
+          sms_consent?: boolean
+          source?: string
+          subscribed_at?: string
+          user_agent?: string | null
+        }
+        Update: {
+          code_used_at?: string | null
+          discount_code?: string
+          email?: string
+          id?: string
+          ip_hash?: string | null
+          metadata?: Json | null
+          phone?: string | null
+          sms_consent?: boolean
+          source?: string
+          subscribed_at?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
