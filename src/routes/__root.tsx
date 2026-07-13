@@ -15,6 +15,7 @@ import { CartProvider } from "@/lib/cart";
 import { Toaster } from "@/components/ui/sonner";
 import { CookieBanner } from "@/components/cookie-banner";
 import { SkipToContent } from "@/components/skip-to-content";
+import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 function NotFoundComponent() {
@@ -184,6 +185,7 @@ function RootComponent() {
         <Outlet />
         <Toaster />
         <CookieBanner />
+        <NewsletterPopup />
       </CartProvider>
     </QueryClientProvider>
   );
