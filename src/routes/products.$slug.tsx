@@ -6,9 +6,10 @@ import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import { createCheckout, getVariantGid } from "@/lib/shopify";
 import { seo, SITE_URL } from "@/lib/seo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ClipboardCheck, FlaskConical, Truck, ShieldCheck, Loader2 } from "lucide-react";
+import { trackViewItem, trackBeginCheckout } from "@/lib/tracking";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
