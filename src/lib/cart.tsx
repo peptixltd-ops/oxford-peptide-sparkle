@@ -35,20 +35,42 @@ export function CartProvider({ children }: { children: ReactNode }) {
     } catch {}
   }, [items]);
 
-  const add = (slug: string, variantId: string, qty = 1) =>
+  const add = (slug: string, variantId: string, qty = 1) => {
+    const product = getProduct(slug);
+    if (product) {
+      const variant = getVariant(product, variantId);
+      trackAddToCart(product, variant, qty);
+    }
     setItems(prev => {
       const existing = prev.find(i => same(i, slug, variantId));
       if (existing) return prev.map(i => same(i, slug, variantId) ? { ...i, qty: i.qty + qty } : i);
       return [...prev, { slug, variantId, qty }];
     });
+  };
 
-  const remove = (slug: string, variantId: string) =>
+  const remove = (slug: string, variantId: string) => {
+    const product = getProduct(slug);
+    const existing = items.find(i => same(i, slug, variantId));
+    if (product && existing) {
+      const variant = getVariant(product, variantId);
+      trackRemoveFromCart(product, variant, existing.qty);
+    }
     setItems(prev => prev.filter(i => !same(i, slug, variantId)));
+  };
 
-  const setQty = (slug: string, variantId: string, qty: number) =>
+  const setQty = (slug: string, variantId: string, qty: number) => {
+    const existing = items.find(i => same(i, slug, variantId));
+    const product = getProduct(slug);
+    if (product && existing) {
+      const variant = getVariant(product, variantId);
+      const delta = qty - existing.qty;
+      if (delta > 0) trackAddToCart(product, variant, delta);
+      else if (delta < 0) trackRemoveFromCart(product, variant, -delta);
+    }
     setItems(prev => qty <= 0
       ? prev.filter(i => !same(i, slug, variantId))
       : prev.map(i => same(i, slug, variantId) ? { ...i, qty } : i));
+  };
 
   const clear = () => setItems([]);
 
