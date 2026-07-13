@@ -72,6 +72,7 @@ import { Route as ResearchHubCollectionsSlugRouteImport } from './routes/researc
 import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
 import { Route as EditorialReviewersIdRouteImport } from './routes/editorial.reviewers.$id'
 import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.authors.$id'
+import { Route as ApiPublicNewsletterSubscribeRouteImport } from './routes/api/public/newsletter-subscribe'
 
 const WholesaleRoute = WholesaleRouteImport.update({
   id: '/wholesale',
@@ -402,6 +403,12 @@ const EditorialAuthorsIdRoute = EditorialAuthorsIdRouteImport.update({
   path: '/editorial/authors/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicNewsletterSubscribeRoute =
+  ApiPublicNewsletterSubscribeRouteImport.update({
+    id: '/api/public/newsletter-subscribe',
+    path: '/api/public/newsletter-subscribe',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -446,6 +453,7 @@ export interface FileRoutesByFullPath {
   '/compounds/': typeof CompoundsIndexRoute
   '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
+  '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -508,6 +516,7 @@ export interface FileRoutesByTo {
   '/compounds': typeof CompoundsIndexRoute
   '/explore': typeof ExploreIndexRoute
   '/research-hub': typeof ResearchHubIndexRoute
+  '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -574,6 +583,7 @@ export interface FileRoutesById {
   '/compounds/': typeof CompoundsIndexRoute
   '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
+  '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -641,6 +651,7 @@ export interface FileRouteTypes {
     | '/compounds/'
     | '/explore/'
     | '/research-hub/'
+    | '/api/public/newsletter-subscribe'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -703,6 +714,7 @@ export interface FileRouteTypes {
     | '/compounds'
     | '/explore'
     | '/research-hub'
+    | '/api/public/newsletter-subscribe'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -768,6 +780,7 @@ export interface FileRouteTypes {
     | '/compounds/'
     | '/explore/'
     | '/research-hub/'
+    | '/api/public/newsletter-subscribe'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -828,6 +841,7 @@ export interface RootRouteChildren {
   WholesaleRoute: typeof WholesaleRoute
   DashboardEditorialRoute: typeof DashboardEditorialRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
+  ApiPublicNewsletterSubscribeRoute: typeof ApiPublicNewsletterSubscribeRoute
   EditorialAuthorsIdRoute: typeof EditorialAuthorsIdRoute
   EditorialReviewersIdRoute: typeof EditorialReviewersIdRoute
 }
@@ -1275,6 +1289,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorialAuthorsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/newsletter-subscribe': {
+      id: '/api/public/newsletter-subscribe'
+      path: '/api/public/newsletter-subscribe'
+      fullPath: '/api/public/newsletter-subscribe'
+      preLoaderRoute: typeof ApiPublicNewsletterSubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1394,6 +1415,7 @@ const rootRouteChildren: RootRouteChildren = {
   WholesaleRoute: WholesaleRoute,
   DashboardEditorialRoute: DashboardEditorialRoute,
   ProductsSlugRoute: ProductsSlugRoute,
+  ApiPublicNewsletterSubscribeRoute: ApiPublicNewsletterSubscribeRoute,
   EditorialAuthorsIdRoute: EditorialAuthorsIdRoute,
   EditorialReviewersIdRoute: EditorialReviewersIdRoute,
 }
