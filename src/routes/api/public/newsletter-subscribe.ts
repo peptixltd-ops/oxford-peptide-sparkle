@@ -113,7 +113,15 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
 
           const supabaseUrl = process.env.SUPABASE_URL!;
           const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-          const adminToken = process.env.SHOPIFY_ACCESS_TOKEN;
+          // Prefer the Lovable Shopify integration's per-user online access token
+          // (auto-managed, refreshed when the store owner connects Shopify), then
+          // fall back to a manually stored admin token if present.
+          const adminToken =
+            Object.entries(process.env)
+              .filter(([k, v]) => k.startsWith("SHOPIFY_ONLINE_ACCESS_TOKEN:user:") && !!v)
+              .map(([, v]) => v as string)[0] ||
+            process.env.SHOPIFY_ADMIN_TOKEN ||
+            process.env.SHOPIFY_ACCESS_TOKEN;
           if (!supabaseUrl || !serviceKey) {
             return new Response(JSON.stringify({ success: false, error: "Server misconfigured." }), {
               status: 500,
