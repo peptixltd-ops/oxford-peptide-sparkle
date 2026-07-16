@@ -7,14 +7,23 @@ const SHOPIFY_SHOP = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
 const PARENT_PRICE_RULE_ID = "1817597378901";
 
+function normalizePhone(input: string): string | null {
+  const raw = input.trim().replace(/[\s\-().]/g, "");
+  if (!raw) return null;
+  // E.164 already
+  if (/^\+[1-9]\d{6,14}$/.test(raw)) return raw;
+  // UK local: 07xxxxxxxxx -> +447xxxxxxxxx
+  if (/^0\d{9,10}$/.test(raw)) return "+44" + raw.slice(1);
+  // 00 international prefix -> +
+  if (/^00[1-9]\d{6,14}$/.test(raw)) return "+" + raw.slice(2);
+  // Digits only, plausible international length
+  if (/^[1-9]\d{7,14}$/.test(raw)) return "+" + raw;
+  return null;
+}
+
 const bodySchema = z.object({
-  email: z.string().trim().toLowerCase().email().max(255),
-  phone: z
-    .string()
-    .trim()
-    .regex(/^\+[1-9]\d{6,14}$/i, "Phone must be in E.164 format")
-    .optional()
-    .or(z.literal("").transform(() => undefined)),
+  email: z.string().trim().toLowerCase().email("Please enter a valid email address.").max(255),
+  phone: z.string().trim().optional().or(z.literal("").transform(() => undefined)),
   sms_consent: z.boolean().optional().default(false),
   source: z.string().max(64).optional().default("popup"),
   website: z.string().optional(), // honeypot
