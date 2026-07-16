@@ -28,10 +28,41 @@ function trackGA(event: string, params: Record<string, unknown> = {}) {
   }
 }
 
+const COUNTRY_CODES: Array<{ code: string; dial: string; label: string; flag: string }> = [
+  { code: "GB", dial: "+44", label: "United Kingdom", flag: "🇬🇧" },
+  { code: "IE", dial: "+353", label: "Ireland", flag: "🇮🇪" },
+  { code: "US", dial: "+1", label: "United States", flag: "🇺🇸" },
+  { code: "CA", dial: "+1", label: "Canada", flag: "🇨🇦" },
+  { code: "AU", dial: "+61", label: "Australia", flag: "🇦🇺" },
+  { code: "NZ", dial: "+64", label: "New Zealand", flag: "🇳🇿" },
+  { code: "DE", dial: "+49", label: "Germany", flag: "🇩🇪" },
+  { code: "FR", dial: "+33", label: "France", flag: "🇫🇷" },
+  { code: "ES", dial: "+34", label: "Spain", flag: "🇪🇸" },
+  { code: "IT", dial: "+39", label: "Italy", flag: "🇮🇹" },
+  { code: "NL", dial: "+31", label: "Netherlands", flag: "🇳🇱" },
+  { code: "BE", dial: "+32", label: "Belgium", flag: "🇧🇪" },
+  { code: "CH", dial: "+41", label: "Switzerland", flag: "🇨🇭" },
+  { code: "AT", dial: "+43", label: "Austria", flag: "🇦🇹" },
+  { code: "SE", dial: "+46", label: "Sweden", flag: "🇸🇪" },
+  { code: "NO", dial: "+47", label: "Norway", flag: "🇳🇴" },
+  { code: "DK", dial: "+45", label: "Denmark", flag: "🇩🇰" },
+  { code: "FI", dial: "+358", label: "Finland", flag: "🇫🇮" },
+  { code: "PL", dial: "+48", label: "Poland", flag: "🇵🇱" },
+  { code: "PT", dial: "+351", label: "Portugal", flag: "🇵🇹" },
+  { code: "AE", dial: "+971", label: "UAE", flag: "🇦🇪" },
+  { code: "SA", dial: "+966", label: "Saudi Arabia", flag: "🇸🇦" },
+  { code: "SG", dial: "+65", label: "Singapore", flag: "🇸🇬" },
+  { code: "HK", dial: "+852", label: "Hong Kong", flag: "🇭🇰" },
+  { code: "JP", dial: "+81", label: "Japan", flag: "🇯🇵" },
+  { code: "IN", dial: "+91", label: "India", flag: "🇮🇳" },
+  { code: "ZA", dial: "+27", label: "South Africa", flag: "🇿🇦" },
+];
+
 export function NewsletterPopup() {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("form");
   const [email, setEmail] = useState("");
+  const [dialCode, setDialCode] = useState("+44");
   const [phone, setPhone] = useState("");
   const [smsConsent, setSmsConsent] = useState(false);
   const [website, setWebsite] = useState(""); // honeypot
@@ -79,7 +110,7 @@ export function NewsletterPopup() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email.trim(),
-          phone: phone.trim() || undefined,
+          phone: phone.trim() ? `${dialCode}${phone.trim().replace(/^0+/, "")}` : undefined,
           sms_consent: smsConsent,
           source: "popup",
           website,
@@ -181,15 +212,29 @@ export function NewsletterPopup() {
 
               <div>
                 <label htmlFor="orp-nl-phone" className="sr-only">Phone</label>
-                <input
-                  id="orp-nl-phone"
-                  type="tel"
-                  autoComplete="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Phone (optional, e.g. +447700900123)"
-                  className="w-full h-11 px-3 border border-navy-deep/25 bg-white text-navy-deep placeholder:text-navy-deep/40 focus:outline-none focus:border-gold"
-                />
+                <div className="flex gap-2">
+                  <select
+                    aria-label="Country code"
+                    value={dialCode}
+                    onChange={(e) => setDialCode(e.target.value)}
+                    className="h-11 px-2 border border-navy-deep/25 bg-white text-navy-deep focus:outline-none focus:border-gold text-sm max-w-[7.5rem]"
+                  >
+                    {COUNTRY_CODES.map((c) => (
+                      <option key={c.code} value={c.dial}>
+                        {c.flag} {c.dial} {c.code}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    id="orp-nl-phone"
+                    type="tel"
+                    autoComplete="tel-national"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Phone (optional)"
+                    className="flex-1 min-w-0 h-11 px-3 border border-navy-deep/25 bg-white text-navy-deep placeholder:text-navy-deep/40 focus:outline-none focus:border-gold"
+                  />
+                </div>
               </div>
 
               <label className="flex items-start gap-2 text-xs text-navy-deep/75 select-none">
