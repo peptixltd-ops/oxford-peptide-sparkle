@@ -87,16 +87,29 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
           const raw = await request.json().catch(() => null);
           const parsed = bodySchema.safeParse(raw);
           if (!parsed.success) {
+            const first = parsed.error.issues[0]?.message ?? "Invalid input";
             return new Response(
-              JSON.stringify({ success: false, error: "Invalid input", details: parsed.error.flatten() }),
+              JSON.stringify({ success: false, error: first }),
               { status: 400, headers: jsonHeaders },
             );
           }
-          const { email, phone, sms_consent, source, website } = parsed.data;
+          const { email, phone: phoneRaw, sms_consent, source, website } = parsed.data;
 
           // Honeypot
           if (website && website.trim() !== "") {
             return new Response(JSON.stringify({ success: true }), { status: 200, headers: jsonHeaders });
+          }
+
+          let phone: string | undefined;
+          if (phoneRaw) {
+            const normalized = normalizePhone(phoneRaw);
+            if (!normalized) {
+              return new Response(
+                JSON.stringify({ success: false, error: "Please enter a valid phone number (e.g. 07700 900123 or +447700900123)." }),
+                { status: 400, headers: jsonHeaders },
+              );
+            }
+            phone = normalized;
           }
 
           // Marketing SMS requires explicit consent when phone provided
