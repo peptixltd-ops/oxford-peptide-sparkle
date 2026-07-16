@@ -37,39 +37,55 @@ function alphanumSuffix(len = 6): string {
   return out;
 }
 
+function extractToken(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  const trimmed = raw.trim();
+  if (!trimmed) return undefined;
+  if (trimmed.startsWith("{")) {
+    try {
+      const parsed = JSON.parse(trimmed) as { access_token?: string; accessToken?: string; token?: string };
+      return parsed.access_token || parsed.accessToken || parsed.token;
+    } catch {
+      return undefined;
+    }
+  }
+  return trimmed;
+}
+
 function getShopifyAdminTokens(env: NodeJS.ProcessEnv): string[] {
-  const tokens = [
-    env.SHOPIFY_ACCESS_TOKEN,
-    env.SHOPIFY_ADMIN_TOKEN,
+  const raws: (string | undefined)[] = [
     ...Object.entries(env)
       .filter(([key, value]) => key.startsWith("SHOPIFY_ONLINE_ACCESS_TOKEN:user:") && !!value)
-      .map(([, value]) => value),
-  ].filter((token): token is string => Boolean(token));
-
+      .map(([, value]) => value as string),
+    env.SHOPIFY_ADMIN_TOKEN,
+    env.SHOPIFY_ACCESS_TOKEN,
+  ];
+  const tokens = raws.map(extractToken).filter((t): t is string => Boolean(t));
   return Array.from(new Set(tokens));
 }
 
 async function createShopifyDiscountCode(code: string, adminTokens: string[]) {
   let lastError = "No Shopify admin token configured.";
+  const url = `https://${SHOPIFY_SHOP}/admin/api/${SHOPIFY_API_VERSION}/price_rules/${PARENT_PRICE_RULE_ID}/discount_codes.json`;
 
   for (const adminToken of adminTokens) {
-  const url = `https://${SHOPIFY_SHOP}/admin/api/${SHOPIFY_API_VERSION}/price_rules/${PARENT_PRICE_RULE_ID}/discount_codes.json`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "X-Shopify-Access-Token": adminToken,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ discount_code: { code } }),
-  });
-  if (!res.ok) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "X-Shopify-Access-Token": adminToken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ discount_code: { code } }),
+    });
+    if (res.ok) {
+      const json = (await res.json()) as { discount_code?: { id?: number } };
+      return { id: json.discount_code?.id, token: adminToken };
+    }
     const text = await res.text();
-      lastError = `Shopify discount code create failed [${res.status}]: ${text}`;
-      if (res.status === 401 || res.status === 403) continue;
-      throw new Error(lastError);
-  }
-  const json = (await res.json()) as { discount_code?: { id?: number } };
-    return { id: json.discount_code?.id, token: adminToken };
+    lastError = `Shopify discount code create failed [${res.status}] tokenLen=${adminToken.length} prefix=${adminToken.slice(0, 6)}: ${text}`;
+    console.error("shopify discount attempt failed", lastError);
+    if (res.status === 401 || res.status === 403) continue;
+    throw new Error(lastError);
   }
 
   throw new Error(lastError);
