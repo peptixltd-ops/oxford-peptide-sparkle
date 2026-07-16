@@ -110,7 +110,7 @@ export function NewsletterPopup() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email.trim(),
-          phone: phone.trim() || undefined,
+          phone: phone.trim() ? `${dialCode}${phone.trim().replace(/^0+/, "")}` : undefined,
           sms_consent: smsConsent,
           source: "popup",
           website,
