@@ -212,15 +212,29 @@ export function NewsletterPopup() {
 
               <div>
                 <label htmlFor="orp-nl-phone" className="sr-only">Phone</label>
-                <input
-                  id="orp-nl-phone"
-                  type="tel"
-                  autoComplete="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Phone (optional, e.g. +447700900123)"
-                  className="w-full h-11 px-3 border border-navy-deep/25 bg-white text-navy-deep placeholder:text-navy-deep/40 focus:outline-none focus:border-gold"
-                />
+                <div className="flex gap-2">
+                  <select
+                    aria-label="Country code"
+                    value={dialCode}
+                    onChange={(e) => setDialCode(e.target.value)}
+                    className="h-11 px-2 border border-navy-deep/25 bg-white text-navy-deep focus:outline-none focus:border-gold text-sm max-w-[7.5rem]"
+                  >
+                    {COUNTRY_CODES.map((c) => (
+                      <option key={c.code} value={c.dial}>
+                        {c.flag} {c.dial} {c.code}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    id="orp-nl-phone"
+                    type="tel"
+                    autoComplete="tel-national"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Phone (optional)"
+                    className="flex-1 min-w-0 h-11 px-3 border border-navy-deep/25 bg-white text-navy-deep placeholder:text-navy-deep/40 focus:outline-none focus:border-gold"
+                  />
+                </div>
               </div>
 
               <label className="flex items-start gap-2 text-xs text-navy-deep/75 select-none">
