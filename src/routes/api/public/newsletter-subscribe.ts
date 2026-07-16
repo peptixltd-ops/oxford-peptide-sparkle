@@ -37,15 +37,30 @@ function alphanumSuffix(len = 6): string {
   return out;
 }
 
+function extractToken(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  const trimmed = raw.trim();
+  if (!trimmed) return undefined;
+  if (trimmed.startsWith("{")) {
+    try {
+      const parsed = JSON.parse(trimmed) as { access_token?: string; accessToken?: string; token?: string };
+      return parsed.access_token || parsed.accessToken || parsed.token;
+    } catch {
+      return undefined;
+    }
+  }
+  return trimmed;
+}
+
 function getShopifyAdminTokens(env: NodeJS.ProcessEnv): string[] {
-  const tokens = [
-    env.SHOPIFY_ACCESS_TOKEN,
-    env.SHOPIFY_ADMIN_TOKEN,
+  const raws: (string | undefined)[] = [
     ...Object.entries(env)
       .filter(([key, value]) => key.startsWith("SHOPIFY_ONLINE_ACCESS_TOKEN:user:") && !!value)
-      .map(([, value]) => value),
-  ].filter((token): token is string => Boolean(token));
-
+      .map(([, value]) => value as string),
+    env.SHOPIFY_ADMIN_TOKEN,
+    env.SHOPIFY_ACCESS_TOKEN,
+  ];
+  const tokens = raws.map(extractToken).filter((t): t is string => Boolean(t));
   return Array.from(new Set(tokens));
 }
 
