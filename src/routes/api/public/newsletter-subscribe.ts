@@ -37,7 +37,22 @@ function alphanumSuffix(len = 6): string {
   return out;
 }
 
-async function createShopifyDiscountCode(code: string, adminToken: string) {
+function getShopifyAdminTokens(env: NodeJS.ProcessEnv): string[] {
+  const tokens = [
+    env.SHOPIFY_ACCESS_TOKEN,
+    env.SHOPIFY_ADMIN_TOKEN,
+    ...Object.entries(env)
+      .filter(([key, value]) => key.startsWith("SHOPIFY_ONLINE_ACCESS_TOKEN:user:") && !!value)
+      .map(([, value]) => value),
+  ].filter((token): token is string => Boolean(token));
+
+  return Array.from(new Set(tokens));
+}
+
+async function createShopifyDiscountCode(code: string, adminTokens: string[]) {
+  let lastError = "No Shopify admin token configured.";
+
+  for (const adminToken of adminTokens) {
   const url = `https://${SHOPIFY_SHOP}/admin/api/${SHOPIFY_API_VERSION}/price_rules/${PARENT_PRICE_RULE_ID}/discount_codes.json`;
   const res = await fetch(url, {
     method: "POST",
@@ -49,10 +64,15 @@ async function createShopifyDiscountCode(code: string, adminToken: string) {
   });
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`Shopify discount code create failed [${res.status}]: ${text}`);
+      lastError = `Shopify discount code create failed [${res.status}]: ${text}`;
+      if (res.status === 401 || res.status === 403) continue;
+      throw new Error(lastError);
   }
   const json = (await res.json()) as { discount_code?: { id?: number } };
-  return json.discount_code?.id;
+    return { id: json.discount_code?.id, token: adminToken };
+  }
+
+  throw new Error(lastError);
 }
 
 // In-memory rate limit (best-effort; edge workers may cold-start).
@@ -135,15 +155,15 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
 
           const supabaseUrl = process.env.SUPABASE_URL!;
           const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-          // Match the working Pondok flow: use the store admin access token, not a per-user online token.
-          const adminToken = process.env.SHOPIFY_ACCESS_TOKEN;
+          // Match the working Pondok flow first, with connector-managed tokens as safe fallbacks.
+          const adminTokens = getShopifyAdminTokens(process.env);
           if (!supabaseUrl || !serviceKey) {
             return new Response(JSON.stringify({ success: false, error: "Server misconfigured." }), {
               status: 500,
               headers: jsonHeaders,
             });
           }
-          if (!adminToken) {
+          if (adminTokens.length === 0) {
             return new Response(
               JSON.stringify({ success: false, error: "Discount service unavailable. Please try again later." }),
               { status: 503, headers: jsonHeaders },
@@ -187,8 +207,11 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
           // Generate unique code + create in Shopify
           const code = `WELCOME20-${alphanumSuffix(6)}`;
           let discountId: number | undefined;
+          let discountToken: string | undefined;
           try {
-            discountId = await createShopifyDiscountCode(code, adminToken);
+            const discount = await createShopifyDiscountCode(code, adminTokens);
+            discountId = discount.id;
+            discountToken = discount.token;
           } catch (err) {
             console.error("shopify discount create failed", err);
             return new Response(
@@ -212,10 +235,10 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
 
           if (insertError) {
             // Rollback the Shopify code so we don't leak orphaned codes
-            if (discountId) {
+            if (discountId && discountToken) {
               await fetch(
                 `https://${SHOPIFY_SHOP}/admin/api/${SHOPIFY_API_VERSION}/price_rules/${PARENT_PRICE_RULE_ID}/discount_codes/${discountId}.json`,
-                { method: "DELETE", headers: { "X-Shopify-Access-Token": adminToken } },
+                { method: "DELETE", headers: { "X-Shopify-Access-Token": discountToken } },
               ).catch(() => undefined);
             }
             console.error("subscriber insert failed", insertError);
