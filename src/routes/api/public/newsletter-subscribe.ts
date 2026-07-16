@@ -5,7 +5,7 @@ import { createHash, randomBytes } from "crypto";
 
 const SHOPIFY_SHOP = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
-const PARENT_PRICE_RULE_ID = "1817597378901";
+const PARENT_PRICE_RULE_ID = "1812859748693";
 
 function normalizePhone(input: string): string | null {
   const raw = input.trim().replace(/[\s\-().]/g, "");
@@ -135,15 +135,8 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
 
           const supabaseUrl = process.env.SUPABASE_URL!;
           const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-          // Prefer the Lovable Shopify integration's per-user online access token
-          // (auto-managed, refreshed when the store owner connects Shopify), then
-          // fall back to a manually stored admin token if present.
-          const adminToken =
-            Object.entries(process.env)
-              .filter(([k, v]) => k.startsWith("SHOPIFY_ONLINE_ACCESS_TOKEN:user:") && !!v)
-              .map(([, v]) => v as string)[0] ||
-            process.env.SHOPIFY_ADMIN_TOKEN ||
-            process.env.SHOPIFY_ACCESS_TOKEN;
+          // Match the working Pondok flow: use the store admin access token, not a per-user online token.
+          const adminToken = process.env.SHOPIFY_ACCESS_TOKEN;
           if (!supabaseUrl || !serviceKey) {
             return new Response(JSON.stringify({ success: false, error: "Server misconfigured." }), {
               status: 500,
