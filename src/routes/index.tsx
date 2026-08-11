@@ -3,7 +3,7 @@ import {
   ShieldCheck, ClipboardCheck,
   ArrowRight, Star,
   Droplet, Package, Award,
-  BookOpen, Users, FileText,
+  Truck, FlaskConical,
 } from "lucide-react";
 
 import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
