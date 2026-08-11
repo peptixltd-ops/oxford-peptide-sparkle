@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, User, ShoppingBag, Menu } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
 import { useCart } from "@/lib/cart";
 import { MobileNav } from "./mobile-nav";
+import { CartDrawer } from "./cart-drawer";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -31,11 +32,20 @@ export const navLinks = [
 ] as const;
 
 export function SiteHeader() {
-  const { count } = useCart();
+  const { count, bump, openDrawer } = useCart();
   const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [q, setQ] = useState("");
+  const [pop, setPop] = useState(false);
+
+  // Pulse the cart badge each time an item is added.
+  useEffect(() => {
+    if (bump === 0) return;
+    setPop(true);
+    const t = setTimeout(() => setPop(false), 550);
+    return () => clearTimeout(t);
+  }, [bump]);
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,19 +89,20 @@ export function SiteHeader() {
           >
             <User className="w-5 h-5" aria-hidden="true" />
           </Link>
-          <Link
-            to="/cart"
+          <button
+            type="button"
+            onClick={openDrawer}
             aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
             className="relative min-h-11 min-w-11 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-gold"
           >
-            <ShoppingBag className="w-5 h-5" aria-hidden="true" />
+            <ShoppingBag className={`w-5 h-5 ${pop ? "animate-badge-pop" : ""}`} aria-hidden="true" />
             <span
               aria-hidden="true"
-              className="absolute top-1 right-1 bg-gold text-navy-deep text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center"
+              className={`absolute top-1 right-1 bg-gold text-navy-deep text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center ${pop ? "animate-badge-pop" : ""}`}
             >
               {count}
             </span>
-          </Link>
+          </button>
           <button
             type="button"
             aria-label="Open menu"
@@ -127,6 +138,7 @@ export function SiteHeader() {
         </div>
       )}
       <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} links={navLinks} />
+      <CartDrawer />
     </header>
   );
 }

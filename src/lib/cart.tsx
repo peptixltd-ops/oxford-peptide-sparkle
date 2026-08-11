@@ -11,6 +11,13 @@ type CartCtx = {
   remove: (slug: string, variantId: string) => void;
   setQty: (slug: string, variantId: string, qty: number) => void;
   clear: () => void;
+  /** Drawer that pops open to confirm an add-to-cart. */
+  drawerOpen: boolean;
+  openDrawer: () => void;
+  closeDrawer: () => void;
+  lastAdded: { slug: string; variantId: string } | null;
+  /** Increments on every add — used to pulse the header cart badge. */
+  bump: number;
 };
 
 const Ctx = createContext<CartCtx | null>(null);
@@ -21,6 +28,9 @@ const same = (a: CartItem, slug: string, variantId: string) =>
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [lastAdded, setLastAdded] = useState<{ slug: string; variantId: string } | null>(null);
+  const [bump, setBump] = useState(0);
 
   useEffect(() => {
     try {
@@ -46,6 +56,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (existing) return prev.map(i => same(i, slug, variantId) ? { ...i, qty: i.qty + qty } : i);
       return [...prev, { slug, variantId, qty }];
     });
+    setLastAdded({ slug, variantId });
+    setBump(b => b + 1);
+    setDrawerOpen(true);
   };
 
   const remove = (slug: string, variantId: string) => {
@@ -76,7 +89,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const count = items.reduce((s, i) => s + i.qty, 0);
 
-  return <Ctx.Provider value={{ items, count, add, remove, setQty, clear }}>{children}</Ctx.Provider>;
+  return (
+    <Ctx.Provider
+      value={{
+        items,
+        count,
+        add,
+        remove,
+        setQty,
+        clear,
+        drawerOpen,
+        openDrawer: () => setDrawerOpen(true),
+        closeDrawer: () => setDrawerOpen(false),
+        lastAdded,
+        bump,
+      }}
+    >
+      {children}
+    </Ctx.Provider>
+  );
 }
 
 export function useCart() {
