@@ -23,18 +23,14 @@ export function Logo({ light = false }: { light?: boolean }) {
 }
 
 
-// Reordered per Release 1.1: education-first, commerce demoted.
+// Simplified navigation: commerce-first, secondary sections live in the footer.
 export const navLinks = [
-  { to: "/research-hub", label: "RESEARCH" },
-  { to: "/compounds", label: "COMPOUNDS" },
-  { to: "/methodology", label: "METHODOLOGY" },
-  { to: "/lab-testing", label: "LAB TESTING" },
   { to: "/about", label: "ABOUT" },
   { to: "/shop", label: "SHOP" },
-  { to: "/wholesale", label: "WHOLESALE" },
   { to: "/contact", label: "CONTACT" },
   { to: "/faqs", label: "FAQS" },
 ] as const;
+
 
 export function SiteHeader() {
   const { count, bump, openDrawer } = useCart();

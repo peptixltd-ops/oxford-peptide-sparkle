@@ -1,26 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ShieldCheck, FlaskConical, ClipboardCheck,
-  Microscope, ArrowRight, Star, Calculator,
-  Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award,
-  BookOpen, BarChart3, Users, FileText, Network, Compass,
+  ArrowRight, Star, Calculator,
+  Droplet, Package, Award,
+  BookOpen, Users, FileText, Network, Compass,
 } from "lucide-react";
 import { explorerSections } from "@/lib/knowledge-explorer";
 import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
-import artMolecule from "@/assets/article-molecule.jpg";
-import artReconstitute from "@/assets/article-reconstitute.jpg";
-import artVials from "@/assets/article-vials.jpg";
-import artBook from "@/assets/article-book.jpg";
-import artNetwork from "@/assets/article-network.jpg";
 import wholesaleVials from "@/assets/wholesale-vials.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProductCard } from "@/components/product-card";
 import { TrustBar } from "@/components/trust-bar";
 import { SectionHeader } from "@/components/section-header";
-import { ArticleCard } from "@/components/article-card";
 import { CoaCard } from "@/components/coa-card";
+
 import { products } from "@/lib/products";
 import { seo } from "@/lib/seo";
 
@@ -45,21 +40,8 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const researchAreas = [
-  { icon: Dna, title: "Peptide Chemistry", items: ["Synthetic peptides", "Modified analogues", "Reference standards"] },
-  { icon: Beaker, title: "Receptor Studies", items: ["GLP-1 ligands", "GHSR ligands", "Melanocortin ligands"] },
-  { icon: TestTube, title: "Assay Development", items: ["HPLC standards", "MS reference", "Calibration peptides"] },
-  { icon: Thermometer, title: "Stability Research", items: ["Lyophilised powders", "Reconstitution studies", "Long-term storage"] },
-  { icon: MoreHorizontal, title: "Specialty Compounds", items: ["Copper peptides", "Cyclic peptides", "Custom syntheses"] },
-];
 
-const articles = [
-  { img: artMolecule, date: "May 1, 2024", title: "Structural Notes on Retatrutide: A Triple Agonist Peptide" },
-  { img: artReconstitute, date: "April 28, 2024", title: "Reconstituting Lyophilised Peptides: A Laboratory Guide" },
-  { img: artNetwork, date: "May 1, 2024", title: "Comparative Sequence Analysis: Retatrutide vs Tirzepatide" },
-  { img: artVials, date: "April 25, 2024", title: "Bacteriostatic Water: Composition and Laboratory Use" },
-  { img: artBook, date: "April 20, 2024", title: "A Researcher's Primer to Peptide Handling and Storage" },
-];
+
 
 const reviews = [
   { text: "Consistently high purity with full COA provided. Fast delivery and discreet packaging. Highly recommended for in-vitro work.", who: "Verified Buyer" },
@@ -122,32 +104,12 @@ function Home() {
                 Evidence-based guides, comparisons and scientific resources to advance knowledge and support laboratory research. Strictly for in-vitro use.
               </p>
 
-              <div className="hidden md:flex flex-wrap gap-8 mb-8">
-                {[
-                  { icon: BookOpen, l1: "In-Depth", l2: "Research Guides" },
-                  { icon: BarChart3, l1: "Data-Driven", l2: "Comparisons" },
-                  { icon: Microscope, l1: "Science-Led", l2: "Education" },
-                ].map(f => (
-                  <div key={f.l2} className="flex flex-col items-start">
-                    <div className="w-12 h-12 rounded-full border border-bone/40 flex items-center justify-center mb-2">
-                      <f.icon className="w-5 h-5 text-bone/90" strokeWidth={1.4} aria-hidden="true"/>
-                    </div>
-                    <div className="text-[13px] leading-tight">
-                      <div className="font-semibold">{f.l1}</div>
-                      <div className="text-bone/70">{f.l2}</div>
-                    </div>
-                  </div>
-                ))}
+              <div className="flex flex-wrap gap-3 mb-6 md:mb-8">
+                <Link to="/shop" className="px-5 md:px-7 py-3 md:py-3.5 bg-gold text-navy-deep text-[10px] md:text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-navy-deep">
+                  SHOP PEPTIDES <ArrowRight className="w-3.5 h-3.5" aria-hidden="true"/>
+                </Link>
               </div>
 
-              <div className="flex flex-wrap gap-3 mb-6 md:mb-8">
-                <Link to="/research-hub" className="px-5 md:px-7 py-3 md:py-3.5 bg-gold text-navy-deep text-[10px] md:text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-navy-deep">
-                  EXPLORE RESEARCH HUB <ArrowRight className="w-3.5 h-3.5" aria-hidden="true"/>
-                </Link>
-                <Link to="/shop" className="px-5 md:px-7 py-3 md:py-3.5 border border-bone/40 text-bone text-[10px] md:text-xs font-bold tracking-widest hover:bg-bone hover:text-navy-deep transition-colors focus-visible:outline-2 focus-visible:outline-gold">
-                  SHOP PEPTIDES
-                </Link>
-              </div>
 
               <div className="hidden sm:flex items-center gap-3 text-sm">
                 <span className="font-semibold">Excellent</span>
@@ -209,32 +171,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Research areas */}
-        <section className="bg-muted/40 py-16">
-          <div className="container-x">
-            <SectionHeader
-              eyebrow="EXPLORE BY RESEARCH AREA"
-              ctaLabel="VIEW ALL"
-              ctaTo="/shop"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {researchAreas.map(a => (
-                <div key={a.title} className="bg-white p-6 group hover:shadow-lg transition-all border border-transparent hover:border-gold/30">
-                  <div className="flex items-start justify-between mb-4">
-                    <h3 className="font-display text-lg font-semibold leading-tight max-w-[60%]">{a.title}</h3>
-                    <a.icon className="w-10 h-10 text-muted-foreground/60 group-hover:text-gold transition-colors" strokeWidth={1.2} aria-hidden="true" />
-                  </div>
-                  <ul className="text-sm space-y-1 text-muted-foreground mb-6">
-                    {a.items.map(it => <li key={it}>{it}</li>)}
-                  </ul>
-                  <Link to="/shop" className="text-[10px] font-bold tracking-widest inline-flex items-center gap-2 hover:text-gold focus-visible:text-gold">
-                    EXPLORE <ArrowRight className="w-3 h-3" aria-hidden="true" />
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Excellence + CoA */}
         <section className="bg-navy-deep text-bone py-20">
@@ -269,21 +205,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Research Library */}
-        <section className="bg-bone py-16">
-          <div className="container-x">
-            <SectionHeader
-              eyebrow="RESEARCH LIBRARY"
-              ctaLabel="VIEW ALL ARTICLES"
-              ctaTo="/research-hub"
-            />
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-              {articles.map(a => (
-                <ArticleCard key={a.title} article={{ ...a, to: "/research-hub" }} />
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Calculator + Reviews */}
         <section className="bg-navy-deep text-bone py-14">
