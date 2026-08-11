@@ -56,6 +56,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (existing) return prev.map(i => same(i, slug, variantId) ? { ...i, qty: i.qty + qty } : i);
       return [...prev, { slug, variantId, qty }];
     });
+    setLastAdded({ slug, variantId });
+    setBump(b => b + 1);
+    setDrawerOpen(true);
   };
 
   const remove = (slug: string, variantId: string) => {
