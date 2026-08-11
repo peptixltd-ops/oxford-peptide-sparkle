@@ -33,7 +33,7 @@ export const Route = createFileRoute("/concept")({
 const trustPills = [
   { icon: FlaskConical, label: "Laboratory Research Use" },
   { icon: ShieldCheck, label: "HPLC & MS Verified" },
-  { icon: Package, label: "UK Dispatch, Tracked" },
+  { icon: Package, label: "UK Delivery, Tracked Next Day" },
   { icon: Microscope, label: "COA Available On Request" },
 ];
 
@@ -83,11 +83,11 @@ const faqs = [
   },
   {
     q: "When are orders dispatched?",
-    a: "Monday to Friday, excluding UK public holidays. You will receive a dispatch confirmation with tracking as soon as your parcel leaves us.",
+    a: "Monday to Friday, excluding UK public holidays. You will receive a delivery confirmation with tracking as soon as your parcel leaves us.",
   },
   {
     q: "Will I receive tracking?",
-    a: "Yes — a tracked courier reference is emailed to you on dispatch so you can follow the parcel to delivery.",
+    a: "Yes — a tracked next-day courier reference is emailed to you as soon as your order leaves us so you can follow the parcel to delivery.",
   },
   {
     q: "Is a Certificate of Analysis included?",
@@ -390,7 +390,7 @@ function ConceptHome() {
                   laboratory research peptides
                 </strong>{" "}
                 in the UK, with a focus on identity verification, documented purity and
-                reliable dispatch. Every product is intended strictly for in-vitro
+                reliable next-day delivery. Every product is intended strictly for in-vitro
                 laboratory research by qualified researchers and institutions.
               </p>
               <p>
