@@ -18,11 +18,8 @@ export function Logo({ light = false }: { light?: boolean }) {
   );
 }
 
-// Reordered per Release 1.1: education-first, commerce demoted.
+// Simplified nav: research/compounds/methodology removed; commerce + trust pages.
 export const navLinks = [
-  { to: "/research-hub", label: "RESEARCH" },
-  { to: "/compounds", label: "COMPOUNDS" },
-  { to: "/methodology", label: "METHODOLOGY" },
   { to: "/lab-testing", label: "LAB TESTING" },
   { to: "/about", label: "ABOUT" },
   { to: "/shop", label: "SHOP" },
@@ -54,9 +51,11 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="bg-white border-b border-border relative z-20">
+    <header className="bg-navy-deep text-bone border-b border-white/10 relative z-20">
       <div className="container-x flex items-center justify-between h-20 gap-4">
-        <Logo />
+        <div className="bg-white p-1.5 rounded-sm">
+          <Logo />
+        </div>
         <nav
           aria-label="Primary"
           className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs font-semibold tracking-widest"
@@ -115,7 +114,7 @@ export function SiteHeader() {
         </div>
       </div>
       {searchOpen && (
-        <div className="absolute inset-x-0 top-full bg-white border-b border-border shadow-lg">
+        <div className="absolute inset-x-0 top-full bg-navy-deep border-b border-white/10 shadow-2xl">
           <form onSubmit={submitSearch} className="container-x py-4 flex gap-3">
             <label htmlFor="site-search" className="sr-only">
               Search
@@ -126,11 +125,11 @@ export function SiteHeader() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search peptides, articles, COAs..."
-              className="flex-1 border border-border px-4 py-3 text-sm outline-none focus:border-gold focus-visible:outline-2 focus-visible:outline-gold"
+              className="flex-1 border border-white/20 bg-white/5 px-4 py-3 text-sm text-bone placeholder:text-bone/50 outline-none focus:border-gold focus-visible:outline-2 focus-visible:outline-gold"
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors focus-visible:outline-2 focus-visible:outline-gold"
+              className="px-6 py-3 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors focus-visible:outline-2 focus-visible:outline-gold"
             >
               SEARCH
             </button>
