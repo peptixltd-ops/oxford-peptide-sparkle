@@ -89,19 +89,20 @@ export function SiteHeader() {
           >
             <User className="w-5 h-5" aria-hidden="true" />
           </Link>
-          <Link
-            to="/cart"
+          <button
+            type="button"
+            onClick={openDrawer}
             aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
             className="relative min-h-11 min-w-11 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-gold"
           >
-            <ShoppingBag className="w-5 h-5" aria-hidden="true" />
+            <ShoppingBag className={`w-5 h-5 ${pop ? "animate-badge-pop" : ""}`} aria-hidden="true" />
             <span
               aria-hidden="true"
-              className="absolute top-1 right-1 bg-gold text-navy-deep text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center"
+              className={`absolute top-1 right-1 bg-gold text-navy-deep text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center ${pop ? "animate-badge-pop" : ""}`}
             >
               {count}
             </span>
-          </Link>
+          </button>
           <button
             type="button"
             aria-label="Open menu"
