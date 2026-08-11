@@ -201,7 +201,7 @@ function ConceptHome() {
       <div className="bg-navy-deep text-bone text-[11px] py-2 text-center tracking-wide">
         For Laboratory Research Use Only · Not For Human Or Veterinary Use
       </div>
-      <SiteHeader className="bg-white" />
+      <SiteHeader />
 
       <main>
         {/* Trust pills */}
