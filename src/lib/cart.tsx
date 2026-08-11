@@ -11,6 +11,13 @@ type CartCtx = {
   remove: (slug: string, variantId: string) => void;
   setQty: (slug: string, variantId: string, qty: number) => void;
   clear: () => void;
+  /** Drawer that pops open to confirm an add-to-cart. */
+  drawerOpen: boolean;
+  openDrawer: () => void;
+  closeDrawer: () => void;
+  lastAdded: { slug: string; variantId: string } | null;
+  /** Increments on every add — used to pulse the header cart badge. */
+  bump: number;
 };
 
 const Ctx = createContext<CartCtx | null>(null);
