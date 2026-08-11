@@ -122,32 +122,12 @@ function Home() {
                 Evidence-based guides, comparisons and scientific resources to advance knowledge and support laboratory research. Strictly for in-vitro use.
               </p>
 
-              <div className="hidden md:flex flex-wrap gap-8 mb-8">
-                {[
-                  { icon: BookOpen, l1: "In-Depth", l2: "Research Guides" },
-                  { icon: BarChart3, l1: "Data-Driven", l2: "Comparisons" },
-                  { icon: Microscope, l1: "Science-Led", l2: "Education" },
-                ].map(f => (
-                  <div key={f.l2} className="flex flex-col items-start">
-                    <div className="w-12 h-12 rounded-full border border-bone/40 flex items-center justify-center mb-2">
-                      <f.icon className="w-5 h-5 text-bone/90" strokeWidth={1.4} aria-hidden="true"/>
-                    </div>
-                    <div className="text-[13px] leading-tight">
-                      <div className="font-semibold">{f.l1}</div>
-                      <div className="text-bone/70">{f.l2}</div>
-                    </div>
-                  </div>
-                ))}
+              <div className="flex flex-wrap gap-3 mb-6 md:mb-8">
+                <Link to="/shop" className="px-5 md:px-7 py-3 md:py-3.5 bg-gold text-navy-deep text-[10px] md:text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-navy-deep">
+                  SHOP PEPTIDES <ArrowRight className="w-3.5 h-3.5" aria-hidden="true"/>
+                </Link>
               </div>
 
-              <div className="flex flex-wrap gap-3 mb-6 md:mb-8">
-                <Link to="/research-hub" className="px-5 md:px-7 py-3 md:py-3.5 bg-gold text-navy-deep text-[10px] md:text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-navy-deep">
-                  EXPLORE RESEARCH HUB <ArrowRight className="w-3.5 h-3.5" aria-hidden="true"/>
-                </Link>
-                <Link to="/shop" className="px-5 md:px-7 py-3 md:py-3.5 border border-bone/40 text-bone text-[10px] md:text-xs font-bold tracking-widest hover:bg-bone hover:text-navy-deep transition-colors focus-visible:outline-2 focus-visible:outline-gold">
-                  SHOP PEPTIDES
-                </Link>
-              </div>
 
               <div className="hidden sm:flex items-center gap-3 text-sm">
                 <span className="font-semibold">Excellent</span>
