@@ -1,0 +1,1 @@
+DELETE FROM public.newsletter_subscribers WHERE source = 'debug' OR email LIKE '%@example.com';
