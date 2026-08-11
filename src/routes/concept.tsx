@@ -327,29 +327,162 @@ function ConceptHome() {
           </div>
         </section>
 
-        {/* Research authority strip */}
-        <section className="bg-navy-deep text-bone py-14">
-          <div className="container-x grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-display mb-2">Research</div>
-              <p className="text-sm text-bone/70">
-                Evidence-based guides, comparisons and scientific resources.
-              </p>
+        {/* Customer feedback */}
+        <section className="bg-white py-16 md:py-20">
+          <div className="container-x">
+            <div className="text-center mb-10">
+              <div className="text-gold text-[11px] font-bold tracking-[0.25em] mb-2">
+                CUSTOMER FEEDBACK
+              </div>
+              <h2 className="font-display text-3xl md:text-4xl text-navy-deep">
+                What <span className="italic text-gold">Researchers Say</span>
+              </h2>
             </div>
-            <div>
-              <div className="text-3xl font-display mb-2">Education</div>
-              <p className="text-sm text-bone/70">
-                In-depth methodology and laboratory handling guides.
-              </p>
-            </div>
-            <div>
-              <div className="text-3xl font-display mb-2">Innovation</div>
-              <p className="text-sm text-bone/70">
-                Reference-grade peptides for in-vitro research.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {feedback.map((f) => (
+                <div key={f.who} className="bg-bone border border-border p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-[11px] font-bold tracking-widest text-navy-deep">
+                      {f.who}
+                    </div>
+                    <div className="flex gap-0.5" aria-hidden="true">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} className="w-3 h-3 fill-gold text-gold" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-sm text-navy-deep/75 leading-relaxed">{f.text}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
+
+        {/* About */}
+        <section className="bg-bone py-16 md:py-20">
+          <div className="container-x max-w-4xl mx-auto text-center">
+            <div className="text-gold text-[11px] font-bold tracking-[0.25em] mb-3">
+              ABOUT OXFORD RESEARCH PEPTIDES
+            </div>
+            <h2 className="font-display text-3xl md:text-5xl leading-tight text-navy-deep mb-4">
+              Committed To Precision. Built On <span className="italic text-gold">Trust</span>.
+            </h2>
+            <p className="text-sm md:text-base text-navy-deep/70 mb-8">
+              High quality research peptides supplied with consistency, control and
+              uncompromising standards.
+            </p>
+            <div className="text-left space-y-4 text-sm md:text-base text-navy-deep/80 leading-relaxed">
+              <p>
+                Oxford Research Peptides supplies{" "}
+                <strong className="font-semibold text-navy-deep">
+                  laboratory research peptides
+                </strong>{" "}
+                in the UK, with a focus on identity verification, documented purity and
+                reliable dispatch. Every product is intended strictly for in-vitro
+                laboratory research by qualified researchers and institutions.
+              </p>
+              <p>
+                Each batch is verified by HPLC and MS; a Certificate of Analysis is
+                available on request and independent third-party testing can be supplied.
+                Our research catalogue includes retatrutide, tirzepatide, semaglutide,
+                BPC-157 and TB-500.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3 mt-8">
+              {researchTags.map((t) => (
+                <Link
+                  key={t.label}
+                  to={t.to}
+                  className="px-4 py-2 border border-navy-deep/25 text-[10px] font-bold tracking-widest text-navy-deep hover:border-gold hover:text-gold transition-colors"
+                >
+                  {t.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Controlled. Verified. Reliable. */}
+        <section className="bg-white">
+          <div className="grid md:grid-cols-2 items-stretch">
+            <img
+              src={labStandards}
+              alt="Laboratory bench with research peptide vials and glassware"
+              loading="lazy"
+              className="w-full h-64 md:h-full object-cover"
+            />
+            <div className="bg-muted/40 px-6 md:px-14 py-12 md:py-20 flex flex-col justify-center">
+              <h2 className="font-display text-3xl md:text-4xl text-navy-deep mb-6 leading-tight">
+                Controlled. Verified. <span className="italic text-gold">Reliable.</span>
+              </h2>
+              <ul className="space-y-3">
+                {[
+                  "Independently batch-tested for purity",
+                  "Transparent labelling",
+                  "Manufactured to strict standards",
+                ].map((l) => (
+                  <li key={l} className="flex items-center gap-3 text-sm md:text-base text-navy-deep/80">
+                    <CheckCircle2 className="w-5 h-5 text-gold shrink-0" aria-hidden="true" />
+                    {l}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/lab-testing"
+                className="mt-8 self-start px-7 py-3.5 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold"
+              >
+                TESTING & QUALITY <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats */}
+        <section className="bg-navy-deep text-bone py-16">
+          <div className="container-x text-center">
+            <h2 className="font-display text-3xl md:text-4xl mb-3">
+              Built For Long-Term <span className="italic text-gold">Reliability</span>
+            </h2>
+            <p className="text-sm text-bone/70 max-w-xl mx-auto mb-12">
+              Oxford Research Peptides is built to be a dependable supplier — focused on
+              consistency, professionalism and trust.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((s) => (
+                <div key={s.small}>
+                  <div className="font-display text-3xl md:text-4xl text-gold mb-1">{s.big}</div>
+                  <div className="text-[10px] font-bold tracking-[0.25em] text-bone/70">
+                    {s.small}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="bg-bone py-16 md:py-20">
+          <div className="container-x max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <div className="text-gold text-[11px] font-bold tracking-[0.25em] mb-2">
+                HELP CENTRE
+              </div>
+              <h2 className="font-display text-3xl md:text-4xl text-navy-deep">
+                Frequently Asked <span className="italic text-gold">Questions</span>
+              </h2>
+            </div>
+            <FaqAccordion />
+            <div className="text-center mt-10">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-7 py-3.5 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors focus-visible:outline-2 focus-visible:outline-gold"
+              >
+                CONTACT SUPPORT <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <SiteFooter />
