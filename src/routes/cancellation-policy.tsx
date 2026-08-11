@@ -15,7 +15,7 @@ function Page() {
         </Link>
       </div>
       <P>
-        For urgent cancellation requests, email <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com">oxfordresearchpeptides@gmail.com</a> with your order number as soon as possible.
+        For urgent cancellation requests, email <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com">info@oxfordresearchpeptides.com</a> with your order number as soon as possible.
       </P>
     </LegalPage>
   );

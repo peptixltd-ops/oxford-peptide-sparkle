@@ -23,7 +23,7 @@ function Page() {
 
       <H2>How to report an error</H2>
       <P>
-        Email <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com?subject=Corrections%20request">oxfordresearchpeptides@gmail.com</a> with the subject line{" "}
+        Email <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com?subject=Corrections%20request">info@oxfordresearchpeptides.com</a> with the subject line{" "}
         <em>Corrections request</em>. Please include:
       </P>
       <UL>

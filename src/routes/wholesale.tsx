@@ -46,7 +46,7 @@ function WholesalePage() {
             </div>
           ) : (
             <form
-              action="https://formsubmit.co/oxfordresearchpeptides@gmail.com"
+              action="https://formsubmit.co/info@oxfordresearchpeptides.com"
               method="POST"
               className="bg-white border border-border p-8 space-y-4"
             >

@@ -30,7 +30,7 @@ function ContactPage() {
     }
     setSending(true);
     try {
-      const res = await fetch("https://formsubmit.co/ajax/oxfordresearchpeptides@gmail.com", {
+      const res = await fetch("https://formsubmit.co/ajax/info@oxfordresearchpeptides.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ ...parsed.data, _subject: `[Contact] ${parsed.data.subject}` }),
@@ -67,7 +67,7 @@ function ContactPage() {
               <Mail className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
               <div>
                 <div className="text-[11px] font-bold tracking-[0.25em] text-navy-deep/60 mb-1">EMAIL</div>
-                <a href="mailto:oxfordresearchpeptides@gmail.com" className="hover:text-gold">oxfordresearchpeptides@gmail.com</a>
+                <a href="mailto:info@oxfordresearchpeptides.com" className="hover:text-gold">info@oxfordresearchpeptides.com</a>
               </div>
             </div>
             <div className="flex gap-4">

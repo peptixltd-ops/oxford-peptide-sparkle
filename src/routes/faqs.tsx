@@ -62,7 +62,7 @@ const categories: Category[] = [
     id: "support",
     label: "Support",
     items: [
-      { q: "How do I contact you?", a: "Email oxfordresearchpeptides@gmail.com and a member of the team will get back to you within one working day." },
+      { q: "How do I contact you?", a: "Email info@oxfordresearchpeptides.com and a member of the team will get back to you within one working day." },
       { q: "Do you accept returns?", a: "Due to the nature of our products we are unable to accept returns. We will, however, resolve any issue with your order promptly." },
       { q: "Do you issue refunds?", a: "Refunds are handled on a case-by-case basis by our customer service team. When requesting a refund, please include your order number, a description of the issue and any supporting photos." },
     ],
@@ -140,7 +140,7 @@ function FaqsPage() {
                 Email our team and we'll get back to you within one working day.
               </p>
               <a
-                href="mailto:oxfordresearchpeptides@gmail.com"
+                href="mailto:info@oxfordresearchpeptides.com"
                 className="inline-block px-6 py-3 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors focus-visible:outline-2 focus-visible:outline-gold"
               >
                 CONTACT US

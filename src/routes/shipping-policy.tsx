@@ -16,7 +16,7 @@ function Page() {
         </Link>
       </div>
       <P>
-        Need help with a specific order? Email <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com">oxfordresearchpeptides@gmail.com</a> with your order number.
+        Need help with a specific order? Email <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com">info@oxfordresearchpeptides.com</a> with your order number.
       </P>
     </LegalPage>
   );

@@ -64,7 +64,7 @@ function Page() {
 
       <H2>Contact</H2>
       <P>
-        For questions about cookies email <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com">oxfordresearchpeptides@gmail.com</a>.
+        For questions about cookies email <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com">info@oxfordresearchpeptides.com</a>.
       </P>
     </LegalPage>
   );

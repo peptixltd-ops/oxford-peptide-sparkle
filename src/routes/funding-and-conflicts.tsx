@@ -50,8 +50,8 @@ function Page() {
       <H2>Reporting a concern</H2>
       <P>
         If you believe a page misrepresents evidence for commercial reasons, email{" "}
-        <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com?subject=Conflict%20of%20interest%20concern">
-          oxfordresearchpeptides@gmail.com
+        <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com?subject=Conflict%20of%20interest%20concern">
+          info@oxfordresearchpeptides.com
         </a>{" "}
         with the URL and passage in question. Substantive concerns are handled under our{" "}
         <Link to="/corrections-policy" className="text-gold">Corrections Policy</Link>.

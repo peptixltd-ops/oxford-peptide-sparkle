@@ -92,7 +92,7 @@ function Page() {
 
       <H2>11. Privacy enquiries</H2>
       <P>
-        For any privacy enquiry, please email <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com">oxfordresearchpeptides@gmail.com</a> or write to us at the registered office address below.
+        For any privacy enquiry, please email <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com">info@oxfordresearchpeptides.com</a> or write to us at the registered office address below.
       </P>
 
       <H2>12. Policy updates</H2>

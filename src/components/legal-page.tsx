@@ -38,7 +38,7 @@ export function LegalPage({
             </article>
             <div className="mt-12 p-5 border border-navy-deep/15 bg-white text-xs text-navy-deep/70">
               <strong className="block text-navy-deep mb-1">Oxford Research Syndicate Ltd</strong>
-              Company Registration Number 17207898 · Registered Office: 131a Movers Lane, Barking, Essex, IG11 7UQ, United Kingdom · oxfordresearchpeptides@gmail.com
+              Company Registration Number 17207898 · Registered Office: 131a Movers Lane, Barking, Essex, IG11 7UQ, United Kingdom · info@oxfordresearchpeptides.com
             </div>
           </div>
         </section>

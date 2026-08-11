@@ -24,7 +24,7 @@ export const PUBLISHER = {
   legalEntity: "Oxford Research Syndicate Ltd",
   companyNumber: "17207898",
   address: "131a Movers Lane, Barking, Essex, IG11 7UQ, United Kingdom",
-  contactEmail: "oxfordresearchpeptides@gmail.com",
+  contactEmail: "info@oxfordresearchpeptides.com",
 } as const;
 
 // ---------------------------------------------------------------------------
