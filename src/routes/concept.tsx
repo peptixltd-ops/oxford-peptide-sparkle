@@ -187,7 +187,17 @@ function ConceptProductCard({ product: p }: { product: (typeof products)[0] }) {
 
 function ConceptHome() {
   return (
-    <div className="min-h-screen bg-bone text-navy-deep">
+    <div
+      className="min-h-screen bg-bone text-navy-deep"
+      style={
+        {
+          "--secondary": "oklch(0.94 0.012 258)",
+          "--secondary-foreground": "oklch(0.16 0.035 258)",
+          "--muted": "oklch(0.90 0.016 258)",
+          "--muted-foreground": "oklch(0.40 0.025 258)",
+        } as React.CSSProperties
+      }
+    >
       <div className="bg-navy-deep text-bone text-[11px] py-2 text-center tracking-wide">
         For Laboratory Research Use Only · Not For Human Or Veterinary Use
       </div>
