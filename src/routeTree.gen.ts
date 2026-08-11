@@ -36,6 +36,7 @@ import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CorrectionsPolicyRouteImport } from './routes/corrections-policy'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConceptRouteImport } from './routes/concept'
 import { Route as CompoundsRouteImport } from './routes/compounds'
 import { Route as CertificateOfAnalysisRouteImport } from './routes/certificate-of-analysis'
 import { Route as CartRouteImport } from './routes/cart'
@@ -208,6 +209,11 @@ const CookiePolicyRoute = CookiePolicyRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptRoute = ConceptRouteImport.update({
+  id: '/concept',
+  path: '/concept',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompoundsRoute = CompoundsRouteImport.update({
@@ -418,6 +424,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
   '/compounds': typeof CompoundsRouteWithChildren
+  '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/corrections-policy': typeof CorrectionsPolicyRoute
@@ -483,6 +490,7 @@ export interface FileRoutesByTo {
   '/cancellation-policy': typeof CancellationPolicyRoute
   '/cart': typeof CartRoute
   '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
+  '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/corrections-policy': typeof CorrectionsPolicyRoute
@@ -548,6 +556,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/certificate-of-analysis': typeof CertificateOfAnalysisRoute
   '/compounds': typeof CompoundsRouteWithChildren
+  '/concept': typeof ConceptRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/corrections-policy': typeof CorrectionsPolicyRoute
@@ -616,6 +625,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/certificate-of-analysis'
     | '/compounds'
+    | '/concept'
     | '/contact'
     | '/cookie-policy'
     | '/corrections-policy'
@@ -681,6 +691,7 @@ export interface FileRouteTypes {
     | '/cancellation-policy'
     | '/cart'
     | '/certificate-of-analysis'
+    | '/concept'
     | '/contact'
     | '/cookie-policy'
     | '/corrections-policy'
@@ -745,6 +756,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/certificate-of-analysis'
     | '/compounds'
+    | '/concept'
     | '/contact'
     | '/cookie-policy'
     | '/corrections-policy'
@@ -812,6 +824,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CertificateOfAnalysisRoute: typeof CertificateOfAnalysisRoute
   CompoundsRoute: typeof CompoundsRouteWithChildren
+  ConceptRoute: typeof ConceptRoute
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   CorrectionsPolicyRoute: typeof CorrectionsPolicyRoute
@@ -1035,6 +1048,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept': {
+      id: '/concept'
+      path: '/concept'
+      fullPath: '/concept'
+      preLoaderRoute: typeof ConceptRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compounds': {
@@ -1386,6 +1406,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CertificateOfAnalysisRoute: CertificateOfAnalysisRoute,
   CompoundsRoute: CompoundsRouteWithChildren,
+  ConceptRoute: ConceptRoute,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   CorrectionsPolicyRoute: CorrectionsPolicyRoute,
@@ -1422,3 +1443,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
