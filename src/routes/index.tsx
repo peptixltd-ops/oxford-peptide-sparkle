@@ -103,7 +103,7 @@ function Home() {
                 <span className="text-gold italic">Peptide Research<span className="not-italic">.</span></span>
               </h1>
               <p className="hidden sm:block text-bone/75 text-base max-w-md mb-8 leading-relaxed">
-                Evidence-based guides, comparisons and scientific resources to advance knowledge and support laboratory research. Strictly for in-vitro use.
+                Reference-grade peptides, independently verified by UK laboratories. Every batch ships with a traceable COA, discreet packaging and next-day UK dispatch.
               </p>
 
               <div className="flex flex-wrap gap-3 mb-6 md:mb-8">
