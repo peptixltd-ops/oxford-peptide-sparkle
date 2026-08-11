@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ShieldCheck, FlaskConical, ClipboardCheck,
+  ShieldCheck, ClipboardCheck,
   ArrowRight, Star,
   Droplet, Package, Award,
   BookOpen, Users, FileText,
