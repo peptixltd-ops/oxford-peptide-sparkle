@@ -9,14 +9,19 @@ import { CartDrawer } from "./cart-drawer";
 export function Logo({ light = false }: { light?: boolean }) {
   return (
     <Link to="/" className="flex items-center group" aria-label="Oxford Research Peptides — Home">
-      <img
-        src={oxfordLogo.url}
-        alt="Oxford Research Peptides"
-        className={`h-12 w-auto object-contain ${light ? "brightness-0 invert" : ""}`}
-      />
+      {/* The logo artwork is navy-on-white, so on dark surfaces it sits on a white
+          plate rather than being colour-inverted (inverting flattened it to a blank block). */}
+      <span className={light ? "inline-block bg-white rounded-sm px-3 py-2" : "inline-block"}>
+        <img
+          src={oxfordLogo.url}
+          alt="Oxford Research Peptides"
+          className="h-12 w-auto object-contain"
+        />
+      </span>
     </Link>
   );
 }
+
 
 // Reordered per Release 1.1: education-first, commerce demoted.
 export const navLinks = [
