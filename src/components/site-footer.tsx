@@ -8,7 +8,6 @@ const cols = [
   { h: "SHOP", links: [
     { l: "All Peptides", to: "/shop" },
     { l: "Bestsellers", to: "/shop" },
-    { l: "Wholesale", to: "/wholesale" },
   ] },
   { h: "RESEARCH", links: [
     { l: "Research Hub", to: "/research-hub" },

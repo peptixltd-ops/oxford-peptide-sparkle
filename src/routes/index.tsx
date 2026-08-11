@@ -8,7 +8,6 @@ import {
 
 import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
-import wholesaleVials from "@/assets/wholesale-vials.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProductCard } from "@/components/product-card";
