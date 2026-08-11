@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { products, fromPrice } from "@/lib/products";
@@ -10,8 +11,14 @@ import {
   Package,
   ArrowRight,
   ShoppingCart,
+  Star,
+  CheckCircle2,
+  Plus,
+  Minus,
 } from "lucide-react";
-import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
+import heroTrio from "@/assets/hero-lab-trio.png.asset.json";
+import labStandards from "@/assets/lab-standards.jpg";
+
 
 export const Route = createFileRoute("/concept")({
   head: () => ({
