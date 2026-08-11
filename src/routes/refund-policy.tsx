@@ -26,7 +26,7 @@ function makePolicy(kind: "refund" | "shipping" | "cancellation") {
           </Link>
         </div>
         <P>
-          If your question isn't answered in the FAQ, email <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com">oxfordresearchpeptides@gmail.com</a> and our team will reply within one working day.
+          If your question isn't answered in the FAQ, email <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com">info@oxfordresearchpeptides.com</a> and our team will reply within one working day.
         </P>
       </LegalPage>
     );

@@ -113,7 +113,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           legalName: "Oxford Research Syndicate Ltd",
           url: SITE_URL,
           logo: DEFAULT_OG_IMAGE,
-          email: "oxfordresearchpeptides@gmail.com",
+          email: "info@oxfordresearchpeptides.com",
           taxID: "17207898",
           founder: { "@type": "Organization", name: "Oxford Research Syndicate Ltd" },
           areaServed: "GB",
@@ -127,7 +127,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           contactPoint: {
             "@type": "ContactPoint",
             contactType: "customer support",
-            email: "oxfordresearchpeptides@gmail.com",
+            email: "info@oxfordresearchpeptides.com",
             areaServed: "GB",
             availableLanguage: "en-GB",
           },

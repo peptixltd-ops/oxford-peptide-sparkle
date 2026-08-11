@@ -31,7 +31,7 @@ function Page() {
 
       <H2>Requesting the COA for your batch</H2>
       <P>
-        Email <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com?subject=COA%20request">oxfordresearchpeptides@gmail.com</a>{" "}
+        Email <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com?subject=COA%20request">info@oxfordresearchpeptides.com</a>{" "}
         with your order number and the batch number printed on the vial label. The COA is
         provided as a PDF.
       </P>

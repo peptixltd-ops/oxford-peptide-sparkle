@@ -98,7 +98,7 @@ function Page() {
 
       <H2>14. Contact</H2>
       <P>
-        Questions about these Terms should be sent to <a className="text-gold" href="mailto:oxfordresearchpeptides@gmail.com">oxfordresearchpeptides@gmail.com</a>.
+        Questions about these Terms should be sent to <a className="text-gold" href="mailto:info@oxfordresearchpeptides.com">info@oxfordresearchpeptides.com</a>.
       </P>
 
       <H2>15. Changes to these terms</H2>

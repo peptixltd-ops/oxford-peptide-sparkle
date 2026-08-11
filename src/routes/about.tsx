@@ -29,7 +29,7 @@ export const Route = createFileRoute("/about")({
             <p>We combine modern solid-phase peptide synthesis with independent third-party testing to produce material researchers can document and trust. Every batch ships with a certificate of analysis showing HPLC purity and identity confirmation.</p>
             <p>This brand is owned and operated by <strong>Oxford Research Syndicate Ltd</strong>, a company registered in England &amp; Wales (Company Registration Number 17207898).</p>
             <h2 className="font-display text-3xl font-medium pt-6">Contact</h2>
-            <p>Email: <a href="mailto:oxfordresearchpeptides@gmail.com" className="text-gold underline">oxfordresearchpeptides@gmail.com</a></p>
+            <p>Email: <a href="mailto:info@oxfordresearchpeptides.com" className="text-gold underline">info@oxfordresearchpeptides.com</a></p>
           </div>
         </section>
       </main>
