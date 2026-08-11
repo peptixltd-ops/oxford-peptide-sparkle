@@ -138,7 +138,7 @@ function Home() {
             <div className="container-x grid grid-cols-2 md:grid-cols-4 gap-6 py-5">
               {[
                 { icon: Award, l: "≥99% Purity — Independently Verified" },
-                { icon: Truck, l: "Fast UK Dispatch — Discreet Packaging" },
+                { icon: Truck, l: "Next Day UK Delivery — Tracked & Discreet" },
                 { icon: FlaskConical, l: "Research-Grade Lyophilised Vials" },
                 { icon: ShieldCheck, l: "Batch-Traceable COAs" },
               ].map(f => (
