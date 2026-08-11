@@ -405,7 +405,7 @@ function ConceptHome() {
                 <Link
                   key={t.label}
                   to={t.to}
-                  className="px-4 py-2 border border-navy-deep/25 text-[10px] font-bold tracking-widest text-navy-deep hover:border-gold hover:text-gold transition-colors"
+                  className="px-4 py-2 border border-navy-deep/25 text-[10px] font-bold tracking-widest text-navy-deep hover:border-navy-deep hover:bg-navy-deep hover:text-bone transition-colors"
                 >
                   {t.label}
                 </Link>
