@@ -3,7 +3,7 @@ import {
   ShieldCheck, ClipboardCheck,
   ArrowRight, Star,
   Droplet, Package, Award,
-  BookOpen, Users, FileText,
+  Truck, FlaskConical,
 } from "lucide-react";
 
 import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
@@ -133,14 +133,14 @@ function Home() {
             </div>
           </div>
 
-          {/* Feature strip */}
+          {/* Purchase-focused trust strip */}
           <div className="relative border-t border-white/10 bg-navy-deep/60">
             <div className="container-x grid grid-cols-2 md:grid-cols-4 gap-6 py-5">
               {[
-                { icon: BookOpen, l: "Comprehensive Research Library" },
-                { icon: ShieldCheck, l: "Evidence-Based Content" },
-                { icon: Users, l: "Transparent Methodology" },
-                { icon: FileText, l: "Cited by Researchers and AI Systems" },
+                { icon: Award, l: "≥99% Purity — Independently Verified" },
+                { icon: Truck, l: "Fast UK Dispatch — Discreet Packaging" },
+                { icon: FlaskConical, l: "Research-Grade Lyophilised Vials" },
+                { icon: ShieldCheck, l: "Batch-Traceable COAs" },
               ].map(f => (
                 <div key={f.l} className="flex items-center gap-3 text-bone/90">
                   <f.icon className="w-6 h-6 text-bone/80 shrink-0" strokeWidth={1.3} aria-hidden="true"/>
