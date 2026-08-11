@@ -47,7 +47,10 @@ const reviews = [
   { text: "Consistently high purity with full COA provided. Fast delivery and discreet packaging. Highly recommended for in-vitro work.", who: "Verified Buyer" },
   { text: "Purity is consistently above 99%. Oxford Research Peptides has become our standard supplier for reference material.", who: "Laboratory Researcher" },
   { text: "Outstanding documentation and transparency. The best peptide supplier we've sourced from in the UK.", who: "Verified Buyer" },
+  { text: "Lot numbers match the certificates every time and the lyophilised cake is always intact on arrival. Reconstitutes cleanly.", who: "Research Technician" },
+  { text: "Ordered late Friday, delivered Monday morning in secure, discreet packaging. Exactly what our lab needs from a UK supplier.", who: "Verified Buyer" },
 ];
+
 
 function Home() {
   return (
