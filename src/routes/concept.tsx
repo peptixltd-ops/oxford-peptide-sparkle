@@ -485,6 +485,27 @@ function ConceptHome() {
           </div>
         </section>
 
+        {/* Quick links row */}
+        <section className="bg-white border-t border-border">
+          <nav aria-label="Quick links" className="container-x py-6">
+            <ul className="flex flex-wrap justify-center gap-x-10 gap-y-3 text-[11px] font-bold tracking-[0.2em] text-navy-deep">
+              {[
+                { l: "SEARCH", to: "/search" },
+                { l: "COMPOUNDS", to: "/compounds" },
+                { l: "METHODOLOGY", to: "/methodology" },
+                { l: "LAB TESTING", to: "/lab-testing" },
+              ].map((i) => (
+                <li key={i.l}>
+                  <Link to={i.to} className="hover:text-gold transition-colors">
+                    {i.l}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </section>
+
+
       </main>
 
       <SiteFooter />
