@@ -27,6 +27,7 @@ export function Logo({ light = false }: { light?: boolean }) {
 export const navLinks = [
   { to: "/about", label: "ABOUT" },
   { to: "/shop", label: "SHOP" },
+  { to: "/coas", label: "COAS" },
   { to: "/contact", label: "CONTACT" },
   { to: "/faqs", label: "FAQS" },
 ] as const;
