@@ -209,32 +209,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Research areas */}
-        <section className="bg-muted/40 py-16">
-          <div className="container-x">
-            <SectionHeader
-              eyebrow="EXPLORE BY RESEARCH AREA"
-              ctaLabel="VIEW ALL"
-              ctaTo="/shop"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {researchAreas.map(a => (
-                <div key={a.title} className="bg-white p-6 group hover:shadow-lg transition-all border border-transparent hover:border-gold/30">
-                  <div className="flex items-start justify-between mb-4">
-                    <h3 className="font-display text-lg font-semibold leading-tight max-w-[60%]">{a.title}</h3>
-                    <a.icon className="w-10 h-10 text-muted-foreground/60 group-hover:text-gold transition-colors" strokeWidth={1.2} aria-hidden="true" />
-                  </div>
-                  <ul className="text-sm space-y-1 text-muted-foreground mb-6">
-                    {a.items.map(it => <li key={it}>{it}</li>)}
-                  </ul>
-                  <Link to="/shop" className="text-[10px] font-bold tracking-widest inline-flex items-center gap-2 hover:text-gold focus-visible:text-gold">
-                    EXPLORE <ArrowRight className="w-3 h-3" aria-hidden="true" />
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Excellence + CoA */}
         <section className="bg-navy-deep text-bone py-20">
