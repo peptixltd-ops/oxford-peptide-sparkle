@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ShieldCheck, FlaskConical, ClipboardCheck,
-  ArrowRight, Star, Calculator,
+  ArrowRight, Star,
   Droplet, Package, Award,
-  BookOpen, Users, FileText, Network, Compass,
+  BookOpen, Users, FileText,
 } from "lucide-react";
-import { explorerSections } from "@/lib/knowledge-explorer";
+
 import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
 import wholesaleVials from "@/assets/wholesale-vials.jpg";
