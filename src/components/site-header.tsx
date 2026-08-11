@@ -138,6 +138,7 @@ export function SiteHeader() {
         </div>
       )}
       <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} links={navLinks} />
+      <CartDrawer />
     </header>
   );
 }
