@@ -114,7 +114,7 @@ export function SiteHeader() {
         </div>
       </div>
       {searchOpen && (
-        <div className="absolute inset-x-0 top-full bg-white border-b border-border shadow-lg">
+        <div className="absolute inset-x-0 top-full bg-navy-deep border-b border-white/10 shadow-2xl">
           <form onSubmit={submitSearch} className="container-x py-4 flex gap-3">
             <label htmlFor="site-search" className="sr-only">
               Search
@@ -125,11 +125,11 @@ export function SiteHeader() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search peptides, articles, COAs..."
-              className="flex-1 border border-border px-4 py-3 text-sm outline-none focus:border-gold focus-visible:outline-2 focus-visible:outline-gold"
+              className="flex-1 border border-white/20 bg-white/5 px-4 py-3 text-sm text-bone placeholder:text-bone/50 outline-none focus:border-gold focus-visible:outline-2 focus-visible:outline-gold"
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors focus-visible:outline-2 focus-visible:outline-gold"
+              className="px-6 py-3 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors focus-visible:outline-2 focus-visible:outline-gold"
             >
               SEARCH
             </button>
