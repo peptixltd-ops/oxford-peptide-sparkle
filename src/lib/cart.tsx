@@ -28,6 +28,9 @@ const same = (a: CartItem, slug: string, variantId: string) =>
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [lastAdded, setLastAdded] = useState<{ slug: string; variantId: string } | null>(null);
+  const [bump, setBump] = useState(0);
 
   useEffect(() => {
     try {
