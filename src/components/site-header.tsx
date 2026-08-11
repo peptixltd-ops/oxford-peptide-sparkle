@@ -18,9 +18,8 @@ export function Logo({ light = false }: { light?: boolean }) {
   );
 }
 
-// Simplified nav: research/compounds/methodology removed; commerce + trust pages.
+// Simplified nav: commerce + trust pages.
 export const navLinks = [
-  { to: "/lab-testing", label: "LAB TESTING" },
   { to: "/about", label: "ABOUT" },
   { to: "/shop", label: "SHOP" },
   { to: "/wholesale", label: "WHOLESALE" },
@@ -53,9 +52,7 @@ export function SiteHeader() {
   return (
     <header className="bg-navy-deep text-bone border-b border-white/10 relative z-20">
       <div className="container-x flex items-center justify-between h-20 gap-4">
-        <div className="bg-white p-1.5 rounded-sm">
-          <Logo />
-        </div>
+        <Logo light />
         <nav
           aria-label="Primary"
           className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs font-semibold tracking-widest"
