@@ -18,11 +18,8 @@ export function Logo({ light = false }: { light?: boolean }) {
   );
 }
 
-// Reordered per Release 1.1: education-first, commerce demoted.
+// Simplified nav: research/compounds/methodology removed; commerce + trust pages.
 export const navLinks = [
-  { to: "/research-hub", label: "RESEARCH" },
-  { to: "/compounds", label: "COMPOUNDS" },
-  { to: "/methodology", label: "METHODOLOGY" },
   { to: "/lab-testing", label: "LAB TESTING" },
   { to: "/about", label: "ABOUT" },
   { to: "/shop", label: "SHOP" },
