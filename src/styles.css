@@ -99,3 +99,25 @@
 }
 
 @utility container-x { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+/* --- Cart drawer + add-to-cart feedback animations --- */
+@keyframes orp-fade-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes orp-slide-in-right {
+  from { transform: translateX(100%); opacity: 0.6 }
+  to { transform: translateX(0); opacity: 1 }
+}
+@keyframes orp-pop-in {
+  0% { transform: scale(0.92); opacity: 0 }
+  60% { transform: scale(1.03); opacity: 1 }
+  100% { transform: scale(1); opacity: 1 }
+}
+@keyframes orp-badge-pop {
+  0% { transform: scale(1) }
+  35% { transform: scale(1.6) }
+  70% { transform: scale(0.92) }
+  100% { transform: scale(1) }
+}
+@utility animate-fade-in { animation: orp-fade-in 0.2s ease-out both; }
+@utility animate-slide-in-right { animation: orp-slide-in-right 0.32s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@utility animate-scale-in { animation: orp-pop-in 0.28s ease-out both; }
+@utility animate-badge-pop { animation: orp-badge-pop 0.5s ease-out; }
