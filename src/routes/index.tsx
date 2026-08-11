@@ -231,30 +231,6 @@ function Home() {
           </div>
         </section>
 
-
-        {/* Wholesale */}
-        <section className="relative bg-muted overflow-hidden">
-          <div className="container-x grid lg:grid-cols-[0.7fr_1.3fr_auto] gap-8 items-center py-10">
-            <img src={wholesaleVials} alt="Wholesale research peptide vials" width={400} height={200} loading="lazy"
-              className="w-full h-32 object-cover rounded-sm" />
-            <div>
-
-              <div className="text-gold text-[11px] font-bold tracking-[0.25em] mb-2">WHOLESALE & BULK SUPPLY</div>
-              <h2 className="font-display text-2xl md:text-3xl font-medium mb-3 leading-tight">
-                Supplying laboratories, universities and research institutions across the UK and worldwide.
-              </h2>
-              <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted-foreground">
-                <span>✓ Competitive pricing</span>
-                <span>✓ Priority support</span>
-                <span>✓ Discreet packaging</span>
-                <span>✓ Consistent supply</span>
-              </div>
-            </div>
-            <Link to="/wholesale" className="px-8 py-4 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors focus-visible:outline-2 focus-visible:outline-gold">
-              APPLY FOR WHOLESALE
-            </Link>
-          </div>
-        </section>
       </main>
 
       <SiteFooter />
