@@ -21,7 +21,6 @@ const groups = [
     links: [
       { l: "About Us", to: "/about" },
       { l: "Contact Us", to: "/contact" },
-      { l: "Wholesale", to: "/wholesale" },
       { l: "FAQs", to: "/faqs" },
     ],
   },

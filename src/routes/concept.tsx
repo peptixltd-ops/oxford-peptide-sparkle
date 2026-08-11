@@ -103,7 +103,7 @@ const faqs = [
   },
   {
     q: "Can I place a bulk order?",
-    a: "Yes — laboratories, universities and institutions can apply for wholesale pricing and priority support via our wholesale page.",
+    a: "Yes — laboratories, universities and institutions can request bulk pricing and priority support via our contact page.",
   },
 ];
 

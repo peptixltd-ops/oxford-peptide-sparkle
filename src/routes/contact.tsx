@@ -55,7 +55,7 @@ function ContactPage() {
           <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">GET IN TOUCH</div>
           <h1 className="font-display text-5xl font-medium">Contact Us</h1>
           <p className="text-bone/70 mt-4 max-w-xl">
-            Questions about an order, batch documentation or wholesale enquiries — our team responds within one working day.
+            Questions about an order or batch documentation — our team responds within one working day.
           </p>
         </div>
       </section>
