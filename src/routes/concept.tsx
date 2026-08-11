@@ -250,10 +250,12 @@ function ConceptHome() {
             <div className="order-1 md:order-2 flex items-center justify-center">
               <img
                 src={heroTrio.url}
-                alt="Oxford Research Peptides — Retatrutide, BPC-157 and Semaglutide research vials"
-                className="w-full max-w-lg md:max-w-xl h-auto object-contain drop-shadow-xl"
+                alt="Oxford Research Peptides — BPC-157, Retatrutide and GHK-Cu research vials"
+                fetchPriority="high"
+                className="w-full max-w-xl h-auto rounded-sm shadow-2xl"
               />
             </div>
+
           </div>
         </section>
 
