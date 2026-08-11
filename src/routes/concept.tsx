@@ -45,6 +45,102 @@ const topResearch = products.filter((p) =>
   ["bpc-157", "mots-c", "ss-31", "semax"].includes(p.slug)
 );
 
+const feedback = [
+  {
+    who: "DR. SARAH M.",
+    text: "Easily the most reliable UK supplier we've used in the lab. Purity matches the COA every time and reconstitution is clean — no cloudiness, no residue.",
+  },
+  {
+    who: "ALEX P., RESEARCH TECH",
+    text: "Ordered Friday evening, arrived Monday morning in discreet, secure packaging. Lyophilised cake was intact and the lot number matched the certificate exactly.",
+  },
+  {
+    who: "JAMES K., PHD CANDIDATE",
+    text: "Independent third-party HPLC came back at 99.4%, bang on the label. Quality I can actually cite in my notes.",
+  },
+];
+
+const researchTags = [
+  { label: "GLP-1 RESEARCH", to: "/research-hub/mechanisms" },
+  { label: "STRUCTURAL RESEARCH", to: "/compounds" },
+  { label: "SENESCENCE RESEARCH", to: "/research-hub/literature" },
+  { label: "NEURO RESEARCH", to: "/research-hub/guides" },
+  { label: "ENDOCRINE RESEARCH", to: "/research-hub/mechanisms" },
+  { label: "RESEARCH GUIDES", to: "/research-hub/guides" },
+] as const;
+
+const stats = [
+  { big: "≥99%", small: "PURITY" },
+  { big: "Quality", small: "TESTED" },
+  { big: "UK-Based", small: "SUPPLIER" },
+  { big: "Next Day", small: "DELIVERY" },
+];
+
+const faqs = [
+  {
+    q: "How long does delivery take?",
+    a: "Orders placed before 3pm ship same day via tracked next-day courier within the UK.",
+  },
+  {
+    q: "When are orders dispatched?",
+    a: "Monday to Friday, excluding UK public holidays. You will receive a dispatch confirmation with tracking as soon as your parcel leaves us.",
+  },
+  {
+    q: "Will I receive tracking?",
+    a: "Yes — a tracked courier reference is emailed to you on dispatch so you can follow the parcel to delivery.",
+  },
+  {
+    q: "Is a Certificate of Analysis included?",
+    a: "Every batch is verified by HPLC and MS. An in-house Certificate of Analysis is available on request, and independent third-party testing can also be supplied.",
+  },
+  {
+    q: "How should material be stored?",
+    a: "Lyophilised powders should be stored at 2–8°C, protected from light. Reconstituted material should be handled per your own laboratory protocols.",
+  },
+  {
+    q: "Do you ship internationally?",
+    a: "Yes, to most destinations. International parcels are shipped tracked; customers are responsible for local import requirements.",
+  },
+  {
+    q: "Can I place a bulk order?",
+    a: "Yes — laboratories, universities and institutions can apply for wholesale pricing and priority support via our wholesale page.",
+  },
+];
+
+function FaqAccordion() {
+  const [open, setOpen] = useState(0);
+  return (
+    <div className="divide-y divide-border border-y border-border">
+      {faqs.map((f, i) => {
+        const isOpen = open === i;
+        return (
+          <div key={f.q}>
+            <button
+              type="button"
+              onClick={() => setOpen(isOpen ? -1 : i)}
+              aria-expanded={isOpen}
+              className="w-full flex items-center justify-between gap-4 py-5 text-left focus-visible:outline-2 focus-visible:outline-gold"
+            >
+              <span className="font-display text-lg md:text-xl text-navy-deep">{f.q}</span>
+              {isOpen ? (
+                <Minus className="w-4 h-4 text-gold shrink-0" aria-hidden="true" />
+              ) : (
+                <Plus className="w-4 h-4 text-gold shrink-0" aria-hidden="true" />
+              )}
+            </button>
+            {isOpen && (
+              <p className="pb-6 -mt-1 text-sm text-navy-deep/70 max-w-3xl leading-relaxed">
+                {f.a}
+              </p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+
 function ConceptProductCard({ product: p }: { product: (typeof products)[0] }) {
   const { add } = useCart();
   const firstVariant = p.variants[0];
