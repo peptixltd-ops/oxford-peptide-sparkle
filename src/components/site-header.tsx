@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, User, ShoppingBag, Menu } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
 import { useCart } from "@/lib/cart";
 import { MobileNav } from "./mobile-nav";
+import { CartDrawer } from "./cart-drawer";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
