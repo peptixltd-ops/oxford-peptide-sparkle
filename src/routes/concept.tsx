@@ -79,7 +79,7 @@ const stats = [
 const faqs = [
   {
     q: "How long does delivery take?",
-    a: "Orders placed before 3pm ship same day via tracked next-day courier within the UK.",
+    a: "Orders placed before 2pm ship same day via tracked next-day courier within the UK.",
   },
   {
     q: "When are orders dispatched?",

@@ -19,7 +19,7 @@ const categories: Category[] = [
     id: "orders",
     label: "Orders & Shipping",
     items: [
-      { q: "How long does delivery take?", a: "Orders placed before 3pm are shipped the same working day via tracked next-day courier within the UK." },
+      { q: "How long does delivery take?", a: "Orders placed before 2pm are shipped the same working day via tracked next-day courier within the UK." },
       { q: "When are orders dispatched?", a: "Monday to Friday, excluding UK bank holidays." },
       { q: "Will I receive tracking?", a: "Yes — every order is sent with Royal Mail or DPD tracking and you'll receive the tracking number by email as soon as the parcel is collected." },
       { q: "What if my order hasn't arrived?", a: "Get in touch with our team within 14 days of dispatch and we'll resolve it the same working day." },
