@@ -1,26 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ShieldCheck, FlaskConical, ClipboardCheck,
-  Microscope, ArrowRight, Star, Calculator,
-  Beaker, TestTube, Thermometer, Dna, MoreHorizontal, Droplet, Package, Award,
-  BookOpen, BarChart3, Users, FileText, Network, Compass,
+  ArrowRight, Star, Calculator,
+  Droplet, Package, Award,
+  BookOpen, Users, FileText, Network, Compass,
 } from "lucide-react";
 import { explorerSections } from "@/lib/knowledge-explorer";
 import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
-import artMolecule from "@/assets/article-molecule.jpg";
-import artReconstitute from "@/assets/article-reconstitute.jpg";
-import artVials from "@/assets/article-vials.jpg";
-import artBook from "@/assets/article-book.jpg";
-import artNetwork from "@/assets/article-network.jpg";
 import wholesaleVials from "@/assets/wholesale-vials.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ProductCard } from "@/components/product-card";
 import { TrustBar } from "@/components/trust-bar";
 import { SectionHeader } from "@/components/section-header";
-import { ArticleCard } from "@/components/article-card";
 import { CoaCard } from "@/components/coa-card";
+
 import { products } from "@/lib/products";
 import { seo } from "@/lib/seo";
 
