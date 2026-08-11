@@ -51,9 +51,11 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="bg-white border-b border-border relative z-20">
+    <header className="bg-navy-deep text-bone border-b border-white/10 relative z-20">
       <div className="container-x flex items-center justify-between h-20 gap-4">
-        <Logo />
+        <div className="bg-white p-1.5 rounded-sm">
+          <Logo />
+        </div>
         <nav
           aria-label="Primary"
           className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs font-semibold tracking-widest"
