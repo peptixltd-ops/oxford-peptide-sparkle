@@ -9,18 +9,10 @@ const cols = [
     { l: "All Peptides", to: "/shop" },
     { l: "Bestsellers", to: "/shop" },
   ] },
-  { h: "RESEARCH", links: [
-    { l: "Research Hub", to: "/research-hub" },
-    { l: "Lab Testing", to: "/lab-testing" },
-    { l: "Certificates (COA)", to: "/lab-testing" },
-  ] },
   { h: "COMPANY", links: [
     { l: "About Us", to: "/about" },
     { l: "Contact Us", to: "/contact" },
     { l: "FAQs", to: "/faqs" },
-    { l: "Editorial Standards", to: "/editorial-standards" },
-    { l: "Research Methodology", to: "/research-methodology" },
-    { l: "Publication Workflow", to: "/publication-workflow" },
     { l: "Sitemap", to: "/sitemap" },
   ] },
   { h: "LEGAL", links: [
@@ -30,14 +22,11 @@ const cols = [
     { l: "Disclaimer", to: "/disclaimer" },
   ] },
   { h: "TRUST", links: [
-    { l: "Editorial Policy", to: "/editorial-policy" },
-    { l: "Corrections Policy", to: "/corrections-policy" },
-    { l: "Funding & Conflicts", to: "/funding-and-conflicts" },
-    { l: "Scientific Advisory Board", to: "/scientific-advisory-board" },
     { l: "Testing & Quality Control", to: "/testing-and-quality-control" },
     { l: "Certificate of Analysis", to: "/certificate-of-analysis" },
     { l: "Research Use Only", to: "/research-use-only" },
   ] },
+
   { h: "POLICIES", links: [
     { l: "Refund Policy", to: "/refund-policy" },
     { l: "Shipping Policy", to: "/shipping-policy" },
