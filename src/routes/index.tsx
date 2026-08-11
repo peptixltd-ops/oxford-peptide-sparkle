@@ -6,7 +6,7 @@ import {
   Truck, FlaskConical,
 } from "lucide-react";
 
-import heroTrio from "@/assets/hero-trio-triangle.png.asset.json";
+import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -93,7 +93,7 @@ function Home() {
             </svg>
           </div>
 
-          <div className="container-x relative grid grid-cols-1 md:grid-cols-[1fr_0.85fr] lg:grid-cols-[1fr_0.75fr] gap-8 md:gap-12 py-14 md:py-20 items-center">
+          <div className="container-x relative grid grid-cols-1 md:grid-cols-[1fr_1.3fr] lg:grid-cols-[1fr_1.5fr] gap-6 md:gap-10 py-14 md:py-20 items-center">
             <div className="relative z-20">
               <div className="text-gold text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.35em] mb-4 md:mb-5">
                 RESEARCH <span className="opacity-50 mx-1" aria-hidden="true">|</span> EDUCATION <span className="opacity-50 mx-1" aria-hidden="true">|</span> INNOVATION
@@ -122,13 +122,13 @@ function Home() {
               </div>
             </div>
 
-            <div className="relative flex items-center justify-center md:justify-end">
+            <div className="relative flex items-center justify-center">
               <img
                 src={heroTrio.url}
                 alt="Oxford Research Peptides — Retatrutide, BPC-157 and Semaglutide research vials"
                 fetchPriority="high"
                 decoding="async"
-                className="w-full max-w-md lg:max-w-lg h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)] brightness-110"
+                className="w-[160%] max-w-none h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)] brightness-110"
               />
             </div>
           </div>
