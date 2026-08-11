@@ -5,7 +5,8 @@ import { createHash, randomBytes } from "crypto";
 
 const SHOPIFY_SHOP = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
-const PARENT_PRICE_RULE_ID = "1812859748693";
+// WELCOME20-PARENT price rule for this store (cqdyni-4v)
+const PARENT_PRICE_RULE_ID = "1817597378901";
 
 function normalizePhone(input: string): string | null {
   const raw = input.trim().replace(/[\s\-().]/g, "");
