@@ -32,11 +32,20 @@ export const navLinks = [
 ] as const;
 
 export function SiteHeader() {
-  const { count } = useCart();
+  const { count, bump, openDrawer } = useCart();
   const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [q, setQ] = useState("");
+  const [pop, setPop] = useState(false);
+
+  // Pulse the cart badge each time an item is added.
+  useEffect(() => {
+    if (bump === 0) return;
+    setPop(true);
+    const t = setTimeout(() => setPop(false), 550);
+    return () => clearTimeout(t);
+  }, [bump]);
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
