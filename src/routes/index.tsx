@@ -269,21 +269,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Research Library */}
-        <section className="bg-bone py-16">
-          <div className="container-x">
-            <SectionHeader
-              eyebrow="RESEARCH LIBRARY"
-              ctaLabel="VIEW ALL ARTICLES"
-              ctaTo="/research-hub"
-            />
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-              {articles.map(a => (
-                <ArticleCard key={a.title} article={{ ...a, to: "/research-hub" }} />
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Calculator + Reviews */}
         <section className="bg-navy-deep text-bone py-14">
