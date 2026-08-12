@@ -71,10 +71,10 @@ export function SiteFooter() {
         <div className="lg:col-span-1">
           <h4 className="text-[11px] font-bold tracking-[0.2em] text-gold mb-4">STAY UPDATED</h4>
           <p className="text-xs text-bone/70 mb-4">Get the latest research notes and catalogue updates.</p>
-          <div className="flex">
+          <div className="flex w-full">
             <input type="email" placeholder="Your email"
-              className="flex-1 bg-white/5 border border-bone/20 px-3 py-2.5 text-xs outline-none focus:border-gold" />
-            <button className="px-4 bg-gold text-navy-deep" aria-label="Subscribe"><ArrowRight className="w-4 h-4" /></button>
+              className="min-w-0 flex-1 bg-white/5 border border-bone/20 px-3 py-2.5 text-xs outline-none focus:border-gold" />
+            <button className="shrink-0 px-4 bg-gold text-navy-deep" aria-label="Subscribe"><ArrowRight className="w-4 h-4" /></button>
           </div>
         </div>
       </div>
