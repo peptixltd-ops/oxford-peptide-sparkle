@@ -102,18 +102,18 @@ function ProductPage() {
       <main id="main-content">
         <section className="py-8">
           <div className="container-x">
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div className="bg-white border border-border aspect-square flex items-center justify-center p-10">
-                <img src={product.img} alt={`${product.name} research peptide vial`} className="max-h-full w-auto object-contain" />
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+              <div className="bg-white border border-border aspect-square flex items-center justify-center p-6 sm:p-10">
+                <img src={product.img} alt={`${product.name} research peptide vial`} className="max-h-full max-w-full w-auto object-contain" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">RESEARCH PEPTIDE</div>
-                <h1 className="font-display text-5xl font-medium mb-4">{product.name}</h1>
-                <div className="flex items-center gap-3 mb-6">
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 break-words">{product.name}</h1>
+                <div className="flex items-center gap-3 mb-6 flex-wrap">
                   <span className="bg-gold/20 text-navy-deep text-xs font-bold px-3 py-1.5">{variant.label}</span>
                   <span className="text-sm text-muted-foreground">{product.purity}</span>
                 </div>
-                <div className="text-4xl font-display font-medium mb-6">{fmt(variant.price)}</div>
+                <div className="text-3xl sm:text-4xl font-display font-medium mb-6">{fmt(variant.price)}</div>
                 <p className="text-base text-navy-deep/75 leading-relaxed mb-8">{product.description}</p>
 
                 <div className="mb-6">
