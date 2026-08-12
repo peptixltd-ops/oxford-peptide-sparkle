@@ -36,11 +36,11 @@ const cols = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-navy-deep text-bone">
-      <div className="container-x py-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-        <div className="col-span-2">
-          <div className="bg-white inline-block p-3 rounded-sm">
-            <img src={orsLogo.url} alt="Oxford Research Syndicate Ltd" className="h-14 w-auto" />
+    <footer className="w-full max-w-full overflow-x-clip bg-navy-deep text-bone">
+      <div className="container-x grid min-w-0 grid-cols-2 gap-8 py-14 md:grid-cols-3 lg:grid-cols-6">
+        <div className="col-span-2 min-w-0">
+          <div className="inline-block max-w-full rounded-sm bg-white p-3">
+            <img src={orsLogo.url} alt="Oxford Research Syndicate Ltd" className="h-auto max-h-14 max-w-full w-auto" />
           </div>
           <p className="text-bone/60 text-xs mt-5 max-w-xs leading-relaxed">
 
@@ -59,7 +59,7 @@ export function SiteFooter() {
           </div>
         </div>
         {cols.map(col => (
-          <div key={col.h}>
+          <div key={col.h} className="min-w-0">
             <h4 className="text-[11px] font-bold tracking-[0.2em] text-gold mb-4">{col.h}</h4>
             <ul className="space-y-2.5 text-xs text-bone/70">
               {col.links.map(l => (
@@ -68,7 +68,7 @@ export function SiteFooter() {
             </ul>
           </div>
         ))}
-        <div className="lg:col-span-1">
+        <div className="col-span-2 min-w-0 md:col-span-1 lg:col-span-1">
           <h4 className="text-[11px] font-bold tracking-[0.2em] text-gold mb-4">STAY UPDATED</h4>
           <p className="text-xs text-bone/70 mb-4">Get the latest research notes and catalogue updates.</p>
           <div className="flex w-full">
