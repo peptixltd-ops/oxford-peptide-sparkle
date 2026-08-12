@@ -85,6 +85,7 @@ export function MobileNav({ open, onClose, links }: Props) {
           For laboratory research use only.
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
