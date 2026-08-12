@@ -186,7 +186,9 @@ function ProductPage() {
             </div>
           </div>
         </section>
+        <ProductTechnicalData p={product} variant={variant} />
       </main>
+
       <SiteFooter />
     </div>
   );
