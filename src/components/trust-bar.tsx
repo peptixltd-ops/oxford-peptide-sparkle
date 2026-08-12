@@ -7,7 +7,7 @@ export const defaultTrustBadges: Badge[] = [
   { icon: Award, title: "UK Manufactured", sub: "Made in the United Kingdom" },
   { icon: FlaskConical, title: "Third-Party Tested", sub: "Independent laboratory testing" },
   { icon: ClipboardCheck, title: "Batch Verified", sub: "Every batch verified" },
-  { icon: Microscope, title: "Research Use Only", sub: "For laboratory research only" },
+  
   { icon: Truck, title: "Next Day UK Delivery", sub: "Tracked & discreet packaging" },
 ];
 
