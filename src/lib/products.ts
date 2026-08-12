@@ -76,7 +76,7 @@ export const products: Product[] = [
     img: vialBacWater,
     accent: "#9aa0a6",
     description: "Sterile bacteriostatic water (3 mL) for laboratory reconstitution of lyophilised peptides.",
-    variants: [v("3mL", 9), v("10mL", 13)],
+    variants: [v("3mL", 6), v("10mL", 7)],
   },
   {
     slug: "nad",
