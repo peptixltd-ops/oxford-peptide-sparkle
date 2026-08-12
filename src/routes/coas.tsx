@@ -57,17 +57,18 @@ function CoaPage() {
                 </div>
                 <ul className="divide-y divide-navy-deep/10">
                   {entries.map(c => (
-                    <li key={c.reportId} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
+                    <li key={c.batch} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
                       <div>
                         <div className="font-medium">
                           {getVariant(product, c.variantId)?.label ?? c.variantId}
+                          <span className="ml-2 text-xs font-semibold text-gold">{c.purity}</span>
                         </div>
                         <div className="text-xs text-navy-deep/60">
-                          Janoshik Analytical · Report #{c.reportId} · Sample “{c.sample}”
+                          {c.lab} · {c.testType} · Batch {c.batch} · {c.date}
                         </div>
                       </div>
                       <a
-                        href={c.url}
+                        href={c.file}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-navy-deep px-4 py-2 text-[11px] font-bold tracking-[0.2em] text-bone hover:bg-gold hover:text-navy-deep transition-colors"
