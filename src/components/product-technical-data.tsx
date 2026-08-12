@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Product, Variant } from "@/lib/products";
 
 /**
@@ -125,8 +126,8 @@ export function ProductTechnicalData({ p, variant }: { p: Product; variant: Vari
               <table className="w-full table-fixed text-left text-sm">
                 <tbody>
                   {groups(p, variant).map((g) => (
-                    <>
-                      <tr key={g.heading} className="bg-muted/60">
+                    <Fragment key={g.heading}>
+                      <tr className="bg-muted/60">
                         <th
                           colSpan={2}
                           scope="colgroup"
@@ -148,7 +149,7 @@ export function ProductTechnicalData({ p, variant }: { p: Product; variant: Vari
                           </td>
                         </tr>
                       ))}
-                    </>
+                    </Fragment>
                   ))}
                 </tbody>
               </table>
