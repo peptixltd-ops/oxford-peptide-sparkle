@@ -17,7 +17,6 @@ type Props = {
  * Traps Escape to close and locks background scroll while open.
  */
 export function MobileNav({ open, onClose, links }: Props) {
-export function MobileNav({ open, onClose, links }: Props) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
