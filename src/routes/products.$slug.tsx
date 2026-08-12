@@ -96,17 +96,17 @@ function ProductPage() {
   };
 
   return (
-    <div className="min-h-screen bg-bone text-navy-deep">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip bg-bone text-navy-deep">
       <SiteHeader />
       <Breadcrumbs items={[{ label: "Shop", to: "/shop" }, { label: product.name }]} />
       <main id="main-content">
-        <section className="py-8">
-          <div className="container-x">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-              <div className="bg-white border border-border aspect-square flex items-center justify-center p-6 sm:p-10">
+        <section className="w-full py-6 sm:py-8">
+          <div className="container-x min-w-0">
+            <div className="grid min-w-0 grid-cols-1 gap-7 lg:grid-cols-2 lg:gap-12">
+              <div className="flex aspect-square w-full min-w-0 items-center justify-center overflow-hidden border border-border bg-white p-4 sm:p-10">
                 <img src={product.img} alt={`${product.name} research peptide vial`} className="max-h-full max-w-full w-auto object-contain" />
               </div>
-              <div className="min-w-0">
+              <div className="w-full min-w-0 overflow-hidden">
                 <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">RESEARCH PEPTIDE</div>
                 <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 break-words">{product.name}</h1>
                 <div className="flex items-center gap-3 mb-6 flex-wrap">
@@ -118,7 +118,7 @@ function ProductPage() {
 
                 <div className="mb-6">
                   <label className="block text-[11px] font-bold tracking-widest mb-3">SIZE / VARIANT</label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid min-w-0 grid-cols-2 gap-2 sm:flex sm:flex-wrap">
                     {product.variants.map((v: Variant) => {
                       const active = v.id === variantId;
                       return (
@@ -126,7 +126,7 @@ function ProductPage() {
                           key={v.id}
                           type="button"
                           onClick={() => setVariantId(v.id)}
-                          className={`px-4 py-2.5 text-sm font-semibold border transition-colors focus-visible:outline-2 focus-visible:outline-gold ${
+                          className={`min-w-0 px-2 py-2.5 text-sm font-semibold border transition-colors sm:px-4 focus-visible:outline-2 focus-visible:outline-gold ${
                             active
                               ? "border-navy-deep bg-navy-deep text-bone"
                               : "border-border bg-white text-navy-deep hover:border-navy-deep"
@@ -142,14 +142,14 @@ function ProductPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 mb-6">
+                <div className="grid grid-cols-[auto_auto] items-center justify-start gap-x-3 gap-y-2 mb-6 sm:flex sm:gap-4">
                   <label className="text-[11px] font-bold tracking-widest" htmlFor="qty">QTY</label>
                   <div className="flex items-center border border-border">
                     <button type="button" aria-label="Decrease quantity" onClick={() => setQty(q => Math.max(1, q - 1))} className="px-3 py-2 hover:bg-muted focus-visible:outline-2 focus-visible:outline-gold">−</button>
                     <span id="qty" className="px-4 py-2 min-w-[3rem] text-center" aria-live="polite">{qty}</span>
                     <button type="button" aria-label="Increase quantity" onClick={() => setQty(q => q + 1)} className="px-3 py-2 hover:bg-muted focus-visible:outline-2 focus-visible:outline-gold">+</button>
                   </div>
-                  <span className="text-sm text-muted-foreground">Total: <span className="font-semibold text-navy-deep">{fmt(variant.price * qty)}</span></span>
+                  <span className="col-span-2 text-sm text-muted-foreground sm:col-span-1">Total: <span className="font-semibold text-navy-deep">{fmt(variant.price * qty)}</span></span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mb-8">
