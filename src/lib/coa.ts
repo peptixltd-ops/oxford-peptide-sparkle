@@ -44,7 +44,15 @@ export const coaEntries: CoaEntry[] = [
   e("tirzepatide", "50mg", "EGB-0126-TR50", "99.71%", "20 Jan 2026", "/coas/tirzepatide-50mg-certificate-of-analysis-egb0126.webp"),
   e("tirzepatide", "50mg", "EGB-0226-TR50", "99.97%", "02 Mar 2026", "/coas/tirzepatide-50mg-certificate-of-analysis-egb0226.webp"),
   e("tirzepatide", "60mg", "EGB-0126-TR60", "99.84%", "20 Jan 2026", "/coas/tirzepatide-60mg-certificate-of-analysis-egb0126.webp"),
+
+  // Reports verified directly with Janoshik Analytical (verify.janoshik.com)
+  e("ss-31", "50mg", "WWB-EGB0625SS31-50", "99.76%", "02 Jul 2025", "https://verify.janoshik.com/tests/70112_KFCMHEXZ1BEV"),
+  e("pt-141", "10mg", "WWB-EGB0625PT-10", "99.63%", "02 Jul 2025", "https://verify.janoshik.com/tests/70114_GR5AIX2M4JP7"),
+  e("ghk-cu", "50mg", "WWB-EGB0625GKU-50", "99.93%", "02 Jul 2025", "https://verify.janoshik.com/tests/70116_ZDW7UV6LUXQM"),
+  e("bpc-tb500", "20mg-blend", "WWB-EGB0725TBBC-20", "BPC-157 10.1mg / TB-500 11.0mg", "18 Aug 2025", "https://verify.janoshik.com/tests/75837_ZAXUWZ1XPZC2", "HPLC (quantitation)"),
+  e("tesamorelin", "10mg", "EGB-WWB1125-TSM10", "99.29%", "26 Nov 2025", "https://verify.janoshik.com/tests/90725_RTFTEPXURPDH"),
 ];
+
 
 export const coaFor = (slug: string, variantId?: string) =>
   coaEntries.filter(c => c.slug === slug && (!variantId || c.variantId === variantId));
