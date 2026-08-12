@@ -147,7 +147,7 @@ function ConceptProductCard({ product: p }: { product: (typeof products)[0] }) {
 
   return (
     <div className="bg-white border border-border group flex flex-col">
-      <Link to={`/products/${p.slug}`} className="block aspect-[4/5] bg-bone p-6 flex items-center justify-center">
+      <Link to="/products/$slug" params={{ slug: p.slug }} className="block aspect-[4/5] bg-bone p-6 flex items-center justify-center">
         <img
           src={p.img}
           alt={p.name}
@@ -174,7 +174,7 @@ function ConceptProductCard({ product: p }: { product: (typeof products)[0] }) {
             ADD
           </button>
           <Link
-            to={`/products/${p.slug}`}
+            to="/products/$slug" params={{ slug: p.slug }}
             className="flex items-center justify-center px-4 py-3 border border-navy-deep text-navy-deep text-[10px] font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors focus-visible:outline-2 focus-visible:outline-gold"
           >
             BUY NOW
