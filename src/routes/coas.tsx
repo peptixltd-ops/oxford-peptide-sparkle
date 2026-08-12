@@ -63,7 +63,7 @@ function CoaPage() {
                           {getVariant(product, c.variantId)?.label ?? c.variantId}
                         </div>
                         <div className="text-xs text-navy-deep/60">
-                          Janoshik Analytical · Report #{c.reportId} · Key {c.key}
+                          Janoshik Analytical · Report #{c.reportId} · Sample “{c.sample}”
                         </div>
                       </div>
                       <a
