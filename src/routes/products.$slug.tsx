@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { ProductTechnicalData } from "@/components/product-technical-data";
+
 import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import { createCheckout, getVariantGid } from "@/lib/shopify";
