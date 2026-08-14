@@ -7,6 +7,9 @@ const SHOPIFY_SHOP = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
 // WELCOME20-PARENT price rule for this store (cqdyni-4v)
 const PARENT_PRICE_RULE_ID = "1817597378901";
+// Permanent once-per-customer fallback under the same 20% rule. This keeps
+// acquisition working if Shopify rotates or temporarily rejects an admin token.
+const FALLBACK_DISCOUNT_CODE = "OXFORD20";
 
 function normalizePhone(input: string): string | null {
   const raw = input.trim().replace(/[\s\-().]/g, "");
@@ -83,7 +86,7 @@ async function createShopifyDiscountCode(code: string, adminTokens: string[]) {
       return { id: json.discount_code?.id, token: adminToken };
     }
     const text = await res.text();
-    lastError = `Shopify discount code create failed [${res.status}] tokenLen=${adminToken.length} prefix=${adminToken.slice(0, 6)}: ${text}`;
+    lastError = `Shopify discount code create failed [${res.status}]: ${text}`;
     console.error("shopify discount attempt failed", lastError);
     if (res.status === 401 || res.status === 403) continue;
     throw new Error(lastError);
@@ -180,13 +183,6 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
               headers: jsonHeaders,
             });
           }
-          if (adminTokens.length === 0) {
-            return new Response(
-              JSON.stringify({ success: false, error: "Discount service unavailable. Please try again later." }),
-              { status: 503, headers: jsonHeaders },
-            );
-          }
-
           const supabase = createClient(supabaseUrl, serviceKey, {
             auth: { autoRefreshToken: false, persistSession: false },
           });
@@ -222,19 +218,21 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
           }
 
           // Generate unique code + create in Shopify
-          const code = `WELCOME20-${alphanumSuffix(6)}`;
+          let code = `WELCOME20-${alphanumSuffix(6)}`;
           let discountId: number | undefined;
           let discountToken: string | undefined;
-          try {
-            const discount = await createShopifyDiscountCode(code, adminTokens);
-            discountId = discount.id;
-            discountToken = discount.token;
-          } catch (err) {
-            console.error("shopify discount create failed", err);
-            return new Response(
-              JSON.stringify({ success: false, error: "Could not create your discount code. Please try again." }),
-              { status: 502, headers: jsonHeaders },
-            );
+          if (adminTokens.length > 0) {
+            try {
+              const discount = await createShopifyDiscountCode(code, adminTokens);
+              discountId = discount.id;
+              discountToken = discount.token;
+            } catch (err) {
+              console.error("shopify discount create failed; using permanent fallback", err);
+              code = FALLBACK_DISCOUNT_CODE;
+            }
+          } else {
+            console.error("No Shopify admin token available; using permanent fallback discount");
+            code = FALLBACK_DISCOUNT_CODE;
           }
 
           const ua = request.headers.get("user-agent") ?? undefined;
