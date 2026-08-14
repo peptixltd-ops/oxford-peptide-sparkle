@@ -64,7 +64,7 @@ export function NewsletterPopup() {
   const [email, setEmail] = useState("");
   const [dialCode, setDialCode] = useState("+44");
   const [phone, setPhone] = useState("");
-  const [smsConsent, setSmsConsent] = useState(false);
+  
   const [website, setWebsite] = useState(""); // honeypot
   const [errorMsg, setErrorMsg] = useState("");
   const [code, setCode] = useState("");
@@ -99,10 +99,6 @@ export function NewsletterPopup() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setErrorMsg("");
-    if (phone && !smsConsent) {
-      setErrorMsg("Please tick the SMS consent box or leave phone empty.");
-      return;
-    }
     setStatus("loading");
     try {
       const res = await fetch("/api/public/newsletter-subscribe", {
@@ -111,7 +107,7 @@ export function NewsletterPopup() {
         body: JSON.stringify({
           email: email.trim(),
           phone: phone.trim() ? `${dialCode}${phone.trim().replace(/^0+/, "")}` : undefined,
-          sms_consent: smsConsent,
+          sms_consent: !!phone.trim(),
           source: "popup",
           website,
         }),
@@ -237,15 +233,6 @@ export function NewsletterPopup() {
                 </div>
               </div>
 
-              <label className="flex items-start gap-2 text-xs text-navy-deep/75 select-none">
-                <input
-                  type="checkbox"
-                  checked={smsConsent}
-                  onChange={(e) => setSmsConsent(e.target.checked)}
-                  className="mt-0.5 accent-gold"
-                />
-                <span>Text me exclusive offers (optional). Required if a phone number is entered.</span>
-              </label>
 
               {errorMsg && (
                 <p role="alert" className="text-xs text-red-700 bg-red-50 border border-red-200 px-3 py-2">
@@ -262,7 +249,9 @@ export function NewsletterPopup() {
               </button>
 
               <p className="text-[11px] text-navy-deep/55 leading-relaxed pt-1">
-                For laboratory research use only. One code per address, valid 30 days.
+                For laboratory research use only. One code per address, valid 30 days. By
+                submitting, you agree to receive email updates — and SMS offers if you enter a
+                phone number.
               </p>
             </form>
           </>
