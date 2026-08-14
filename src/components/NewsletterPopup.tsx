@@ -99,10 +99,6 @@ export function NewsletterPopup() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setErrorMsg("");
-    if (phone && !smsConsent) {
-      setErrorMsg("Please tick the SMS consent box or leave phone empty.");
-      return;
-    }
     setStatus("loading");
     try {
       const res = await fetch("/api/public/newsletter-subscribe", {
@@ -237,15 +233,6 @@ export function NewsletterPopup() {
                 </div>
               </div>
 
-              <label className="flex items-start gap-2 text-xs text-navy-deep/75 select-none">
-                <input
-                  type="checkbox"
-                  checked={smsConsent}
-                  onChange={(e) => setSmsConsent(e.target.checked)}
-                  className="mt-0.5 accent-gold"
-                />
-                <span>Text me exclusive offers (optional). Required if a phone number is entered.</span>
-              </label>
 
               {errorMsg && (
                 <p role="alert" className="text-xs text-red-700 bg-red-50 border border-red-200 px-3 py-2">
