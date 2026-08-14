@@ -64,7 +64,7 @@ export function NewsletterPopup() {
   const [email, setEmail] = useState("");
   const [dialCode, setDialCode] = useState("+44");
   const [phone, setPhone] = useState("");
-  const [smsConsent, setSmsConsent] = useState(false);
+  
   const [website, setWebsite] = useState(""); // honeypot
   const [errorMsg, setErrorMsg] = useState("");
   const [code, setCode] = useState("");
@@ -107,7 +107,7 @@ export function NewsletterPopup() {
         body: JSON.stringify({
           email: email.trim(),
           phone: phone.trim() ? `${dialCode}${phone.trim().replace(/^0+/, "")}` : undefined,
-          sms_consent: smsConsent,
+          sms_consent: !!phone.trim(),
           source: "popup",
           website,
         }),
@@ -249,7 +249,9 @@ export function NewsletterPopup() {
               </button>
 
               <p className="text-[11px] text-navy-deep/55 leading-relaxed pt-1">
-                For laboratory research use only. One code per address, valid 30 days.
+                For laboratory research use only. One code per address, valid 30 days. By
+                submitting, you agree to receive email updates — and SMS offers if you enter a
+                phone number.
               </p>
             </form>
           </>
