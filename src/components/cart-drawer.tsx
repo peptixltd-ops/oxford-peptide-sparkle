@@ -152,6 +152,15 @@ export function CartDrawer() {
               <span>Subtotal</span>
               <span className="font-semibold">{fmt(subtotal)}</span>
             </div>
+            <div className="flex justify-between text-sm">
+              <span>Shipping</span>
+              <span className="font-semibold">Free</span>
+            </div>
+            <div className="flex justify-between pt-3 border-t border-border font-display text-lg font-medium">
+              <span>Total</span>
+              <span>{fmt(subtotal)}</span>
+            </div>
+
             <button
               onClick={checkout}
               disabled={loading}
