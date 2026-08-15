@@ -35,8 +35,8 @@ function CartPage() {
     .filter((l): l is NonNullable<typeof l> => !!l);
 
   const subtotal = lines.reduce((s, l) => s + l.variant.price * l.item.qty, 0);
-  const shipping = subtotal > 0 ? 8 : 0;
-  const total = subtotal + shipping;
+  const shipping = 0;
+  const total = subtotal;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
 
   useEffect(() => {
@@ -67,23 +67,23 @@ function CartPage() {
             <div className="grid lg:grid-cols-[1fr_360px] gap-8">
               <div className="bg-white border border-border">
                 {lines.map(({ item, product, variant }) => (
-                  <div key={`${item.slug}::${item.variantId}`} className="flex items-center gap-4 p-5 border-b border-border last:border-b-0">
-                    <Link to="/products/$slug" params={{ slug: product.slug }} className="w-20 h-20 bg-muted/40 flex items-center justify-center shrink-0">
+                  <div key={`${item.slug}::${item.variantId}`} className="grid grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:grid-cols-[5rem_minmax(0,1fr)_auto_auto_auto] items-center gap-x-3 gap-y-3 p-4 sm:p-5 border-b border-border last:border-b-0">
+                    <Link to="/products/$slug" params={{ slug: product.slug }} className="w-[4.5rem] h-[4.5rem] sm:w-20 sm:h-20 bg-muted/40 flex items-center justify-center shrink-0 row-span-2 sm:row-span-1">
                       <img src={product.img} alt={product.name} className="max-h-full object-contain" />
                     </Link>
-                    <div className="flex-1">
-                      <Link to="/products/$slug" params={{ slug: product.slug }} className="font-display text-lg font-semibold hover:text-gold transition-colors">
+                    <div className="min-w-0 col-span-2 sm:col-span-1">
+                      <Link to="/products/$slug" params={{ slug: product.slug }} className="block font-display text-base sm:text-lg font-semibold hover:text-gold transition-colors truncate">
                         {product.name}
                       </Link>
-                      <div className="text-xs text-muted-foreground">{variant.label} · {product.purity}</div>
+                      <div className="text-xs text-muted-foreground leading-snug">{variant.label} · {product.purity}</div>
                     </div>
-                    <div className="flex items-center border border-border">
-                      <button onClick={() => setQty(item.slug, item.variantId, item.qty - 1)} className="px-2.5 py-1.5 hover:bg-muted">−</button>
-                      <span className="px-3 py-1.5 min-w-[2.5rem] text-center text-sm">{item.qty}</span>
-                      <button onClick={() => setQty(item.slug, item.variantId, item.qty + 1)} className="px-2.5 py-1.5 hover:bg-muted">+</button>
+                    <div className="flex items-center border border-border w-fit">
+                      <button aria-label="Decrease quantity" onClick={() => setQty(item.slug, item.variantId, item.qty - 1)} className="w-9 h-9 hover:bg-muted">−</button>
+                      <span className="w-9 text-center text-sm">{item.qty}</span>
+                      <button aria-label="Increase quantity" onClick={() => setQty(item.slug, item.variantId, item.qty + 1)} className="w-9 h-9 hover:bg-muted">+</button>
                     </div>
-                    <div className="w-24 text-right font-semibold">{fmt(variant.price * item.qty)}</div>
-                    <button onClick={() => remove(item.slug, item.variantId)} aria-label="Remove" className="text-muted-foreground hover:text-destructive">
+                    <div className="text-right font-semibold whitespace-nowrap">{fmt(variant.price * item.qty)}</div>
+                    <button onClick={() => remove(item.slug, item.variantId)} aria-label="Remove" className="text-muted-foreground hover:text-destructive w-9 h-9 inline-flex items-center justify-center">
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
@@ -97,7 +97,7 @@ function CartPage() {
                 <h2 className="text-xs font-bold tracking-[0.25em] mb-5">ORDER SUMMARY</h2>
                 <div className="space-y-3 text-sm border-b border-border pb-4 mb-4">
                   <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
-                  <div className="flex justify-between"><span>Shipping</span><span>{fmt(shipping)}</span></div>
+                  <div className="flex justify-between"><span>Shipping</span><span className="font-semibold">Free</span></div>
                 </div>
                 <div className="flex justify-between font-display text-xl font-medium mb-6">
                   <span>Total</span><span>{fmt(total)}</span>
