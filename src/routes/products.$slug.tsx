@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProductTechnicalData } from "@/components/product-technical-data";
+import { DispatchCountdown } from "@/components/dispatch-countdown";
 
 import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
@@ -116,7 +117,10 @@ function ProductPage() {
                   <span className="text-sm text-muted-foreground">{product.purity}</span>
                 </div>
                 <div className="text-3xl sm:text-4xl font-display font-medium mb-6">{fmt(variant.price)}</div>
-                <p className="text-base text-navy-deep/75 leading-relaxed mb-8">{product.description}</p>
+                <p className="text-base text-navy-deep/75 leading-relaxed mb-6">{product.description}</p>
+
+                <DispatchCountdown />
+
 
                 <div className="mb-6">
                   <label className="block text-[11px] font-bold tracking-widest mb-3">SIZE / VARIANT</label>
