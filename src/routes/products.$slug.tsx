@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProductTechnicalData } from "@/components/product-technical-data";
+import { DispatchCountdown } from "@/components/dispatch-countdown";
 
 import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
