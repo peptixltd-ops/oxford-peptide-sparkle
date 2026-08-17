@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Truck, Zap } from "lucide-react";
 
-/** Cut-off: 2pm UK time, Monday–Friday. */
-const CUTOFF_HOUR = 14;
+/** Cut-off: 5pm UK time, Monday–Friday. */
+const CUTOFF_HOUR = 17;
 
 function londonParts(d: Date) {
   const f = new Intl.DateTimeFormat("en-GB", {
@@ -59,7 +59,7 @@ export function DispatchCountdown() {
         </span>
         <p className="text-sm text-navy-deep font-medium" aria-live="polite">
           {state === null ? (
-            <>Order before 2pm for same-day dispatch — arriving tomorrow.</>
+            <>Order before 5pm for same-day dispatch — arriving tomorrow.</>
           ) : state.open ? (
             <>
               Arriving <span className="font-bold">tomorrow</span> if you order within{" "}
@@ -70,7 +70,7 @@ export function DispatchCountdown() {
               </span>
             </>
           ) : (
-            <>Today&apos;s 2pm cut-off has passed — order now and we dispatch on the next working day.</>
+            <>Today&apos;s 5pm cut-off has passed — order now and we dispatch on the next working day.</>
           )}
         </p>
       </div>
