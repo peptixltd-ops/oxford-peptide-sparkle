@@ -96,6 +96,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" },
     ],
     scripts: [
+      // Search Atlas / OTTO dynamic optimization pixel
+      {
+        id: "sa-dynamic-optimization",
+        type: "text/javascript",
+        src: "https://dashboard.blackhatstrategy.com/scripts/dynamic_optimization.js",
+        "data-uuid": "b0670d1d-8d1a-464f-9237-3287f366b553",
+        nowprocket: "",
+        "nitro-exclude": "",
+      },
       // Google Tag Manager (server-side container via Stape)
       {
         children:
