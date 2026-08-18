@@ -27,7 +27,9 @@ export const Route = createFileRoute("/compounds/")({
 
 
 function CompoundsIndex() {
+  const category = getCategory("compounds")!;
   return (
+
     <div className="min-h-screen bg-bone text-navy-deep">
       <SiteHeader />
       <Breadcrumbs items={[{ label: "Compound Reference" }]} />
