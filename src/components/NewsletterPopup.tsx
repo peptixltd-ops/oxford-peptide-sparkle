@@ -172,11 +172,11 @@ export function NewsletterPopup() {
               id="orp-newsletter-title"
               className="font-display text-3xl leading-tight text-navy-deep mb-3"
             >
-              Get £10 store credit towards your first order
+              Instant store credit on every order
             </h2>
             <p className="text-sm text-navy-deep/75 mb-6">
-              Join the Oxford research list for launch alerts, batch drops, and a one-time
-              £10 store credit delivered instantly.
+              Join the Oxford research list for launch alerts, batch drops and priority stock
+              access. Your credit is applied automatically at checkout.
             </p>
 
             <form onSubmit={submit} className="space-y-3" noValidate>
@@ -245,11 +245,12 @@ export function NewsletterPopup() {
                 disabled={status === "loading"}
                 className="w-full h-11 bg-navy-deep text-bone font-bold tracking-widest text-sm hover:bg-navy disabled:opacity-60"
               >
-                {status === "loading" ? "SENDING…" : "SEND MY CODE"}
+                {status === "loading" ? "SENDING…" : "JOIN THE LIST"}
               </button>
 
               <p className="text-[11px] text-navy-deep/55 leading-relaxed pt-1">
-                For laboratory research use only. One code per address, valid 30 days. Minimum spend £70. By
+                For laboratory research use only. £5 off orders over £30, £10 off orders over £80. Applied automatically at
+                checkout, minimum spend applies. By
                 submitting, you agree to receive email updates — and SMS offers if you enter a
                 phone number.
               </p>
@@ -262,9 +263,9 @@ export function NewsletterPopup() {
             <p className="text-[11px] font-bold tracking-[0.25em] text-gold uppercase mb-3">
               You're on the list
             </p>
-            <h2 className="font-display text-3xl text-navy-deep mb-2">Your £10 credit code</h2>
+            <h2 className="font-display text-3xl text-navy-deep mb-2">Your credit is active</h2>
             <p className="text-sm text-navy-deep/75 mb-5">
-              We've emailed a copy. Use this code at checkout — valid 30 days, minimum spend £70.
+              £5 off over £30, £10 off over £80 — applied automatically at checkout. Your backup code is below if you ever need it.
             </p>
             <div className="border border-dashed border-gold bg-white px-4 py-4 mb-4">
               <div className="font-mono text-xl tracking-widest text-navy-deep">{code}</div>

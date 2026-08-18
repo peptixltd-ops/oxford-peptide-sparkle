@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
-import { createCheckout, getVariantGid } from "@/lib/shopify";
+import { createCheckout, creditForSubtotal, getVariantGid } from "@/lib/shopify";
 import { Trash2, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -36,7 +36,9 @@ function CartPage() {
 
   const subtotal = lines.reduce((s, l) => s + l.variant.price * l.item.qty, 0);
   const shipping = 0;
-  const total = subtotal;
+  const credit = creditForSubtotal(subtotal);
+  const total = Math.max(0, subtotal - (credit?.amount ?? 0));
+  const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
 
   useEffect(() => {
@@ -98,6 +100,12 @@ function CartPage() {
                 <div className="space-y-3 text-sm border-b border-border pb-4 mb-4">
                   <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
                   <div className="flex justify-between"><span>Shipping</span><span className="font-semibold">Free</span></div>
+                  {credit && (
+                    <div className="flex justify-between text-gold"><span>Store credit ({credit.code})</span><span className="font-semibold">-{fmt(credit.amount)}</span></div>
+                  )}
+                  {nextTier && (
+                    <p className="text-[11px] text-muted-foreground">Spend {fmt(nextTier - subtotal)} more to unlock £{nextTier === 30 ? 5 : 10} off.</p>
+                  )}
                 </div>
                 <div className="flex justify-between font-display text-xl font-medium mb-6">
                   <span>Total</span><span>{fmt(total)}</span>
@@ -117,7 +125,7 @@ function CartPage() {
                         toast.error("No items available for checkout");
                         return;
                       }
-                      const url = await createCheckout(shopLines);
+                      const url = await createCheckout(shopLines, subtotal);
                       window.open(url, "_blank");
                     } catch (e) {
                       toast.error(e instanceof Error ? e.message : "Checkout failed");

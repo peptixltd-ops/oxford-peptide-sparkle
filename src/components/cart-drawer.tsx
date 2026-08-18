@@ -3,7 +3,7 @@ import { X, Check, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
-import { createCheckout, getVariantGid } from "@/lib/shopify";
+import { createCheckout, creditForSubtotal, getVariantGid } from "@/lib/shopify";
 import { toast } from "sonner";
 
 /**
@@ -40,6 +40,9 @@ export function CartDrawer() {
 
   const subtotal = lines.reduce((s, l) => s + l.variant.price * l.item.qty, 0);
   const fmt = (n: number) => `£${n.toFixed(2)}`;
+  const credit = creditForSubtotal(subtotal);
+  const total = Math.max(0, subtotal - (credit?.amount ?? 0));
+  const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
 
   const added = lastAdded ? getProduct(lastAdded.slug) : null;
   const addedVariant = added && lastAdded ? getVariant(added, lastAdded.variantId) : null;
@@ -57,7 +60,7 @@ export function CartDrawer() {
         toast.error("No items available for checkout");
         return;
       }
-      const url = await createCheckout(shopLines);
+      const url = await createCheckout(shopLines, subtotal);
       window.open(url, "_blank");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Checkout failed");
@@ -156,9 +159,20 @@ export function CartDrawer() {
               <span>Shipping</span>
               <span className="font-semibold">Free</span>
             </div>
+            {credit && (
+              <div className="flex justify-between text-sm text-gold">
+                <span>Store credit ({credit.code})</span>
+                <span className="font-semibold">-{fmt(credit.amount)}</span>
+              </div>
+            )}
+            {nextTier && (
+              <p className="text-[11px] text-muted-foreground">
+                Spend {fmt(nextTier - subtotal)} more to unlock £{nextTier === 30 ? 5 : 10} off.
+              </p>
+            )}
             <div className="flex justify-between pt-3 border-t border-border font-display text-lg font-medium">
               <span>Total</span>
-              <span>{fmt(subtotal)}</span>
+              <span>{fmt(total)}</span>
             </div>
 
             <button

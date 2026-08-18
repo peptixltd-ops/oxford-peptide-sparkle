@@ -19,7 +19,7 @@ export function ProductCard({ p }: { p: Product }) {
     if (!gid) { toast.error("Unavailable for checkout"); return; }
     setLoading(true);
     try {
-      const url = await createCheckout([{ merchandiseId: gid, quantity: 1 }]);
+      const url = await createCheckout([{ merchandiseId: gid, quantity: 1 }], defaultVariant.price);
       window.open(url, "_blank");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Checkout failed");
