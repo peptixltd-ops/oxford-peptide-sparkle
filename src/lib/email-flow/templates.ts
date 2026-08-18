@@ -17,7 +17,7 @@ export const BRAND = {
   navy: "#141c2b",
   navySoft: "#1d283c",
   gold: "#b08a3e",
-  goldSoft: "#c9a köp".slice(0, 0) || "#cfae63",
+  goldSoft: "#cfae63",
   bone: "#f7f5f0",
   line: "#e3ded3",
   text: "#25282e",
