@@ -15,25 +15,25 @@ for d in ("svg", "pdf", "png"):
     (OUT / d).mkdir(parents=True, exist_ok=True)
 
 PRODUCTS = [
-    ("retatrutide", "RETATRUTIDE", ["10MG", "20MG", "30MG", "40MG"]),
-    ("tirzepatide", "TIRZEPATIDE", ["10MG", "20MG", "40MG"]),
-    ("ghk-cu", "GHK-CU", ["50MG"]),
-    ("mots-c", "MOTS-C", ["40MG"]),
-    ("bacteriostatic-water", "BACTERIOSTATIC WATER", ["3ML"]),
-    ("nad", "NAD+", ["500MG"]),
-    ("bpc-tb500", "BPC-157 / TB-500", ["20MG BLEND"]),
-    ("ipamorelin", "IPAMORELIN", ["10MG"]),
-    ("selank", "SELANK", ["10MG"]),
-    ("semaglutide", "SEMAGLUTIDE", ["15MG"]),
-    ("tesamorelin", "TESAMORELIN", ["10MG"]),
-    ("klow", "KLOW", ["80MG BLEND"]),
-    ("tb-500", "TB-500", ["10MG"]),
-    ("igf-lr3", "IGF-1 LR3", ["1MG"]),
-    ("cagrilintide", "CAGRILINTIDE", ["10MG"]),
-    ("ss-31", "SS-31", ["10MG", "50MG"]),
-    ("pt-141", "PT-141", ["10MG"]),
-    ("semax", "SEMAX", ["30MG"]),
-    ("bpc-157", "BPC-157", ["10MG"]),
+    ("retatrutide", "RETATRUTIDE", ['10MG', '20MG', '30MG', '40MG', '50MG', '60MG']),
+    ("tirzepatide", "TIRZEPATIDE", ['10MG', '15MG', '20MG', '30MG', '40MG', '50MG', '60MG']),
+    ("ghk-cu", "GHK-CU", ['50MG']),
+    ("mots-c", "MOTS-C", ['10MG', '40MG']),
+    ("bacteriostatic-water", "BACTERIOSTATIC WATER", ['3ML', '10ML']),
+    ("nad", "NAD+", ['500MG']),
+    ("bpc-tb500", "BPC-157 / TB-500", ['20MG BLEND']),
+    ("ipamorelin", "IPAMORELIN", ['10MG']),
+    ("selank", "SELANK", ['10MG']),
+    ("semaglutide", "SEMAGLUTIDE", ['15MG']),
+    ("tesamorelin", "TESAMORELIN", ['10MG']),
+    ("klow", "KLOW", ['80MG BLEND']),
+    ("tb-500", "TB-500", ['10MG']),
+    ("igf-lr3", "IGF-1 LR3", ['1MG']),
+    ("cagrilintide", "CAGRILINTIDE", ['5MG', '10MG']),
+    ("ss-31", "SS-31", ['50MG']),
+    ("pt-141", "PT-141", ['10MG']),
+    ("semax", "SEMAX", ['10MG', '30MG']),
+    ("bpc-157", "BPC-157", ['5MG', '10MG']),
 ]
 
 NAVY = "#1B3A5F"        # Wordmark navy on-site
@@ -122,7 +122,7 @@ def label_svg(name: str, strength: str, batch: str = "ORP-XXXXX") -> str:
 
     # ---------- Disclaimer (left-aligned) ----------
     disc_x = tx + 4.0
-    disc_y = ty + 24.0
+    disc_y = ty + 21.8
     disclaimer = f'''
       <text x="{disc_x}" y="{disc_y}" font-family="{SANS}"
             font-size="1.55" font-weight="700" fill="{NAVY}"
