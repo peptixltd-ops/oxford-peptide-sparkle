@@ -5,11 +5,11 @@ import { createHash, randomBytes } from "crypto";
 
 const SHOPIFY_SHOP = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
-// WELCOME20-PARENT price rule for this store (cqdyni-4v)
-const PARENT_PRICE_RULE_ID = "1817597378901";
-// Permanent once-per-customer fallback under the same 20% rule. This keeps
+// WELCOME10-CREDIT-PARENT price rule for this store (cqdyni-4v): GBP 10 off, min spend GBP 70
+const PARENT_PRICE_RULE_ID = "1824712458581";
+// Permanent once-per-customer fallback under the same GBP 10 credit rule. This keeps
 // acquisition working if Shopify rotates or temporarily rejects an admin token.
-const FALLBACK_DISCOUNT_CODE = "OXFORD20";
+const FALLBACK_DISCOUNT_CODE = "OXFORD10CREDIT";
 
 function normalizePhone(input: string): string | null {
   const raw = input.trim().replace(/[\s\-().]/g, "");
@@ -218,7 +218,7 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
           }
 
           // Generate unique code + create in Shopify
-          let code = `WELCOME20-${alphanumSuffix(6)}`;
+          let code = `WELCOME10-${alphanumSuffix(6)}`;
           let discountId: number | undefined;
           let discountToken: string | undefined;
           if (adminTokens.length > 0) {
