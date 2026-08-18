@@ -172,11 +172,11 @@ export function NewsletterPopup() {
               id="orp-newsletter-title"
               className="font-display text-3xl leading-tight text-navy-deep mb-3"
             >
-              Get 20% off your first order
+              Get £10 store credit towards your first order
             </h2>
             <p className="text-sm text-navy-deep/75 mb-6">
               Join the Oxford research list for launch alerts, batch drops, and a one-time
-              20% off code delivered instantly.
+              £10 store credit delivered instantly.
             </p>
 
             <form onSubmit={submit} className="space-y-3" noValidate>
@@ -249,7 +249,7 @@ export function NewsletterPopup() {
               </button>
 
               <p className="text-[11px] text-navy-deep/55 leading-relaxed pt-1">
-                For laboratory research use only. One code per address, valid 30 days. By
+                For laboratory research use only. One code per address, valid 30 days. Minimum spend £70. By
                 submitting, you agree to receive email updates — and SMS offers if you enter a
                 phone number.
               </p>
@@ -262,9 +262,9 @@ export function NewsletterPopup() {
             <p className="text-[11px] font-bold tracking-[0.25em] text-gold uppercase mb-3">
               You're on the list
             </p>
-            <h2 className="font-display text-3xl text-navy-deep mb-2">Your 20% code</h2>
+            <h2 className="font-display text-3xl text-navy-deep mb-2">Your £10 credit code</h2>
             <p className="text-sm text-navy-deep/75 mb-5">
-              We've emailed a copy. Use this code at checkout — valid 30 days.
+              We've emailed a copy. Use this code at checkout — valid 30 days, minimum spend £70.
             </p>
             <div className="border border-dashed border-gold bg-white px-4 py-4 mb-4">
               <div className="font-mono text-xl tracking-widest text-navy-deep">{code}</div>
