@@ -125,7 +125,21 @@ ${dynamicTag("{% for line in checkout.line_items %}")}
       <div style="margin-top:8px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Shipping and any eligible credit are calculated at checkout.</div>
     </td></tr>
   </table>
+</td></tr>
+${dispatch()}`;
+
+/** Dispatch reassurance strip — sits directly under the selected products. */
+const dispatch = (pad = "32px") => `
+<tr><td style="padding:14px ${pad} 0;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.line};background:${BRAND.bone};">
+    <tr><td style="padding:14px 18px;">
+      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.2em;color:${BRAND.gold};">DISPATCHED FROM THE UK</div>
+      <div style="margin-top:7px;font:400 14px/1.55 ${BRAND.serif};color:${BRAND.navy};">Order by 5pm today and your selection is dispatched the same day.</div>
+      <div style="margin-top:5px;font:400 12px/1.55 ${BRAND.sans};color:${BRAND.muted};">Sent Royal Mail Tracked 24 — tracked, discreet packaging, typically with you the next day.</div>
+    </td></tr>
+  </table>
 </td></tr>`;
+
 
 const trust = (title: string, items: string[]) => `
 <tr><td style="padding:26px 32px 6px;">
@@ -391,6 +405,9 @@ export const EMAILS: EmailSpec[] = [
           </td></tr>` +
           `<tr><td align="center" style="padding:34px 44px 8px;">
             <a href="{{ checkout.abandoned_checkout_url }}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;">COMPLETE MY ORDER</a>
+          </td></tr>` +
+          `<tr><td align="center" style="padding:16px 44px 0;">
+            <div style="font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Order by 5pm today for same-day dispatch · Royal Mail Tracked 24</div>
           </td></tr>` +
           `<tr><td style="padding:34px 44px 0;">
             <div style="border-top:1px solid ${BRAND.line};padding-top:20px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">One final reminder of what you’re choosing</div>
