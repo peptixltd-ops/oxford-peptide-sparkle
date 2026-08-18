@@ -89,7 +89,7 @@ function ProductPage() {
     if (!gid) { toast.error("Unavailable for checkout"); return; }
     setLoading(true);
     try {
-      const url = await createCheckout([{ merchandiseId: gid, quantity: qty }]);
+      const url = await createCheckout([{ merchandiseId: gid, quantity: qty }], variant.price * qty);
       window.open(url, "_blank");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Checkout failed");

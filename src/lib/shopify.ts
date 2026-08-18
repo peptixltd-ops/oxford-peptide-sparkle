@@ -85,9 +85,26 @@ function formatCheckoutUrl(url: string): string {
 
 export type CheckoutLine = { merchandiseId: string; quantity: number };
 
-export async function createCheckout(lines: CheckoutLine[]): Promise<string> {
+/**
+ * Automatic basket credit tiers. Shopify codes can only hold one fixed amount,
+ * so the best qualifying code is resolved here and applied to the cart for the
+ * customer (they never have to type anything).
+ */
+export const CREDIT_TIERS = [
+  { threshold: 80, amount: 10, code: "SAVE10" },
+  { threshold: 30, amount: 5, code: "SAVE5" },
+] as const;
+
+export function creditForSubtotal(subtotal: number) {
+  return CREDIT_TIERS.find((t) => subtotal >= t.threshold) ?? null;
+}
+
+export async function createCheckout(lines: CheckoutLine[], subtotal?: number): Promise<string> {
   if (lines.length === 0) throw new Error("Cart is empty");
-  const data = await storefront(CART_CREATE, { input: { lines } });
+  const credit = typeof subtotal === "number" ? creditForSubtotal(subtotal) : null;
+  const data = await storefront(CART_CREATE, {
+    input: { lines, ...(credit ? { discountCodes: [credit.code] } : {}) },
+  });
   const errs = data?.cartCreate?.userErrors ?? [];
   if (errs.length) throw new Error(errs.map((e: { message: string }) => e.message).join(", "));
   const url = data?.cartCreate?.cart?.checkoutUrl;
