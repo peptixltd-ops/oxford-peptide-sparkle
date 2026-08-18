@@ -122,7 +122,7 @@ def label_svg(name: str, strength: str, batch: str = "ORP-XXXXX") -> str:
 
     # ---------- Disclaimer (left-aligned) ----------
     disc_x = tx + 4.0
-    disc_y = ty + 24.0
+    disc_y = ty + 21.8
     disclaimer = f'''
       <text x="{disc_x}" y="{disc_y}" font-family="{SANS}"
             font-size="1.55" font-weight="700" fill="{NAVY}"
