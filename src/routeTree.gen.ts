@@ -52,6 +52,7 @@ import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ExploreMechanismsRouteImport } from './routes/explore.mechanisms'
 import { Route as ExploreCompoundsRouteImport } from './routes/explore.compounds'
 import { Route as DashboardEditorialRouteImport } from './routes/dashboard.editorial'
+import { Route as DashboardAbandonedCheckoutRouteImport } from './routes/dashboard.abandoned-checkout'
 import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
 import { Route as ResearchHubProgrammesIndexRouteImport } from './routes/research-hub.programmes.index'
 import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
@@ -292,6 +293,12 @@ const DashboardEditorialRoute = DashboardEditorialRouteImport.update({
   path: '/dashboard/editorial',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardAbandonedCheckoutRoute =
+  DashboardAbandonedCheckoutRouteImport.update({
+    id: '/dashboard/abandoned-checkout',
+    path: '/dashboard/abandoned-checkout',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CompoundsSlugRoute = CompoundsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -460,6 +467,7 @@ export interface FileRoutesByFullPath {
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
+  '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
   '/explore/compounds': typeof ExploreCompoundsRoute
   '/explore/mechanisms': typeof ExploreMechanismsRoute
@@ -525,6 +533,7 @@ export interface FileRoutesByTo {
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
+  '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
   '/explore/compounds': typeof ExploreCompoundsRoute
   '/explore/mechanisms': typeof ExploreMechanismsRoute
@@ -594,6 +603,7 @@ export interface FileRoutesById {
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
+  '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
   '/explore/compounds': typeof ExploreCompoundsRoute
   '/explore/mechanisms': typeof ExploreMechanismsRoute
@@ -664,6 +674,7 @@ export interface FileRouteTypes {
     | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
+    | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
     | '/explore/compounds'
     | '/explore/mechanisms'
@@ -729,6 +740,7 @@ export interface FileRouteTypes {
     | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
+    | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
     | '/explore/compounds'
     | '/explore/mechanisms'
@@ -797,6 +809,7 @@ export interface FileRouteTypes {
     | '/testing-and-quality-control'
     | '/wholesale'
     | '/compounds/$slug'
+    | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
     | '/explore/compounds'
     | '/explore/mechanisms'
@@ -865,6 +878,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TestingAndQualityControlRoute: typeof TestingAndQualityControlRoute
   WholesaleRoute: typeof WholesaleRoute
+  DashboardAbandonedCheckoutRoute: typeof DashboardAbandonedCheckoutRoute
   DashboardEditorialRoute: typeof DashboardEditorialRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ApiPublicNewsletterSubscribeRoute: typeof ApiPublicNewsletterSubscribeRoute
@@ -1175,6 +1189,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardEditorialRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/abandoned-checkout': {
+      id: '/dashboard/abandoned-checkout'
+      path: '/dashboard/abandoned-checkout'
+      fullPath: '/dashboard/abandoned-checkout'
+      preLoaderRoute: typeof DashboardAbandonedCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compounds/$slug': {
       id: '/compounds/$slug'
       path: '/$slug'
@@ -1455,6 +1476,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TestingAndQualityControlRoute: TestingAndQualityControlRoute,
   WholesaleRoute: WholesaleRoute,
+  DashboardAbandonedCheckoutRoute: DashboardAbandonedCheckoutRoute,
   DashboardEditorialRoute: DashboardEditorialRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ApiPublicNewsletterSubscribeRoute: ApiPublicNewsletterSubscribeRoute,
