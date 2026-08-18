@@ -172,12 +172,13 @@ export function NewsletterPopup() {
               id="orp-newsletter-title"
               className="font-display text-3xl leading-tight text-navy-deep mb-3"
             >
-              Instant store credit on every order
+              Up to £10 instant store credit for first time customers
             </h2>
             <p className="text-sm text-navy-deep/75 mb-6">
               Join the Oxford research list for launch alerts, batch drops and priority stock
-              access. Your credit is applied automatically at checkout.
+              access, plus a one time use store credit code.
             </p>
+
 
             <form onSubmit={submit} className="space-y-3" noValidate>
               {/* Honeypot */}
