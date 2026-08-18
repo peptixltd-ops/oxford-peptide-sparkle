@@ -406,6 +406,9 @@ export const EMAILS: EmailSpec[] = [
           `<tr><td align="center" style="padding:34px 44px 8px;">
             <a href="{{ checkout.abandoned_checkout_url }}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;">COMPLETE MY ORDER</a>
           </td></tr>` +
+          `<tr><td align="center" style="padding:16px 44px 0;">
+            <div style="font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Order by 5pm today for same-day dispatch · Royal Mail Tracked 24</div>
+          </td></tr>` +
           `<tr><td style="padding:34px 44px 0;">
             <div style="border-top:1px solid ${BRAND.line};padding-top:20px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">One final reminder of what you’re choosing</div>
             <table role="presentation" width="100%" style="margin-top:10px;">
