@@ -12,18 +12,19 @@ import {
 } from "@/lib/taxonomy";
 import { seo } from "@/lib/seo";
 
-const category = getCategory("compounds")!;
-
 export const Route = createFileRoute("/compounds/")({
-  head: () =>
-    seo({
+  head: () => {
+    const category = getCategory("compounds")!;
+    return seo({
       path: category.path,
       title: `${category.label} — Oxford Research Peptides`,
       description: category.description,
       noindex: !category.populated,
-    }),
+    });
+  },
   component: CompoundsIndex,
 });
+
 
 function CompoundsIndex() {
   return (
