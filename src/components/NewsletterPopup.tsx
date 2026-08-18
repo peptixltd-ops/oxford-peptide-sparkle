@@ -246,7 +246,7 @@ export function NewsletterPopup() {
                 disabled={status === "loading"}
                 className="w-full h-11 bg-navy-deep text-bone font-bold tracking-widest text-sm hover:bg-navy disabled:opacity-60"
               >
-                {status === "loading" ? "SENDING…" : "JOIN THE LIST"}
+                {status === "loading" ? "SENDING…" : "CLAIM UP TO £10 STORE CREDIT"}
               </button>
 
               <p className="text-[11px] text-navy-deep/55 leading-relaxed pt-1">
