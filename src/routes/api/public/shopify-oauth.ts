@@ -19,8 +19,9 @@ export const Route = createFileRoute("/api/public/shopify-oauth")({
   server: {
     handlers: {
       GET: async ({ request }) => {
-        const origin = new URL(request.url).origin;
-        const redirectUri = `${origin}/api/public/shopify-oauth/callback`;
+        // Must exactly match the whitelisted redirect URL in the Shopify app version
+        const redirectUri =
+          "https://oxford-peptide-sparkle.lovable.app/api/public/shopify-oauth/callback";
         const state = crypto.randomUUID();
 
         const authorizeUrl =
