@@ -332,8 +332,9 @@ export const EMAILS: EmailSpec[] = [
             "No complicated offer. Just an extra £5.83 towards completing the order you already started.",
           ]) +
           cta("USE MY £5.83 CREDIT", "Credit applied automatically at checkout.") +
-          productBlock(o) +
+          dispatch() +
           trust("Why Oxford?", TRUST_MID) +
+          productBlock(o, false) +
           footer(),
         "Every worthwhile decision comes with a moment of hesitation.",
       ),
