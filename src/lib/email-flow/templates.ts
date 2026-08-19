@@ -371,10 +371,11 @@ export const EMAILS: EmailSpec[] = [
           body([
             "There’s the version that keeps thinking about it. And there’s the version that follows through.",
             "Most of the time, the difference isn’t opportunity. It’s action.",
-            "Yesterday, you made a decision to start. Today, you get to decide whether you finish.",
-            "Your Oxford selection is still waiting.",
+            "So we’ve kept something aside — in your name, against this basket alone.",
           ]) +
+          credit() +
           cta("FINISH WHAT I STARTED") +
+
           dispatch() +
           trust("Your decision. Our standards.", TRUST_MID) +
           productBlock(o, false) +
