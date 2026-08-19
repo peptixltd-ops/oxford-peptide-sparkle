@@ -167,25 +167,21 @@ const offerPanel = (
 <tr><td style="padding:30px ${pad} 0;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:${BRAND.bone};">
     <tr><td align="center" style="padding:34px 26px 32px;">
-      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.26em;color:${BRAND.gold};">ONE FINAL EXCEPTION</div>
+      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.26em;color:${BRAND.gold};">EXPIRES IN 12 HOURS</div>
       <div style="margin-top:18px;font:400 46px/1.05 ${BRAND.serif};color:${BRAND.navy};letter-spacing:.01em;">30% OFF</div>
-      <div style="margin-top:8px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">your order</div>
+      <div style="margin-top:8px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">your order &mdash; for the next 12 hours only</div>
       <div style="margin:22px auto 0;width:44px;border-top:1px solid ${BRAND.gold};"></div>
       <div style="margin-top:20px;font:400 14px/1.7 ${BRAND.sans};color:${BRAND.text};max-width:400px;">
-        We&rsquo;ve unlocked a one-off 30% saving for this checkout.<br><br>
-        This isn&rsquo;t an ongoing Oxford promotion, and it isn&rsquo;t an offer we&rsquo;ll keep sending you.<br><br>
-        It&rsquo;s simply our final opportunity to remove some of the hesitation between you and the decision you already started.
+        A one-off 30% code has been released against this checkout, and it is live for <strong>12 hours from the moment this email landed</strong>.<br><br>
+        It is not an ongoing Oxford promotion, it will not be re-issued, and we will not send it again.<br><br>
+        When the 12 hours are up, the code is deleted and your checkout closes for good.
       </div>
       <div style="margin-top:24px;font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.muted};">YOUR CODE</div>
       <div style="margin-top:10px;border:1px dashed ${BRAND.gold};padding:15px 26px;display:inline-block;font:700 18px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:#ffffff;">${code}</div>
-      ${
-        expiryLabel
-          ? `<div style="margin-top:20px;font:700 12px/1.5 ${BRAND.sans};letter-spacing:.1em;color:${BRAND.navy};">Available for the next ${expiryLabel}.</div>
-      <div style="margin-top:6px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Once it expires, it expires.</div>`
-          : ""
-      }
+      <div style="margin-top:20px;font:700 12px/1.5 ${BRAND.sans};letter-spacing:.1em;color:${BRAND.navy};">Valid for ${expiryLabel || "12 hours"} only &mdash; then it is gone.</div>
+      <div style="margin-top:6px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">No extensions. No second chances. Once it expires, it expires.</div>
       <div style="margin-top:26px;">
-        <a href="{{ checkout.abandoned_checkout_url }}?discount=${code}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.18em;text-decoration:none;padding:19px 34px;border:1px solid ${BRAND.gold};">I&rsquo;VE MADE MY DECISION &mdash; CLAIM 30%</a>
+        <a href="{{ checkout.abandoned_checkout_url }}?discount=${code}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.18em;text-decoration:none;padding:19px 34px;border:1px solid ${BRAND.gold};">CLAIM 30% BEFORE IT EXPIRES</a>
       </div>
       <div style="margin-top:14px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Issued to you alone. Single use, no minimum spend, not combinable with other codes.</div>
     </td></tr>
