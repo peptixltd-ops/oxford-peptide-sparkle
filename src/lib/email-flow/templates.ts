@@ -503,7 +503,7 @@ export const EMAILS: EmailSpec[] = [
             </table>
           </td></tr>` +
           footer(),
-        "One final decision. We’ve made it considerably easier.",
+        "One-off, single-use, and it expires in 12 hours.",
       ),
 
   },
