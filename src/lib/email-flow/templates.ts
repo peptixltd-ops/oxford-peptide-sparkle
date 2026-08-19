@@ -158,19 +158,6 @@ const trust = (title: string, items: string[]) => `
   </table>
 </td></tr>`;
 
-const credit = (heading: string) => `
-<tr><td style="padding:26px 32px 4px;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};">
-    <tr><td align="center" style="padding:24px 22px;background:#ffffff;">
-      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.24em;color:${BRAND.muted};">${heading}</div>
-      <div style="margin-top:10px;font:400 38px/1 ${BRAND.serif};color:${BRAND.navy};">£5.83</div>
-      <div style="margin-top:8px;font:400 13px/1.6 ${BRAND.sans};color:${BRAND.text};">Store credit towards the order you already started.</div>
-      <div style="margin-top:14px;display:inline-block;border:1px dashed ${BRAND.navy};padding:10px 20px;font:700 15px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};">OXFORD583</div>
-      <div style="margin-top:12px;font:400 11px/1.55 ${BRAND.sans};color:${BRAND.muted};">Can be used alongside other discounts only where Shopify's configured discount-combination rules for this promotion allow it.</div>
-    </td></tr>
-  </table>
-</td></tr>`;
-
 const footer = () => `
 <tr><td style="padding:30px 32px 34px;border-top:1px solid ${BRAND.line};background:#ffffff;">
   <div style="font:600 13px/1.5 ${BRAND.serif};color:${BRAND.navy};">${COMPANY.brand}</div>
@@ -254,6 +241,8 @@ export const EMAILS: EmailSpec[] = [
     build: (o) =>
       wrap(
         header(o.logoUrl) +
+          dispatch() +
+          trust("Why Oxford?", TRUST_SHORT) +
           hero("You’re closer than you think.") +
           body([
             "You took the time to find what you were looking for.",
@@ -261,8 +250,6 @@ export const EMAILS: EmailSpec[] = [
             "You’re one decision away from completing what you started.",
           ]) +
           cta("COMPLETE MY ORDER") +
-          dispatch() +
-          trust("Why Oxford?", TRUST_SHORT) +
           productBlock(o, false) +
           footer(),
         "You’re closer than you think.",
@@ -306,13 +293,13 @@ export const EMAILS: EmailSpec[] = [
     subject: "The hardest part is starting, don’t let yourself down",
     preheader:
       "Every worthwhile decision comes with a moment of hesitation.",
-    ctaLabel: "USE MY £5.83 CREDIT",
+    ctaLabel: "COMPLETE MY ORDER",
     objective:
-      "Remove the final friction with personal store credit — positioned as a courtesy, not a sale. Credit block is the visual anchor.",
+      "Remove the final friction with reassurance and follow-through framing — no discount, no urgency devices.",
     dynamicBlocks: [
       "checkout.line_items",
       "checkout.subtotal_price",
-      "checkout.abandoned_checkout_url + discount OXFORD583 auto-apply",
+      "checkout.abandoned_checkout_url",
     ],
     build: (o) =>
       wrap(
@@ -325,13 +312,8 @@ export const EMAILS: EmailSpec[] = [
             "You already made the difficult decision. You found a supplier you trusted. You selected your products.",
             "Now all that’s left is following through.",
             "Don’t let a moment of hesitation turn into another unfinished decision.",
-            "And to make that decision a little easier, here’s something from Oxford.",
           ]) +
-          credit("YOUR OXFORD STORE CREDIT") +
-          body([
-            "No complicated offer. Just an extra £5.83 towards completing the order you already started.",
-          ]) +
-          cta("USE MY £5.83 CREDIT", "Credit applied automatically at checkout.") +
+          cta("COMPLETE MY ORDER") +
           dispatch() +
           trust("Why Oxford?", TRUST_MID) +
           productBlock(o, false) +
@@ -346,11 +328,11 @@ export const EMAILS: EmailSpec[] = [
     preheader: "Every decision is a vote for the person you choose to be.",
     ctaLabel: "FINISH WHAT I STARTED",
     objective:
-      "Identity-based follow-through framing about the decision itself (not product outcomes), plus a reminder the credit is still available.",
+      "Identity-based follow-through framing about the decision itself (not product outcomes).",
     dynamicBlocks: [
       "checkout.line_items",
       "checkout.subtotal_price",
-      "checkout.abandoned_checkout_url + discount OXFORD583 auto-apply",
+      "checkout.abandoned_checkout_url",
     ],
     build: (o) =>
       wrap(
@@ -360,12 +342,11 @@ export const EMAILS: EmailSpec[] = [
             "There’s the version that keeps thinking about it. And there’s the version that follows through.",
             "Most of the time, the difference isn’t opportunity. It’s action.",
             "Yesterday, you made a decision to start. Today, you get to decide whether you finish.",
-            "Your Oxford selection is still waiting — and your £5.83 store credit is still available.",
+            "Your Oxford selection is still waiting.",
           ]) +
           cta("FINISH WHAT I STARTED") +
           dispatch() +
           trust("Your decision. Our standards.", TRUST_MID) +
-          credit("£5.83 OXFORD CREDIT") +
           productBlock(o, false) +
           footer(),
         "Every decision is a vote for the person you choose to be.",
@@ -380,7 +361,7 @@ export const EMAILS: EmailSpec[] = [
     objective:
       "Respectful close. Deliberately different: personal-note layout, white space, minimal imagery, one CTA, no new discount, no urgency devices.",
     dynamicBlocks: [
-      "checkout.abandoned_checkout_url + discount OXFORD583 auto-apply",
+      "checkout.abandoned_checkout_url",
       "line items intentionally omitted (personal-note format)",
     ],
     build: (o) =>
@@ -397,7 +378,6 @@ export const EMAILS: EmailSpec[] = [
               "But if the only thing standing between you and the decision you already made is hesitation, don’t let hesitation make the decision for you.",
               "Ask yourself: will you be glad you walked away — or will you wonder “what if?”",
               "This is the final reminder we’ll send about your selection.",
-              "Your £5.83 Oxford credit is still available and can still be used alongside any eligible existing discount.",
               "After this, we’ll leave the decision entirely with you.",
             ]
               .map(
@@ -420,14 +400,6 @@ export const EMAILS: EmailSpec[] = [
                 (i) =>
                   `<tr><td style="padding:3px 0;font:400 13px/1.6 ${BRAND.sans};color:${BRAND.text};"><span style="color:${BRAND.gold};font-weight:700;">✓</span>&nbsp; ${i}</td></tr>`,
               ).join("")}
-            </table>
-          </td></tr>` +
-          `<tr><td style="padding:26px 44px 6px;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.line};">
-              <tr><td align="center" style="padding:20px;">
-                <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.24em;color:${BRAND.muted};">£5.83 OXFORD CREDIT</div>
-                <div style="margin-top:12px;display:inline-block;border:1px dashed ${BRAND.navy};padding:9px 18px;font:700 14px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};">OXFORD583</div>
-              </td></tr>
             </table>
           </td></tr>` +
           footer(),

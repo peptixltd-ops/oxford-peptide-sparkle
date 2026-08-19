@@ -203,10 +203,7 @@ function FlowDashboard() {
           <h2 className="font-display text-lg">Not yet activated</h2>
           <ul className="text-sm text-muted-foreground mt-3 space-y-1.5 list-disc pl-5">
             <li>No Shopify email automation, flow or delay has been created.</li>
-            <li>
-              Discount code <strong className="text-navy-deep">OXFORD583</strong> (£5.83 fixed) is
-              proposed only — not created.
-            </li>
+            <li>No discount or store-credit code is used anywhere in this flow.</li>
             <li>Reply &ldquo;APPROVE AND IMPLEMENT&rdquo; to begin Phase 2.</li>
           </ul>
         </section>
