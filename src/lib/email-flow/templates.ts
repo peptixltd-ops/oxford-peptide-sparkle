@@ -151,7 +151,8 @@ const credit = () => `
           </td>
         </tr>
       </table>
-      <div style="margin-top:12px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Single use, non-transferable, one credit per order.</div>
+      <div style="margin-top:14px;font:700 11px/1 ${BRAND.sans};letter-spacing:.18em;color:${BRAND.gold};">CREDIT EXPIRING IN 24 HOURS</div>
+      <div style="margin-top:10px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Single use, non-transferable, one credit per order.</div>
     </td></tr>
   </table>
 </td></tr>`;
