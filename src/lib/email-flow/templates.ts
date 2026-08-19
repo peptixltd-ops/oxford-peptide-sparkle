@@ -98,7 +98,7 @@ const dynamicTag = (label: string) => `
   <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.2em;color:${BRAND.muted};border-top:1px solid ${BRAND.line};padding-top:14px;">DYNAMIC SHOPIFY CONTENT · ${label}</div>
 </td></tr>`;
 
-const productBlock = (o: BuildOpts) => `
+const productBlock = (o: BuildOpts, withDispatch = true) => `
 ${dynamicTag("{% for line in checkout.line_items %}")}
 <tr><td style="padding:12px 32px 0;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
