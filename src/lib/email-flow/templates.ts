@@ -293,8 +293,9 @@ export const EMAILS: EmailSpec[] = [
             "Your selection is still waiting.",
           ]) +
           cta("TAKE THE NEXT STEP") +
-          productBlock(o) +
+          dispatch() +
           trust("Why Oxford?", TRUST_FULL) +
+          productBlock(o, false) +
           footer(),
         "Don’t lose your momentum.",
       ),
@@ -331,8 +332,9 @@ export const EMAILS: EmailSpec[] = [
             "No complicated offer. Just an extra £5.83 towards completing the order you already started.",
           ]) +
           cta("USE MY £5.83 CREDIT", "Credit applied automatically at checkout.") +
-          productBlock(o) +
+          dispatch() +
           trust("Why Oxford?", TRUST_MID) +
+          productBlock(o, false) +
           footer(),
         "Every worthwhile decision comes with a moment of hesitation.",
       ),
@@ -361,9 +363,10 @@ export const EMAILS: EmailSpec[] = [
             "Your Oxford selection is still waiting — and your £5.83 store credit is still available.",
           ]) +
           cta("FINISH WHAT I STARTED") +
+          dispatch() +
           trust("Your decision. Our standards.", TRUST_MID) +
           credit("£5.83 OXFORD CREDIT") +
-          productBlock(o) +
+          productBlock(o, false) +
           footer(),
         "Every decision is a vote for the person you choose to be.",
       ),
