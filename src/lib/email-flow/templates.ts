@@ -47,6 +47,10 @@ export type BuildOpts = {
   logoUrl: string;
   products: PreviewProduct[];
   subtotal: string;
+  /** Email 5 only: per-recipient 30% code. Defaults to the Liquid variable. */
+  offerCode?: string;
+  /** Email 5 only: e.g. "12 hours". Empty string hides the expiry lines. */
+  offerExpiryLabel?: string;
 };
 
 /* ------------------------------------------------------------------ helpers */
@@ -136,13 +140,30 @@ export const CREDIT_CODES = { five: "5A96HVVRYA48", ten: "RRZHB1812SXD" };
 export const FINAL_CREDIT_CODE = "FINAL-Q418FY";
 
 /**
- * Stated expiry window for the final 30% recovery offer.
- * MUST match the Shopify price rule's ends_at exactly. Not live until approved.
+ * Email 5's 30% code and expiry are minted per recipient at send time by
+ * POST /api/public/recovery-discount (12-hour genuine expiry, single use,
+ * no minimum spend). The automation injects them as Liquid variables, so the
+ * email never states an expiry that isn't configured in Shopify.
+ *
+ * Fallback: if minting fails, the endpoint returns the standing FINAL-Q418FY
+ * code with its real end date and an empty expiry label — the expiry lines
+ * below are then suppressed by the {% if %} guards.
  */
-export const FINAL_OFFER_EXPIRY = "48 hours";
+export const OFFER_CODE_VAR = "{{ recovery_code | default: '" + FINAL_CREDIT_CODE + "' }}";
+export const OFFER_EXPIRY_VAR = "{{ recovery_expiry_label }}";
+
+/** Preview values used by the dashboard previews only. */
+export const OFFER_PREVIEW = {
+  code: "ORP-7KQ2-MHXVD",
+  expiryLabel: "12 hours",
+};
 
 /** One-off 30% recovery offer panel (Email 5 only). */
-const offerPanel = (pad = "44px") => `
+const offerPanel = (
+  pad = "44px",
+  code: string = OFFER_CODE_VAR,
+  expiryLabel: string = OFFER_EXPIRY_VAR,
+) => `
 <tr><td style="padding:30px ${pad} 0;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:${BRAND.bone};">
     <tr><td align="center" style="padding:34px 26px 32px;">
@@ -156,16 +177,21 @@ const offerPanel = (pad = "44px") => `
         It&rsquo;s simply our final opportunity to remove some of the hesitation between you and the decision you already started.
       </div>
       <div style="margin-top:24px;font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.muted};">YOUR CODE</div>
-      <div style="margin-top:10px;border:1px dashed ${BRAND.gold};padding:15px 26px;display:inline-block;font:700 18px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:#ffffff;">${FINAL_CREDIT_CODE}</div>
-      <div style="margin-top:20px;font:700 12px/1.5 ${BRAND.sans};letter-spacing:.1em;color:${BRAND.navy};">Available for the next ${FINAL_OFFER_EXPIRY}.</div>
-      <div style="margin-top:6px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Once it expires, it expires.</div>
+      <div style="margin-top:10px;border:1px dashed ${BRAND.gold};padding:15px 26px;display:inline-block;font:700 18px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:#ffffff;">${code}</div>
+      ${
+        expiryLabel
+          ? `<div style="margin-top:20px;font:700 12px/1.5 ${BRAND.sans};letter-spacing:.1em;color:${BRAND.navy};">Available for the next ${expiryLabel}.</div>
+      <div style="margin-top:6px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Once it expires, it expires.</div>`
+          : ""
+      }
       <div style="margin-top:26px;">
-        <a href="{{ checkout.abandoned_checkout_url }}?discount=${FINAL_CREDIT_CODE}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.18em;text-decoration:none;padding:19px 34px;border:1px solid ${BRAND.gold};">I&rsquo;VE MADE MY DECISION &mdash; CLAIM 30%</a>
+        <a href="{{ checkout.abandoned_checkout_url }}?discount=${code}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.18em;text-decoration:none;padding:19px 34px;border:1px solid ${BRAND.gold};">I&rsquo;VE MADE MY DECISION &mdash; CLAIM 30%</a>
       </div>
-      <div style="margin-top:14px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">One use per customer. Not combinable with other codes.</div>
+      <div style="margin-top:14px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Issued to you alone. Single use, no minimum spend, not combinable with other codes.</div>
     </td></tr>
   </table>
 </td></tr>`;
+
 
 
 const credit = () => `
@@ -429,7 +455,8 @@ export const EMAILS: EmailSpec[] = [
     objective:
       "Final close with one genuine, one-off 30% recovery concession. Personal-letter layout preserved; offer presented as a private exception, not a promotion.",
     dynamicBlocks: [
-      "checkout.abandoned_checkout_url (with ?discount=" + FINAL_CREDIT_CODE + ")",
+      "recovery_code + recovery_expiry_label (POST /api/public/recovery-discount)",
+      "checkout.abandoned_checkout_url (with ?discount={{ recovery_code }})",
       "line items intentionally omitted (personal-note format)",
     ],
     build: (o) =>
@@ -454,7 +481,7 @@ export const EMAILS: EmailSpec[] = [
               )
               .join("")}
           </td></tr>` +
-          offerPanel("44px") +
+          offerPanel("44px", o.offerCode ?? OFFER_CODE_VAR, o.offerExpiryLabel ?? OFFER_EXPIRY_VAR) +
           `<tr><td style="padding:30px 44px 6px;">
             ${[
               "You can keep thinking about it.",
@@ -470,7 +497,7 @@ export const EMAILS: EmailSpec[] = [
               .join("")}
           </td></tr>` +
           `<tr><td align="center" style="padding:14px 44px 8px;">
-            <a href="{{ checkout.abandoned_checkout_url }}?discount=${FINAL_CREDIT_CODE}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.navy};">I’M FINISHING WHAT I STARTED</a>
+            <a href="{{ checkout.abandoned_checkout_url }}?discount=${o.offerCode ?? OFFER_CODE_VAR}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.navy};">I’M FINISHING WHAT I STARTED</a>
           </td></tr>` +
           dispatch("44px") +
           `<tr><td style="padding:34px 44px 0;">

@@ -75,6 +75,7 @@ import { Route as ResearchHubCollectionsSlugRouteImport } from './routes/researc
 import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
 import { Route as EditorialReviewersIdRouteImport } from './routes/editorial.reviewers.$id'
 import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.authors.$id'
+import { Route as ApiPublicRecoveryDiscountRouteImport } from './routes/api/public/recovery-discount'
 import { Route as ApiPublicNewsletterSubscribeRouteImport } from './routes/api/public/newsletter-subscribe'
 
 const WholesaleRoute = WholesaleRouteImport.update({
@@ -422,6 +423,12 @@ const EditorialAuthorsIdRoute = EditorialAuthorsIdRouteImport.update({
   path: '/editorial/authors/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicRecoveryDiscountRoute =
+  ApiPublicRecoveryDiscountRouteImport.update({
+    id: '/api/public/recovery-discount',
+    path: '/api/public/recovery-discount',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicNewsletterSubscribeRoute =
   ApiPublicNewsletterSubscribeRouteImport.update({
     id: '/api/public/newsletter-subscribe',
@@ -476,6 +483,7 @@ export interface FileRoutesByFullPath {
   '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
+  '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -542,6 +550,7 @@ export interface FileRoutesByTo {
   '/explore': typeof ExploreIndexRoute
   '/research-hub': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
+  '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -612,6 +621,7 @@ export interface FileRoutesById {
   '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
+  '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -683,6 +693,7 @@ export interface FileRouteTypes {
     | '/explore/'
     | '/research-hub/'
     | '/api/public/newsletter-subscribe'
+    | '/api/public/recovery-discount'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -749,6 +760,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/research-hub'
     | '/api/public/newsletter-subscribe'
+    | '/api/public/recovery-discount'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -818,6 +830,7 @@ export interface FileRouteTypes {
     | '/explore/'
     | '/research-hub/'
     | '/api/public/newsletter-subscribe'
+    | '/api/public/recovery-discount'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -882,6 +895,7 @@ export interface RootRouteChildren {
   DashboardEditorialRoute: typeof DashboardEditorialRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ApiPublicNewsletterSubscribeRoute: typeof ApiPublicNewsletterSubscribeRoute
+  ApiPublicRecoveryDiscountRoute: typeof ApiPublicRecoveryDiscountRoute
   EditorialAuthorsIdRoute: typeof EditorialAuthorsIdRoute
   EditorialReviewersIdRoute: typeof EditorialReviewersIdRoute
 }
@@ -1350,6 +1364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorialAuthorsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/recovery-discount': {
+      id: '/api/public/recovery-discount'
+      path: '/api/public/recovery-discount'
+      fullPath: '/api/public/recovery-discount'
+      preLoaderRoute: typeof ApiPublicRecoveryDiscountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/newsletter-subscribe': {
       id: '/api/public/newsletter-subscribe'
       path: '/api/public/newsletter-subscribe'
@@ -1480,6 +1501,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardEditorialRoute: DashboardEditorialRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ApiPublicNewsletterSubscribeRoute: ApiPublicNewsletterSubscribeRoute,
+  ApiPublicRecoveryDiscountRoute: ApiPublicRecoveryDiscountRoute,
   EditorialAuthorsIdRoute: EditorialAuthorsIdRoute,
   EditorialReviewersIdRoute: EditorialReviewersIdRoute,
 }

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { EMAILS, type BuildOpts, type PreviewProduct } from "@/lib/email-flow/templates";
+import { EMAILS, OFFER_PREVIEW, type BuildOpts, type PreviewProduct } from "@/lib/email-flow/templates";
 import logo from "@/assets/oxford-logo.jpg.asset.json";
 import vialReta from "@/assets/vials/orp-retatrutide.png";
 import vialBpc from "@/assets/vials/orp-bpc-157.png";
@@ -48,9 +48,17 @@ function FlowDashboard() {
   const [device, setDevice] = useState<Record<number, "desktop" | "mobile">>({});
 
   const opts: BuildOpts = useMemo(
-    () => ({ logoUrl: logo.url, products: SAMPLE, subtotal: "£123.00" }),
+    () => ({
+      logoUrl: logo.url,
+      products: SAMPLE,
+      subtotal: "£123.00",
+      // Email 5 preview: sample of a real minted per-recipient code.
+      offerCode: OFFER_PREVIEW.code,
+      offerExpiryLabel: OFFER_PREVIEW.expiryLabel,
+    }),
     [],
   );
+
 
   return (
     <div className="min-h-screen bg-bone">
