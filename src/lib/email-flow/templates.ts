@@ -293,8 +293,9 @@ export const EMAILS: EmailSpec[] = [
             "Your selection is still waiting.",
           ]) +
           cta("TAKE THE NEXT STEP") +
-          productBlock(o) +
+          dispatch() +
           trust("Why Oxford?", TRUST_FULL) +
+          productBlock(o, false) +
           footer(),
         "Don’t lose your momentum.",
       ),
