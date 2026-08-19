@@ -75,6 +75,7 @@ import { Route as ResearchHubCollectionsSlugRouteImport } from './routes/researc
 import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
 import { Route as EditorialReviewersIdRouteImport } from './routes/editorial.reviewers.$id'
 import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.authors.$id'
+import { Route as ApiPublicShopifyOauthRouteImport } from './routes/api/public/shopify-oauth'
 import { Route as ApiPublicRecoveryDiscountRouteImport } from './routes/api/public/recovery-discount'
 import { Route as ApiPublicNewsletterSubscribeRouteImport } from './routes/api/public/newsletter-subscribe'
 
@@ -423,6 +424,11 @@ const EditorialAuthorsIdRoute = EditorialAuthorsIdRouteImport.update({
   path: '/editorial/authors/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicShopifyOauthRoute = ApiPublicShopifyOauthRouteImport.update({
+  id: '/api/public/shopify-oauth',
+  path: '/api/public/shopify-oauth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicRecoveryDiscountRoute =
   ApiPublicRecoveryDiscountRouteImport.update({
     id: '/api/public/recovery-discount',
@@ -484,6 +490,7 @@ export interface FileRoutesByFullPath {
   '/research-hub/': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
+  '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -551,6 +558,7 @@ export interface FileRoutesByTo {
   '/research-hub': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
+  '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -622,6 +630,7 @@ export interface FileRoutesById {
   '/research-hub/': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
+  '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -694,6 +703,7 @@ export interface FileRouteTypes {
     | '/research-hub/'
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
+    | '/api/public/shopify-oauth'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -761,6 +771,7 @@ export interface FileRouteTypes {
     | '/research-hub'
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
+    | '/api/public/shopify-oauth'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -831,6 +842,7 @@ export interface FileRouteTypes {
     | '/research-hub/'
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
+    | '/api/public/shopify-oauth'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -896,6 +908,7 @@ export interface RootRouteChildren {
   ProductsSlugRoute: typeof ProductsSlugRoute
   ApiPublicNewsletterSubscribeRoute: typeof ApiPublicNewsletterSubscribeRoute
   ApiPublicRecoveryDiscountRoute: typeof ApiPublicRecoveryDiscountRoute
+  ApiPublicShopifyOauthRoute: typeof ApiPublicShopifyOauthRoute
   EditorialAuthorsIdRoute: typeof EditorialAuthorsIdRoute
   EditorialReviewersIdRoute: typeof EditorialReviewersIdRoute
 }
@@ -1364,6 +1377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorialAuthorsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/shopify-oauth': {
+      id: '/api/public/shopify-oauth'
+      path: '/api/public/shopify-oauth'
+      fullPath: '/api/public/shopify-oauth'
+      preLoaderRoute: typeof ApiPublicShopifyOauthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/recovery-discount': {
       id: '/api/public/recovery-discount'
       path: '/api/public/recovery-discount'
@@ -1502,6 +1522,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsSlugRoute: ProductsSlugRoute,
   ApiPublicNewsletterSubscribeRoute: ApiPublicNewsletterSubscribeRoute,
   ApiPublicRecoveryDiscountRoute: ApiPublicRecoveryDiscountRoute,
+  ApiPublicShopifyOauthRoute: ApiPublicShopifyOauthRoute,
   EditorialAuthorsIdRoute: EditorialAuthorsIdRoute,
   EditorialReviewersIdRoute: EditorialReviewersIdRoute,
 }
