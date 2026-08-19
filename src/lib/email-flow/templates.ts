@@ -135,24 +135,38 @@ export const CREDIT_CODES = { five: "5A96HVVRYA48", ten: "RRZHB1812SXD" };
 /** Final-email 30% recovery credit code. */
 export const FINAL_CREDIT_CODE = "FINAL-Q418FY";
 
-const finalCredit = (pad = "44px") => `
-<tr><td style="padding:26px ${pad} 0;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:#ffffff;">
-    <tr><td align="center" style="padding:26px 22px;">
-      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.gold};">FINAL CREDIT · RESERVED IN YOUR NAME</div>
-      <div style="margin-top:11px;font:400 26px/1.25 ${BRAND.serif};color:${BRAND.navy};">We&rsquo;ve recalculated your final credit.</div>
-      <div style="margin-top:12px;font:400 14px/1.65 ${BRAND.sans};color:${BRAND.text};">
-        There&rsquo;s a one 30% one off waiting against your order, but we&rsquo;re only holding it for the next 90 minutes.
+/**
+ * Stated expiry window for the final 30% recovery offer.
+ * MUST match the Shopify price rule's ends_at exactly. Not live until approved.
+ */
+export const FINAL_OFFER_EXPIRY = "48 hours";
+
+/** One-off 30% recovery offer panel (Email 5 only). */
+const offerPanel = (pad = "44px") => `
+<tr><td style="padding:30px ${pad} 0;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:${BRAND.bone};">
+    <tr><td align="center" style="padding:34px 26px 32px;">
+      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.26em;color:${BRAND.gold};">ONE FINAL EXCEPTION</div>
+      <div style="margin-top:18px;font:400 46px/1.05 ${BRAND.serif};color:${BRAND.navy};letter-spacing:.01em;">30% OFF</div>
+      <div style="margin-top:8px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">your order</div>
+      <div style="margin:22px auto 0;width:44px;border-top:1px solid ${BRAND.gold};"></div>
+      <div style="margin-top:20px;font:400 14px/1.7 ${BRAND.sans};color:${BRAND.text};max-width:400px;">
+        We&rsquo;ve unlocked a one-off 30% saving for this checkout.<br><br>
+        This isn&rsquo;t an ongoing Oxford promotion, and it isn&rsquo;t an offer we&rsquo;ll keep sending you.<br><br>
+        It&rsquo;s simply our final opportunity to remove some of the hesitation between you and the decision you already started.
       </div>
-      <div style="margin-top:16px;border:1px dashed ${BRAND.gold};padding:14px 22px;display:inline-block;font:700 16px/1 ${BRAND.sans};letter-spacing:.14em;color:${BRAND.navy};background:${BRAND.bone};">${FINAL_CREDIT_CODE}</div>
-      <div style="margin-top:14px;font:700 11px/1 ${BRAND.sans};letter-spacing:.18em;color:${BRAND.gold};">HELD FOR 90 MINUTES</div>
-      <div style="margin-top:12px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">
-        After that, the credit expires and this recovery sequence closes.
+      <div style="margin-top:24px;font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.muted};">YOUR CODE</div>
+      <div style="margin-top:10px;border:1px dashed ${BRAND.gold};padding:15px 26px;display:inline-block;font:700 18px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:#ffffff;">${FINAL_CREDIT_CODE}</div>
+      <div style="margin-top:20px;font:700 12px/1.5 ${BRAND.sans};letter-spacing:.1em;color:${BRAND.navy};">Available for the next ${FINAL_OFFER_EXPIRY}.</div>
+      <div style="margin-top:6px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Once it expires, it expires.</div>
+      <div style="margin-top:26px;">
+        <a href="{{ checkout.abandoned_checkout_url }}?discount=${FINAL_CREDIT_CODE}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.18em;text-decoration:none;padding:19px 34px;border:1px solid ${BRAND.gold};">I&rsquo;VE MADE MY DECISION &mdash; CLAIM 30%</a>
       </div>
-      <div style="margin-top:8px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Single use, non-transferable, one credit per order.</div>
+      <div style="margin-top:14px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">One use per customer. Not combinable with other codes.</div>
     </td></tr>
   </table>
 </td></tr>`;
+
 
 const credit = () => `
 <tr><td style="padding:20px 32px 0;">
@@ -410,12 +424,12 @@ export const EMAILS: EmailSpec[] = [
     id: 5,
     timing: "72 HOURS",
     subject: "FINAL Reminder – Don’t turn your back on yourself",
-    preheader: "This is the last email we’ll send about your order.",
-    ctaLabel: "I’VE MADE MY DECISION",
+    preheader: "One final decision. We’ve made it considerably easier.",
+    ctaLabel: "I’VE MADE MY DECISION — CLAIM 30%",
     objective:
-      "Respectful close. Deliberately different: personal-note layout, white space, minimal imagery, one CTA, no new discount, no urgency devices.",
+      "Final close with one genuine, one-off 30% recovery concession. Personal-letter layout preserved; offer presented as a private exception, not a promotion.",
     dynamicBlocks: [
-      "checkout.abandoned_checkout_url",
+      "checkout.abandoned_checkout_url (with ?discount=" + FINAL_CREDIT_CODE + ")",
       "line items intentionally omitted (personal-note format)",
     ],
     build: (o) =>
@@ -428,8 +442,11 @@ export const EMAILS: EmailSpec[] = [
           `<tr><td style="padding:26px 44px 6px;">
             ${[
               "You’ve had time to think.",
-              "Ask yourself: will you be glad you walked away — or will you wonder “what if?”",
-              "This is the final reminder we’ll send about your selection.",
+              "And maybe you’ve almost convinced yourself to leave it there.",
+              "But ask yourself:",
+              "Will you be glad you walked away — or will you still wonder “what if?”",
+              "You started this for a reason.",
+              "So before we close your checkout for good, we’re going to make following through considerably easier.",
             ]
               .map(
                 (p) =>
@@ -437,9 +454,23 @@ export const EMAILS: EmailSpec[] = [
               )
               .join("")}
           </td></tr>` +
-          finalCredit("44px") +
-          `<tr><td align="center" style="padding:34px 44px 8px;">
-            <a href="{{ checkout.abandoned_checkout_url }}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.gold};">I’VE MADE MY DECISION</a>
+          offerPanel("44px") +
+          `<tr><td style="padding:30px 44px 6px;">
+            ${[
+              "You can keep thinking about it.",
+              "Or you can finish what you started.",
+              "Either decision is yours.",
+              "But this is the last time we’ll ask.",
+              "After the offer expires, we’ll close this chapter and leave the decision with you.",
+            ]
+              .map(
+                (p) =>
+                  `<p style="margin:0 0 16px;font:400 15px/1.8 ${BRAND.sans};color:${BRAND.text};">${p}</p>`,
+              )
+              .join("")}
+          </td></tr>` +
+          `<tr><td align="center" style="padding:14px 44px 8px;">
+            <a href="{{ checkout.abandoned_checkout_url }}?discount=${FINAL_CREDIT_CODE}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.navy};">I’M FINISHING WHAT I STARTED</a>
           </td></tr>` +
           dispatch("44px") +
           `<tr><td style="padding:34px 44px 0;">
@@ -452,7 +483,8 @@ export const EMAILS: EmailSpec[] = [
             </table>
           </td></tr>` +
           footer(),
-        "This is the last email we’ll send about your order.",
+        "One final decision. We’ve made it considerably easier.",
       ),
+
   },
 ];
