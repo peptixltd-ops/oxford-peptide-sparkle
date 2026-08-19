@@ -162,8 +162,13 @@ export function CartDrawer() {
             </div>
             <div className="flex justify-between text-sm">
               <span>Shipping</span>
-              <span className="font-semibold">Free</span>
+              <span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span>
             </div>
+            {toFreeShipping > 0 && (
+              <p className="text-[11px] text-muted-foreground">
+                Spend {fmt(toFreeShipping)} more for free UK shipping.
+              </p>
+            )}
             {credit && (
               <div className="flex justify-between text-sm text-gold">
                 <span>Store credit ({credit.code})</span>
