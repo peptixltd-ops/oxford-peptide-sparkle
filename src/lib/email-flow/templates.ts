@@ -242,14 +242,14 @@ export const EMAILS: EmailSpec[] = [
       wrap(
         header(o.logoUrl) +
           hero("You’re closer than you think.") +
-          dispatch() +
-          trust("Why Oxford?", TRUST_SHORT) +
           body([
             "You took the time to find what you were looking for.",
             "Your selection is still waiting exactly where you left it. No need to start again.",
             "You’re one decision away from completing what you started.",
           ]) +
           cta("COMPLETE MY ORDER") +
+          dispatch() +
+          trust("Why Oxford?", TRUST_SHORT) +
           productBlock(o, false) +
           footer(),
         "You’re closer than you think.",
