@@ -254,6 +254,8 @@ export const EMAILS: EmailSpec[] = [
     build: (o) =>
       wrap(
         header(o.logoUrl) +
+          dispatch() +
+          trust("Why Oxford?", TRUST_SHORT) +
           hero("You’re closer than you think.") +
           body([
             "You took the time to find what you were looking for.",
@@ -261,8 +263,6 @@ export const EMAILS: EmailSpec[] = [
             "You’re one decision away from completing what you started.",
           ]) +
           cta("COMPLETE MY ORDER") +
-          dispatch() +
-          trust("Why Oxford?", TRUST_SHORT) +
           productBlock(o, false) +
           footer(),
         "You’re closer than you think.",
