@@ -102,7 +102,10 @@ function CartPage() {
                 <h2 className="text-xs font-bold tracking-[0.25em] mb-5">ORDER SUMMARY</h2>
                 <div className="space-y-3 text-sm border-b border-border pb-4 mb-4">
                   <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
-                  <div className="flex justify-between"><span>Shipping</span><span className="font-semibold">Free</span></div>
+                  <div className="flex justify-between"><span>Shipping</span><span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span></div>
+                  {toFreeShipping > 0 && (
+                    <p className="text-[11px] text-muted-foreground">Spend {fmt(toFreeShipping)} more for free UK shipping.</p>
+                  )}
                   {credit && (
                     <div className="flex justify-between text-gold"><span>Store credit ({credit.code})</span><span className="font-semibold">-{fmt(credit.amount)}</span></div>
                   )}
