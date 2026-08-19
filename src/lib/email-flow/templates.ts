@@ -135,6 +135,38 @@ export const CREDIT_CODES = { five: "5A96HVVRYA48", ten: "RRZHB1812SXD" };
 /** Final-email 30% recovery credit code. */
 export const FINAL_CREDIT_CODE = "FINAL-Q418FY";
 
+/**
+ * Stated expiry window for the final 30% recovery offer.
+ * MUST match the Shopify price rule's ends_at exactly. Not live until approved.
+ */
+export const FINAL_OFFER_EXPIRY = "48 hours";
+
+/** One-off 30% recovery offer panel (Email 5 only). */
+const offerPanel = (pad = "44px") => `
+<tr><td style="padding:30px ${pad} 0;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:${BRAND.bone};">
+    <tr><td align="center" style="padding:34px 26px 32px;">
+      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.26em;color:${BRAND.gold};">ONE FINAL EXCEPTION</div>
+      <div style="margin-top:18px;font:400 46px/1.05 ${BRAND.serif};color:${BRAND.navy};letter-spacing:.01em;">30% OFF</div>
+      <div style="margin-top:8px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">your order</div>
+      <div style="margin:22px auto 0;width:44px;border-top:1px solid ${BRAND.gold};"></div>
+      <div style="margin-top:20px;font:400 14px/1.7 ${BRAND.sans};color:${BRAND.text};max-width:400px;">
+        We&rsquo;ve unlocked a one-off 30% saving for this checkout.<br><br>
+        This isn&rsquo;t an ongoing Oxford promotion, and it isn&rsquo;t an offer we&rsquo;ll keep sending you.<br><br>
+        It&rsquo;s simply our final opportunity to remove some of the hesitation between you and the decision you already started.
+      </div>
+      <div style="margin-top:24px;font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.muted};">YOUR CODE</div>
+      <div style="margin-top:10px;border:1px dashed ${BRAND.gold};padding:15px 26px;display:inline-block;font:700 18px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:#ffffff;">${FINAL_CREDIT_CODE}</div>
+      <div style="margin-top:20px;font:700 12px/1.5 ${BRAND.sans};letter-spacing:.1em;color:${BRAND.navy};">Available for the next ${FINAL_OFFER_EXPIRY}.</div>
+      <div style="margin-top:6px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Once it expires, it expires.</div>
+      <div style="margin-top:26px;">
+        <a href="{{ checkout.abandoned_checkout_url }}?discount=${FINAL_CREDIT_CODE}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.18em;text-decoration:none;padding:19px 34px;border:1px solid ${BRAND.gold};">I&rsquo;VE MADE MY DECISION &mdash; CLAIM 30%</a>
+      </div>
+      <div style="margin-top:14px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">One use per customer. Not combinable with other codes.</div>
+    </td></tr>
+  </table>
+</td></tr>`;
+
 const finalCredit = (pad = "44px") => `
 <tr><td style="padding:26px ${pad} 0;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:#ffffff;">
