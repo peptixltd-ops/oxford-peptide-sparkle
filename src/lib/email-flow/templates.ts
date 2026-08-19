@@ -410,12 +410,12 @@ export const EMAILS: EmailSpec[] = [
     id: 5,
     timing: "72 HOURS",
     subject: "FINAL Reminder – Don’t turn your back on yourself",
-    preheader: "This is the last email we’ll send about your order.",
-    ctaLabel: "I’VE MADE MY DECISION",
+    preheader: "One final decision. We’ve made it considerably easier.",
+    ctaLabel: "I’VE MADE MY DECISION — CLAIM 30%",
     objective:
-      "Respectful close. Deliberately different: personal-note layout, white space, minimal imagery, one CTA, no new discount, no urgency devices.",
+      "Final close with one genuine, one-off 30% recovery concession. Personal-letter layout preserved; offer presented as a private exception, not a promotion.",
     dynamicBlocks: [
-      "checkout.abandoned_checkout_url",
+      "checkout.abandoned_checkout_url (with ?discount=" + FINAL_CREDIT_CODE + ")",
       "line items intentionally omitted (personal-note format)",
     ],
     build: (o) =>
@@ -428,8 +428,11 @@ export const EMAILS: EmailSpec[] = [
           `<tr><td style="padding:26px 44px 6px;">
             ${[
               "You’ve had time to think.",
-              "Ask yourself: will you be glad you walked away — or will you wonder “what if?”",
-              "This is the final reminder we’ll send about your selection.",
+              "And maybe you’ve almost convinced yourself to leave it there.",
+              "But ask yourself:",
+              "Will you be glad you walked away — or will you still wonder “what if?”",
+              "You started this for a reason.",
+              "So before we close your checkout for good, we’re going to make following through considerably easier.",
             ]
               .map(
                 (p) =>
@@ -437,9 +440,23 @@ export const EMAILS: EmailSpec[] = [
               )
               .join("")}
           </td></tr>` +
-          finalCredit("44px") +
-          `<tr><td align="center" style="padding:34px 44px 8px;">
-            <a href="{{ checkout.abandoned_checkout_url }}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.gold};">I’VE MADE MY DECISION</a>
+          offerPanel("44px") +
+          `<tr><td style="padding:30px 44px 6px;">
+            ${[
+              "You can keep thinking about it.",
+              "Or you can finish what you started.",
+              "Either decision is yours.",
+              "But this is the last time we’ll ask.",
+              "After the offer expires, we’ll close this chapter and leave the decision with you.",
+            ]
+              .map(
+                (p) =>
+                  `<p style="margin:0 0 16px;font:400 15px/1.8 ${BRAND.sans};color:${BRAND.text};">${p}</p>`,
+              )
+              .join("")}
+          </td></tr>` +
+          `<tr><td align="center" style="padding:14px 44px 8px;">
+            <a href="{{ checkout.abandoned_checkout_url }}?discount=${FINAL_CREDIT_CODE}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.navy};">I’M FINISHING WHAT I STARTED</a>
           </td></tr>` +
           dispatch("44px") +
           `<tr><td style="padding:34px 44px 0;">
@@ -452,7 +469,8 @@ export const EMAILS: EmailSpec[] = [
             </table>
           </td></tr>` +
           footer(),
-        "This is the last email we’ll send about your order.",
+        "One final decision. We’ve made it considerably easier.",
       ),
+
   },
 ];
