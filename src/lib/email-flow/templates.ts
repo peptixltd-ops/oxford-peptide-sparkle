@@ -306,13 +306,13 @@ export const EMAILS: EmailSpec[] = [
     subject: "The hardest part is starting, don’t let yourself down",
     preheader:
       "Every worthwhile decision comes with a moment of hesitation.",
-    ctaLabel: "USE MY £5.83 CREDIT",
+    ctaLabel: "COMPLETE MY ORDER",
     objective:
-      "Remove the final friction with personal store credit — positioned as a courtesy, not a sale. Credit block is the visual anchor.",
+      "Remove the final friction with reassurance and follow-through framing — no discount, no urgency devices.",
     dynamicBlocks: [
       "checkout.line_items",
       "checkout.subtotal_price",
-      "checkout.abandoned_checkout_url + discount OXFORD583 auto-apply",
+      "checkout.abandoned_checkout_url",
     ],
     build: (o) =>
       wrap(
@@ -325,13 +325,8 @@ export const EMAILS: EmailSpec[] = [
             "You already made the difficult decision. You found a supplier you trusted. You selected your products.",
             "Now all that’s left is following through.",
             "Don’t let a moment of hesitation turn into another unfinished decision.",
-            "And to make that decision a little easier, here’s something from Oxford.",
           ]) +
-          credit("YOUR OXFORD STORE CREDIT") +
-          body([
-            "No complicated offer. Just an extra £5.83 towards completing the order you already started.",
-          ]) +
-          cta("USE MY £5.83 CREDIT", "Credit applied automatically at checkout.") +
+          cta("COMPLETE MY ORDER") +
           dispatch() +
           trust("Why Oxford?", TRUST_MID) +
           productBlock(o, false) +
