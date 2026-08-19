@@ -39,6 +39,11 @@ export function CartDrawer() {
     .filter((l): l is NonNullable<typeof l> => !!l);
 
   const subtotal = lines.reduce((s, l) => s + l.variant.price * l.item.qty, 0);
+  const FREE_SHIPPING_THRESHOLD = 20;
+  const SHIPPING_RATE = 3.99;
+  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_RATE;
+  const toFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
+
   const fmt = (n: number) => `£${n.toFixed(2)}`;
   const credit = creditForSubtotal(subtotal);
   const total = Math.max(0, subtotal - (credit?.amount ?? 0));
