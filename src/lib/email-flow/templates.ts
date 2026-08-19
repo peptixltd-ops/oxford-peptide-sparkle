@@ -167,25 +167,21 @@ const offerPanel = (
 <tr><td style="padding:30px ${pad} 0;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:${BRAND.bone};">
     <tr><td align="center" style="padding:34px 26px 32px;">
-      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.26em;color:${BRAND.gold};">ONE FINAL EXCEPTION</div>
+      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.26em;color:${BRAND.gold};">EXPIRES IN 12 HOURS</div>
       <div style="margin-top:18px;font:400 46px/1.05 ${BRAND.serif};color:${BRAND.navy};letter-spacing:.01em;">30% OFF</div>
-      <div style="margin-top:8px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">your order</div>
+      <div style="margin-top:8px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">your order &mdash; for the next 12 hours only</div>
       <div style="margin:22px auto 0;width:44px;border-top:1px solid ${BRAND.gold};"></div>
       <div style="margin-top:20px;font:400 14px/1.7 ${BRAND.sans};color:${BRAND.text};max-width:400px;">
-        We&rsquo;ve unlocked a one-off 30% saving for this checkout.<br><br>
-        This isn&rsquo;t an ongoing Oxford promotion, and it isn&rsquo;t an offer we&rsquo;ll keep sending you.<br><br>
-        It&rsquo;s simply our final opportunity to remove some of the hesitation between you and the decision you already started.
+        A one-off 30% code has been released against this checkout, and it is live for <strong>12 hours from the moment this email landed</strong>.<br><br>
+        It is not an ongoing Oxford promotion, it will not be re-issued, and we will not send it again.<br><br>
+        When the 12 hours are up, the code is deleted and your checkout closes for good.
       </div>
       <div style="margin-top:24px;font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.muted};">YOUR CODE</div>
       <div style="margin-top:10px;border:1px dashed ${BRAND.gold};padding:15px 26px;display:inline-block;font:700 18px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:#ffffff;">${code}</div>
-      ${
-        expiryLabel
-          ? `<div style="margin-top:20px;font:700 12px/1.5 ${BRAND.sans};letter-spacing:.1em;color:${BRAND.navy};">Available for the next ${expiryLabel}.</div>
-      <div style="margin-top:6px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Once it expires, it expires.</div>`
-          : ""
-      }
+      <div style="margin-top:20px;font:700 12px/1.5 ${BRAND.sans};letter-spacing:.1em;color:${BRAND.navy};">Valid for ${expiryLabel || "12 hours"} only &mdash; then it is gone.</div>
+      <div style="margin-top:6px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">No extensions. No second chances. Once it expires, it expires.</div>
       <div style="margin-top:26px;">
-        <a href="{{ checkout.abandoned_checkout_url }}?discount=${code}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.18em;text-decoration:none;padding:19px 34px;border:1px solid ${BRAND.gold};">I&rsquo;VE MADE MY DECISION &mdash; CLAIM 30%</a>
+        <a href="{{ checkout.abandoned_checkout_url }}?discount=${code}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.18em;text-decoration:none;padding:19px 34px;border:1px solid ${BRAND.gold};">CLAIM 30% BEFORE IT EXPIRES</a>
       </div>
       <div style="margin-top:14px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Issued to you alone. Single use, no minimum spend, not combinable with other codes.</div>
     </td></tr>
@@ -449,11 +445,11 @@ export const EMAILS: EmailSpec[] = [
   {
     id: 5,
     timing: "72 HOURS",
-    subject: "FINAL Reminder – Don’t turn your back on yourself",
-    preheader: "One final decision. We’ve made it considerably easier.",
-    ctaLabel: "I’VE MADE MY DECISION — CLAIM 30%",
+    subject: "12 hours: 30% off your checkout, then it’s gone",
+    preheader: "One-off, single-use, and it expires tonight.",
+    ctaLabel: "CLAIM 30% BEFORE IT EXPIRES",
     objective:
-      "Final close with one genuine, one-off 30% recovery concession. Personal-letter layout preserved; offer presented as a private exception, not a promotion.",
+      "Final close with one genuine, one-off 30% recovery concession on a hard 12-hour expiry. Urgency is explicit and repeated; the offer is framed as a single private exception that will not return.",
     dynamicBlocks: [
       "recovery_code + recovery_expiry_label (POST /api/public/recovery-discount)",
       "checkout.abandoned_checkout_url (with ?discount={{ recovery_code }})",
@@ -463,17 +459,15 @@ export const EMAILS: EmailSpec[] = [
       wrap(
         header(o.logoUrl, true) +
           `<tr><td style="padding:44px 44px 0;">
-            <h1 style="margin:0;font:400 25px/1.35 ${BRAND.serif};color:${BRAND.navy};">This isn’t really about your cart anymore.</h1>
-            <p style="margin:16px 0 0;font:400 17px/1.55 ${BRAND.serif};color:${BRAND.gold};">It’s about whether you want to finish what you started.</p>
+            <h1 style="margin:0;font:400 25px/1.35 ${BRAND.serif};color:${BRAND.navy};">You have 12 hours, then this closes.</h1>
+            <p style="margin:16px 0 0;font:400 17px/1.55 ${BRAND.serif};color:${BRAND.gold};">30% off the checkout you started — released once, and only for today.</p>
           </td></tr>` +
           `<tr><td style="padding:26px 44px 6px;">
             ${[
-              "You’ve had time to think.",
-              "And maybe you’ve almost convinced yourself to leave it there.",
-              "But ask yourself:",
-              "Will you be glad you walked away — or will you still wonder “what if?”",
-              "You started this for a reason.",
-              "So before we close your checkout for good, we’re going to make following through considerably easier.",
+              "This is the last email we’ll send about it.",
+              "Your checkout is still open, but not for much longer — and neither is the code below.",
+              "It runs for 12 hours from now. After that it’s removed from our system and the price goes back to full.",
+              "You started this for a reason. Twelve hours is all that stands between that reason and a decision you’ll wonder about later.",
             ]
               .map(
                 (p) =>
@@ -484,11 +478,10 @@ export const EMAILS: EmailSpec[] = [
           offerPanel("44px", o.offerCode ?? OFFER_CODE_VAR, o.offerExpiryLabel ?? OFFER_EXPIRY_VAR) +
           `<tr><td style="padding:30px 44px 6px;">
             ${[
-              "You can keep thinking about it.",
-              "Or you can finish what you started.",
-              "Either decision is yours.",
-              "But this is the last time we’ll ask.",
-              "After the offer expires, we’ll close this chapter and leave the decision with you.",
+              "To be completely clear about what happens next:",
+              "In 12 hours the code stops working, your checkout is cleared, and we won’t reissue either.",
+              "There’s no follow-up, no second window, and no better price coming.",
+              "If you want it, take it now — it takes under a minute.",
             ]
               .map(
                 (p) =>
@@ -497,11 +490,11 @@ export const EMAILS: EmailSpec[] = [
               .join("")}
           </td></tr>` +
           `<tr><td align="center" style="padding:14px 44px 8px;">
-            <a href="{{ checkout.abandoned_checkout_url }}?discount=${o.offerCode ?? OFFER_CODE_VAR}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.navy};">I’M FINISHING WHAT I STARTED</a>
+            <a href="{{ checkout.abandoned_checkout_url }}?discount=${o.offerCode ?? OFFER_CODE_VAR}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.navy};">CLAIM MY 30% — 12 HOURS LEFT</a>
           </td></tr>` +
           dispatch("44px") +
           `<tr><td style="padding:34px 44px 0;">
-            <div style="border-top:1px solid ${BRAND.line};padding-top:20px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">One final reminder of what you’re choosing</div>
+            <div style="border-top:1px solid ${BRAND.line};padding-top:20px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">Before the 12 hours run out, this is what you’re choosing</div>
             <table role="presentation" width="100%" style="margin-top:10px;">
               ${TRUST_MID.map(
                 (i) =>
@@ -510,7 +503,7 @@ export const EMAILS: EmailSpec[] = [
             </table>
           </td></tr>` +
           footer(),
-        "One final decision. We’ve made it considerably easier.",
+        "One-off, single-use, and it expires in 12 hours.",
       ),
 
   },
