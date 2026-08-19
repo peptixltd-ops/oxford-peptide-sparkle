@@ -328,10 +328,11 @@ export const EMAILS: EmailSpec[] = [
           body([
             "You already made the difficult decision.",
             "Now all that’s left, is following through.",
-            "Here’s something from us to make it a little easier.",
+            "So we’ve set something aside — in your name, against this basket alone.",
           ]) +
           credit() +
           cta("COMPLETE MY ORDER") +
+
 
           dispatch() +
           trust("Why Oxford?", TRUST_MID) +
