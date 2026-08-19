@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { EMAILS, type BuildOpts, type PreviewProduct } from "@/lib/email-flow/templates";
+import { EMAILS, OFFER_PREVIEW, type BuildOpts, type PreviewProduct } from "@/lib/email-flow/templates";
 import logo from "@/assets/oxford-logo.jpg.asset.json";
 import vialReta from "@/assets/vials/orp-retatrutide.png";
 import vialBpc from "@/assets/vials/orp-bpc-157.png";
