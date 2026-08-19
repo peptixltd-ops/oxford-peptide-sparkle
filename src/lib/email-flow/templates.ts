@@ -445,11 +445,11 @@ export const EMAILS: EmailSpec[] = [
   {
     id: 5,
     timing: "72 HOURS",
-    subject: "FINAL Reminder – Don’t turn your back on yourself",
-    preheader: "One final decision. We’ve made it considerably easier.",
-    ctaLabel: "I’VE MADE MY DECISION — CLAIM 30%",
+    subject: "12 hours: 30% off your checkout, then it’s gone",
+    preheader: "One-off, single-use, and it expires tonight.",
+    ctaLabel: "CLAIM 30% BEFORE IT EXPIRES",
     objective:
-      "Final close with one genuine, one-off 30% recovery concession. Personal-letter layout preserved; offer presented as a private exception, not a promotion.",
+      "Final close with one genuine, one-off 30% recovery concession on a hard 12-hour expiry. Urgency is explicit and repeated; the offer is framed as a single private exception that will not return.",
     dynamicBlocks: [
       "recovery_code + recovery_expiry_label (POST /api/public/recovery-discount)",
       "checkout.abandoned_checkout_url (with ?discount={{ recovery_code }})",
@@ -459,17 +459,15 @@ export const EMAILS: EmailSpec[] = [
       wrap(
         header(o.logoUrl, true) +
           `<tr><td style="padding:44px 44px 0;">
-            <h1 style="margin:0;font:400 25px/1.35 ${BRAND.serif};color:${BRAND.navy};">This isn’t really about your cart anymore.</h1>
-            <p style="margin:16px 0 0;font:400 17px/1.55 ${BRAND.serif};color:${BRAND.gold};">It’s about whether you want to finish what you started.</p>
+            <h1 style="margin:0;font:400 25px/1.35 ${BRAND.serif};color:${BRAND.navy};">You have 12 hours, then this closes.</h1>
+            <p style="margin:16px 0 0;font:400 17px/1.55 ${BRAND.serif};color:${BRAND.gold};">30% off the checkout you started — released once, and only for today.</p>
           </td></tr>` +
           `<tr><td style="padding:26px 44px 6px;">
             ${[
-              "You’ve had time to think.",
-              "And maybe you’ve almost convinced yourself to leave it there.",
-              "But ask yourself:",
-              "Will you be glad you walked away — or will you still wonder “what if?”",
-              "You started this for a reason.",
-              "So before we close your checkout for good, we’re going to make following through considerably easier.",
+              "This is the last email we’ll send about it.",
+              "Your checkout is still open, but not for much longer — and neither is the code below.",
+              "It runs for 12 hours from now. After that it’s removed from our system and the price goes back to full.",
+              "You started this for a reason. Twelve hours is all that stands between that reason and a decision you’ll wonder about later.",
             ]
               .map(
                 (p) =>
@@ -480,11 +478,10 @@ export const EMAILS: EmailSpec[] = [
           offerPanel("44px", o.offerCode ?? OFFER_CODE_VAR, o.offerExpiryLabel ?? OFFER_EXPIRY_VAR) +
           `<tr><td style="padding:30px 44px 6px;">
             ${[
-              "You can keep thinking about it.",
-              "Or you can finish what you started.",
-              "Either decision is yours.",
-              "But this is the last time we’ll ask.",
-              "After the offer expires, we’ll close this chapter and leave the decision with you.",
+              "To be completely clear about what happens next:",
+              "In 12 hours the code stops working, your checkout is cleared, and we won’t reissue either.",
+              "There’s no follow-up, no second window, and no better price coming.",
+              "If you want it, take it now — it takes under a minute.",
             ]
               .map(
                 (p) =>
