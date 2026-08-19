@@ -275,9 +275,6 @@ export const EMAILS: EmailSpec[] = [
           body([
             "You came to Oxford Research Peptides looking for something specific. You did the research. You made your selection. You were almost there.",
             "Sometimes all that separates intention from action is following through.",
-            "When it comes to laboratory research, you shouldn’t have to compromise on the standards you expect from your supplier. That’s why Oxford Research Peptides puts quality, testing and transparency first.",
-            "UK manufactured. Third-party tested. Built around verifiable quality.",
-            "Your selection is still waiting.",
           ]) +
           cta("TAKE THE NEXT STEP") +
           dispatch() +
