@@ -46,7 +46,7 @@ export function CartDrawer() {
 
   const fmt = (n: number) => `£${n.toFixed(2)}`;
   const credit = creditForSubtotal(subtotal);
-  const total = Math.max(0, subtotal - (credit?.amount ?? 0));
+  const total = Math.max(0, subtotal - (credit?.amount ?? 0)) + shipping;
   const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
 
   const added = lastAdded ? getProduct(lastAdded.slug) : null;
