@@ -363,9 +363,10 @@ export const EMAILS: EmailSpec[] = [
             "Your Oxford selection is still waiting — and your £5.83 store credit is still available.",
           ]) +
           cta("FINISH WHAT I STARTED") +
+          dispatch() +
           trust("Your decision. Our standards.", TRUST_MID) +
           credit("£5.83 OXFORD CREDIT") +
-          productBlock(o) +
+          productBlock(o, false) +
           footer(),
         "Every decision is a vote for the person you choose to be.",
       ),
