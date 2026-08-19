@@ -48,9 +48,17 @@ function FlowDashboard() {
   const [device, setDevice] = useState<Record<number, "desktop" | "mobile">>({});
 
   const opts: BuildOpts = useMemo(
-    () => ({ logoUrl: logo.url, products: SAMPLE, subtotal: "£123.00" }),
+    () => ({
+      logoUrl: logo.url,
+      products: SAMPLE,
+      subtotal: "£123.00",
+      // Email 5 preview: sample of a real minted per-recipient code.
+      offerCode: OFFER_PREVIEW.code,
+      offerExpiryLabel: OFFER_PREVIEW.expiryLabel,
+    }),
     [],
   );
+
 
   return (
     <div className="min-h-screen bg-bone">
