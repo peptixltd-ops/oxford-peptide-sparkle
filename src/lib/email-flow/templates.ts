@@ -241,9 +241,9 @@ export const EMAILS: EmailSpec[] = [
     build: (o) =>
       wrap(
         header(o.logoUrl) +
+          hero("You’re closer than you think.") +
           dispatch() +
           trust("Why Oxford?", TRUST_SHORT) +
-          hero("You’re closer than you think.") +
           body([
             "You took the time to find what you were looking for.",
             "Your selection is still waiting exactly where you left it. No need to start again.",
