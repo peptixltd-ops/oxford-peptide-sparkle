@@ -126,7 +126,7 @@ ${dynamicTag("{% for line in checkout.line_items %}")}
     </td></tr>
   </table>
 </td></tr>
-${dispatch()}`;
+${withDispatch ? dispatch() : ""}`;
 
 /** Dispatch reassurance strip — sits directly under the selected products. */
 const dispatch = (pad = "32px") => `
