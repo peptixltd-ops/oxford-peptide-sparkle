@@ -261,8 +261,9 @@ export const EMAILS: EmailSpec[] = [
             "You’re one decision away from completing what you started.",
           ]) +
           cta("COMPLETE MY ORDER") +
-          productBlock(o) +
+          dispatch() +
           trust("Why Oxford?", TRUST_SHORT) +
+          productBlock(o, false) +
           footer(),
         "You’re closer than you think.",
       ),
