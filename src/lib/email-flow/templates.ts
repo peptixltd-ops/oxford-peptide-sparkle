@@ -47,6 +47,10 @@ export type BuildOpts = {
   logoUrl: string;
   products: PreviewProduct[];
   subtotal: string;
+  /** Email 5 only: per-recipient 30% code. Defaults to the Liquid variable. */
+  offerCode?: string;
+  /** Email 5 only: e.g. "12 hours". Empty string hides the expiry lines. */
+  offerExpiryLabel?: string;
 };
 
 /* ------------------------------------------------------------------ helpers */
@@ -451,7 +455,8 @@ export const EMAILS: EmailSpec[] = [
     objective:
       "Final close with one genuine, one-off 30% recovery concession. Personal-letter layout preserved; offer presented as a private exception, not a promotion.",
     dynamicBlocks: [
-      "checkout.abandoned_checkout_url (with ?discount=" + FINAL_CREDIT_CODE + ")",
+      "recovery_code + recovery_expiry_label (POST /api/public/recovery-discount)",
+      "checkout.abandoned_checkout_url (with ?discount={{ recovery_code }})",
       "line items intentionally omitted (personal-note format)",
     ],
     build: (o) =>
@@ -476,7 +481,7 @@ export const EMAILS: EmailSpec[] = [
               )
               .join("")}
           </td></tr>` +
-          offerPanel("44px") +
+          offerPanel("44px", o.offerCode ?? OFFER_CODE_VAR, o.offerExpiryLabel ?? OFFER_EXPIRY_VAR) +
           `<tr><td style="padding:30px 44px 6px;">
             ${[
               "You can keep thinking about it.",
@@ -492,7 +497,7 @@ export const EMAILS: EmailSpec[] = [
               .join("")}
           </td></tr>` +
           `<tr><td align="center" style="padding:14px 44px 8px;">
-            <a href="{{ checkout.abandoned_checkout_url }}?discount=${FINAL_CREDIT_CODE}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.navy};">I’M FINISHING WHAT I STARTED</a>
+            <a href="{{ checkout.abandoned_checkout_url }}?discount=${o.offerCode ?? OFFER_CODE_VAR}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.navy};">I’M FINISHING WHAT I STARTED</a>
           </td></tr>` +
           dispatch("44px") +
           `<tr><td style="padding:34px 44px 0;">
