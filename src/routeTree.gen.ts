@@ -75,8 +75,10 @@ import { Route as ResearchHubCollectionsSlugRouteImport } from './routes/researc
 import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
 import { Route as EditorialReviewersIdRouteImport } from './routes/editorial.reviewers.$id'
 import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.authors.$id'
+import { Route as ApiPublicShopifyOauthRouteImport } from './routes/api/public/shopify-oauth'
 import { Route as ApiPublicRecoveryDiscountRouteImport } from './routes/api/public/recovery-discount'
 import { Route as ApiPublicNewsletterSubscribeRouteImport } from './routes/api/public/newsletter-subscribe'
+import { Route as ApiPublicShopifyOauthCallbackRouteImport } from './routes/api/public/shopify-oauth.callback'
 
 const WholesaleRoute = WholesaleRouteImport.update({
   id: '/wholesale',
@@ -423,6 +425,11 @@ const EditorialAuthorsIdRoute = EditorialAuthorsIdRouteImport.update({
   path: '/editorial/authors/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicShopifyOauthRoute = ApiPublicShopifyOauthRouteImport.update({
+  id: '/api/public/shopify-oauth',
+  path: '/api/public/shopify-oauth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicRecoveryDiscountRoute =
   ApiPublicRecoveryDiscountRouteImport.update({
     id: '/api/public/recovery-discount',
@@ -434,6 +441,12 @@ const ApiPublicNewsletterSubscribeRoute =
     id: '/api/public/newsletter-subscribe',
     path: '/api/public/newsletter-subscribe',
     getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicShopifyOauthCallbackRoute =
+  ApiPublicShopifyOauthCallbackRouteImport.update({
+    id: '/callback',
+    path: '/callback',
+    getParentRoute: () => ApiPublicShopifyOauthRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -484,6 +497,7 @@ export interface FileRoutesByFullPath {
   '/research-hub/': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
+  '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -505,6 +519,7 @@ export interface FileRoutesByFullPath {
   '/research-hub/mechanisms/': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology/': typeof ResearchHubMethodologyIndexRoute
   '/research-hub/programmes/': typeof ResearchHubProgrammesIndexRoute
+  '/api/public/shopify-oauth/callback': typeof ApiPublicShopifyOauthCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -551,6 +566,7 @@ export interface FileRoutesByTo {
   '/research-hub': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
+  '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -572,6 +588,7 @@ export interface FileRoutesByTo {
   '/research-hub/mechanisms': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology': typeof ResearchHubMethodologyIndexRoute
   '/research-hub/programmes': typeof ResearchHubProgrammesIndexRoute
+  '/api/public/shopify-oauth/callback': typeof ApiPublicShopifyOauthCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -622,6 +639,7 @@ export interface FileRoutesById {
   '/research-hub/': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
+  '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -643,6 +661,7 @@ export interface FileRoutesById {
   '/research-hub/mechanisms/': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology/': typeof ResearchHubMethodologyIndexRoute
   '/research-hub/programmes/': typeof ResearchHubProgrammesIndexRoute
+  '/api/public/shopify-oauth/callback': typeof ApiPublicShopifyOauthCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -694,6 +713,7 @@ export interface FileRouteTypes {
     | '/research-hub/'
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
+    | '/api/public/shopify-oauth'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -715,6 +735,7 @@ export interface FileRouteTypes {
     | '/research-hub/mechanisms/'
     | '/research-hub/methodology/'
     | '/research-hub/programmes/'
+    | '/api/public/shopify-oauth/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -761,6 +782,7 @@ export interface FileRouteTypes {
     | '/research-hub'
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
+    | '/api/public/shopify-oauth'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -782,6 +804,7 @@ export interface FileRouteTypes {
     | '/research-hub/mechanisms'
     | '/research-hub/methodology'
     | '/research-hub/programmes'
+    | '/api/public/shopify-oauth/callback'
   id:
     | '__root__'
     | '/'
@@ -831,6 +854,7 @@ export interface FileRouteTypes {
     | '/research-hub/'
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
+    | '/api/public/shopify-oauth'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -852,6 +876,7 @@ export interface FileRouteTypes {
     | '/research-hub/mechanisms/'
     | '/research-hub/methodology/'
     | '/research-hub/programmes/'
+    | '/api/public/shopify-oauth/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -896,6 +921,7 @@ export interface RootRouteChildren {
   ProductsSlugRoute: typeof ProductsSlugRoute
   ApiPublicNewsletterSubscribeRoute: typeof ApiPublicNewsletterSubscribeRoute
   ApiPublicRecoveryDiscountRoute: typeof ApiPublicRecoveryDiscountRoute
+  ApiPublicShopifyOauthRoute: typeof ApiPublicShopifyOauthRouteWithChildren
   EditorialAuthorsIdRoute: typeof EditorialAuthorsIdRoute
   EditorialReviewersIdRoute: typeof EditorialReviewersIdRoute
 }
@@ -1364,6 +1390,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorialAuthorsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/shopify-oauth': {
+      id: '/api/public/shopify-oauth'
+      path: '/api/public/shopify-oauth'
+      fullPath: '/api/public/shopify-oauth'
+      preLoaderRoute: typeof ApiPublicShopifyOauthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/recovery-discount': {
       id: '/api/public/recovery-discount'
       path: '/api/public/recovery-discount'
@@ -1377,6 +1410,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/public/newsletter-subscribe'
       preLoaderRoute: typeof ApiPublicNewsletterSubscribeRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/api/public/shopify-oauth/callback': {
+      id: '/api/public/shopify-oauth/callback'
+      path: '/callback'
+      fullPath: '/api/public/shopify-oauth/callback'
+      preLoaderRoute: typeof ApiPublicShopifyOauthCallbackRouteImport
+      parentRoute: typeof ApiPublicShopifyOauthRoute
     }
   }
 }
@@ -1460,6 +1500,19 @@ const ResearchHubRouteWithChildren = ResearchHubRoute._addFileChildren(
   ResearchHubRouteChildren,
 )
 
+interface ApiPublicShopifyOauthRouteChildren {
+  ApiPublicShopifyOauthCallbackRoute: typeof ApiPublicShopifyOauthCallbackRoute
+}
+
+const ApiPublicShopifyOauthRouteChildren: ApiPublicShopifyOauthRouteChildren = {
+  ApiPublicShopifyOauthCallbackRoute: ApiPublicShopifyOauthCallbackRoute,
+}
+
+const ApiPublicShopifyOauthRouteWithChildren =
+  ApiPublicShopifyOauthRoute._addFileChildren(
+    ApiPublicShopifyOauthRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -1502,6 +1555,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsSlugRoute: ProductsSlugRoute,
   ApiPublicNewsletterSubscribeRoute: ApiPublicNewsletterSubscribeRoute,
   ApiPublicRecoveryDiscountRoute: ApiPublicRecoveryDiscountRoute,
+  ApiPublicShopifyOauthRoute: ApiPublicShopifyOauthRouteWithChildren,
   EditorialAuthorsIdRoute: EditorialAuthorsIdRoute,
   EditorialReviewersIdRoute: EditorialReviewersIdRoute,
 }
