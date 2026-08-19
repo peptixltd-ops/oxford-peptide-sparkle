@@ -406,25 +406,19 @@ export const EMAILS: EmailSpec[] = [
           `<tr><td style="padding:26px 44px 6px;">
             ${[
               "You’ve had time to think.",
-              "And if you’ve decided Oxford Research Peptides isn’t the right supplier for you, we respect that.",
-              "But if the only thing standing between you and the decision you already made is hesitation, don’t let hesitation make the decision for you.",
               "Ask yourself: will you be glad you walked away — or will you wonder “what if?”",
               "This is the final reminder we’ll send about your selection.",
-              "After this, we’ll leave the decision entirely with you.",
             ]
               .map(
                 (p) =>
                   `<p style="margin:0 0 16px;font:400 15px/1.8 ${BRAND.sans};color:${BRAND.text};">${p}</p>`,
               )
               .join("")}
-            <p style="margin:24px 0 0;font:400 15px/1.7 ${BRAND.serif};color:${BRAND.navy};">— Oxford Research Peptides</p>
           </td></tr>` +
           `<tr><td align="center" style="padding:34px 44px 8px;">
-            <a href="{{ checkout.abandoned_checkout_url }}" style="display:inline-block;background:${BRAND.navy};color:#ffffff;font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;">COMPLETE MY ORDER</a>
+            <a href="{{ checkout.abandoned_checkout_url }}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.gold};">I’VE MADE MY DECISION</a>
           </td></tr>` +
-          `<tr><td align="center" style="padding:16px 44px 0;">
-            <div style="font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">Order by 5pm today for same-day dispatch · Royal Mail Tracked 24</div>
-          </td></tr>` +
+          dispatch("44px") +
           `<tr><td style="padding:34px 44px 0;">
             <div style="border-top:1px solid ${BRAND.line};padding-top:20px;font:400 15px/1.3 ${BRAND.serif};color:${BRAND.navy};">One final reminder of what you’re choosing</div>
             <table role="presentation" width="100%" style="margin-top:10px;">
