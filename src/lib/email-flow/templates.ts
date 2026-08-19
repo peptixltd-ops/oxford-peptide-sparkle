@@ -129,23 +129,33 @@ ${dynamicTag("{% for line in checkout.line_items %}")}
 ${withDispatch ? dispatch() : ""}`;
 
 
-/**
- * Personalised store credit block — the code is generated per customer so it
- * reads as issued to them, not a public promo.
- * Liquid (Phase 2): ORP-{{ customer.first_name | upcase }}-{{ checkout.id | slice: -4, 4 }}
- */
-const credit = (firstName = "Jordan", ref = "4Q7B") => `
+/** Store credit block — two fixed, unlisted codes issued to the recipient. */
+export const CREDIT_CODES = { five: "5A96HVVRYA48", ten: "RRZHB1812SXD" };
+
+const credit = () => `
 <tr><td style="padding:20px 32px 0;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:#ffffff;">
     <tr><td align="center" style="padding:24px 20px;">
-      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.gold};">RESERVED FOR ${firstName.toUpperCase()}</div>
+      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.gold};">RESERVED IN YOUR NAME</div>
       <div style="margin-top:10px;font:400 26px/1.2 ${BRAND.serif};color:${BRAND.navy};">A private credit, held against your basket</div>
-      <div style="margin-top:10px;font:400 13px/1.6 ${BRAND.sans};color:${BRAND.text};">Issued to your email alone — £5 on orders over £30, £10 on orders over £80.</div>
-      <div style="margin-top:15px;display:inline-block;border:1px dashed ${BRAND.gold};padding:11px 20px;font:700 15px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:${BRAND.bone};">ORP-${firstName.toUpperCase()}-${ref}</div>
-      <div style="margin-top:11px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Single use, non-transferable, and tied to this basket. Not available publicly.</div>
+      <div style="margin-top:9px;font:400 13px/1.6 ${BRAND.sans};color:${BRAND.text};">Issued to your email alone, and not listed anywhere on our site.</div>
+      <table role="presentation" cellpadding="0" cellspacing="0" style="margin:16px auto 0;">
+        <tr>
+          <td align="center" style="padding:0 7px;">
+            <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.muted};">£5 OVER £30</div>
+            <div style="margin-top:7px;border:1px dashed ${BRAND.gold};padding:11px 16px;font:700 14px/1 ${BRAND.sans};letter-spacing:.12em;color:${BRAND.navy};background:${BRAND.bone};">${CREDIT_CODES.five}</div>
+          </td>
+          <td align="center" style="padding:0 7px;">
+            <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.gold};">£10 OVER £80</div>
+            <div style="margin-top:7px;border:1px dashed ${BRAND.gold};padding:11px 16px;font:700 14px/1 ${BRAND.sans};letter-spacing:.12em;color:${BRAND.navy};background:${BRAND.bone};">${CREDIT_CODES.ten}</div>
+          </td>
+        </tr>
+      </table>
+      <div style="margin-top:12px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Single use, non-transferable, one credit per order.</div>
     </td></tr>
   </table>
 </td></tr>`;
+
 
 
 
