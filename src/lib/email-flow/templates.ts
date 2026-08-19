@@ -167,24 +167,6 @@ const offerPanel = (pad = "44px") => `
   </table>
 </td></tr>`;
 
-const finalCredit = (pad = "44px") => `
-<tr><td style="padding:26px ${pad} 0;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:#ffffff;">
-    <tr><td align="center" style="padding:26px 22px;">
-      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.gold};">FINAL CREDIT · RESERVED IN YOUR NAME</div>
-      <div style="margin-top:11px;font:400 26px/1.25 ${BRAND.serif};color:${BRAND.navy};">We&rsquo;ve recalculated your final credit.</div>
-      <div style="margin-top:12px;font:400 14px/1.65 ${BRAND.sans};color:${BRAND.text};">
-        There&rsquo;s a one 30% one off waiting against your order, but we&rsquo;re only holding it for the next 90 minutes.
-      </div>
-      <div style="margin-top:16px;border:1px dashed ${BRAND.gold};padding:14px 22px;display:inline-block;font:700 16px/1 ${BRAND.sans};letter-spacing:.14em;color:${BRAND.navy};background:${BRAND.bone};">${FINAL_CREDIT_CODE}</div>
-      <div style="margin-top:14px;font:700 11px/1 ${BRAND.sans};letter-spacing:.18em;color:${BRAND.gold};">HELD FOR 90 MINUTES</div>
-      <div style="margin-top:12px;font:400 12px/1.6 ${BRAND.sans};color:${BRAND.muted};">
-        After that, the credit expires and this recovery sequence closes.
-      </div>
-      <div style="margin-top:8px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Single use, non-transferable, one credit per order.</div>
-    </td></tr>
-  </table>
-</td></tr>`;
 
 const credit = () => `
 <tr><td style="padding:20px 32px 0;">
