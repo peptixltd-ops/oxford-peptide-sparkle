@@ -129,19 +129,24 @@ ${dynamicTag("{% for line in checkout.line_items %}")}
 ${withDispatch ? dispatch() : ""}`;
 
 
-/** Welcome store credit block — adaptive £5 / £10 credit applied at checkout. */
-const credit = () => `
+/**
+ * Personalised store credit block — the code is generated per customer so it
+ * reads as issued to them, not a public promo.
+ * Liquid (Phase 2): ORP-{{ customer.first_name | upcase }}-{{ checkout.id | slice: -4, 4 }}
+ */
+const credit = (firstName = "Jordan", ref = "4Q7B") => `
 <tr><td style="padding:20px 32px 0;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:#ffffff;">
-    <tr><td align="center" style="padding:22px 20px;">
-      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.gold};">OXFORD STORE CREDIT</div>
-      <div style="margin-top:10px;font:400 26px/1.2 ${BRAND.serif};color:${BRAND.navy};">Up to £10 off your order</div>
-      <div style="margin-top:10px;font:400 13px/1.6 ${BRAND.sans};color:${BRAND.text};">£5 credit on orders over £30 &nbsp;·&nbsp; £10 credit on orders over £80</div>
-      <div style="margin-top:14px;display:inline-block;border:1px dashed ${BRAND.gold};padding:11px 20px;font:700 15px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:${BRAND.bone};">OXFORD10CREDIT</div>
-      <div style="margin-top:10px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Applied at checkout. One use per customer.</div>
+    <tr><td align="center" style="padding:24px 20px;">
+      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.gold};">RESERVED FOR ${firstName.toUpperCase()}</div>
+      <div style="margin-top:10px;font:400 26px/1.2 ${BRAND.serif};color:${BRAND.navy};">A private credit, held against your basket</div>
+      <div style="margin-top:10px;font:400 13px/1.6 ${BRAND.sans};color:${BRAND.text};">Issued to your email alone — £5 on orders over £30, £10 on orders over £80.</div>
+      <div style="margin-top:15px;display:inline-block;border:1px dashed ${BRAND.gold};padding:11px 20px;font:700 15px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:${BRAND.bone};">ORP-${firstName.toUpperCase()}-${ref}</div>
+      <div style="margin-top:11px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Single use, non-transferable, and tied to this basket. Not available publicly.</div>
     </td></tr>
   </table>
 </td></tr>`;
+
 
 
 const dispatch = (pad = "32px") => `
@@ -323,10 +328,11 @@ export const EMAILS: EmailSpec[] = [
           body([
             "You already made the difficult decision.",
             "Now all that’s left, is following through.",
-            "Here’s something from us to make it a little easier.",
+            "So we’ve set something aside — in your name, against this basket alone.",
           ]) +
           credit() +
           cta("COMPLETE MY ORDER") +
+
 
           dispatch() +
           trust("Why Oxford?", TRUST_MID) +
