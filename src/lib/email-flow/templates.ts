@@ -128,7 +128,22 @@ ${dynamicTag("{% for line in checkout.line_items %}")}
 </td></tr>
 ${withDispatch ? dispatch() : ""}`;
 
-/** Dispatch reassurance strip — sits directly under the selected products. */
+
+/** Welcome store credit block — adaptive £5 / £10 credit applied at checkout. */
+const credit = () => `
+<tr><td style="padding:20px 32px 0;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.gold};background:#ffffff;">
+    <tr><td align="center" style="padding:22px 20px;">
+      <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.22em;color:${BRAND.gold};">OXFORD STORE CREDIT</div>
+      <div style="margin-top:10px;font:400 26px/1.2 ${BRAND.serif};color:${BRAND.navy};">Up to £10 off your order</div>
+      <div style="margin-top:10px;font:400 13px/1.6 ${BRAND.sans};color:${BRAND.text};">£5 credit on orders over £30 &nbsp;·&nbsp; £10 credit on orders over £80</div>
+      <div style="margin-top:14px;display:inline-block;border:1px dashed ${BRAND.gold};padding:11px 20px;font:700 15px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.navy};background:${BRAND.bone};">OXFORD10CREDIT</div>
+      <div style="margin-top:10px;font:400 11px/1.5 ${BRAND.sans};color:${BRAND.muted};">Applied at checkout. One use per customer.</div>
+    </td></tr>
+  </table>
+</td></tr>`;
+
+
 const dispatch = (pad = "32px") => `
 <tr><td style="padding:14px ${pad} 0;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.line};background:${BRAND.bone};">
@@ -310,8 +325,9 @@ export const EMAILS: EmailSpec[] = [
             "Now all that’s left, is following through.",
             "Here’s something from us to make it a little easier.",
           ]) +
-
+          credit() +
           cta("COMPLETE MY ORDER") +
+
           dispatch() +
           trust("Why Oxford?", TRUST_MID) +
           productBlock(o, false) +
