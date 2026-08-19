@@ -306,10 +306,11 @@ export const EMAILS: EmailSpec[] = [
             "What matters is what happens next.",
           ) +
           body([
-            "You already made the difficult decision. You found a supplier you trusted. You selected your products.",
-            "Now all that’s left is following through.",
-            "Don’t let a moment of hesitation turn into another unfinished decision.",
+            "You already made the difficult decision.",
+            "Now all that’s left, is following through.",
+            "Here’s something from us to make it a little easier.",
           ]) +
+
           cta("COMPLETE MY ORDER") +
           dispatch() +
           trust("Why Oxford?", TRUST_MID) +
