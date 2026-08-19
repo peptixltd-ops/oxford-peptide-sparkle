@@ -437,6 +437,7 @@ export const EMAILS: EmailSpec[] = [
               )
               .join("")}
           </td></tr>` +
+          finalCredit("44px") +
           `<tr><td align="center" style="padding:34px 44px 8px;">
             <a href="{{ checkout.abandoned_checkout_url }}" style="display:inline-block;background:${BRAND.gold};color:${BRAND.navy};font:700 12px/1 ${BRAND.sans};letter-spacing:.2em;text-decoration:none;padding:19px 40px;border:1px solid ${BRAND.gold};">I’VE MADE MY DECISION</a>
           </td></tr>` +
