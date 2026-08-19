@@ -389,7 +389,7 @@ export const EMAILS: EmailSpec[] = [
     timing: "72 HOURS",
     subject: "FINAL Reminder – Don’t turn your back on yourself",
     preheader: "This is the last email we’ll send about your order.",
-    ctaLabel: "COMPLETE MY ORDER",
+    ctaLabel: "I’VE MADE MY DECISION",
     objective:
       "Respectful close. Deliberately different: personal-note layout, white space, minimal imagery, one CTA, no new discount, no urgency devices.",
     dynamicBlocks: [
