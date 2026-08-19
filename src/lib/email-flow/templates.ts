@@ -325,8 +325,9 @@ export const EMAILS: EmailSpec[] = [
             "Now all that’s left, is following through.",
             "Here’s something from us to make it a little easier.",
           ]) +
-
+          credit() +
           cta("COMPLETE MY ORDER") +
+
           dispatch() +
           trust("Why Oxford?", TRUST_MID) +
           productBlock(o, false) +
