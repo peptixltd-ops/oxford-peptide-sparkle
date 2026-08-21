@@ -4,7 +4,14 @@ import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
-import { createCheckout, creditForSubtotal, getVariantGid } from "@/lib/shopify";
+import {
+  closeCheckoutTab,
+  createCheckout,
+  creditForSubtotal,
+  getVariantGid,
+  openCheckoutTab,
+  sendToCheckout,
+} from "@/lib/shopify";
 import { Trash2, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
