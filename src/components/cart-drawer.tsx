@@ -3,7 +3,14 @@ import { X, Check, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
-import { createCheckout, creditForSubtotal, getVariantGid } from "@/lib/shopify";
+import {
+  closeCheckoutTab,
+  createCheckout,
+  creditForSubtotal,
+  getVariantGid,
+  openCheckoutTab,
+  sendToCheckout,
+} from "@/lib/shopify";
 import { toast } from "sonner";
 
 /**
