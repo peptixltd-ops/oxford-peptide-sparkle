@@ -60,6 +60,7 @@ export function CartDrawer() {
   const addedVariant = added && lastAdded ? getVariant(added, lastAdded.variantId) : null;
 
   const checkout = async () => {
+    const tab = openCheckoutTab();
     setLoading(true);
     try {
       const shopLines = lines
@@ -69,12 +70,14 @@ export function CartDrawer() {
         })
         .filter((x): x is { merchandiseId: string; quantity: number } => !!x);
       if (shopLines.length === 0) {
+        closeCheckoutTab(tab);
         toast.error("No items available for checkout");
         return;
       }
       const url = await createCheckout(shopLines, subtotal);
-      window.open(url, "_blank");
+      sendToCheckout(tab, url);
     } catch (e) {
+      closeCheckoutTab(tab);
       toast.error(e instanceof Error ? e.message : "Checkout failed");
     } finally {
       setLoading(false);
