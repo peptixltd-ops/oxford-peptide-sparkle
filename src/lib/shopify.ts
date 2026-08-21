@@ -111,3 +111,31 @@ export async function createCheckout(lines: CheckoutLine[], subtotal?: number): 
   if (!url) throw new Error("No checkout URL returned");
   return formatCheckoutUrl(url);
 }
+
+/**
+ * Popup blockers (Safari/Firefox by default) suppress `window.open` calls made
+ * after an await, because the user-activation window has expired. So open the
+ * tab synchronously inside the click handler, then point it at the checkout URL
+ * once we have it. If the browser blocked it anyway, fall back to same-tab
+ * navigation so the shopper always reaches checkout.
+ */
+export function openCheckoutTab(): Window | null {
+  if (typeof window === "undefined") return null;
+  try {
+    return window.open("about:blank", "_blank");
+  } catch {
+    return null;
+  }
+}
+
+export function sendToCheckout(tab: Window | null, url: string) {
+  if (tab && !tab.closed) {
+    tab.location.href = url;
+    return;
+  }
+  window.location.assign(url);
+}
+
+export function closeCheckoutTab(tab: Window | null) {
+  if (tab && !tab.closed) tab.close();
+}
