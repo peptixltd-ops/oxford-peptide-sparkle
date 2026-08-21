@@ -61,6 +61,7 @@ function getShopifyAdminTokens(env: NodeJS.ProcessEnv): string[] {
     ...Object.entries(env)
       .filter(([key, value]) => key.startsWith("SHOPIFY_ONLINE_ACCESS_TOKEN:user:") && !!value)
       .map(([, value]) => value as string),
+    env["SHOPIFY_ADMIN_API_TOKEN"],
     env.SHOPIFY_ADMIN_TOKEN,
     env.SHOPIFY_ACCESS_TOKEN,
   ];
