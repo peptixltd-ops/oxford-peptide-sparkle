@@ -4,7 +4,14 @@ import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
-import { createCheckout, creditForSubtotal, getVariantGid } from "@/lib/shopify";
+import {
+  closeCheckoutTab,
+  createCheckout,
+  creditForSubtotal,
+  getVariantGid,
+  openCheckoutTab,
+  sendToCheckout,
+} from "@/lib/shopify";
 import { Trash2, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -119,6 +126,7 @@ function CartPage() {
                 <button
                   onClick={async () => {
                     trackBeginCheckout(lines.map(l => ({ product: l.product, variant: l.variant, quantity: l.item.qty })));
+                    const tab = openCheckoutTab();
                     setLoading(true);
                     try {
                       const shopLines = lines
@@ -128,12 +136,14 @@ function CartPage() {
                         })
                         .filter((x): x is { merchandiseId: string; quantity: number } => !!x);
                       if (shopLines.length === 0) {
+                        closeCheckoutTab(tab);
                         toast.error("No items available for checkout");
                         return;
                       }
                       const url = await createCheckout(shopLines, subtotal);
-                      window.open(url, "_blank");
+                      sendToCheckout(tab, url);
                     } catch (e) {
+                      closeCheckoutTab(tab);
                       toast.error(e instanceof Error ? e.message : "Checkout failed");
                     } finally {
                       setLoading(false);

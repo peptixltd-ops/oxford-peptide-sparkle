@@ -58,11 +58,13 @@ function extractToken(raw: string | undefined): string | undefined {
 
 function getShopifyAdminTokens(env: NodeJS.ProcessEnv): string[] {
   const raws: (string | undefined)[] = [
+    // Long-lived offline Admin API token first: this is the one kept current.
+    env["SHOPIFY_ADMIN_API_TOKEN"],
+    env.SHOPIFY_ADMIN_TOKEN,
+    env.SHOPIFY_ACCESS_TOKEN,
     ...Object.entries(env)
       .filter(([key, value]) => key.startsWith("SHOPIFY_ONLINE_ACCESS_TOKEN:user:") && !!value)
       .map(([, value]) => value as string),
-    env.SHOPIFY_ADMIN_TOKEN,
-    env.SHOPIFY_ACCESS_TOKEN,
   ];
   const tokens = raws.map(extractToken).filter((t): t is string => Boolean(t));
   return Array.from(new Set(tokens));

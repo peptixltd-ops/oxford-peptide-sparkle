@@ -7,7 +7,7 @@ import { DispatchCountdown } from "@/components/dispatch-countdown";
 
 import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
-import { createCheckout, getVariantGid } from "@/lib/shopify";
+import { closeCheckoutTab, createCheckout, getVariantGid, openCheckoutTab, sendToCheckout } from "@/lib/shopify";
 import { seo, SITE_URL } from "@/lib/seo";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -87,11 +87,13 @@ function ProductPage() {
     trackBeginCheckout([{ product, variant, quantity: qty }]);
     const gid = getVariantGid(product.slug, variant.id);
     if (!gid) { toast.error("Unavailable for checkout"); return; }
+    const tab = openCheckoutTab();
     setLoading(true);
     try {
       const url = await createCheckout([{ merchandiseId: gid, quantity: qty }], variant.price * qty);
-      window.open(url, "_blank");
+      sendToCheckout(tab, url);
     } catch (e) {
+      closeCheckoutTab(tab);
       toast.error(e instanceof Error ? e.message : "Checkout failed");
     } finally {
       setLoading(false);
