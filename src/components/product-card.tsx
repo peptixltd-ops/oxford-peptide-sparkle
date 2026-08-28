@@ -96,6 +96,12 @@ export function ProductCard({ p }: { p: Product }) {
           {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : "BUY NOW"}
         </button>
       </div>
+      <BacWaterBuyNowDialog
+        open={offerOpen}
+        onOpenChange={setOfferOpen}
+        onContinue={(bacVariantId) => void goToCheckout(bacVariantId)}
+        loading={loading}
+      />
     </div>
   );
 }
