@@ -155,7 +155,7 @@ function CartPage() {
                         toast.error("No items available for checkout");
                         return;
                       }
-                      const url = await createCheckout(shopLines, subtotal);
+                      const url = await createCheckout(shopLines, subtotal, bacLines.length ? [BAC_WATER_UPSELL.code] : []);
                       sendToCheckout(tab, url);
                     } catch (e) {
                       closeCheckoutTab(tab);
