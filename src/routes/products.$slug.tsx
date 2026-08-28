@@ -7,7 +7,8 @@ import { DispatchCountdown } from "@/components/dispatch-countdown";
 
 import { getProduct, type Variant } from "@/lib/products";
 import { useCart } from "@/lib/cart";
-import { closeCheckoutTab, createCheckout, getVariantGid, openCheckoutTab, sendToCheckout } from "@/lib/shopify";
+import { BAC_WATER_UPSELL, closeCheckoutTab, createCheckout, getVariantGid, openCheckoutTab, sendToCheckout } from "@/lib/shopify";
+import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { seo, SITE_URL } from "@/lib/seo";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
