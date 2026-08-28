@@ -85,14 +85,37 @@ function ProductPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product.slug, variant.id]);
 
-  const buyNow = async () => {
+  const bacInCart = items.some(i => i.slug === BAC_WATER_UPSELL.slug);
+  const showBacOffer = product.slug !== BAC_WATER_UPSELL.slug && !bacInCart;
+
+  /** Buy Now bypasses the cart, so offer the bac water upsell first. */
+  const buyNow = () => {
     trackBeginCheckout([{ product, variant, quantity: qty }]);
+    if (showBacOffer) { setOfferOpen(true); return; }
+    void goToCheckout(null);
+  };
+
+  const goToCheckout = async (bacVariantId: string | null) => {
     const gid = getVariantGid(product.slug, variant.id);
     if (!gid) { toast.error("Unavailable for checkout"); return; }
     const tab = openCheckoutTab();
     setLoading(true);
     try {
-      const url = await createCheckout([{ merchandiseId: gid, quantity: qty }], variant.price * qty);
+      const lines = [{ merchandiseId: gid, quantity: qty }];
+      let subtotal = variant.price * qty;
+      const codes: string[] = [];
+      if (bacVariantId) {
+        const bacGid = getVariantGid(BAC_WATER_UPSELL.slug, bacVariantId);
+        const bacProduct = getProduct(BAC_WATER_UPSELL.slug);
+        const bacVariant = bacProduct?.variants.find((v: Variant) => v.id === bacVariantId);
+        if (bacGid && bacVariant) {
+          lines.push({ merchandiseId: bacGid, quantity: 1 });
+          subtotal += bacVariant.price;
+          codes.push(BAC_WATER_UPSELL.code);
+        }
+      }
+      const url = await createCheckout(lines, subtotal, codes);
+      setOfferOpen(false);
       sendToCheckout(tab, url);
     } catch (e) {
       closeCheckoutTab(tab);
