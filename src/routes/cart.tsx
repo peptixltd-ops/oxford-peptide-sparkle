@@ -112,7 +112,11 @@ function CartPage() {
                 </div>
               </div>
 
-              <aside className="bg-white border border-border p-6 h-fit">
+              <div className="lg:col-start-1 lg:row-start-2 -mt-4">
+                <BacWaterUpsell />
+              </div>
+
+              <aside className="bg-white border border-border p-6 h-fit lg:col-start-2 lg:row-start-1">
                 <h2 className="text-xs font-bold tracking-[0.25em] mb-5">ORDER SUMMARY</h2>
                 <div className="space-y-3 text-sm border-b border-border pb-4 mb-4">
                   <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
@@ -120,9 +124,13 @@ function CartPage() {
                   {toFreeShipping > 0 && (
                     <p className="text-[11px] text-muted-foreground">Spend {fmt(toFreeShipping)} more for free UK shipping.</p>
                   )}
+                  {bacDiscount > 0 && (
+                    <div className="flex justify-between text-gold"><span>Bac water offer ({BAC_WATER_UPSELL.percent}% off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
+                  )}
                   {credit && (
                     <div className="flex justify-between text-gold"><span>Store credit ({credit.code})</span><span className="font-semibold">-{fmt(credit.amount)}</span></div>
                   )}
+
                   {nextTier && (
                     <p className="text-[11px] text-muted-foreground">Spend {fmt(nextTier - subtotal)} more to unlock £{nextTier === 30 ? 5 : 10} off.</p>
                   )}
