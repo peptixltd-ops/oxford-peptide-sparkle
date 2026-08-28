@@ -242,4 +242,9 @@ export function CartDrawer() {
       </div>
     </div>
   );
+
+  // The header is a `relative z-20` stacking context, which trapped the drawer
+  // below page content (hero text bled over it on mobile). Portal to <body>.
+  if (typeof document === "undefined") return drawer;
+  return createPortal(drawer, document.body);
 }
