@@ -176,11 +176,24 @@ export function CartDrawer() {
         </div>
 
         {lines.length > 0 && (
+          <div className="px-5 pb-4">
+            <BacWaterUpsell compact />
+          </div>
+        )}
+
+        {lines.length > 0 && (
           <div className="border-t border-border bg-white p-5 space-y-3">
             <div className="flex justify-between text-sm">
               <span>Subtotal</span>
               <span className="font-semibold">{fmt(subtotal)}</span>
             </div>
+            {bacDiscount > 0 && (
+              <div className="flex justify-between text-sm text-gold">
+                <span>Bac water offer ({BAC_WATER_UPSELL.percent}% off)</span>
+                <span className="font-semibold">-{fmt(bacDiscount)}</span>
+              </div>
+            )}
+
             <div className="flex justify-between text-sm">
               <span>Shipping</span>
               <span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span>
