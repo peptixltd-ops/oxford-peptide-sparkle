@@ -72,10 +72,11 @@ export const Route = createFileRoute("/products/$slug")({
 
 function ProductPage() {
   const { product } = Route.useLoaderData();
-  const { add } = useCart();
+  const { add, items } = useCart();
   const [qty, setQty] = useState(1);
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [loading, setLoading] = useState(false);
+  const [offerOpen, setOfferOpen] = useState(false);
   const variant = product.variants.find((v: Variant) => v.id === variantId) ?? product.variants[0];
   const fmt = (n: number) => `£${n.toFixed(2)}`;
 
