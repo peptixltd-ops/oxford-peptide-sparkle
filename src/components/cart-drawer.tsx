@@ -99,8 +99,8 @@ export function CartDrawer() {
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label="Shopping cart">
+  const drawer = (
+    <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-label="Shopping cart">
       <button
         type="button"
         aria-label="Close cart"
