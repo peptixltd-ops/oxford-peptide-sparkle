@@ -50,9 +50,13 @@ function CartPage() {
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_RATE;
   const toFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
   const credit = creditForSubtotal(subtotal);
-  const total = Math.max(0, subtotal - (credit?.amount ?? 0)) + shipping;
+  const bacLines = lines.filter(l => l.product.slug === BAC_WATER_UPSELL.slug);
+  const bacDiscount =
+    bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0) * (BAC_WATER_UPSELL.percent / 100);
+  const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
   const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
+
 
   useEffect(() => {
     if (lines.length > 0) {
