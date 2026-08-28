@@ -101,15 +101,18 @@ export function creditForSubtotal(subtotal: number) {
 
 /**
  * Bacteriostatic water cart upsell: a Shopify price rule discounts the bac
- * water line by 20% when this code is on the cart. Applied automatically.
+ * water line by a fixed £ amount per vial when this code is on the cart.
+ * Applied automatically.
  */
 export const BAC_WATER_UPSELL = {
   slug: "bacteriostatic-water",
-  code: "BACWATER20",
-  percent: 20,
+  code: "BACWATER2OFF",
+  /** Fixed discount per bacteriostatic water vial, in GBP. */
+  amountOff: 2,
   /** Offer window per shopper, in minutes. */
   minutes: 15,
 } as const;
+
 
 export async function createCheckout(
   lines: CheckoutLine[],
