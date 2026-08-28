@@ -51,8 +51,11 @@ function CartPage() {
   const toFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
   const credit = creditForSubtotal(subtotal);
   const bacLines = lines.filter(l => l.product.slug === BAC_WATER_UPSELL.slug);
-  const bacDiscount =
-    bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0) * (BAC_WATER_UPSELL.percent / 100);
+  const bacDiscount = Math.min(
+    bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0),
+    bacLines.reduce((s, l) => s + BAC_WATER_UPSELL.amountOff * l.item.qty, 0),
+  );
+
   const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
   const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
@@ -125,7 +128,7 @@ function CartPage() {
                     <p className="text-[11px] text-muted-foreground">Spend {fmt(toFreeShipping)} more for free UK shipping.</p>
                   )}
                   {bacDiscount > 0 && (
-                    <div className="flex justify-between text-gold"><span>Bac water offer ({BAC_WATER_UPSELL.percent}% off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
+                    <div className="flex justify-between text-gold"><span>Bac water offer (£{BAC_WATER_UPSELL.amountOff} off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
                   )}
                   {credit && (
                     <div className="flex justify-between text-gold"><span>Store credit ({credit.code})</span><span className="font-semibold">-{fmt(credit.amount)}</span></div>

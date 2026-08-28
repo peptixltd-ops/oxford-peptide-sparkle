@@ -56,8 +56,11 @@ export function CartDrawer() {
 
   const fmt = (n: number) => `£${n.toFixed(2)}`;
   const bacLines = lines.filter((l) => l.product.slug === BAC_WATER_UPSELL.slug);
-  const bacDiscount =
-    bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0) * (BAC_WATER_UPSELL.percent / 100);
+  const bacDiscount = Math.min(
+    bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0),
+    bacLines.reduce((s, l) => s + BAC_WATER_UPSELL.amountOff * l.item.qty, 0),
+  );
+
   const credit = creditForSubtotal(subtotal);
   const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
   const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
@@ -189,7 +192,7 @@ export function CartDrawer() {
             </div>
             {bacDiscount > 0 && (
               <div className="flex justify-between text-sm text-gold">
-                <span>Bac water offer ({BAC_WATER_UPSELL.percent}% off)</span>
+                <span>Bac water offer (£{BAC_WATER_UPSELL.amountOff} off)</span>
                 <span className="font-semibold">-{fmt(bacDiscount)}</span>
               </div>
             )}

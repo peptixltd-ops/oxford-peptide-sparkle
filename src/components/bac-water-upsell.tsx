@@ -42,14 +42,15 @@ export function BacWaterUpsell({ compact = false }: { compact?: boolean }) {
   if (left !== null && left <= 0) return null;
 
   const fmt = (n: number) => `£${n.toFixed(2)}`;
-  const discounted = (n: number) => n * (1 - BAC_WATER_UPSELL.percent / 100);
+  const discounted = (n: number) => Math.max(0, n - BAC_WATER_UPSELL.amountOff);
 
   return (
     <div className="bg-white border border-gold/50">
       <div className="flex items-center justify-between gap-3 bg-navy-deep text-bone px-4 py-2">
         <span className="text-[10px] font-bold tracking-[0.2em]">
-          ADD BACTERIOSTATIC WATER — {BAC_WATER_UPSELL.percent}% OFF
+          ADD BACTERIOSTATIC WATER — £{BAC_WATER_UPSELL.amountOff} OFF
         </span>
+
         {left !== null && (
           <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-gold tabular-nums">
             <Clock className="w-3 h-3" /> {fmtTime(left)}
@@ -66,7 +67,7 @@ export function BacWaterUpsell({ compact = false }: { compact?: boolean }) {
             <p className="font-display text-base font-semibold leading-tight">Reconstitution diluent</p>
             <p className="text-xs text-muted-foreground leading-snug">
               Sterile bacteriostatic water (0.9% benzyl alcohol) — required to reconstitute lyophilised
-              peptides. Limited-time {BAC_WATER_UPSELL.percent}% off, applied automatically at checkout.
+              peptides. Limited-time £{BAC_WATER_UPSELL.amountOff} off per vial, applied automatically at checkout.
             </p>
           </div>
         </div>
@@ -77,7 +78,7 @@ export function BacWaterUpsell({ compact = false }: { compact?: boolean }) {
               key={variant.id}
               onClick={() => {
                 add(product.slug, variant.id, 1);
-                toast.success(`${variant.label} bacteriostatic water added — ${BAC_WATER_UPSELL.percent}% off applied`);
+                toast.success(`${variant.label} bacteriostatic water added — £${BAC_WATER_UPSELL.amountOff} off applied`);
               }}
               className="flex items-center justify-between gap-3 border border-border px-3 py-2.5 hover:border-gold hover:bg-muted/40 transition-colors text-left"
             >
