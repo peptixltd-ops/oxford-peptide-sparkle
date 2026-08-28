@@ -222,6 +222,13 @@ function ProductPage() {
         <ProductTechnicalData p={product} variant={variant} />
       </main>
 
+      <BacWaterBuyNowDialog
+        open={offerOpen}
+        onOpenChange={setOfferOpen}
+        onContinue={(bacVariantId) => void goToCheckout(bacVariantId)}
+        loading={loading}
+      />
+
       <SiteFooter />
     </div>
   );
