@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
 import {
+  BAC_WATER_UPSELL,
   closeCheckoutTab,
   createCheckout,
   creditForSubtotal,
@@ -11,7 +12,9 @@ import {
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
+import { BacWaterUpsell } from "@/components/bac-water-upsell";
 import { toast } from "sonner";
+
 
 /**
  * Slide-in cart drawer. Opens automatically whenever an item is added to the
