@@ -78,7 +78,7 @@ export function BacWaterUpsell({ compact = false }: { compact?: boolean }) {
               key={variant.id}
               onClick={() => {
                 add(product.slug, variant.id, 1);
-                toast.success(`${variant.label} bacteriostatic water added — ${BAC_WATER_UPSELL.percent}% off applied`);
+                toast.success(`${variant.label} bacteriostatic water added — £${BAC_WATER_UPSELL.amountOff} off applied`);
               }}
               className="flex items-center justify-between gap-3 border border-border px-3 py-2.5 hover:border-gold hover:bg-muted/40 transition-colors text-left"
             >
