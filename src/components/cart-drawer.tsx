@@ -14,6 +14,7 @@ import {
 } from "@/lib/shopify";
 import { BacWaterUpsell } from "@/components/bac-water-upsell";
 import { toast } from "sonner";
+import { createPortal } from "react-dom";
 
 
 /**
@@ -98,8 +99,8 @@ export function CartDrawer() {
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label="Shopping cart">
+  const drawer = (
+    <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-label="Shopping cart">
       <button
         type="button"
         aria-label="Close cart"
@@ -241,4 +242,9 @@ export function CartDrawer() {
       </div>
     </div>
   );
+
+  // The header is a `relative z-20` stacking context, which trapped the drawer
+  // below page content (hero text bled over it on mobile). Portal to <body>.
+  if (typeof document === "undefined") return drawer;
+  return createPortal(drawer, document.body);
 }
