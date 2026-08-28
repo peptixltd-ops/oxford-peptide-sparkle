@@ -1,27 +1,59 @@
 import { Link } from "@tanstack/react-router";
-import type { Product } from "@/lib/products";
-import { fromPrice } from "@/lib/products";
+import type { Product, Variant } from "@/lib/products";
+import { fromPrice, getProduct } from "@/lib/products";
 import { useCart } from "@/lib/cart";
-import { createCheckout, getVariantGid } from "@/lib/shopify";
+import {
+  BAC_WATER_UPSELL,
+  closeCheckoutTab,
+  createCheckout,
+  getVariantGid,
+  openCheckoutTab,
+  sendToCheckout,
+} from "@/lib/shopify";
+import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 export function ProductCard({ p }: { p: Product }) {
-  const { add } = useCart();
+  const { add, items } = useCart();
   const [loading, setLoading] = useState(false);
+  const [offerOpen, setOfferOpen] = useState(false);
   const defaultVariant = p.variants[0];
   const min = fromPrice(p);
   const hasMultiple = p.variants.length > 1;
 
-  const buyNow = async () => {
+  const bacInCart = items.some(i => i.slug === BAC_WATER_UPSELL.slug);
+  const showBacOffer = p.slug !== BAC_WATER_UPSELL.slug && !bacInCart;
+
+  const buyNow = () => {
+    if (showBacOffer) { setOfferOpen(true); return; }
+    void goToCheckout(null);
+  };
+
+  const goToCheckout = async (bacVariantId: string | null) => {
     const gid = getVariantGid(p.slug, defaultVariant.id);
     if (!gid) { toast.error("Unavailable for checkout"); return; }
+    const tab = openCheckoutTab();
     setLoading(true);
     try {
-      const url = await createCheckout([{ merchandiseId: gid, quantity: 1 }], defaultVariant.price);
-      window.open(url, "_blank");
+      const lines = [{ merchandiseId: gid, quantity: 1 }];
+      let subtotal = defaultVariant.price;
+      const codes: string[] = [];
+      if (bacVariantId) {
+        const bacGid = getVariantGid(BAC_WATER_UPSELL.slug, bacVariantId);
+        const bacVariant = getProduct(BAC_WATER_UPSELL.slug)?.variants.find((v: Variant) => v.id === bacVariantId);
+        if (bacGid && bacVariant) {
+          lines.push({ merchandiseId: bacGid, quantity: 1 });
+          subtotal += bacVariant.price;
+          codes.push(BAC_WATER_UPSELL.code);
+        }
+      }
+      const url = await createCheckout(lines, subtotal, codes);
+      setOfferOpen(false);
+      sendToCheckout(tab, url);
     } catch (e) {
+      closeCheckoutTab(tab);
       toast.error(e instanceof Error ? e.message : "Checkout failed");
     } finally {
       setLoading(false);
@@ -64,6 +96,12 @@ export function ProductCard({ p }: { p: Product }) {
           {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : "BUY NOW"}
         </button>
       </div>
+      <BacWaterBuyNowDialog
+        open={offerOpen}
+        onOpenChange={setOfferOpen}
+        onContinue={(bacVariantId) => void goToCheckout(bacVariantId)}
+        loading={loading}
+      />
     </div>
   );
 }
