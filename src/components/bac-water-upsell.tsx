@@ -12,9 +12,12 @@ function useOfferCountdown() {
   const [left, setLeft] = useState<number | null>(null);
 
   useEffect(() => {
+    const now = Date.now();
     let start = Number(window.localStorage.getItem(KEY));
-    if (!start || Number.isNaN(start)) {
-      start = Date.now();
+    // Reset the offer window if it's missing, corrupt, or already expired so
+    // returning shoppers (later sessions, new carts) get a fresh countdown.
+    if (!start || Number.isNaN(start) || start + BAC_WATER_UPSELL.minutes * 60_000 <= now) {
+      start = now;
       window.localStorage.setItem(KEY, String(start));
     }
     const end = start + BAC_WATER_UPSELL.minutes * 60_000;
