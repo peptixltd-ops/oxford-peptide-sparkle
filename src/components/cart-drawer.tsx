@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
 import {
+  BAC_WATER_UPSELL,
   closeCheckoutTab,
   createCheckout,
   creditForSubtotal,
@@ -11,7 +12,9 @@ import {
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
+import { BacWaterUpsell } from "@/components/bac-water-upsell";
 import { toast } from "sonner";
+
 
 /**
  * Slide-in cart drawer. Opens automatically whenever an item is added to the
@@ -52,8 +55,11 @@ export function CartDrawer() {
   const toFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
 
   const fmt = (n: number) => `£${n.toFixed(2)}`;
+  const bacLines = lines.filter((l) => l.product.slug === BAC_WATER_UPSELL.slug);
+  const bacDiscount =
+    bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0) * (BAC_WATER_UPSELL.percent / 100);
   const credit = creditForSubtotal(subtotal);
-  const total = Math.max(0, subtotal - (credit?.amount ?? 0)) + shipping;
+  const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
   const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
 
   const added = lastAdded ? getProduct(lastAdded.slug) : null;
@@ -74,8 +80,13 @@ export function CartDrawer() {
         toast.error("No items available for checkout");
         return;
       }
-      const url = await createCheckout(shopLines, subtotal);
+      const url = await createCheckout(
+        shopLines,
+        subtotal,
+        bacLines.length ? [BAC_WATER_UPSELL.code] : [],
+      );
       sendToCheckout(tab, url);
+
     } catch (e) {
       closeCheckoutTab(tab);
       toast.error(e instanceof Error ? e.message : "Checkout failed");
@@ -165,11 +176,24 @@ export function CartDrawer() {
         </div>
 
         {lines.length > 0 && (
+          <div className="px-5 pb-4">
+            <BacWaterUpsell compact />
+          </div>
+        )}
+
+        {lines.length > 0 && (
           <div className="border-t border-border bg-white p-5 space-y-3">
             <div className="flex justify-between text-sm">
               <span>Subtotal</span>
               <span className="font-semibold">{fmt(subtotal)}</span>
             </div>
+            {bacDiscount > 0 && (
+              <div className="flex justify-between text-sm text-gold">
+                <span>Bac water offer ({BAC_WATER_UPSELL.percent}% off)</span>
+                <span className="font-semibold">-{fmt(bacDiscount)}</span>
+              </div>
+            )}
+
             <div className="flex justify-between text-sm">
               <span>Shipping</span>
               <span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span>

@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
 import {
+  BAC_WATER_UPSELL,
   closeCheckoutTab,
   createCheckout,
   creditForSubtotal,
@@ -12,6 +13,8 @@ import {
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
+import { BacWaterUpsell } from "@/components/bac-water-upsell";
+
 import { Trash2, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -47,9 +50,13 @@ function CartPage() {
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_RATE;
   const toFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
   const credit = creditForSubtotal(subtotal);
-  const total = Math.max(0, subtotal - (credit?.amount ?? 0)) + shipping;
+  const bacLines = lines.filter(l => l.product.slug === BAC_WATER_UPSELL.slug);
+  const bacDiscount =
+    bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0) * (BAC_WATER_UPSELL.percent / 100);
+  const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
   const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
+
 
   useEffect(() => {
     if (lines.length > 0) {
@@ -105,7 +112,11 @@ function CartPage() {
                 </div>
               </div>
 
-              <aside className="bg-white border border-border p-6 h-fit">
+              <div className="lg:col-start-1 lg:row-start-2 -mt-4">
+                <BacWaterUpsell />
+              </div>
+
+              <aside className="bg-white border border-border p-6 h-fit lg:col-start-2 lg:row-start-1">
                 <h2 className="text-xs font-bold tracking-[0.25em] mb-5">ORDER SUMMARY</h2>
                 <div className="space-y-3 text-sm border-b border-border pb-4 mb-4">
                   <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
@@ -113,9 +124,13 @@ function CartPage() {
                   {toFreeShipping > 0 && (
                     <p className="text-[11px] text-muted-foreground">Spend {fmt(toFreeShipping)} more for free UK shipping.</p>
                   )}
+                  {bacDiscount > 0 && (
+                    <div className="flex justify-between text-gold"><span>Bac water offer ({BAC_WATER_UPSELL.percent}% off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
+                  )}
                   {credit && (
                     <div className="flex justify-between text-gold"><span>Store credit ({credit.code})</span><span className="font-semibold">-{fmt(credit.amount)}</span></div>
                   )}
+
                   {nextTier && (
                     <p className="text-[11px] text-muted-foreground">Spend {fmt(nextTier - subtotal)} more to unlock £{nextTier === 30 ? 5 : 10} off.</p>
                   )}
@@ -140,7 +155,7 @@ function CartPage() {
                         toast.error("No items available for checkout");
                         return;
                       }
-                      const url = await createCheckout(shopLines, subtotal);
+                      const url = await createCheckout(shopLines, subtotal, bacLines.length ? [BAC_WATER_UPSELL.code] : []);
                       sendToCheckout(tab, url);
                     } catch (e) {
                       closeCheckoutTab(tab);
