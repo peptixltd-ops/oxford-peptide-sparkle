@@ -192,7 +192,7 @@ export function CartDrawer() {
             </div>
             {bacDiscount > 0 && (
               <div className="flex justify-between text-sm text-gold">
-                <span>Bac water offer ({BAC_WATER_UPSELL.percent}% off)</span>
+                <span>Bac water offer (£{BAC_WATER_UPSELL.amountOff} off)</span>
                 <span className="font-semibold">-{fmt(bacDiscount)}</span>
               </div>
             )}
