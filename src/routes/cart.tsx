@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
 import {
+  BAC_WATER_UPSELL,
   closeCheckoutTab,
   createCheckout,
   creditForSubtotal,
@@ -12,6 +13,8 @@ import {
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
+import { BacWaterUpsell } from "@/components/bac-water-upsell";
+
 import { Trash2, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
