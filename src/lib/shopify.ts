@@ -99,11 +99,28 @@ export function creditForSubtotal(subtotal: number) {
   return CREDIT_TIERS.find((t) => subtotal >= t.threshold) ?? null;
 }
 
-export async function createCheckout(lines: CheckoutLine[], subtotal?: number): Promise<string> {
+/**
+ * Bacteriostatic water cart upsell: a Shopify price rule discounts the bac
+ * water line by 20% when this code is on the cart. Applied automatically.
+ */
+export const BAC_WATER_UPSELL = {
+  slug: "bacteriostatic-water",
+  code: "BACWATER20",
+  percent: 20,
+  /** Offer window per shopper, in minutes. */
+  minutes: 15,
+} as const;
+
+export async function createCheckout(
+  lines: CheckoutLine[],
+  subtotal?: number,
+  extraDiscountCodes: string[] = [],
+): Promise<string> {
   if (lines.length === 0) throw new Error("Cart is empty");
   const credit = typeof subtotal === "number" ? creditForSubtotal(subtotal) : null;
+  const discountCodes = [...(credit ? [credit.code] : []), ...extraDiscountCodes];
   const data = await storefront(CART_CREATE, {
-    input: { lines, ...(credit ? { discountCodes: [credit.code] } : {}) },
+    input: { lines, ...(discountCodes.length ? { discountCodes } : {}) },
   });
   const errs = data?.cartCreate?.userErrors ?? [];
   if (errs.length) throw new Error(errs.map((e: { message: string }) => e.message).join(", "));
@@ -111,6 +128,7 @@ export async function createCheckout(lines: CheckoutLine[], subtotal?: number): 
   if (!url) throw new Error("No checkout URL returned");
   return formatCheckoutUrl(url);
 }
+
 
 /**
  * Popup blockers (Safari/Firefox by default) suppress `window.open` calls made
