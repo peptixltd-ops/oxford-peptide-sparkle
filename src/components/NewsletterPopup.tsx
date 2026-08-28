@@ -4,7 +4,7 @@ type Status = "form" | "loading" | "success" | "error";
 
 const KEY = "orp_newsletter_prompt";
 const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
-const DELAY_MS = 8000;
+const DELAY_MS = 25000;
 
 function shouldShow(): boolean {
   try {
