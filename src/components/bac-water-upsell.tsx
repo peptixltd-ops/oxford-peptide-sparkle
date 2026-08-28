@@ -67,7 +67,7 @@ export function BacWaterUpsell({ compact = false }: { compact?: boolean }) {
             <p className="font-display text-base font-semibold leading-tight">Reconstitution diluent</p>
             <p className="text-xs text-muted-foreground leading-snug">
               Sterile bacteriostatic water (0.9% benzyl alcohol) — required to reconstitute lyophilised
-              peptides. Limited-time {BAC_WATER_UPSELL.percent}% off, applied automatically at checkout.
+              peptides. Limited-time £{BAC_WATER_UPSELL.amountOff} off per vial, applied automatically at checkout.
             </p>
           </div>
         </div>
