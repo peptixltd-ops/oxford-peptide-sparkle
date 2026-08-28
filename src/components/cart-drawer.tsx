@@ -55,8 +55,11 @@ export function CartDrawer() {
   const toFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
 
   const fmt = (n: number) => `£${n.toFixed(2)}`;
+  const bacLines = lines.filter((l) => l.product.slug === BAC_WATER_UPSELL.slug);
+  const bacDiscount =
+    bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0) * (BAC_WATER_UPSELL.percent / 100);
   const credit = creditForSubtotal(subtotal);
-  const total = Math.max(0, subtotal - (credit?.amount ?? 0)) + shipping;
+  const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
   const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
 
   const added = lastAdded ? getProduct(lastAdded.slug) : null;
@@ -77,8 +80,13 @@ export function CartDrawer() {
         toast.error("No items available for checkout");
         return;
       }
-      const url = await createCheckout(shopLines, subtotal);
+      const url = await createCheckout(
+        shopLines,
+        subtotal,
+        bacLines.length ? [BAC_WATER_UPSELL.code] : [],
+      );
       sendToCheckout(tab, url);
+
     } catch (e) {
       closeCheckoutTab(tab);
       toast.error(e instanceof Error ? e.message : "Checkout failed");
