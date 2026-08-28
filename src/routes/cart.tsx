@@ -128,7 +128,7 @@ function CartPage() {
                     <p className="text-[11px] text-muted-foreground">Spend {fmt(toFreeShipping)} more for free UK shipping.</p>
                   )}
                   {bacDiscount > 0 && (
-                    <div className="flex justify-between text-gold"><span>Bac water offer ({BAC_WATER_UPSELL.percent}% off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
+                    <div className="flex justify-between text-gold"><span>Bac water offer (£{BAC_WATER_UPSELL.amountOff} off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
                   )}
                   {credit && (
                     <div className="flex justify-between text-gold"><span>Store credit ({credit.code})</span><span className="font-semibold">-{fmt(credit.amount)}</span></div>
