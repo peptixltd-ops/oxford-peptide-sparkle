@@ -202,7 +202,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/447457404317"
+      href="https://wa.me/447457404317?text=Hi%20there%2C%20I%20have%20a%20question%20about%20your%20products.%20Can%20you%20assist%20me%20please%3F"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Message us on WhatsApp"
