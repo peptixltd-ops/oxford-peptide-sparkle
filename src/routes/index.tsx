@@ -10,6 +10,7 @@ import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { ProductCard } from "@/components/product-card";
 import { TrustBar } from "@/components/trust-bar";
 import { SectionHeader } from "@/components/section-header";
@@ -231,6 +232,8 @@ function Home() {
         </section>
 
       </main>
+
+      <ResearchUseNotice />
 
       <SiteFooter />
     </div>

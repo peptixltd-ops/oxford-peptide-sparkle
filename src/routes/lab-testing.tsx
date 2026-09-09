@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ClipboardCheck, FlaskConical, Microscope, Award } from "lucide-react";
 import labStandards from "@/assets/lab-standards.jpg";
@@ -48,6 +49,7 @@ export const Route = createFileRoute("/lab-testing")({
           </div>
         </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   ),

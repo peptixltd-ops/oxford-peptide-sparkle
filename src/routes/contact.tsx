@@ -3,6 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Mail, Phone, Clock, MapPin } from "lucide-react";
 import { toast } from "sonner";
@@ -125,6 +126,7 @@ function ContactPage() {
         </div>
       </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

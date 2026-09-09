@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { seo } from "@/lib/seo";
 import { EVIDENCE_HIERARCHY, DEFAULT_CITATION_STYLE } from "@/lib/editorial";
@@ -161,6 +162,7 @@ function ResearchMethodologyPage() {
           </div>
         </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );
