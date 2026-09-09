@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { GuideLayout } from "@/components/knowledge/guide-layout";
 import { buildGuideLayoutProps, type GuideScaffold } from "@/lib/scaffolds";
@@ -34,6 +35,7 @@ export function ScaffoldGuidePage({
         <GuideLayout {...props} />
         {children}
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

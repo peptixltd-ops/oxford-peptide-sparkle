@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs, type Crumb } from "@/components/breadcrumbs";
 import { KnowledgeNav } from "@/components/knowledge/knowledge-nav";
 import { ContinueReading } from "@/components/knowledge/continue-reading";
@@ -96,6 +97,7 @@ export function PlaceholderKnowledgePage({
           </div>
         </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

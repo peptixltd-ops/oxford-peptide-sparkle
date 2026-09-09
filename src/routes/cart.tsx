@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
@@ -179,6 +180,7 @@ function CartPage() {
         </div>
       </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

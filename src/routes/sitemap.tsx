@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { seo } from "@/lib/seo";
 
@@ -74,6 +75,7 @@ function Page() {
           </div>
         </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

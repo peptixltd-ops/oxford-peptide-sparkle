@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs, type Crumb } from "@/components/breadcrumbs";
 import { KnowledgeNav } from "./knowledge-nav";
 import { ReadingPathway } from "./reading-pathway";
@@ -32,6 +33,7 @@ export function CategoryLanding({
         <main id="main-content" className="container-x py-24 text-center">
           <h1 className="font-display text-4xl mb-4">Category not found</h1>
         </main>
+        <ResearchUseNotice />
         <SiteFooter />
       </div>
     );
@@ -94,6 +96,7 @@ export function CategoryLanding({
           </div>
         </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProductCard } from "@/components/product-card";
 import { products } from "@/lib/products";
@@ -57,6 +58,7 @@ function SearchPage() {
           </div>
         </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );
