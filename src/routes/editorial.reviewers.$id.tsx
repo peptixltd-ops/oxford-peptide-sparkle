@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { seo, aboutPageLd, breadcrumbLd, personLd } from "@/lib/seo";
 import {
@@ -71,6 +72,7 @@ function ReviewerMissing() {
           .
         </p>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );
@@ -176,6 +178,7 @@ function ReviewerProfilePage() {
           </p>
         </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

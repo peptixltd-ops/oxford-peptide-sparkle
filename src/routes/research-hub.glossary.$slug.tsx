@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PlaceholderKnowledgePage } from "@/components/knowledge/placeholder-knowledge-page";
 import {
@@ -199,6 +200,7 @@ function GlossaryTermPage() {
           </aside>
         </div>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

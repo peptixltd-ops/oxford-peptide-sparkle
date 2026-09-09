@@ -1,6 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { EntityGraph } from "@/components/knowledge/entity-graph";
 import { seo } from "@/lib/seo";
@@ -134,6 +135,7 @@ function JourneyDetail() {
           </div>
         </section>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );
@@ -162,6 +164,7 @@ function JourneyNotFound() {
           BROWSE ALL JOURNEYS <ArrowRight className="w-3 h-3" aria-hidden="true" />
         </Link>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );

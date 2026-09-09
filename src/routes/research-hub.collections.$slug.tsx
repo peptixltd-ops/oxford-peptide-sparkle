@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ResearchUseNotice } from "@/components/research-use-notice";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { seo, aboutPageLd, breadcrumbLd } from "@/lib/seo";
 import {
@@ -42,6 +43,7 @@ export const Route = createFileRoute("/research-hub/collections/$slug")({
       <main className="container-x py-16">
         <h1 className="font-display text-3xl">Collection not found</h1>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   ),
@@ -182,6 +184,7 @@ function CollectionPage() {
           {collection.updated}.
         </p>
       </main>
+      <ResearchUseNotice />
       <SiteFooter />
     </div>
   );
