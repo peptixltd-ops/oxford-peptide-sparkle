@@ -112,11 +112,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         nowprocket: "",
         "nitro-exclude": "",
       },
-      // Google Tag Manager (server-side container via Stape)
-      {
-        children:
-          "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://bhs.oxfordresearchpeptides.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K8DXDC28');",
-      },
       { src: "https://www.googletagmanager.com/gtag/js?id=G-VKHQ1KX316", async: true },
       // TikTok Pixel (base code)
       {
@@ -197,15 +192,6 @@ function RootShell({ children }: { children: ReactNode }) {
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-TKX4G2TK"
-            height={0}
-            width={0}
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-        {/* GTM (noscript) — must be immediately after opening <body> */}
-        <noscript>
-          <iframe
-            src="https://bhs.oxfordresearchpeptides.com/ns.html?id=GTM-K8DXDC28"
             height={0}
             width={0}
             style={{ display: "none", visibility: "hidden" }}
