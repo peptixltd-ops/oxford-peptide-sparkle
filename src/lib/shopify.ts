@@ -77,6 +77,11 @@ function formatCheckoutUrl(url: string): string {
   try {
     const u = new URL(url);
     u.searchParams.set("channel", "online_store");
+    // Carry TikTok attribution across the hop to the Shopify checkout domain,
+    // otherwise the checkout/purchase events cannot be attributed.
+    const { ttclid, ttp } = tiktokAttribution();
+    if (ttclid) u.searchParams.set("ttclid", ttclid);
+    if (ttp) u.searchParams.set("ttp", ttp);
     return u.toString();
   } catch {
     return url;
