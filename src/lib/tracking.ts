@@ -4,6 +4,7 @@
 // Each push includes a unique `event_id` for Meta browser/server dedup.
 
 import type { Product, Variant } from "./products";
+import { tiktokTrack, type TikTokContent } from "./tiktok";
 
 type Item = {
   item_id: string;
@@ -50,10 +51,29 @@ function toItem(product: Product, variant: Variant, quantity = 1): Item {
   };
 }
 
+function toTikTokContent(product: Product, variant: Variant, quantity: number): TikTokContent {
+  return {
+    content_id: `${product.slug}-${variant.id}`,
+    content_type: "product",
+    content_name: product.name,
+    content_category: CATEGORY,
+    brand: BRAND,
+    quantity,
+    price: variant.price,
+  };
+}
+
 export function trackViewItem(product: Product, variant: Variant) {
+  const id = eventId("view_item");
+  tiktokTrack("ViewContent", {
+    contents: [toTikTokContent(product, variant, 1)],
+    value: variant.price,
+    currency: CURRENCY,
+    eventId: id,
+  });
   push({
     event: "view_item_stape",
-    event_id: eventId("view_item"),
+    event_id: id,
     ecommerce: {
       currency: CURRENCY,
       value: variant.price,
@@ -63,9 +83,16 @@ export function trackViewItem(product: Product, variant: Variant) {
 }
 
 export function trackAddToCart(product: Product, variant: Variant, quantity: number) {
+  const id = eventId("add_to_cart");
+  tiktokTrack("AddToCart", {
+    contents: [toTikTokContent(product, variant, quantity)],
+    value: variant.price * quantity,
+    currency: CURRENCY,
+    eventId: id,
+  });
   push({
     event: "add_to_cart_stape",
-    event_id: eventId("add_to_cart"),
+    event_id: id,
     ecommerce: {
       currency: CURRENCY,
       value: variant.price * quantity,
@@ -108,9 +135,16 @@ export function trackViewCart(lines: CartLine[]) {
 }
 
 export function trackBeginCheckout(lines: CartLine[]) {
+  const id = eventId("begin_checkout");
+  tiktokTrack("InitiateCheckout", {
+    contents: lines.map(l => toTikTokContent(l.product, l.variant, l.quantity)),
+    value: linesValue(lines),
+    currency: CURRENCY,
+    eventId: id,
+  });
   push({
     event: "begin_checkout_stape",
-    event_id: eventId("begin_checkout"),
+    event_id: id,
     ecommerce: {
       currency: CURRENCY,
       value: linesValue(lines),
