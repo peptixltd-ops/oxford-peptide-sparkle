@@ -1,6 +1,8 @@
 // Shopify Storefront API client — handles cart creation and checkout redirect.
 // Only Oxford Research Peptides (ORP-) variants are mapped here.
 
+import { tiktokAttribution } from "./tiktok";
+
 const SHOPIFY_DOMAIN = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
 const SHOPIFY_TOKEN = "437af38197c46209f82f5524370330c5";
@@ -77,6 +79,11 @@ function formatCheckoutUrl(url: string): string {
   try {
     const u = new URL(url);
     u.searchParams.set("channel", "online_store");
+    // Carry TikTok attribution across the hop to the Shopify checkout domain,
+    // otherwise the checkout/purchase events cannot be attributed.
+    const { ttclid, ttp } = tiktokAttribution();
+    if (ttclid) u.searchParams.set("ttclid", ttclid);
+    if (ttp) u.searchParams.set("ttp", ttp);
     return u.toString();
   } catch {
     return url;
