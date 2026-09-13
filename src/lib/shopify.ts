@@ -1,6 +1,8 @@
 // Shopify Storefront API client — handles cart creation and checkout redirect.
 // Only Oxford Research Peptides (ORP-) variants are mapped here.
 
+import { tiktokAttribution } from "./tiktok";
+
 const SHOPIFY_DOMAIN = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
 const SHOPIFY_TOKEN = "437af38197c46209f82f5524370330c5";
