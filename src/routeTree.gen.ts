@@ -75,6 +75,7 @@ import { Route as ResearchHubCollectionsSlugRouteImport } from './routes/researc
 import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
 import { Route as EditorialReviewersIdRouteImport } from './routes/editorial.reviewers.$id'
 import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.authors.$id'
+import { Route as ApiPublicShopifyOrderPaidRouteImport } from './routes/api/public/shopify-order-paid'
 import { Route as ApiPublicShopifyOauthRouteImport } from './routes/api/public/shopify-oauth'
 import { Route as ApiPublicRecoveryDiscountRouteImport } from './routes/api/public/recovery-discount'
 import { Route as ApiPublicNewsletterSubscribeRouteImport } from './routes/api/public/newsletter-subscribe'
@@ -425,6 +426,12 @@ const EditorialAuthorsIdRoute = EditorialAuthorsIdRouteImport.update({
   path: '/editorial/authors/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicShopifyOrderPaidRoute =
+  ApiPublicShopifyOrderPaidRouteImport.update({
+    id: '/api/public/shopify-order-paid',
+    path: '/api/public/shopify-order-paid',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicShopifyOauthRoute = ApiPublicShopifyOauthRouteImport.update({
   id: '/api/public/shopify-oauth',
   path: '/api/public/shopify-oauth',
@@ -498,6 +505,7 @@ export interface FileRoutesByFullPath {
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
+  '/api/public/shopify-order-paid': typeof ApiPublicShopifyOrderPaidRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -567,6 +575,7 @@ export interface FileRoutesByTo {
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
+  '/api/public/shopify-order-paid': typeof ApiPublicShopifyOrderPaidRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -640,6 +649,7 @@ export interface FileRoutesById {
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
+  '/api/public/shopify-order-paid': typeof ApiPublicShopifyOrderPaidRoute
   '/editorial/authors/$id': typeof EditorialAuthorsIdRoute
   '/editorial/reviewers/$id': typeof EditorialReviewersIdRoute
   '/explore/pathways/$type': typeof ExplorePathwaysTypeRoute
@@ -714,6 +724,7 @@ export interface FileRouteTypes {
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
     | '/api/public/shopify-oauth'
+    | '/api/public/shopify-order-paid'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -783,6 +794,7 @@ export interface FileRouteTypes {
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
     | '/api/public/shopify-oauth'
+    | '/api/public/shopify-order-paid'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -855,6 +867,7 @@ export interface FileRouteTypes {
     | '/api/public/newsletter-subscribe'
     | '/api/public/recovery-discount'
     | '/api/public/shopify-oauth'
+    | '/api/public/shopify-order-paid'
     | '/editorial/authors/$id'
     | '/editorial/reviewers/$id'
     | '/explore/pathways/$type'
@@ -922,6 +935,7 @@ export interface RootRouteChildren {
   ApiPublicNewsletterSubscribeRoute: typeof ApiPublicNewsletterSubscribeRoute
   ApiPublicRecoveryDiscountRoute: typeof ApiPublicRecoveryDiscountRoute
   ApiPublicShopifyOauthRoute: typeof ApiPublicShopifyOauthRouteWithChildren
+  ApiPublicShopifyOrderPaidRoute: typeof ApiPublicShopifyOrderPaidRoute
   EditorialAuthorsIdRoute: typeof EditorialAuthorsIdRoute
   EditorialReviewersIdRoute: typeof EditorialReviewersIdRoute
 }
@@ -1390,6 +1404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorialAuthorsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/shopify-order-paid': {
+      id: '/api/public/shopify-order-paid'
+      path: '/api/public/shopify-order-paid'
+      fullPath: '/api/public/shopify-order-paid'
+      preLoaderRoute: typeof ApiPublicShopifyOrderPaidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/shopify-oauth': {
       id: '/api/public/shopify-oauth'
       path: '/api/public/shopify-oauth'
@@ -1556,6 +1577,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicNewsletterSubscribeRoute: ApiPublicNewsletterSubscribeRoute,
   ApiPublicRecoveryDiscountRoute: ApiPublicRecoveryDiscountRoute,
   ApiPublicShopifyOauthRoute: ApiPublicShopifyOauthRouteWithChildren,
+  ApiPublicShopifyOrderPaidRoute: ApiPublicShopifyOrderPaidRoute,
   EditorialAuthorsIdRoute: EditorialAuthorsIdRoute,
   EditorialReviewersIdRoute: EditorialReviewersIdRoute,
 }
