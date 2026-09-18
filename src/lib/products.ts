@@ -35,7 +35,7 @@ const v = (id: string, price: number, label?: string): Variant => ({ id, label: 
 export const products: Product[] = [
   {
     slug: "retatrutide",
-    name: "Retatrutide",
+    name: "RT GLP",
     purity: ">99% Purity",
     img: vialRetatrutide,
     accent: "#1d4f8a",
