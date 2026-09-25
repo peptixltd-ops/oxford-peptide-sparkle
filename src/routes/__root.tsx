@@ -98,10 +98,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" },
     ],
     scripts: [
-      // Google Tag Manager (web container)
+      // Google Tag Manager (GTM-K8DXDC28 via custom domain)
       {
         children:
-          "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TKX4G2TK');",
+          "(function(w,d,s,l,i){\nw[l]=w[l]||[];\nw[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});\nvar f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),\ndl=l!='dataLayer'?'&l='+l:'';\nj.async=true;\nj.src='https://bhs.oxfordresearchpeptides.com/gtm.js?id='+i+dl;\nf.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-K8DXDC28');",
       },
       // Search Atlas / OTTO dynamic optimization pixel
       {
@@ -191,7 +191,7 @@ function RootShell({ children }: { children: ReactNode }) {
         {/* Google Tag Manager (noscript) — must be immediately after opening <body> */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TKX4G2TK"
+            src="https://bhs.oxfordresearchpeptides.com/ns.html?id=GTM-K8DXDC28"
             height={0}
             width={0}
             style={{ display: "none", visibility: "hidden" }}
