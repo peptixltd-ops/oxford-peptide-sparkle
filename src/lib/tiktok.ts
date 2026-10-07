@@ -7,6 +7,8 @@
 // dataLayer for the matching GA4/Meta event, so a server-side twin (Events API)
 // can dedupe against the browser event.
 
+import { sendTikTokServerEvent } from "./tiktok-capi.functions";
+
 export const TIKTOK_PIXEL_ID = "DB1V0D3C77UA626EFU30";
 
 type TtqInstance = {
@@ -77,9 +79,7 @@ export function tiktokTrack(
   }
   // Server-side twin with the same event_id so TikTok dedupes the pair.
   const attr = tiktokAttribution();
-  void import("./tiktok-capi.functions")
-    .then(({ sendTikTokServerEvent }) =>
-      sendTikTokServerEvent({
+  void sendTikTokServerEvent({
         data: {
           event,
           eventId: args.eventId,
@@ -95,9 +95,7 @@ export function tiktokTrack(
           })),
           ...attr,
         },
-      }),
-    )
-    .catch(() => {});
+      }).catch(() => {});
 }
 
 /** TikTok click id + first-party cookie, needed to keep attribution across the
