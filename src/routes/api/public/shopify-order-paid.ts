@@ -6,7 +6,7 @@ import { createHmac, createHash, timingSafeEqual } from "crypto";
  *
  * Browser pixels can't track the purchase because checkout happens on
  * Shopify's domain. This webhook closes the loop server-side, sending a
- * Purchase event to pixel DAHEEERC77U250DBOKQG with the real order value.
+ * Purchase event to pixel DB1V0D3C77UA626EFU30 with the real order value.
  *
  * Setup (one-off, in Shopify admin):
  *   Settings -> Notifications -> Webhooks -> Create webhook
@@ -16,7 +16,7 @@ import { createHmac, createHash, timingSafeEqual } from "crypto";
  * Then save the webhook signing secret as SHOPIFY_WEBHOOK_SECRET.
  */
 
-const TIKTOK_PIXEL_ID = "DAHEEERC77U250DBOKQG";
+const TIKTOK_PIXEL_ID = "DB1V0D3C77UA626EFU30";
 const TIKTOK_EVENTS_URL = "https://business-api.tiktok.com/open_api/v1.3/event/track/";
 
 const sha256 = (v: string) => createHash("sha256").update(v.trim().toLowerCase()).digest("hex");
