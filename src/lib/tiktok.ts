@@ -75,6 +75,29 @@ export function tiktokTrack(
   } catch {
     // Never let a tracking failure break the shopping flow.
   }
+  // Server-side twin with the same event_id so TikTok dedupes the pair.
+  const attr = tiktokAttribution();
+  void import("./tiktok-capi.functions")
+    .then(({ sendTikTokServerEvent }) =>
+      sendTikTokServerEvent({
+        data: {
+          event,
+          eventId: args.eventId,
+          url: window.location.href,
+          value: Number(args.value.toFixed(2)),
+          currency: args.currency,
+          contents: args.contents.map((c) => ({
+            content_id: c.content_id,
+            content_type: c.content_type,
+            content_name: c.content_name,
+            quantity: c.quantity,
+            price: c.price,
+          })),
+          ...attr,
+        },
+      }),
+    )
+    .catch(() => {});
 }
 
 /** TikTok click id + first-party cookie, needed to keep attribution across the
