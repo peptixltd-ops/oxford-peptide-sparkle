@@ -9,246 +9,81 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as AccountRouteImport } from './routes/account'
-import { Route as CancellationPolicyRouteImport } from './routes/cancellation-policy'
-import { Route as CartRouteImport } from './routes/cart'
-import { Route as CertificateOfAnalysisRouteImport } from './routes/certificate-of-analysis'
-import { Route as CoasRouteImport } from './routes/coas'
-import { Route as CompoundsRouteImport } from './routes/compounds'
-import { Route as ConceptRouteImport } from './routes/concept'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
-import { Route as CorrectionsPolicyRouteImport } from './routes/corrections-policy'
-import { Route as DisclaimerRouteImport } from './routes/disclaimer'
-import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
-import { Route as EditorialStandardsRouteImport } from './routes/editorial-standards'
-import { Route as ExploreRouteImport } from './routes/explore'
-import { Route as FaqsRouteImport } from './routes/faqs'
-import { Route as FundingAndConflictsRouteImport } from './routes/funding-and-conflicts'
-import { Route as LabTestingRouteImport } from './routes/lab-testing'
-import { Route as MethodologyRouteImport } from './routes/methodology'
-import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
-import { Route as PublicationWorkflowRouteImport } from './routes/publication-workflow'
-import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
-import { Route as ResearchHubRouteImport } from './routes/research-hub'
-import { Route as ResearchMethodologyRouteImport } from './routes/research-methodology'
-import { Route as ResearchUseOnlyRouteImport } from './routes/research-use-only'
-import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
-import { Route as ScientificAdvisoryBoardRouteImport } from './routes/scientific-advisory-board'
-import { Route as SearchRouteImport } from './routes/search'
-import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
-import { Route as ShopRouteImport } from './routes/shop'
-import { Route as SitemapRouteImport } from './routes/sitemap'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as TestingAndQualityControlRouteImport } from './routes/testing-and-quality-control'
 import { Route as WholesaleRouteImport } from './routes/wholesale'
-import { Route as CompoundsIndexRouteImport } from './routes/compounds.index'
-import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
-import { Route as DashboardAbandonedCheckoutRouteImport } from './routes/dashboard.abandoned-checkout'
-import { Route as DashboardEditorialRouteImport } from './routes/dashboard.editorial'
-import { Route as ExploreIndexRouteImport } from './routes/explore.index'
-import { Route as ExploreCompoundsRouteImport } from './routes/explore.compounds'
-import { Route as ExploreMechanismsRouteImport } from './routes/explore.mechanisms'
-import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as TestingAndQualityControlRouteImport } from './routes/testing-and-quality-control'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SitemapRouteImport } from './routes/sitemap'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as ScientificAdvisoryBoardRouteImport } from './routes/scientific-advisory-board'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as ResearchUseOnlyRouteImport } from './routes/research-use-only'
+import { Route as ResearchMethodologyRouteImport } from './routes/research-methodology'
+import { Route as ResearchHubRouteImport } from './routes/research-hub'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as PublicationWorkflowRouteImport } from './routes/publication-workflow'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as LabTestingRouteImport } from './routes/lab-testing'
+import { Route as FundingAndConflictsRouteImport } from './routes/funding-and-conflicts'
+import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as EditorialStandardsRouteImport } from './routes/editorial-standards'
+import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as CorrectionsPolicyRouteImport } from './routes/corrections-policy'
+import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConceptRouteImport } from './routes/concept'
+import { Route as CompoundsRouteImport } from './routes/compounds'
+import { Route as CoasRouteImport } from './routes/coas'
+import { Route as CertificateOfAnalysisRouteImport } from './routes/certificate-of-analysis'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CancellationPolicyRouteImport } from './routes/cancellation-policy'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResearchHubIndexRouteImport } from './routes/research-hub.index'
-import { Route as ApiPublicNewsletterSubscribeRouteImport } from './routes/api/public/newsletter-subscribe'
-import { Route as ApiPublicRecoveryDiscountRouteImport } from './routes/api/public/recovery-discount'
-import { Route as ApiPublicShopifyOauthRouteImport } from './routes/api/public/shopify-oauth'
-import { Route as ApiPublicShopifyOrderPaidRouteImport } from './routes/api/public/shopify-order-paid'
-import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.authors.$id'
-import { Route as EditorialReviewersIdRouteImport } from './routes/editorial.reviewers.$id'
-import { Route as ExplorePathwaysIndexRouteImport } from './routes/explore.pathways.index'
-import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
-import { Route as ResearchHubCollectionsIndexRouteImport } from './routes/research-hub.collections.index'
-import { Route as ResearchHubCollectionsSlugRouteImport } from './routes/research-hub.collections.$slug'
-import { Route as ResearchHubComparisonsIndexRouteImport } from './routes/research-hub.comparisons.index'
-import { Route as ResearchHubComparisonsSlugRouteImport } from './routes/research-hub.comparisons.$slug'
-import { Route as ResearchHubFaqsIndexRouteImport } from './routes/research-hub.faqs.index'
-import { Route as ResearchHubGlossaryIndexRouteImport } from './routes/research-hub.glossary.index'
-import { Route as ResearchHubGlossarySlugRouteImport } from './routes/research-hub.glossary.$slug'
-import { Route as ResearchHubGuidesIndexRouteImport } from './routes/research-hub.guides.index'
-import { Route as ResearchHubGuidesSlugRouteImport } from './routes/research-hub.guides.$slug'
-import { Route as ResearchHubLiteratureIndexRouteImport } from './routes/research-hub.literature.index'
-import { Route as ResearchHubLiteratureSlugRouteImport } from './routes/research-hub.literature.$slug'
-import { Route as ResearchHubMechanismsIndexRouteImport } from './routes/research-hub.mechanisms.index'
-import { Route as ResearchHubMechanismsSlugRouteImport } from './routes/research-hub.mechanisms.$slug'
-import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
-import { Route as ResearchHubMethodologySlugRouteImport } from './routes/research-hub.methodology.$slug'
+import { Route as ExploreIndexRouteImport } from './routes/explore.index'
+import { Route as CompoundsIndexRouteImport } from './routes/compounds.index'
+import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as ExploreMechanismsRouteImport } from './routes/explore.mechanisms'
+import { Route as ExploreCompoundsRouteImport } from './routes/explore.compounds'
+import { Route as DashboardEditorialRouteImport } from './routes/dashboard.editorial'
+import { Route as DashboardAbandonedCheckoutRouteImport } from './routes/dashboard.abandoned-checkout'
+import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
 import { Route as ResearchHubProgrammesIndexRouteImport } from './routes/research-hub.programmes.index'
+import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
+import { Route as ResearchHubMechanismsIndexRouteImport } from './routes/research-hub.mechanisms.index'
+import { Route as ResearchHubLiteratureIndexRouteImport } from './routes/research-hub.literature.index'
+import { Route as ResearchHubGuidesIndexRouteImport } from './routes/research-hub.guides.index'
+import { Route as ResearchHubGlossaryIndexRouteImport } from './routes/research-hub.glossary.index'
+import { Route as ResearchHubFaqsIndexRouteImport } from './routes/research-hub.faqs.index'
+import { Route as ResearchHubComparisonsIndexRouteImport } from './routes/research-hub.comparisons.index'
+import { Route as ResearchHubCollectionsIndexRouteImport } from './routes/research-hub.collections.index'
+import { Route as ExplorePathwaysIndexRouteImport } from './routes/explore.pathways.index'
 import { Route as ResearchHubProgrammesSlugRouteImport } from './routes/research-hub.programmes.$slug'
+import { Route as ResearchHubMethodologySlugRouteImport } from './routes/research-hub.methodology.$slug'
+import { Route as ResearchHubMechanismsSlugRouteImport } from './routes/research-hub.mechanisms.$slug'
+import { Route as ResearchHubLiteratureSlugRouteImport } from './routes/research-hub.literature.$slug'
+import { Route as ResearchHubGuidesSlugRouteImport } from './routes/research-hub.guides.$slug'
+import { Route as ResearchHubGlossarySlugRouteImport } from './routes/research-hub.glossary.$slug'
+import { Route as ResearchHubComparisonsSlugRouteImport } from './routes/research-hub.comparisons.$slug'
+import { Route as ResearchHubCollectionsSlugRouteImport } from './routes/research-hub.collections.$slug'
+import { Route as ExplorePathwaysTypeRouteImport } from './routes/explore.pathways.$type'
+import { Route as EditorialReviewersIdRouteImport } from './routes/editorial.reviewers.$id'
+import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.authors.$id'
+import { Route as ApiPublicShopifyOrderPaidRouteImport } from './routes/api/public/shopify-order-paid'
+import { Route as ApiPublicShopifyOauthRouteImport } from './routes/api/public/shopify-oauth'
+import { Route as ApiPublicRecoveryDiscountRouteImport } from './routes/api/public/recovery-discount'
+import { Route as ApiPublicNewsletterSubscribeRouteImport } from './routes/api/public/newsletter-subscribe'
 import { Route as ApiPublicShopifyOauthCallbackRouteImport } from './routes/api/public/shopify-oauth.callback'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AccountRoute = AccountRouteImport.update({
-  id: '/account',
-  path: '/account',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CancellationPolicyRoute = CancellationPolicyRouteImport.update({
-  id: '/cancellation-policy',
-  path: '/cancellation-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CartRoute = CartRouteImport.update({
-  id: '/cart',
-  path: '/cart',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CertificateOfAnalysisRoute = CertificateOfAnalysisRouteImport.update({
-  id: '/certificate-of-analysis',
-  path: '/certificate-of-analysis',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CoasRoute = CoasRouteImport.update({
-  id: '/coas',
-  path: '/coas',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CompoundsRoute = CompoundsRouteImport.update({
-  id: '/compounds',
-  path: '/compounds',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ConceptRoute = ConceptRouteImport.update({
-  id: '/concept',
-  path: '/concept',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CookiePolicyRoute = CookiePolicyRouteImport.update({
-  id: '/cookie-policy',
-  path: '/cookie-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CorrectionsPolicyRoute = CorrectionsPolicyRouteImport.update({
-  id: '/corrections-policy',
-  path: '/corrections-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DisclaimerRoute = DisclaimerRouteImport.update({
-  id: '/disclaimer',
-  path: '/disclaimer',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
-  id: '/editorial-policy',
-  path: '/editorial-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditorialStandardsRoute = EditorialStandardsRouteImport.update({
-  id: '/editorial-standards',
-  path: '/editorial-standards',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExploreRoute = ExploreRouteImport.update({
-  id: '/explore',
-  path: '/explore',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaqsRoute = FaqsRouteImport.update({
-  id: '/faqs',
-  path: '/faqs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FundingAndConflictsRoute = FundingAndConflictsRouteImport.update({
-  id: '/funding-and-conflicts',
-  path: '/funding-and-conflicts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LabTestingRoute = LabTestingRouteImport.update({
-  id: '/lab-testing',
-  path: '/lab-testing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MethodologyRoute = MethodologyRouteImport.update({
-  id: '/methodology',
-  path: '/methodology',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
-  id: '/privacy-policy',
-  path: '/privacy-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PublicationWorkflowRoute = PublicationWorkflowRouteImport.update({
-  id: '/publication-workflow',
-  path: '/publication-workflow',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RefundPolicyRoute = RefundPolicyRouteImport.update({
-  id: '/refund-policy',
-  path: '/refund-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResearchHubRoute = ResearchHubRouteImport.update({
-  id: '/research-hub',
-  path: '/research-hub',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResearchMethodologyRoute = ResearchMethodologyRouteImport.update({
-  id: '/research-methodology',
-  path: '/research-methodology',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResearchUseOnlyRoute = ResearchUseOnlyRouteImport.update({
-  id: '/research-use-only',
-  path: '/research-use-only',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
-  id: '/robots.txt',
-  path: '/robots.txt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ScientificAdvisoryBoardRoute = ScientificAdvisoryBoardRouteImport.update({
-  id: '/scientific-advisory-board',
-  path: '/scientific-advisory-board',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SearchRoute = SearchRouteImport.update({
-  id: '/search',
-  path: '/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
-  id: '/shipping-policy',
-  path: '/shipping-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShopRoute = ShopRouteImport.update({
-  id: '/shop',
-  path: '/shop',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapRoute = SitemapRouteImport.update({
-  id: '/sitemap',
-  path: '/sitemap',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
+const WholesaleRoute = WholesaleRouteImport.update({
+  id: '/wholesale',
+  path: '/wholesale',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TestingAndQualityControlRoute =
@@ -257,50 +92,174 @@ const TestingAndQualityControlRoute =
     path: '/testing-and-quality-control',
     getParentRoute: () => rootRouteImport,
   } as any)
-const WholesaleRoute = WholesaleRouteImport.update({
-  id: '/wholesale',
-  path: '/wholesale',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CompoundsIndexRoute = CompoundsIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => CompoundsRoute,
-} as any)
-const CompoundsSlugRoute = CompoundsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => CompoundsRoute,
-} as any)
-const DashboardAbandonedCheckoutRoute =
-  DashboardAbandonedCheckoutRouteImport.update({
-    id: '/dashboard/abandoned-checkout',
-    path: '/dashboard/abandoned-checkout',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const DashboardEditorialRoute = DashboardEditorialRouteImport.update({
-  id: '/dashboard/editorial',
-  path: '/dashboard/editorial',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ExploreIndexRoute = ExploreIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ExploreRoute,
+const SitemapRoute = SitemapRouteImport.update({
+  id: '/sitemap',
+  path: '/sitemap',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ExploreCompoundsRoute = ExploreCompoundsRouteImport.update({
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
+  id: '/shipping-policy',
+  path: '/shipping-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScientificAdvisoryBoardRoute = ScientificAdvisoryBoardRouteImport.update({
+  id: '/scientific-advisory-board',
+  path: '/scientific-advisory-board',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchUseOnlyRoute = ResearchUseOnlyRouteImport.update({
+  id: '/research-use-only',
+  path: '/research-use-only',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchMethodologyRoute = ResearchMethodologyRouteImport.update({
+  id: '/research-methodology',
+  path: '/research-methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchHubRoute = ResearchHubRouteImport.update({
+  id: '/research-hub',
+  path: '/research-hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicationWorkflowRoute = PublicationWorkflowRouteImport.update({
+  id: '/publication-workflow',
+  path: '/publication-workflow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabTestingRoute = LabTestingRouteImport.update({
+  id: '/lab-testing',
+  path: '/lab-testing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FundingAndConflictsRoute = FundingAndConflictsRouteImport.update({
+  id: '/funding-and-conflicts',
+  path: '/funding-and-conflicts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialStandardsRoute = EditorialStandardsRouteImport.update({
+  id: '/editorial-standards',
+  path: '/editorial-standards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
+  id: '/editorial-policy',
+  path: '/editorial-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorrectionsPolicyRoute = CorrectionsPolicyRouteImport.update({
+  id: '/corrections-policy',
+  path: '/corrections-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiePolicyRoute = CookiePolicyRouteImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptRoute = ConceptRouteImport.update({
+  id: '/concept',
+  path: '/concept',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompoundsRoute = CompoundsRouteImport.update({
   id: '/compounds',
   path: '/compounds',
-  getParentRoute: () => ExploreRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ExploreMechanismsRoute = ExploreMechanismsRouteImport.update({
-  id: '/mechanisms',
-  path: '/mechanisms',
-  getParentRoute: () => ExploreRoute,
+const CoasRoute = CoasRouteImport.update({
+  id: '/coas',
+  path: '/coas',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsSlugRoute = ProductsSlugRouteImport.update({
-  id: '/products/$slug',
-  path: '/products/$slug',
+const CertificateOfAnalysisRoute = CertificateOfAnalysisRouteImport.update({
+  id: '/certificate-of-analysis',
+  path: '/certificate-of-analysis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CancellationPolicyRoute = CancellationPolicyRouteImport.update({
+  id: '/cancellation-policy',
+  path: '/cancellation-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResearchHubIndexRoute = ResearchHubIndexRouteImport.update({
@@ -308,121 +267,51 @@ const ResearchHubIndexRoute = ResearchHubIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ResearchHubRoute,
 } as any)
-const ApiPublicNewsletterSubscribeRoute =
-  ApiPublicNewsletterSubscribeRouteImport.update({
-    id: '/api/public/newsletter-subscribe',
-    path: '/api/public/newsletter-subscribe',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ApiPublicRecoveryDiscountRoute =
-  ApiPublicRecoveryDiscountRouteImport.update({
-    id: '/api/public/recovery-discount',
-    path: '/api/public/recovery-discount',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ApiPublicShopifyOauthRoute = ApiPublicShopifyOauthRouteImport.update({
-  id: '/api/public/shopify-oauth',
-  path: '/api/public/shopify-oauth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicShopifyOrderPaidRoute =
-  ApiPublicShopifyOrderPaidRouteImport.update({
-    id: '/api/public/shopify-order-paid',
-    path: '/api/public/shopify-order-paid',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const EditorialAuthorsIdRoute = EditorialAuthorsIdRouteImport.update({
-  id: '/editorial/authors/$id',
-  path: '/editorial/authors/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditorialReviewersIdRoute = EditorialReviewersIdRouteImport.update({
-  id: '/editorial/reviewers/$id',
-  path: '/editorial/reviewers/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExplorePathwaysIndexRoute = ExplorePathwaysIndexRouteImport.update({
-  id: '/pathways/',
-  path: '/pathways/',
+const ExploreIndexRoute = ExploreIndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => ExploreRoute,
 } as any)
-const ExplorePathwaysTypeRoute = ExplorePathwaysTypeRouteImport.update({
-  id: '/pathways/$type',
-  path: '/pathways/$type',
+const CompoundsIndexRoute = CompoundsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CompoundsRoute,
+} as any)
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/products/$slug',
+  path: '/products/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreMechanismsRoute = ExploreMechanismsRouteImport.update({
+  id: '/mechanisms',
+  path: '/mechanisms',
   getParentRoute: () => ExploreRoute,
 } as any)
-const ResearchHubCollectionsIndexRoute =
-  ResearchHubCollectionsIndexRouteImport.update({
-    id: '/collections/',
-    path: '/collections/',
-    getParentRoute: () => ResearchHubRoute,
-  } as any)
-const ResearchHubCollectionsSlugRoute =
-  ResearchHubCollectionsSlugRouteImport.update({
-    id: '/collections/$slug',
-    path: '/collections/$slug',
-    getParentRoute: () => ResearchHubRoute,
-  } as any)
-const ResearchHubComparisonsIndexRoute =
-  ResearchHubComparisonsIndexRouteImport.update({
-    id: '/comparisons/',
-    path: '/comparisons/',
-    getParentRoute: () => ResearchHubRoute,
-  } as any)
-const ResearchHubComparisonsSlugRoute =
-  ResearchHubComparisonsSlugRouteImport.update({
-    id: '/comparisons/$slug',
-    path: '/comparisons/$slug',
-    getParentRoute: () => ResearchHubRoute,
-  } as any)
-const ResearchHubFaqsIndexRoute = ResearchHubFaqsIndexRouteImport.update({
-  id: '/faqs/',
-  path: '/faqs/',
-  getParentRoute: () => ResearchHubRoute,
+const ExploreCompoundsRoute = ExploreCompoundsRouteImport.update({
+  id: '/compounds',
+  path: '/compounds',
+  getParentRoute: () => ExploreRoute,
 } as any)
-const ResearchHubGlossaryIndexRoute =
-  ResearchHubGlossaryIndexRouteImport.update({
-    id: '/glossary/',
-    path: '/glossary/',
-    getParentRoute: () => ResearchHubRoute,
-  } as any)
-const ResearchHubGlossarySlugRoute = ResearchHubGlossarySlugRouteImport.update({
-  id: '/glossary/$slug',
-  path: '/glossary/$slug',
-  getParentRoute: () => ResearchHubRoute,
+const DashboardEditorialRoute = DashboardEditorialRouteImport.update({
+  id: '/dashboard/editorial',
+  path: '/dashboard/editorial',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ResearchHubGuidesIndexRoute = ResearchHubGuidesIndexRouteImport.update({
-  id: '/guides/',
-  path: '/guides/',
-  getParentRoute: () => ResearchHubRoute,
+const DashboardAbandonedCheckoutRoute =
+  DashboardAbandonedCheckoutRouteImport.update({
+    id: '/dashboard/abandoned-checkout',
+    path: '/dashboard/abandoned-checkout',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CompoundsSlugRoute = CompoundsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CompoundsRoute,
 } as any)
-const ResearchHubGuidesSlugRoute = ResearchHubGuidesSlugRouteImport.update({
-  id: '/guides/$slug',
-  path: '/guides/$slug',
-  getParentRoute: () => ResearchHubRoute,
-} as any)
-const ResearchHubLiteratureIndexRoute =
-  ResearchHubLiteratureIndexRouteImport.update({
-    id: '/literature/',
-    path: '/literature/',
-    getParentRoute: () => ResearchHubRoute,
-  } as any)
-const ResearchHubLiteratureSlugRoute =
-  ResearchHubLiteratureSlugRouteImport.update({
-    id: '/literature/$slug',
-    path: '/literature/$slug',
-    getParentRoute: () => ResearchHubRoute,
-  } as any)
-const ResearchHubMechanismsIndexRoute =
-  ResearchHubMechanismsIndexRouteImport.update({
-    id: '/mechanisms/',
-    path: '/mechanisms/',
-    getParentRoute: () => ResearchHubRoute,
-  } as any)
-const ResearchHubMechanismsSlugRoute =
-  ResearchHubMechanismsSlugRouteImport.update({
-    id: '/mechanisms/$slug',
-    path: '/mechanisms/$slug',
+const ResearchHubProgrammesIndexRoute =
+  ResearchHubProgrammesIndexRouteImport.update({
+    id: '/programmes/',
+    path: '/programmes/',
     getParentRoute: () => ResearchHubRoute,
   } as any)
 const ResearchHubMethodologyIndexRoute =
@@ -431,23 +320,134 @@ const ResearchHubMethodologyIndexRoute =
     path: '/methodology/',
     getParentRoute: () => ResearchHubRoute,
   } as any)
+const ResearchHubMechanismsIndexRoute =
+  ResearchHubMechanismsIndexRouteImport.update({
+    id: '/mechanisms/',
+    path: '/mechanisms/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubLiteratureIndexRoute =
+  ResearchHubLiteratureIndexRouteImport.update({
+    id: '/literature/',
+    path: '/literature/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubGuidesIndexRoute = ResearchHubGuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => ResearchHubRoute,
+} as any)
+const ResearchHubGlossaryIndexRoute =
+  ResearchHubGlossaryIndexRouteImport.update({
+    id: '/glossary/',
+    path: '/glossary/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubFaqsIndexRoute = ResearchHubFaqsIndexRouteImport.update({
+  id: '/faqs/',
+  path: '/faqs/',
+  getParentRoute: () => ResearchHubRoute,
+} as any)
+const ResearchHubComparisonsIndexRoute =
+  ResearchHubComparisonsIndexRouteImport.update({
+    id: '/comparisons/',
+    path: '/comparisons/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubCollectionsIndexRoute =
+  ResearchHubCollectionsIndexRouteImport.update({
+    id: '/collections/',
+    path: '/collections/',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ExplorePathwaysIndexRoute = ExplorePathwaysIndexRouteImport.update({
+  id: '/pathways/',
+  path: '/pathways/',
+  getParentRoute: () => ExploreRoute,
+} as any)
+const ResearchHubProgrammesSlugRoute =
+  ResearchHubProgrammesSlugRouteImport.update({
+    id: '/programmes/$slug',
+    path: '/programmes/$slug',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
 const ResearchHubMethodologySlugRoute =
   ResearchHubMethodologySlugRouteImport.update({
     id: '/methodology/$slug',
     path: '/methodology/$slug',
     getParentRoute: () => ResearchHubRoute,
   } as any)
-const ResearchHubProgrammesIndexRoute =
-  ResearchHubProgrammesIndexRouteImport.update({
-    id: '/programmes/',
-    path: '/programmes/',
+const ResearchHubMechanismsSlugRoute =
+  ResearchHubMechanismsSlugRouteImport.update({
+    id: '/mechanisms/$slug',
+    path: '/mechanisms/$slug',
     getParentRoute: () => ResearchHubRoute,
   } as any)
-const ResearchHubProgrammesSlugRoute =
-  ResearchHubProgrammesSlugRouteImport.update({
-    id: '/programmes/$slug',
-    path: '/programmes/$slug',
+const ResearchHubLiteratureSlugRoute =
+  ResearchHubLiteratureSlugRouteImport.update({
+    id: '/literature/$slug',
+    path: '/literature/$slug',
     getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubGuidesSlugRoute = ResearchHubGuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => ResearchHubRoute,
+} as any)
+const ResearchHubGlossarySlugRoute = ResearchHubGlossarySlugRouteImport.update({
+  id: '/glossary/$slug',
+  path: '/glossary/$slug',
+  getParentRoute: () => ResearchHubRoute,
+} as any)
+const ResearchHubComparisonsSlugRoute =
+  ResearchHubComparisonsSlugRouteImport.update({
+    id: '/comparisons/$slug',
+    path: '/comparisons/$slug',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ResearchHubCollectionsSlugRoute =
+  ResearchHubCollectionsSlugRouteImport.update({
+    id: '/collections/$slug',
+    path: '/collections/$slug',
+    getParentRoute: () => ResearchHubRoute,
+  } as any)
+const ExplorePathwaysTypeRoute = ExplorePathwaysTypeRouteImport.update({
+  id: '/pathways/$type',
+  path: '/pathways/$type',
+  getParentRoute: () => ExploreRoute,
+} as any)
+const EditorialReviewersIdRoute = EditorialReviewersIdRouteImport.update({
+  id: '/editorial/reviewers/$id',
+  path: '/editorial/reviewers/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialAuthorsIdRoute = EditorialAuthorsIdRouteImport.update({
+  id: '/editorial/authors/$id',
+  path: '/editorial/authors/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicShopifyOrderPaidRoute =
+  ApiPublicShopifyOrderPaidRouteImport.update({
+    id: '/api/public/shopify-order-paid',
+    path: '/api/public/shopify-order-paid',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicShopifyOauthRoute = ApiPublicShopifyOauthRouteImport.update({
+  id: '/api/public/shopify-oauth',
+  path: '/api/public/shopify-oauth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicRecoveryDiscountRoute =
+  ApiPublicRecoveryDiscountRouteImport.update({
+    id: '/api/public/recovery-discount',
+    path: '/api/public/recovery-discount',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicNewsletterSubscribeRoute =
+  ApiPublicNewsletterSubscribeRouteImport.update({
+    id: '/api/public/newsletter-subscribe',
+    path: '/api/public/newsletter-subscribe',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const ApiPublicShopifyOauthCallbackRoute =
   ApiPublicShopifyOauthCallbackRouteImport.update({
@@ -942,242 +942,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/account': {
-      id: '/account'
-      path: '/account'
-      fullPath: '/account'
-      preLoaderRoute: typeof AccountRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cancellation-policy': {
-      id: '/cancellation-policy'
-      path: '/cancellation-policy'
-      fullPath: '/cancellation-policy'
-      preLoaderRoute: typeof CancellationPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cart': {
-      id: '/cart'
-      path: '/cart'
-      fullPath: '/cart'
-      preLoaderRoute: typeof CartRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/certificate-of-analysis': {
-      id: '/certificate-of-analysis'
-      path: '/certificate-of-analysis'
-      fullPath: '/certificate-of-analysis'
-      preLoaderRoute: typeof CertificateOfAnalysisRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/coas': {
-      id: '/coas'
-      path: '/coas'
-      fullPath: '/coas'
-      preLoaderRoute: typeof CoasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/compounds': {
-      id: '/compounds'
-      path: '/compounds'
-      fullPath: '/compounds'
-      preLoaderRoute: typeof CompoundsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/concept': {
-      id: '/concept'
-      path: '/concept'
-      fullPath: '/concept'
-      preLoaderRoute: typeof ConceptRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cookie-policy': {
-      id: '/cookie-policy'
-      path: '/cookie-policy'
-      fullPath: '/cookie-policy'
-      preLoaderRoute: typeof CookiePolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/corrections-policy': {
-      id: '/corrections-policy'
-      path: '/corrections-policy'
-      fullPath: '/corrections-policy'
-      preLoaderRoute: typeof CorrectionsPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/disclaimer': {
-      id: '/disclaimer'
-      path: '/disclaimer'
-      fullPath: '/disclaimer'
-      preLoaderRoute: typeof DisclaimerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/editorial-policy': {
-      id: '/editorial-policy'
-      path: '/editorial-policy'
-      fullPath: '/editorial-policy'
-      preLoaderRoute: typeof EditorialPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/editorial-standards': {
-      id: '/editorial-standards'
-      path: '/editorial-standards'
-      fullPath: '/editorial-standards'
-      preLoaderRoute: typeof EditorialStandardsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/explore': {
-      id: '/explore'
-      path: '/explore'
-      fullPath: '/explore'
-      preLoaderRoute: typeof ExploreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faqs': {
-      id: '/faqs'
-      path: '/faqs'
-      fullPath: '/faqs'
-      preLoaderRoute: typeof FaqsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/funding-and-conflicts': {
-      id: '/funding-and-conflicts'
-      path: '/funding-and-conflicts'
-      fullPath: '/funding-and-conflicts'
-      preLoaderRoute: typeof FundingAndConflictsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lab-testing': {
-      id: '/lab-testing'
-      path: '/lab-testing'
-      fullPath: '/lab-testing'
-      preLoaderRoute: typeof LabTestingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/methodology': {
-      id: '/methodology'
-      path: '/methodology'
-      fullPath: '/methodology'
-      preLoaderRoute: typeof MethodologyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy-policy': {
-      id: '/privacy-policy'
-      path: '/privacy-policy'
-      fullPath: '/privacy-policy'
-      preLoaderRoute: typeof PrivacyPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/publication-workflow': {
-      id: '/publication-workflow'
-      path: '/publication-workflow'
-      fullPath: '/publication-workflow'
-      preLoaderRoute: typeof PublicationWorkflowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/refund-policy': {
-      id: '/refund-policy'
-      path: '/refund-policy'
-      fullPath: '/refund-policy'
-      preLoaderRoute: typeof RefundPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/research-hub': {
-      id: '/research-hub'
-      path: '/research-hub'
-      fullPath: '/research-hub'
-      preLoaderRoute: typeof ResearchHubRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/research-methodology': {
-      id: '/research-methodology'
-      path: '/research-methodology'
-      fullPath: '/research-methodology'
-      preLoaderRoute: typeof ResearchMethodologyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/research-use-only': {
-      id: '/research-use-only'
-      path: '/research-use-only'
-      fullPath: '/research-use-only'
-      preLoaderRoute: typeof ResearchUseOnlyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/robots.txt': {
-      id: '/robots.txt'
-      path: '/robots.txt'
-      fullPath: '/robots.txt'
-      preLoaderRoute: typeof RobotsDottxtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/scientific-advisory-board': {
-      id: '/scientific-advisory-board'
-      path: '/scientific-advisory-board'
-      fullPath: '/scientific-advisory-board'
-      preLoaderRoute: typeof ScientificAdvisoryBoardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/search': {
-      id: '/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof SearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shipping-policy': {
-      id: '/shipping-policy'
-      path: '/shipping-policy'
-      fullPath: '/shipping-policy'
-      preLoaderRoute: typeof ShippingPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shop': {
-      id: '/shop'
-      path: '/shop'
-      fullPath: '/shop'
-      preLoaderRoute: typeof ShopRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap': {
-      id: '/sitemap'
-      path: '/sitemap'
-      fullPath: '/sitemap'
-      preLoaderRoute: typeof SitemapRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
+    '/wholesale': {
+      id: '/wholesale'
+      path: '/wholesale'
+      fullPath: '/wholesale'
+      preLoaderRoute: typeof WholesaleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/testing-and-quality-control': {
@@ -1187,67 +956,242 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestingAndQualityControlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/wholesale': {
-      id: '/wholesale'
-      path: '/wholesale'
-      fullPath: '/wholesale'
-      preLoaderRoute: typeof WholesaleRouteImport
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/compounds/': {
-      id: '/compounds/'
-      path: '/'
-      fullPath: '/compounds/'
-      preLoaderRoute: typeof CompoundsIndexRouteImport
-      parentRoute: typeof CompoundsRoute
-    }
-    '/compounds/$slug': {
-      id: '/compounds/$slug'
-      path: '/$slug'
-      fullPath: '/compounds/$slug'
-      preLoaderRoute: typeof CompoundsSlugRouteImport
-      parentRoute: typeof CompoundsRoute
-    }
-    '/dashboard/abandoned-checkout': {
-      id: '/dashboard/abandoned-checkout'
-      path: '/dashboard/abandoned-checkout'
-      fullPath: '/dashboard/abandoned-checkout'
-      preLoaderRoute: typeof DashboardAbandonedCheckoutRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/editorial': {
-      id: '/dashboard/editorial'
-      path: '/dashboard/editorial'
-      fullPath: '/dashboard/editorial'
-      preLoaderRoute: typeof DashboardEditorialRouteImport
+    '/sitemap': {
+      id: '/sitemap'
+      path: '/sitemap'
+      fullPath: '/sitemap'
+      preLoaderRoute: typeof SitemapRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/explore/': {
-      id: '/explore/'
-      path: '/'
-      fullPath: '/explore/'
-      preLoaderRoute: typeof ExploreIndexRouteImport
-      parentRoute: typeof ExploreRoute
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/explore/compounds': {
-      id: '/explore/compounds'
+    '/shipping-policy': {
+      id: '/shipping-policy'
+      path: '/shipping-policy'
+      fullPath: '/shipping-policy'
+      preLoaderRoute: typeof ShippingPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scientific-advisory-board': {
+      id: '/scientific-advisory-board'
+      path: '/scientific-advisory-board'
+      fullPath: '/scientific-advisory-board'
+      preLoaderRoute: typeof ScientificAdvisoryBoardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research-use-only': {
+      id: '/research-use-only'
+      path: '/research-use-only'
+      fullPath: '/research-use-only'
+      preLoaderRoute: typeof ResearchUseOnlyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research-methodology': {
+      id: '/research-methodology'
+      path: '/research-methodology'
+      fullPath: '/research-methodology'
+      preLoaderRoute: typeof ResearchMethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research-hub': {
+      id: '/research-hub'
+      path: '/research-hub'
+      fullPath: '/research-hub'
+      preLoaderRoute: typeof ResearchHubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/publication-workflow': {
+      id: '/publication-workflow'
+      path: '/publication-workflow'
+      fullPath: '/publication-workflow'
+      preLoaderRoute: typeof PublicationWorkflowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lab-testing': {
+      id: '/lab-testing'
+      path: '/lab-testing'
+      fullPath: '/lab-testing'
+      preLoaderRoute: typeof LabTestingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/funding-and-conflicts': {
+      id: '/funding-and-conflicts'
+      path: '/funding-and-conflicts'
+      fullPath: '/funding-and-conflicts'
+      preLoaderRoute: typeof FundingAndConflictsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial-standards': {
+      id: '/editorial-standards'
+      path: '/editorial-standards'
+      fullPath: '/editorial-standards'
+      preLoaderRoute: typeof EditorialStandardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial-policy': {
+      id: '/editorial-policy'
+      path: '/editorial-policy'
+      fullPath: '/editorial-policy'
+      preLoaderRoute: typeof EditorialPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corrections-policy': {
+      id: '/corrections-policy'
+      path: '/corrections-policy'
+      fullPath: '/corrections-policy'
+      preLoaderRoute: typeof CorrectionsPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept': {
+      id: '/concept'
+      path: '/concept'
+      fullPath: '/concept'
+      preLoaderRoute: typeof ConceptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compounds': {
+      id: '/compounds'
       path: '/compounds'
-      fullPath: '/explore/compounds'
-      preLoaderRoute: typeof ExploreCompoundsRouteImport
-      parentRoute: typeof ExploreRoute
+      fullPath: '/compounds'
+      preLoaderRoute: typeof CompoundsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/explore/mechanisms': {
-      id: '/explore/mechanisms'
-      path: '/mechanisms'
-      fullPath: '/explore/mechanisms'
-      preLoaderRoute: typeof ExploreMechanismsRouteImport
-      parentRoute: typeof ExploreRoute
+    '/coas': {
+      id: '/coas'
+      path: '/coas'
+      fullPath: '/coas'
+      preLoaderRoute: typeof CoasRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/products/$slug': {
-      id: '/products/$slug'
-      path: '/products/$slug'
-      fullPath: '/products/$slug'
-      preLoaderRoute: typeof ProductsSlugRouteImport
+    '/certificate-of-analysis': {
+      id: '/certificate-of-analysis'
+      path: '/certificate-of-analysis'
+      fullPath: '/certificate-of-analysis'
+      preLoaderRoute: typeof CertificateOfAnalysisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cancellation-policy': {
+      id: '/cancellation-policy'
+      path: '/cancellation-policy'
+      fullPath: '/cancellation-policy'
+      preLoaderRoute: typeof CancellationPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/research-hub/': {
@@ -1257,151 +1201,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchHubIndexRouteImport
       parentRoute: typeof ResearchHubRoute
     }
-    '/api/public/newsletter-subscribe': {
-      id: '/api/public/newsletter-subscribe'
-      path: '/api/public/newsletter-subscribe'
-      fullPath: '/api/public/newsletter-subscribe'
-      preLoaderRoute: typeof ApiPublicNewsletterSubscribeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/recovery-discount': {
-      id: '/api/public/recovery-discount'
-      path: '/api/public/recovery-discount'
-      fullPath: '/api/public/recovery-discount'
-      preLoaderRoute: typeof ApiPublicRecoveryDiscountRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/shopify-oauth': {
-      id: '/api/public/shopify-oauth'
-      path: '/api/public/shopify-oauth'
-      fullPath: '/api/public/shopify-oauth'
-      preLoaderRoute: typeof ApiPublicShopifyOauthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/shopify-order-paid': {
-      id: '/api/public/shopify-order-paid'
-      path: '/api/public/shopify-order-paid'
-      fullPath: '/api/public/shopify-order-paid'
-      preLoaderRoute: typeof ApiPublicShopifyOrderPaidRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/editorial/authors/$id': {
-      id: '/editorial/authors/$id'
-      path: '/editorial/authors/$id'
-      fullPath: '/editorial/authors/$id'
-      preLoaderRoute: typeof EditorialAuthorsIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/editorial/reviewers/$id': {
-      id: '/editorial/reviewers/$id'
-      path: '/editorial/reviewers/$id'
-      fullPath: '/editorial/reviewers/$id'
-      preLoaderRoute: typeof EditorialReviewersIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/explore/pathways/': {
-      id: '/explore/pathways/'
-      path: '/pathways'
-      fullPath: '/explore/pathways/'
-      preLoaderRoute: typeof ExplorePathwaysIndexRouteImport
+    '/explore/': {
+      id: '/explore/'
+      path: '/'
+      fullPath: '/explore/'
+      preLoaderRoute: typeof ExploreIndexRouteImport
       parentRoute: typeof ExploreRoute
     }
-    '/explore/pathways/$type': {
-      id: '/explore/pathways/$type'
-      path: '/pathways/$type'
-      fullPath: '/explore/pathways/$type'
-      preLoaderRoute: typeof ExplorePathwaysTypeRouteImport
-      parentRoute: typeof ExploreRoute
+    '/compounds/': {
+      id: '/compounds/'
+      path: '/'
+      fullPath: '/compounds/'
+      preLoaderRoute: typeof CompoundsIndexRouteImport
+      parentRoute: typeof CompoundsRoute
     }
-    '/research-hub/collections/': {
-      id: '/research-hub/collections/'
-      path: '/collections'
-      fullPath: '/research-hub/collections/'
-      preLoaderRoute: typeof ResearchHubCollectionsIndexRouteImport
-      parentRoute: typeof ResearchHubRoute
+    '/products/$slug': {
+      id: '/products/$slug'
+      path: '/products/$slug'
+      fullPath: '/products/$slug'
+      preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/research-hub/collections/$slug': {
-      id: '/research-hub/collections/$slug'
-      path: '/collections/$slug'
-      fullPath: '/research-hub/collections/$slug'
-      preLoaderRoute: typeof ResearchHubCollectionsSlugRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/comparisons/': {
-      id: '/research-hub/comparisons/'
-      path: '/comparisons'
-      fullPath: '/research-hub/comparisons/'
-      preLoaderRoute: typeof ResearchHubComparisonsIndexRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/comparisons/$slug': {
-      id: '/research-hub/comparisons/$slug'
-      path: '/comparisons/$slug'
-      fullPath: '/research-hub/comparisons/$slug'
-      preLoaderRoute: typeof ResearchHubComparisonsSlugRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/faqs/': {
-      id: '/research-hub/faqs/'
-      path: '/faqs'
-      fullPath: '/research-hub/faqs/'
-      preLoaderRoute: typeof ResearchHubFaqsIndexRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/glossary/': {
-      id: '/research-hub/glossary/'
-      path: '/glossary'
-      fullPath: '/research-hub/glossary/'
-      preLoaderRoute: typeof ResearchHubGlossaryIndexRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/glossary/$slug': {
-      id: '/research-hub/glossary/$slug'
-      path: '/glossary/$slug'
-      fullPath: '/research-hub/glossary/$slug'
-      preLoaderRoute: typeof ResearchHubGlossarySlugRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/guides/': {
-      id: '/research-hub/guides/'
-      path: '/guides'
-      fullPath: '/research-hub/guides/'
-      preLoaderRoute: typeof ResearchHubGuidesIndexRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/guides/$slug': {
-      id: '/research-hub/guides/$slug'
-      path: '/guides/$slug'
-      fullPath: '/research-hub/guides/$slug'
-      preLoaderRoute: typeof ResearchHubGuidesSlugRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/literature/': {
-      id: '/research-hub/literature/'
-      path: '/literature'
-      fullPath: '/research-hub/literature/'
-      preLoaderRoute: typeof ResearchHubLiteratureIndexRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/literature/$slug': {
-      id: '/research-hub/literature/$slug'
-      path: '/literature/$slug'
-      fullPath: '/research-hub/literature/$slug'
-      preLoaderRoute: typeof ResearchHubLiteratureSlugRouteImport
-      parentRoute: typeof ResearchHubRoute
-    }
-    '/research-hub/mechanisms/': {
-      id: '/research-hub/mechanisms/'
+    '/explore/mechanisms': {
+      id: '/explore/mechanisms'
       path: '/mechanisms'
-      fullPath: '/research-hub/mechanisms/'
-      preLoaderRoute: typeof ResearchHubMechanismsIndexRouteImport
-      parentRoute: typeof ResearchHubRoute
+      fullPath: '/explore/mechanisms'
+      preLoaderRoute: typeof ExploreMechanismsRouteImport
+      parentRoute: typeof ExploreRoute
     }
-    '/research-hub/mechanisms/$slug': {
-      id: '/research-hub/mechanisms/$slug'
-      path: '/mechanisms/$slug'
-      fullPath: '/research-hub/mechanisms/$slug'
-      preLoaderRoute: typeof ResearchHubMechanismsSlugRouteImport
+    '/explore/compounds': {
+      id: '/explore/compounds'
+      path: '/compounds'
+      fullPath: '/explore/compounds'
+      preLoaderRoute: typeof ExploreCompoundsRouteImport
+      parentRoute: typeof ExploreRoute
+    }
+    '/dashboard/editorial': {
+      id: '/dashboard/editorial'
+      path: '/dashboard/editorial'
+      fullPath: '/dashboard/editorial'
+      preLoaderRoute: typeof DashboardEditorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/abandoned-checkout': {
+      id: '/dashboard/abandoned-checkout'
+      path: '/dashboard/abandoned-checkout'
+      fullPath: '/dashboard/abandoned-checkout'
+      preLoaderRoute: typeof DashboardAbandonedCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compounds/$slug': {
+      id: '/compounds/$slug'
+      path: '/$slug'
+      fullPath: '/compounds/$slug'
+      preLoaderRoute: typeof CompoundsSlugRouteImport
+      parentRoute: typeof CompoundsRoute
+    }
+    '/research-hub/programmes/': {
+      id: '/research-hub/programmes/'
+      path: '/programmes'
+      fullPath: '/research-hub/programmes/'
+      preLoaderRoute: typeof ResearchHubProgrammesIndexRouteImport
       parentRoute: typeof ResearchHubRoute
     }
     '/research-hub/methodology/': {
@@ -1411,19 +1271,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchHubMethodologyIndexRouteImport
       parentRoute: typeof ResearchHubRoute
     }
-    '/research-hub/methodology/$slug': {
-      id: '/research-hub/methodology/$slug'
-      path: '/methodology/$slug'
-      fullPath: '/research-hub/methodology/$slug'
-      preLoaderRoute: typeof ResearchHubMethodologySlugRouteImport
+    '/research-hub/mechanisms/': {
+      id: '/research-hub/mechanisms/'
+      path: '/mechanisms'
+      fullPath: '/research-hub/mechanisms/'
+      preLoaderRoute: typeof ResearchHubMechanismsIndexRouteImport
       parentRoute: typeof ResearchHubRoute
     }
-    '/research-hub/programmes/': {
-      id: '/research-hub/programmes/'
-      path: '/programmes'
-      fullPath: '/research-hub/programmes/'
-      preLoaderRoute: typeof ResearchHubProgrammesIndexRouteImport
+    '/research-hub/literature/': {
+      id: '/research-hub/literature/'
+      path: '/literature'
+      fullPath: '/research-hub/literature/'
+      preLoaderRoute: typeof ResearchHubLiteratureIndexRouteImport
       parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/guides/': {
+      id: '/research-hub/guides/'
+      path: '/guides'
+      fullPath: '/research-hub/guides/'
+      preLoaderRoute: typeof ResearchHubGuidesIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/glossary/': {
+      id: '/research-hub/glossary/'
+      path: '/glossary'
+      fullPath: '/research-hub/glossary/'
+      preLoaderRoute: typeof ResearchHubGlossaryIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/faqs/': {
+      id: '/research-hub/faqs/'
+      path: '/faqs'
+      fullPath: '/research-hub/faqs/'
+      preLoaderRoute: typeof ResearchHubFaqsIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/comparisons/': {
+      id: '/research-hub/comparisons/'
+      path: '/comparisons'
+      fullPath: '/research-hub/comparisons/'
+      preLoaderRoute: typeof ResearchHubComparisonsIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/collections/': {
+      id: '/research-hub/collections/'
+      path: '/collections'
+      fullPath: '/research-hub/collections/'
+      preLoaderRoute: typeof ResearchHubCollectionsIndexRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/explore/pathways/': {
+      id: '/explore/pathways/'
+      path: '/pathways'
+      fullPath: '/explore/pathways/'
+      preLoaderRoute: typeof ExplorePathwaysIndexRouteImport
+      parentRoute: typeof ExploreRoute
     }
     '/research-hub/programmes/$slug': {
       id: '/research-hub/programmes/$slug'
@@ -1431,6 +1333,104 @@ declare module '@tanstack/react-router' {
       fullPath: '/research-hub/programmes/$slug'
       preLoaderRoute: typeof ResearchHubProgrammesSlugRouteImport
       parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/methodology/$slug': {
+      id: '/research-hub/methodology/$slug'
+      path: '/methodology/$slug'
+      fullPath: '/research-hub/methodology/$slug'
+      preLoaderRoute: typeof ResearchHubMethodologySlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/mechanisms/$slug': {
+      id: '/research-hub/mechanisms/$slug'
+      path: '/mechanisms/$slug'
+      fullPath: '/research-hub/mechanisms/$slug'
+      preLoaderRoute: typeof ResearchHubMechanismsSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/literature/$slug': {
+      id: '/research-hub/literature/$slug'
+      path: '/literature/$slug'
+      fullPath: '/research-hub/literature/$slug'
+      preLoaderRoute: typeof ResearchHubLiteratureSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/guides/$slug': {
+      id: '/research-hub/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/research-hub/guides/$slug'
+      preLoaderRoute: typeof ResearchHubGuidesSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/glossary/$slug': {
+      id: '/research-hub/glossary/$slug'
+      path: '/glossary/$slug'
+      fullPath: '/research-hub/glossary/$slug'
+      preLoaderRoute: typeof ResearchHubGlossarySlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/comparisons/$slug': {
+      id: '/research-hub/comparisons/$slug'
+      path: '/comparisons/$slug'
+      fullPath: '/research-hub/comparisons/$slug'
+      preLoaderRoute: typeof ResearchHubComparisonsSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/research-hub/collections/$slug': {
+      id: '/research-hub/collections/$slug'
+      path: '/collections/$slug'
+      fullPath: '/research-hub/collections/$slug'
+      preLoaderRoute: typeof ResearchHubCollectionsSlugRouteImport
+      parentRoute: typeof ResearchHubRoute
+    }
+    '/explore/pathways/$type': {
+      id: '/explore/pathways/$type'
+      path: '/pathways/$type'
+      fullPath: '/explore/pathways/$type'
+      preLoaderRoute: typeof ExplorePathwaysTypeRouteImport
+      parentRoute: typeof ExploreRoute
+    }
+    '/editorial/reviewers/$id': {
+      id: '/editorial/reviewers/$id'
+      path: '/editorial/reviewers/$id'
+      fullPath: '/editorial/reviewers/$id'
+      preLoaderRoute: typeof EditorialReviewersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial/authors/$id': {
+      id: '/editorial/authors/$id'
+      path: '/editorial/authors/$id'
+      fullPath: '/editorial/authors/$id'
+      preLoaderRoute: typeof EditorialAuthorsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/shopify-order-paid': {
+      id: '/api/public/shopify-order-paid'
+      path: '/api/public/shopify-order-paid'
+      fullPath: '/api/public/shopify-order-paid'
+      preLoaderRoute: typeof ApiPublicShopifyOrderPaidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/shopify-oauth': {
+      id: '/api/public/shopify-oauth'
+      path: '/api/public/shopify-oauth'
+      fullPath: '/api/public/shopify-oauth'
+      preLoaderRoute: typeof ApiPublicShopifyOauthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/recovery-discount': {
+      id: '/api/public/recovery-discount'
+      path: '/api/public/recovery-discount'
+      fullPath: '/api/public/recovery-discount'
+      preLoaderRoute: typeof ApiPublicRecoveryDiscountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/newsletter-subscribe': {
+      id: '/api/public/newsletter-subscribe'
+      path: '/api/public/newsletter-subscribe'
+      fullPath: '/api/public/newsletter-subscribe'
+      preLoaderRoute: typeof ApiPublicNewsletterSubscribeRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/api/public/shopify-oauth/callback': {
       id: '/api/public/shopify-oauth/callback'
