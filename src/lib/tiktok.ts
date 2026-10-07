@@ -1,5 +1,5 @@
 // TikTok Pixel event layer.
-// The base snippet in src/routes/__root.tsx loads pixel DAHEEERC77U250DBOKQG.
+// The base snippet in src/routes/__root.tsx loads pixel DB1V0D3C77UA626EFU30.
 // All funnel events are sent through the named instance so they cannot land on
 // another pixel if a second one is ever added.
 //
@@ -7,7 +7,7 @@
 // dataLayer for the matching GA4/Meta event, so a server-side twin (Events API)
 // can dedupe against the browser event.
 
-export const TIKTOK_PIXEL_ID = "DAHEEERC77U250DBOKQG";
+export const TIKTOK_PIXEL_ID = "DB1V0D3C77UA626EFU30";
 
 type TtqInstance = {
   track: (event: string, params?: Record<string, unknown>, opts?: { event_id?: string }) => void;
