@@ -16,6 +16,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { CookieBanner } from "@/components/cookie-banner";
 import { SkipToContent } from "@/components/skip-to-content";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
+import { AgeVerification } from "@/components/age-verification";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 function NotFoundComponent() {
@@ -236,9 +237,11 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <Toaster />
-        <CookieBanner />
-        <NewsletterPopup />
-        <WhatsAppButton />
+        <AgeVerification>
+          <CookieBanner />
+          <NewsletterPopup />
+          <WhatsAppButton />
+        </AgeVerification>
       </CartProvider>
     </QueryClientProvider>
   );
