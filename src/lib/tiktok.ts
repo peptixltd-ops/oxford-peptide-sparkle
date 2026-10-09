@@ -1,5 +1,5 @@
 // TikTok Pixel event layer.
-// The base snippet in src/routes/__root.tsx loads pixel DB1V0D3C77UA626EFU30.
+// The base snippet in src/routes/__root.tsx loads pixel DB3R1ARC77UA626EL34G.
 // All funnel events are sent through the named instance so they cannot land on
 // another pixel if a second one is ever added.
 //
@@ -9,7 +9,7 @@
 
 import { sendTikTokServerEvent } from "./tiktok-capi.functions";
 
-export const TIKTOK_PIXEL_ID = "DB1V0D3C77UA626EFU30";
+export const TIKTOK_PIXEL_ID = "DB3R1ARC77UA626EL34G";
 
 type TtqInstance = {
   track: (event: string, params?: Record<string, unknown>, opts?: { event_id?: string }) => void;
@@ -34,6 +34,37 @@ function instance(): TtqInstance | null {
   if (!ttq) return null;
   if (typeof ttq.instance === "function") return ttq.instance(TIKTOK_PIXEL_ID);
   return typeof ttq.track === "function" ? (ttq as TtqInstance) : null;
+}
+
+export const COOKIE_CONSENT_KEY = "orp_cookie_consent_v1";
+
+/** True only after the visitor clicked "Accept all" in the cookie banner. */
+export function tiktokConsented(): boolean {
+  try {
+    return window.localStorage.getItem(COOKIE_CONSENT_KEY) === "accepted";
+  } catch {
+    return false;
+  }
+}
+
+/** Apply a cookie-banner choice to the pixel (held until a choice is made). */
+export function tiktokSetConsent(value: "accepted" | "rejected") {
+  const ttq = typeof window !== "undefined" ? (window.ttq as Record<string, unknown> | undefined) : undefined;
+  const fn = ttq?.[value === "accepted" ? "grantConsent" : "revokeConsent"];
+  try {
+    if (typeof fn === "function") (fn as () => void).call(ttq);
+  } catch {
+    /* ignore */
+  }
+}
+
+export function tiktokPage() {
+  const ttq = instance();
+  try {
+    ttq?.page();
+  } catch {
+    /* ignore */
+  }
 }
 
 export type TikTokContent = {
@@ -78,6 +109,8 @@ export function tiktokTrack(
     // Never let a tracking failure break the shopping flow.
   }
   // Server-side twin with the same event_id so TikTok dedupes the pair.
+  // Only sent once the visitor has accepted cookies.
+  if (!tiktokConsented()) return;
   const attr = tiktokAttribution();
   void sendTikTokServerEvent({
         data: {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { tiktokSetConsent } from "@/lib/tiktok";
 
 const KEY = "orp_cookie_consent_v1";
 
@@ -16,6 +17,7 @@ export function CookieBanner() {
 
   const set = (value: "accepted" | "rejected") => {
     try { localStorage.setItem(KEY, value); } catch { /* ignore */ }
+    tiktokSetConsent(value);
     setVisible(false);
   };
 

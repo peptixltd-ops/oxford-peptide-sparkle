@@ -4,7 +4,7 @@ import { z } from "zod";
 
 // Server-side twin of browser pixel events (TikTok Events API).
 // The access token is read only inside the handler — never shipped to the browser.
-const PIXEL_ID = "DB1V0D3C77UA626EFU30";
+const PIXEL_ID = "DB3R1ARC77UA626EL34G";
 
 const schema = z.object({
   event: z.enum(["ViewContent", "AddToCart", "InitiateCheckout"]),
