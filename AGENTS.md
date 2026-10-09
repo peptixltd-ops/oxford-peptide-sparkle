@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Mount the entry age confirmation once in the root shell, using a blocking accessible dialog and tab-session persistence; defer competing popups until confirmation so entry remains consistent across routes.
