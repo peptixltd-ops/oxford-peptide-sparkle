@@ -110,6 +110,8 @@ export const Route = createFileRoute("/api/public/shopify-order-paid")({
             contents,
             value,
             currency: order.currency ?? "GBP",
+            content_type: "product",
+            order_id: String(order.id),
           },
         };
 
@@ -120,9 +122,9 @@ export const Route = createFileRoute("/api/public/shopify-order-paid")({
             "Access-Token": tiktokToken,
           },
           body: JSON.stringify({
-            pixel_code: TIKTOK_PIXEL_ID,
             event_source: "web",
-            batch: [event],
+            event_source_id: TIKTOK_PIXEL_ID,
+            data: [event],
           }),
         });
 
