@@ -48,6 +48,8 @@ type ShopifyOrder = {
   referring_site?: string;
   client_details?: { user_agent?: string; browser_ip?: string };
   line_items?: ShopifyLineItem[];
+  test?: boolean;
+  note_attributes?: { name?: string; value?: string }[];
 };
 
 export const Route = createFileRoute("/api/public/shopify-order-paid")({
@@ -73,6 +75,13 @@ export const Route = createFileRoute("/api/public/shopify-order-paid")({
         } catch {
           return new Response("Bad JSON", { status: 400 });
         }
+
+        // Shopify "Send test notification" — signature verified, never sent to TikTok.
+        if (order.test) return new Response("test ok", { status: 200 });
+
+        // Honour the shopper's cookie choice: only track when they accepted.
+        const consent = order.note_attributes?.find((a) => a.name === "_tracking_consent")?.value;
+        if (consent !== "accepted") return new Response("no consent", { status: 200 });
 
         const value = Number(order.total_price ?? 0);
         if (!order.id || !(value > 0)) {

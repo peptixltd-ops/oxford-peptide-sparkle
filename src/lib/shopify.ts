@@ -90,6 +90,14 @@ function formatCheckoutUrl(url: string): string {
   }
 }
 
+function trackingConsent(): string {
+  try {
+    return window.localStorage.getItem("orp_cookie_consent_v1") ?? "unset";
+  } catch {
+    return "unset";
+  }
+}
+
 export type CheckoutLine = { merchandiseId: string; quantity: number };
 
 /**
@@ -130,7 +138,12 @@ export async function createCheckout(
   const credit = typeof subtotal === "number" ? creditForSubtotal(subtotal) : null;
   const discountCodes = [...(credit ? [credit.code] : []), ...extraDiscountCodes];
   const data = await storefront(CART_CREATE, {
-    input: { lines, ...(discountCodes.length ? { discountCodes } : {}) },
+    input: {
+      lines,
+      ...(discountCodes.length ? { discountCodes } : {}),
+      // Cookie choice travels with the order so the purchase webhook can honour it.
+      attributes: [{ key: "_tracking_consent", value: trackingConsent() }],
+    },
   });
   const errs = data?.cartCreate?.userErrors ?? [];
   if (errs.length) throw new Error(errs.map((e: { message: string }) => e.message).join(", "));
