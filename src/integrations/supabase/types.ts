@@ -56,6 +56,51 @@ export type Database = {
         }
         Relationships: []
       }
+      niftipay_orders: {
+        Row: {
+          amount: number | null
+          created_at: string
+          currency: string | null
+          draft_order_id: string | null
+          id: string
+          last_event: string | null
+          niftipay_order_key: string | null
+          processed_events: string[]
+          reference: string
+          shopify_order_id: string | null
+          status: string
+          updated_at: string | null
+        }
+        Insert: {
+          amount?: number | null
+          created_at?: string
+          currency?: string | null
+          draft_order_id?: string | null
+          id?: string
+          last_event?: string | null
+          niftipay_order_key?: string | null
+          processed_events?: string[]
+          reference: string
+          shopify_order_id?: string | null
+          status?: string
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number | null
+          created_at?: string
+          currency?: string | null
+          draft_order_id?: string | null
+          id?: string
+          last_event?: string | null
+          niftipay_order_key?: string | null
+          processed_events?: string[]
+          reference?: string
+          shopify_order_id?: string | null
+          status?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

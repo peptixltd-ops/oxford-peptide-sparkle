@@ -14,6 +14,7 @@ import {
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
+import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { BacWaterUpsell } from "@/components/bac-water-upsell";
 
 import { Trash2, Loader2 } from "lucide-react";
@@ -60,6 +61,24 @@ function CartPage() {
   const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
   const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
+  const [cardLoading, setCardLoading] = useState(false);
+  const payByCard = async () => {
+    setCardLoading(true);
+    try {
+      const shopLines = lines
+        .map((l) => {
+          const gid = getVariantGid(l.product.slug, l.variant.id);
+          return gid ? { merchandiseId: gid, quantity: l.item.qty } : null;
+        })
+        .filter((x): x is { merchandiseId: string; quantity: number } => !!x);
+      const codes = [...(credit ? [credit.code] : []), ...(bacLines.length ? [BAC_WATER_UPSELL.code] : [])];
+      await startNiftiPayCheckout(shopLines, codes);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Card payment failed");
+    } finally {
+      setCardLoading(false);
+    }
+  };
 
 
   useEffect(() => {
@@ -173,6 +192,13 @@ function CartPage() {
                 >
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "CHECKOUT"}
                 </button>
+            <button
+              onClick={payByCard}
+              disabled={cardLoading || lines.length === 0}
+              className="w-full py-4 mt-2 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors disabled:opacity-60 flex items-center justify-center"
+            >
+              {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Pay by card / Apple Pay / Google Pay"}
+            </button>
                 <Link to="/shop" className="block text-center mt-3 text-xs text-muted-foreground hover:text-gold">Continue shopping</Link>
               </aside>
             </div>

@@ -54,6 +54,8 @@ import { Route as ExploreCompoundsRouteImport } from './routes/explore.compounds
 import { Route as DashboardEditorialRouteImport } from './routes/dashboard.editorial'
 import { Route as DashboardAbandonedCheckoutRouteImport } from './routes/dashboard.abandoned-checkout'
 import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
+import { Route as CheckoutSuccessRouteImport } from './routes/checkout.success'
+import { Route as CheckoutFailedRouteImport } from './routes/checkout.failed'
 import { Route as ResearchHubProgrammesIndexRouteImport } from './routes/research-hub.programmes.index'
 import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
 import { Route as ResearchHubMechanismsIndexRouteImport } from './routes/research-hub.mechanisms.index'
@@ -78,8 +80,10 @@ import { Route as EditorialAuthorsIdRouteImport } from './routes/editorial.autho
 import { Route as ApiPublicShopifyOrderPaidRouteImport } from './routes/api/public/shopify-order-paid'
 import { Route as ApiPublicShopifyOauthRouteImport } from './routes/api/public/shopify-oauth'
 import { Route as ApiPublicRecoveryDiscountRouteImport } from './routes/api/public/recovery-discount'
+import { Route as ApiPublicNiftipayCheckoutRouteImport } from './routes/api/public/niftipay-checkout'
 import { Route as ApiPublicNewsletterSubscribeRouteImport } from './routes/api/public/newsletter-subscribe'
 import { Route as ApiPublicShopifyOauthCallbackRouteImport } from './routes/api/public/shopify-oauth.callback'
+import { Route as ApiPublicNiftipayWebhookRouteImport } from './routes/api/public/niftipay/webhook'
 
 const WholesaleRoute = WholesaleRouteImport.update({
   id: '/wholesale',
@@ -308,6 +312,16 @@ const CompoundsSlugRoute = CompoundsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => CompoundsRoute,
 } as any)
+const CheckoutSuccessRoute = CheckoutSuccessRouteImport.update({
+  id: '/checkout/success',
+  path: '/checkout/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutFailedRoute = CheckoutFailedRouteImport.update({
+  id: '/checkout/failed',
+  path: '/checkout/failed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchHubProgrammesIndexRoute =
   ResearchHubProgrammesIndexRouteImport.update({
     id: '/programmes/',
@@ -443,6 +457,12 @@ const ApiPublicRecoveryDiscountRoute =
     path: '/api/public/recovery-discount',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicNiftipayCheckoutRoute =
+  ApiPublicNiftipayCheckoutRouteImport.update({
+    id: '/api/public/niftipay-checkout',
+    path: '/api/public/niftipay-checkout',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicNewsletterSubscribeRoute =
   ApiPublicNewsletterSubscribeRouteImport.update({
     id: '/api/public/newsletter-subscribe',
@@ -454,6 +474,12 @@ const ApiPublicShopifyOauthCallbackRoute =
     id: '/callback',
     path: '/callback',
     getParentRoute: () => ApiPublicShopifyOauthRoute,
+  } as any)
+const ApiPublicNiftipayWebhookRoute =
+  ApiPublicNiftipayWebhookRouteImport.update({
+    id: '/api/public/niftipay/webhook',
+    path: '/api/public/niftipay/webhook',
+    getParentRoute: () => rootRouteImport,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -493,6 +519,8 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
+  '/checkout/failed': typeof CheckoutFailedRoute
+  '/checkout/success': typeof CheckoutSuccessRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -503,6 +531,7 @@ export interface FileRoutesByFullPath {
   '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
+  '/api/public/niftipay-checkout': typeof ApiPublicNiftipayCheckoutRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
   '/api/public/shopify-order-paid': typeof ApiPublicShopifyOrderPaidRoute
@@ -527,6 +556,7 @@ export interface FileRoutesByFullPath {
   '/research-hub/mechanisms/': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology/': typeof ResearchHubMethodologyIndexRoute
   '/research-hub/programmes/': typeof ResearchHubProgrammesIndexRoute
+  '/api/public/niftipay/webhook': typeof ApiPublicNiftipayWebhookRoute
   '/api/public/shopify-oauth/callback': typeof ApiPublicShopifyOauthCallbackRoute
 }
 export interface FileRoutesByTo {
@@ -563,6 +593,8 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
+  '/checkout/failed': typeof CheckoutFailedRoute
+  '/checkout/success': typeof CheckoutSuccessRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -573,6 +605,7 @@ export interface FileRoutesByTo {
   '/explore': typeof ExploreIndexRoute
   '/research-hub': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
+  '/api/public/niftipay-checkout': typeof ApiPublicNiftipayCheckoutRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
   '/api/public/shopify-order-paid': typeof ApiPublicShopifyOrderPaidRoute
@@ -597,6 +630,7 @@ export interface FileRoutesByTo {
   '/research-hub/mechanisms': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology': typeof ResearchHubMethodologyIndexRoute
   '/research-hub/programmes': typeof ResearchHubProgrammesIndexRoute
+  '/api/public/niftipay/webhook': typeof ApiPublicNiftipayWebhookRoute
   '/api/public/shopify-oauth/callback': typeof ApiPublicShopifyOauthCallbackRoute
 }
 export interface FileRoutesById {
@@ -637,6 +671,8 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
+  '/checkout/failed': typeof CheckoutFailedRoute
+  '/checkout/success': typeof CheckoutSuccessRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
@@ -647,6 +683,7 @@ export interface FileRoutesById {
   '/explore/': typeof ExploreIndexRoute
   '/research-hub/': typeof ResearchHubIndexRoute
   '/api/public/newsletter-subscribe': typeof ApiPublicNewsletterSubscribeRoute
+  '/api/public/niftipay-checkout': typeof ApiPublicNiftipayCheckoutRoute
   '/api/public/recovery-discount': typeof ApiPublicRecoveryDiscountRoute
   '/api/public/shopify-oauth': typeof ApiPublicShopifyOauthRouteWithChildren
   '/api/public/shopify-order-paid': typeof ApiPublicShopifyOrderPaidRoute
@@ -671,6 +708,7 @@ export interface FileRoutesById {
   '/research-hub/mechanisms/': typeof ResearchHubMechanismsIndexRoute
   '/research-hub/methodology/': typeof ResearchHubMethodologyIndexRoute
   '/research-hub/programmes/': typeof ResearchHubProgrammesIndexRoute
+  '/api/public/niftipay/webhook': typeof ApiPublicNiftipayWebhookRoute
   '/api/public/shopify-oauth/callback': typeof ApiPublicShopifyOauthCallbackRoute
 }
 export interface FileRouteTypes {
@@ -712,6 +750,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testing-and-quality-control'
     | '/wholesale'
+    | '/checkout/failed'
+    | '/checkout/success'
     | '/compounds/$slug'
     | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
@@ -722,6 +762,7 @@ export interface FileRouteTypes {
     | '/explore/'
     | '/research-hub/'
     | '/api/public/newsletter-subscribe'
+    | '/api/public/niftipay-checkout'
     | '/api/public/recovery-discount'
     | '/api/public/shopify-oauth'
     | '/api/public/shopify-order-paid'
@@ -746,6 +787,7 @@ export interface FileRouteTypes {
     | '/research-hub/mechanisms/'
     | '/research-hub/methodology/'
     | '/research-hub/programmes/'
+    | '/api/public/niftipay/webhook'
     | '/api/public/shopify-oauth/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -782,6 +824,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testing-and-quality-control'
     | '/wholesale'
+    | '/checkout/failed'
+    | '/checkout/success'
     | '/compounds/$slug'
     | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
@@ -792,6 +836,7 @@ export interface FileRouteTypes {
     | '/explore'
     | '/research-hub'
     | '/api/public/newsletter-subscribe'
+    | '/api/public/niftipay-checkout'
     | '/api/public/recovery-discount'
     | '/api/public/shopify-oauth'
     | '/api/public/shopify-order-paid'
@@ -816,6 +861,7 @@ export interface FileRouteTypes {
     | '/research-hub/mechanisms'
     | '/research-hub/methodology'
     | '/research-hub/programmes'
+    | '/api/public/niftipay/webhook'
     | '/api/public/shopify-oauth/callback'
   id:
     | '__root__'
@@ -855,6 +901,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testing-and-quality-control'
     | '/wholesale'
+    | '/checkout/failed'
+    | '/checkout/success'
     | '/compounds/$slug'
     | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
@@ -865,6 +913,7 @@ export interface FileRouteTypes {
     | '/explore/'
     | '/research-hub/'
     | '/api/public/newsletter-subscribe'
+    | '/api/public/niftipay-checkout'
     | '/api/public/recovery-discount'
     | '/api/public/shopify-oauth'
     | '/api/public/shopify-order-paid'
@@ -889,6 +938,7 @@ export interface FileRouteTypes {
     | '/research-hub/mechanisms/'
     | '/research-hub/methodology/'
     | '/research-hub/programmes/'
+    | '/api/public/niftipay/webhook'
     | '/api/public/shopify-oauth/callback'
   fileRoutesById: FileRoutesById
 }
@@ -929,15 +979,19 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TestingAndQualityControlRoute: typeof TestingAndQualityControlRoute
   WholesaleRoute: typeof WholesaleRoute
+  CheckoutFailedRoute: typeof CheckoutFailedRoute
+  CheckoutSuccessRoute: typeof CheckoutSuccessRoute
   DashboardAbandonedCheckoutRoute: typeof DashboardAbandonedCheckoutRoute
   DashboardEditorialRoute: typeof DashboardEditorialRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ApiPublicNewsletterSubscribeRoute: typeof ApiPublicNewsletterSubscribeRoute
+  ApiPublicNiftipayCheckoutRoute: typeof ApiPublicNiftipayCheckoutRoute
   ApiPublicRecoveryDiscountRoute: typeof ApiPublicRecoveryDiscountRoute
   ApiPublicShopifyOauthRoute: typeof ApiPublicShopifyOauthRouteWithChildren
   ApiPublicShopifyOrderPaidRoute: typeof ApiPublicShopifyOrderPaidRoute
   EditorialAuthorsIdRoute: typeof EditorialAuthorsIdRoute
   EditorialReviewersIdRoute: typeof EditorialReviewersIdRoute
+  ApiPublicNiftipayWebhookRoute: typeof ApiPublicNiftipayWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1257,6 +1311,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompoundsSlugRouteImport
       parentRoute: typeof CompoundsRoute
     }
+    '/checkout/success': {
+      id: '/checkout/success'
+      path: '/checkout/success'
+      fullPath: '/checkout/success'
+      preLoaderRoute: typeof CheckoutSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout/failed': {
+      id: '/checkout/failed'
+      path: '/checkout/failed'
+      fullPath: '/checkout/failed'
+      preLoaderRoute: typeof CheckoutFailedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research-hub/programmes/': {
       id: '/research-hub/programmes/'
       path: '/programmes'
@@ -1425,6 +1493,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicRecoveryDiscountRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/niftipay-checkout': {
+      id: '/api/public/niftipay-checkout'
+      path: '/api/public/niftipay-checkout'
+      fullPath: '/api/public/niftipay-checkout'
+      preLoaderRoute: typeof ApiPublicNiftipayCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/newsletter-subscribe': {
       id: '/api/public/newsletter-subscribe'
       path: '/api/public/newsletter-subscribe'
@@ -1438,6 +1513,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/public/shopify-oauth/callback'
       preLoaderRoute: typeof ApiPublicShopifyOauthCallbackRouteImport
       parentRoute: typeof ApiPublicShopifyOauthRoute
+    }
+    '/api/public/niftipay/webhook': {
+      id: '/api/public/niftipay/webhook'
+      path: '/api/public/niftipay/webhook'
+      fullPath: '/api/public/niftipay/webhook'
+      preLoaderRoute: typeof ApiPublicNiftipayWebhookRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -1571,15 +1653,19 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TestingAndQualityControlRoute: TestingAndQualityControlRoute,
   WholesaleRoute: WholesaleRoute,
+  CheckoutFailedRoute: CheckoutFailedRoute,
+  CheckoutSuccessRoute: CheckoutSuccessRoute,
   DashboardAbandonedCheckoutRoute: DashboardAbandonedCheckoutRoute,
   DashboardEditorialRoute: DashboardEditorialRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ApiPublicNewsletterSubscribeRoute: ApiPublicNewsletterSubscribeRoute,
+  ApiPublicNiftipayCheckoutRoute: ApiPublicNiftipayCheckoutRoute,
   ApiPublicRecoveryDiscountRoute: ApiPublicRecoveryDiscountRoute,
   ApiPublicShopifyOauthRoute: ApiPublicShopifyOauthRouteWithChildren,
   ApiPublicShopifyOrderPaidRoute: ApiPublicShopifyOrderPaidRoute,
   EditorialAuthorsIdRoute: EditorialAuthorsIdRoute,
   EditorialReviewersIdRoute: EditorialReviewersIdRoute,
+  ApiPublicNiftipayWebhookRoute: ApiPublicNiftipayWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
