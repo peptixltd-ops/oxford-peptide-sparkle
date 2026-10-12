@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Mount the entry age confirmation once in the root shell, using a blocking accessible dialog and tab-session persistence; defer competing popups until confirmation so entry remains consistent across routes.
+- NiftiPay card checkout creates a Shopify draft order server-side and completes it only from the signature-verified NiftiPay webhook; the success page never marks orders paid — the webhook is the single source of payment truth.
