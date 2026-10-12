@@ -12,6 +12,7 @@ import {
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
+import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { BacWaterUpsell } from "@/components/bac-water-upsell";
 import { toast } from "sonner";
 import { createPortal } from "react-dom";
@@ -39,7 +40,6 @@ export function CartDrawer() {
     };
   }, [drawerOpen, closeDrawer]);
 
-  if (!drawerOpen) return null;
 
   const lines = items
     .map((i) => {
@@ -68,6 +68,25 @@ export function CartDrawer() {
 
   const added = lastAdded ? getProduct(lastAdded.slug) : null;
   const addedVariant = added && lastAdded ? getVariant(added, lastAdded.variantId) : null;
+
+  const [cardLoading, setCardLoading] = useState(false);
+  const payByCard = async () => {
+    setCardLoading(true);
+    try {
+      const shopLines = lines
+        .map((l) => {
+          const gid = getVariantGid(l.product.slug, l.variant.id);
+          return gid ? { merchandiseId: gid, quantity: l.item.qty } : null;
+        })
+        .filter((x): x is { merchandiseId: string; quantity: number } => !!x);
+      const codes = [...(credit ? [credit.code] : []), ...(bacLines.length ? [BAC_WATER_UPSELL.code] : [])];
+      await startNiftiPayCheckout(shopLines, codes);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Card payment failed");
+    } finally {
+      setCardLoading(false);
+    }
+  };
 
   const checkout = async () => {
     const tab = openCheckoutTab();
@@ -98,6 +117,8 @@ export function CartDrawer() {
       setLoading(false);
     }
   };
+
+  if (!drawerOpen) return null;
 
   const drawer = (
     <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-label="Shopping cart">
@@ -229,6 +250,13 @@ export function CartDrawer() {
               className="w-full py-4 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors disabled:opacity-60 flex items-center justify-center"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "CHECKOUT"}
+            </button>
+            <button
+              onClick={payByCard}
+              disabled={cardLoading}
+              className="w-full py-4 mt-2 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors disabled:opacity-60 flex items-center justify-center"
+            >
+              {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Pay by card / Apple Pay / Google Pay"}
             </button>
             <Link
               to="/cart"
