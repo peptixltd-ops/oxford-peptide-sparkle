@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createHmac, timingSafeEqual } from "crypto";
 import { getAdminDb, shopifyAdmin } from "@/lib/niftipay.server";
+import type { Database } from "@/integrations/supabase/types";
 
 const MAX_AGE_SECONDS = 5 * 60;
 
@@ -67,7 +68,7 @@ export const Route = createFileRoute("/api/public/niftipay/webhook")({
         const dedupKey = `${event}:${orderKey}`;
         if ((row.processed_events ?? []).includes(dedupKey)) return new Response("duplicate", { status: 200 });
 
-        const patch: Record<string, unknown> = {
+        const patch: Database["public"]["Tables"]["niftipay_orders"]["Update"] = {
           last_event: event,
           updated_at: new Date().toISOString(),
           processed_events: [...(row.processed_events ?? []), dedupKey],
