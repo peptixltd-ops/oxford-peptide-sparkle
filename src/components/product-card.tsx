@@ -29,7 +29,7 @@ export function ProductCard({ p }: { p: Product }) {
 
   const buyNow = () => {
     if (showBacOffer) { setOfferOpen(true); return; }
-    setChoiceOpen(true);
+    void payByCard(null);
   };
 
   const goToCheckout = async (bacVariantId: string | null) => {
@@ -77,7 +77,6 @@ export function ProductCard({ p }: { p: Product }) {
       }
       await startNiftiPayCheckout(lines, codes);
       setOfferOpen(false);
-      setChoiceOpen(false);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Card payment failed to start");
     } finally {
