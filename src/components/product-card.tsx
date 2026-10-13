@@ -11,6 +11,7 @@ import {
   sendToCheckout,
 } from "@/lib/shopify";
 import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
+import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
@@ -18,6 +19,7 @@ import { Loader2 } from "lucide-react";
 export function ProductCard({ p }: { p: Product }) {
   const { add, items } = useCart();
   const [loading, setLoading] = useState(false);
+  const [cardLoading, setCardLoading] = useState(false);
   const [offerOpen, setOfferOpen] = useState(false);
   const defaultVariant = p.variants[0];
   const min = fromPrice(p);
@@ -57,6 +59,20 @@ export function ProductCard({ p }: { p: Product }) {
       toast.error(e instanceof Error ? e.message : "Checkout failed");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const payByCard = async () => {
+    const gid = getVariantGid(p.slug, defaultVariant.id);
+    if (!gid) { toast.error("Unavailable for checkout"); return; }
+    setCardLoading(true);
+    try {
+      await startNiftiPayCheckout([{ merchandiseId: gid, quantity: 1 }], []);
+      setOfferOpen(false);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Card payment failed to start");
+    } finally {
+      setCardLoading(false);
     }
   };
 
@@ -100,7 +116,9 @@ export function ProductCard({ p }: { p: Product }) {
         open={offerOpen}
         onOpenChange={setOfferOpen}
         onContinue={(bacVariantId) => void goToCheckout(bacVariantId)}
+        onPayByCard={() => void payByCard()}
         loading={loading}
+        cardLoading={cardLoading}
       />
     </div>
   );

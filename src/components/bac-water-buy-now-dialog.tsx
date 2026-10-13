@@ -12,13 +12,18 @@ export function BacWaterBuyNowDialog({
   open,
   onOpenChange,
   onContinue,
+  onPayByCard,
   loading = false,
+  cardLoading = false,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   /** variantId of the chosen bac water vial, or null to skip. */
   onContinue: (bacVariantId: string | null) => void;
+  /** NiftiPay card checkout for the same selection; omit to hide the button. */
+  onPayByCard?: (bacVariantId: string | null) => void;
   loading?: boolean;
+  cardLoading?: boolean;
 }) {
   const product = getProduct(BAC_WATER_UPSELL.slug);
   if (!product) return null;
@@ -68,12 +73,22 @@ export function BacWaterBuyNowDialog({
 
           <button
             type="button"
-            disabled={loading}
+            disabled={loading || cardLoading}
             onClick={() => onContinue(null)}
             className="mt-4 w-full bg-navy-deep text-bone py-3.5 text-xs font-bold tracking-widest hover:bg-navy-deep/90 transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : "NO THANKS — CONTINUE TO CHECKOUT"}
           </button>
+          {onPayByCard && (
+            <button
+              type="button"
+              disabled={cardLoading || loading}
+              onClick={() => onPayByCard(null)}
+              className="mt-2 w-full border border-navy-deep text-navy-deep py-3.5 text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+            >
+              {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : "Pay by card / Apple Pay / Google Pay"}
+            </button>
+          )}
         </div>
       </DialogContent>
     </Dialog>
