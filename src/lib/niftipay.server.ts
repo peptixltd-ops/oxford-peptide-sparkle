@@ -20,3 +20,10 @@ export async function getAdminDb() {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   return supabaseAdmin;
 }
+
+/** Mirrors the storefront cart: free UK shipping from a £20 subtotal (before discounts), else £3.99. */
+export const FREE_SHIPPING_THRESHOLD = 20;
+export const SHIPPING_RATE = 3.99;
+export function shippingForSubtotal(subtotal: number): number {
+  return subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_RATE;
+}
