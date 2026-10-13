@@ -62,6 +62,20 @@ export function ProductCard({ p }: { p: Product }) {
     }
   };
 
+  const payByCard = async () => {
+    const gid = getVariantGid(p.slug, defaultVariant.id);
+    if (!gid) { toast.error("Unavailable for checkout"); return; }
+    setCardLoading(true);
+    try {
+      await startNiftiPayCheckout([{ merchandiseId: gid, quantity: 1 }], []);
+      setOfferOpen(false);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Card payment failed to start");
+    } finally {
+      setCardLoading(false);
+    }
+  };
+
   return (
     <div className="bg-white border border-border p-5 flex flex-col group hover:border-gold transition-colors">
       <Link
@@ -102,7 +116,9 @@ export function ProductCard({ p }: { p: Product }) {
         open={offerOpen}
         onOpenChange={setOfferOpen}
         onContinue={(bacVariantId) => void goToCheckout(bacVariantId)}
+        onPayByCard={() => void payByCard()}
         loading={loading}
+        cardLoading={cardLoading}
       />
     </div>
   );
