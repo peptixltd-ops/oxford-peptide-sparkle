@@ -27,7 +27,7 @@ const schema = z.object({
 const DRAFT_CREATE = `
 mutation draftOrderCreate($input: DraftOrderInput!) {
   draftOrderCreate(input: $input) {
-    draftOrder { id legacyResourceId totalPriceSet { shopMoney { amount currencyCode } } }
+    draftOrder { id legacyResourceId shippingLine { title originalPriceSet { shopMoney { amount } } } totalPriceSet { shopMoney { amount currencyCode } } }
     userErrors { field message }
   }
 }`;
@@ -77,7 +77,7 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
               ...(discountCodes.length ? { discountCodes } : {}),
               tags: ["niftipay"],
               shippingLine: {
-                title: shipping === 0 ? "Free UK shipping" : "UK tracked shipping",
+                title: "Standard Shipping",
                 priceWithCurrency: { amount: shipping.toFixed(2), currencyCode: "GBP" },
               },
               presentmentCurrencyCode: "GBP",
@@ -87,7 +87,13 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           const errs = data?.draftOrderCreate?.userErrors ?? [];
           if (errs.length) throw new Error(`draftOrderCreate: ${JSON.stringify(errs)}`);
           const draft = data.draftOrderCreate.draftOrder;
+          const shippingApplied = Number(draft.shippingLine?.originalPriceSet?.shopMoney?.amount ?? 0);
+          if (shipping > 0 && shippingApplied !== shipping) {
+            throw new Error(`Shipping line dropped by Shopify: expected ${shipping}, got ${JSON.stringify(draft.shippingLine)}`);
+          }
+          // Authoritative amount = draft total returned by Shopify (lines − discounts + shipping).
           const amount = Number(draft.totalPriceSet.shopMoney.amount);
+          console.log("[niftipay-checkout v2-shipping]", { subtotal, shipping, shippingApplied, draftTotal: amount, draftId: draft.id });
           if (!(amount > 0)) throw new Error(`Draft total invalid: ${amount}`);
           const reference = `ORP-${draft.legacyResourceId}`;
 
@@ -115,7 +121,7 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           });
           if (error) console.error("niftipay_orders insert failed", error);
 
-          return json({ payUrl });
+          return json({ payUrl, shippingApplied, amount, version: "v2-shipping" });
         } catch (e) {
           console.error("NiftiPay checkout failed", e);
           return json({ error: "Could not start card payment. Please try again or use standard checkout." }, 502);
