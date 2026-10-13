@@ -1,14 +1,19 @@
-// Browser helper: starts a NiftiPay card checkout for the given Shopify lines.
+// Browser helper: collects delivery details, then starts a NiftiPay card checkout.
 import { closeCheckoutTab, openCheckoutTab, sendToCheckout, type CheckoutLine } from "./shopify";
 
 export async function startNiftiPayCheckout(lines: CheckoutLine[], discountCodes: string[]) {
   if (lines.length === 0) throw new Error("No items available for checkout");
-  const tab = openCheckoutTab();
+  const { collectCustomerDetails } = await import("@/components/niftipay-details-form");
+  let tab: Window | null = null;
+  const customer = await collectCustomerDetails(() => {
+    tab = openCheckoutTab();
+  });
+  if (!customer) return; // shopper closed the form
   try {
     const response = await fetch("/api/public/niftipay-checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ lines, discountCodes }),
+      body: JSON.stringify({ lines, discountCodes, customer, email: customer.email, name: customer.name }),
     });
     const data = await response.json();
     if (!response.ok || !data.payUrl) {
