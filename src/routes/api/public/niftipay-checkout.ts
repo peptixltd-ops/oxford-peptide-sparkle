@@ -105,11 +105,17 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           const res = await fetch("https://www.niftipay.com/api/fiat/orders", {
             method: "POST",
             headers: { "Content-Type": "application/json", "x-api-key": apiKey, "Idempotency-Key": draft.id },
-            body: JSON.stringify({ integrationId, amount, currency: "GBP", reference, email, name }),
+            body: JSON.stringify({ integrationId, amount, currency: "GBP", reference, email, name,
+              description: summary.items.map(item => `${item.quantity}x ${item.name} ${item.variant}`).join(", ").slice(0, 500),
+              // Customer total must remain the verified Shopify total, not total + PSP fees.
+              serviceFeePayer: "merchant",
+            }),
           });
           const text = await res.text();
           if (!res.ok) throw new Error(`NiftiPay ${res.status}: ${text}`);
           const np = JSON.parse(text);
+          const chargedCents = np.pricing?.totalCents ?? np.order?.pricing?.totalCents ?? np.order?.amountCents;
+          if (chargedCents !== undefined) verifyNiftiPayTotal(summary, Number(chargedCents) / 100);
           const payUrl: string | undefined =
             np.payUrl ?? np.pay_url ?? np.url ?? np.checkoutUrl ?? np.order?.payUrl ?? np.data?.payUrl;
           if (!payUrl) throw new Error(`NiftiPay response missing payUrl: ${text}`);
