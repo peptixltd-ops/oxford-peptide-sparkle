@@ -12,6 +12,7 @@ import {
 } from "@/lib/shopify";
 import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
@@ -21,6 +22,7 @@ export function ProductCard({ p }: { p: Product }) {
   const [loading, setLoading] = useState(false);
   const [cardLoading, setCardLoading] = useState(false);
   const [offerOpen, setOfferOpen] = useState(false);
+  const [choiceOpen, setChoiceOpen] = useState(false);
   const defaultVariant = p.variants[0];
   const min = fromPrice(p);
   const hasMultiple = p.variants.length > 1;
@@ -30,7 +32,7 @@ export function ProductCard({ p }: { p: Product }) {
 
   const buyNow = () => {
     if (showBacOffer) { setOfferOpen(true); return; }
-    void goToCheckout(null);
+    setChoiceOpen(true);
   };
 
   const goToCheckout = async (bacVariantId: string | null) => {
