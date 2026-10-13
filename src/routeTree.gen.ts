@@ -56,6 +56,7 @@ import { Route as DashboardAbandonedCheckoutRouteImport } from './routes/dashboa
 import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
 import { Route as CheckoutSuccessRouteImport } from './routes/checkout.success'
 import { Route as CheckoutFailedRouteImport } from './routes/checkout.failed'
+import { Route as CheckoutCardSummaryRouteImport } from './routes/checkout.card-summary'
 import { Route as ResearchHubProgrammesIndexRouteImport } from './routes/research-hub.programmes.index'
 import { Route as ResearchHubMethodologyIndexRouteImport } from './routes/research-hub.methodology.index'
 import { Route as ResearchHubMechanismsIndexRouteImport } from './routes/research-hub.mechanisms.index'
@@ -322,6 +323,11 @@ const CheckoutFailedRoute = CheckoutFailedRouteImport.update({
   path: '/checkout/failed',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutCardSummaryRoute = CheckoutCardSummaryRouteImport.update({
+  id: '/checkout/card-summary',
+  path: '/checkout/card-summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchHubProgrammesIndexRoute =
   ResearchHubProgrammesIndexRouteImport.update({
     id: '/programmes/',
@@ -519,6 +525,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
+  '/checkout/card-summary': typeof CheckoutCardSummaryRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
@@ -593,6 +600,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
+  '/checkout/card-summary': typeof CheckoutCardSummaryRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
@@ -671,6 +679,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/testing-and-quality-control': typeof TestingAndQualityControlRoute
   '/wholesale': typeof WholesaleRoute
+  '/checkout/card-summary': typeof CheckoutCardSummaryRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/compounds/$slug': typeof CompoundsSlugRoute
@@ -750,6 +759,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testing-and-quality-control'
     | '/wholesale'
+    | '/checkout/card-summary'
     | '/checkout/failed'
     | '/checkout/success'
     | '/compounds/$slug'
@@ -824,6 +834,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testing-and-quality-control'
     | '/wholesale'
+    | '/checkout/card-summary'
     | '/checkout/failed'
     | '/checkout/success'
     | '/compounds/$slug'
@@ -901,6 +912,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/testing-and-quality-control'
     | '/wholesale'
+    | '/checkout/card-summary'
     | '/checkout/failed'
     | '/checkout/success'
     | '/compounds/$slug'
@@ -979,6 +991,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TestingAndQualityControlRoute: typeof TestingAndQualityControlRoute
   WholesaleRoute: typeof WholesaleRoute
+  CheckoutCardSummaryRoute: typeof CheckoutCardSummaryRoute
   CheckoutFailedRoute: typeof CheckoutFailedRoute
   CheckoutSuccessRoute: typeof CheckoutSuccessRoute
   DashboardAbandonedCheckoutRoute: typeof DashboardAbandonedCheckoutRoute
@@ -1325,6 +1338,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutFailedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout/card-summary': {
+      id: '/checkout/card-summary'
+      path: '/checkout/card-summary'
+      fullPath: '/checkout/card-summary'
+      preLoaderRoute: typeof CheckoutCardSummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research-hub/programmes/': {
       id: '/research-hub/programmes/'
       path: '/programmes'
@@ -1653,6 +1673,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TestingAndQualityControlRoute: TestingAndQualityControlRoute,
   WholesaleRoute: WholesaleRoute,
+  CheckoutCardSummaryRoute: CheckoutCardSummaryRoute,
   CheckoutFailedRoute: CheckoutFailedRoute,
   CheckoutSuccessRoute: CheckoutSuccessRoute,
   DashboardAbandonedCheckoutRoute: DashboardAbandonedCheckoutRoute,
