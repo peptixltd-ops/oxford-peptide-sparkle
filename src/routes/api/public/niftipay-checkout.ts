@@ -3,6 +3,7 @@ import { z } from "zod";
 import { BAC_WATER_UPSELL, VARIANT_GID, creditForSubtotal } from "@/lib/shopify";
 import { getProduct, getVariant } from "@/lib/products";
 import { getAdminDb, shippingForSubtotal, shopifyAdmin } from "@/lib/niftipay.server";
+import { customerSchema } from "@/lib/niftipay-customer";
 import { buildNiftiPaySummary, verifyNiftiPayTotal } from "@/lib/niftipay-summary";
 
 const GID_TO_KEY = new Map(Object.entries(VARIANT_GID).map(([k, gid]) => [gid, k]));
@@ -23,6 +24,7 @@ const schema = z.object({
   discountCodes: z.array(z.string().max(50)).max(10).default([]),
   email: z.string().email().max(255).optional(),
   name: z.string().trim().max(200).optional(),
+  customer: customerSchema,
 });
 
 const DRAFT_CREATE = `
@@ -32,6 +34,26 @@ mutation draftOrderCreate($input: DraftOrderInput!) {
     userErrors { field message }
   }
 }`;
+
+const FIND_CUSTOMER = `query($q: String!) { customers(first: 1, query: $q) { nodes { id } } }`;
+const CREATE_CUSTOMER = `mutation($input: CustomerInput!) { customerCreate(input: $input) { customer { id } userErrors { field message } } }`;
+
+async function findOrCreateCustomer(c: { email: string; firstName: string; lastName: string; address: Record<string, string> }) {
+  try {
+    const f = await shopifyAdmin(FIND_CUSTOMER, { q: `email:"${c.email.replace(/"/g, "")}"` });
+    const existing = f?.customers?.nodes?.[0]?.id;
+    if (existing) return existing as string;
+    const r = await shopifyAdmin(CREATE_CUSTOMER, {
+      input: { email: c.email, firstName: c.firstName, lastName: c.lastName, addresses: [c.address] },
+    });
+    const errs = r?.customerCreate?.userErrors ?? [];
+    if (errs.length) console.warn("[niftipay-checkout] customerCreate", errs);
+    return (r?.customerCreate?.customer?.id as string | undefined) ?? null;
+  } catch (e) {
+    console.warn("[niftipay-checkout] customer lookup failed, continuing without customer", e);
+    return null;
+  }
+}
 
 const json = (body: unknown, status = 200) => Response.json(body, { status });
 
@@ -47,7 +69,15 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
         }
         const parsed = schema.safeParse(raw);
         if (!parsed.success) return json({ error: "Invalid cart", details: parsed.error.flatten() }, 400);
-        const { lines, email, name } = parsed.data;
+        const { lines, customer } = parsed.data;
+        const email = customer.email;
+        const name = customer.name;
+        const [firstName, ...rest] = customer.name.split(/\s+/);
+        const lastName = rest.join(" ") || firstName;
+        const address = {
+          firstName, lastName, address1: customer.address1, ...(customer.address2 ? { address2: customer.address2 } : {}),
+          city: customer.city, zip: customer.postcode, countryCode: customer.country, phone: customer.phone,
+        };
 
         const apiKey = process.env["NIFTIPAY_API_KEY"];
         const integrationId = process.env["NIFTIPAY_INTEGRATION_ID"];
@@ -74,6 +104,7 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
         const discountCodes = [...(credit ? [credit.code] : []), ...(hasBac ? [BAC_WATER_UPSELL.code] : [])];
 
         try {
+          const customerId = await findOrCreateCustomer({ email, firstName, lastName, address: { ...address } });
           const data = await shopifyAdmin(DRAFT_CREATE, {
             input: {
               lineItems: lines.map((l) => ({ variantId: l.merchandiseId, quantity: l.quantity })),
@@ -84,7 +115,11 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
                 priceWithCurrency: { amount: shipping.toFixed(2), currencyCode: "GBP" },
               },
               presentmentCurrencyCode: "GBP",
-              ...(email ? { email } : {}),
+              email,
+              phone: customer.phone,
+              shippingAddress: address,
+              billingAddress: address,
+              ...(customerId ? { purchasingEntity: { customerId } } : {}),
             },
           });
           const errs = data?.draftOrderCreate?.userErrors ?? [];
@@ -129,6 +164,11 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
             amount,
             currency: "GBP",
             status: "pending",
+            customer_name: name,
+            customer_email: email,
+            customer_phone: customer.phone,
+            shipping_address: address,
+            shopify_customer_id: customerId,
           });
           if (error) console.error("niftipay_orders insert failed", error);
 
