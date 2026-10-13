@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { BAC_WATER_UPSELL, VARIANT_GID, creditForSubtotal } from "@/lib/shopify";
 import { getProduct, getVariant } from "@/lib/products";
-import { getAdminDb, shopifyAdmin } from "@/lib/niftipay.server";
+import { getAdminDb, shippingForSubtotal, shopifyAdmin } from "@/lib/niftipay.server";
 
 const GID_TO_KEY = new Map(Object.entries(VARIANT_GID).map(([k, gid]) => [gid, k]));
 
@@ -67,6 +67,7 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           if (slug === BAC_WATER_UPSELL.slug) hasBac = true;
         }
         const credit = creditForSubtotal(subtotal);
+        const shipping = shippingForSubtotal(subtotal);
         const discountCodes = [...(credit ? [credit.code] : []), ...(hasBac ? [BAC_WATER_UPSELL.code] : [])];
 
         try {
@@ -75,6 +76,10 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
               lineItems: lines.map((l) => ({ variantId: l.merchandiseId, quantity: l.quantity })),
               ...(discountCodes.length ? { discountCodes } : {}),
               tags: ["niftipay"],
+              shippingLine: {
+                title: shipping === 0 ? "Free UK shipping" : "UK tracked shipping",
+                priceWithCurrency: { amount: shipping.toFixed(2), currencyCode: "GBP" },
+              },
               presentmentCurrencyCode: "GBP",
               ...(email ? { email } : {}),
             },
