@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ClipboardCheck, FlaskConical, Truck, ShieldCheck, Loader2 } from "lucide-react";
 import { trackViewItem, trackBeginCheckout } from "@/lib/tracking";
+import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -77,6 +78,7 @@ function ProductPage() {
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [loading, setLoading] = useState(false);
   const [offerOpen, setOfferOpen] = useState(false);
+  const [cardLoading, setCardLoading] = useState(false);
   const variant = product.variants.find((v: Variant) => v.id === variantId) ?? product.variants[0];
   const fmt = (n: number) => `£${n.toFixed(2)}`;
 
@@ -122,6 +124,21 @@ function ProductPage() {
       toast.error(e instanceof Error ? e.message : "Checkout failed");
     } finally {
       setLoading(false);
+    }
+  };
+
+  /** NiftiPay card payment for just this product/variant/qty; the server
+   *  applies the same discounts and shipping rules as the cart. */
+  const payByCard = async () => {
+    const gid = getVariantGid(product.slug, variant.id);
+    if (!gid) { toast.error("Unavailable for checkout"); return; }
+    setCardLoading(true);
+    try {
+      await startNiftiPayCheckout([{ merchandiseId: gid, quantity: qty }], []);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Card payment failed");
+    } finally {
+      setCardLoading(false);
     }
   };
 
@@ -185,7 +202,7 @@ function ProductPage() {
                   <span className="col-span-2 text-sm text-muted-foreground sm:col-span-1">Total: <span className="font-semibold text-navy-deep">{fmt(variant.price * qty)}</span></span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 mb-8">
+                <div className="grid grid-cols-2 gap-3 mb-3">
                   <button
                     type="button"
                     onClick={() => add(product.slug, variant.id, qty)}
@@ -202,6 +219,14 @@ function ProductPage() {
                     {loading ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : "BUY NOW"}
                   </button>
                 </div>
+                <button
+                  type="button"
+                  onClick={payByCard}
+                  disabled={cardLoading}
+                  className="w-full py-4 mb-8 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors disabled:opacity-60 flex items-center justify-center"
+                >
+                  {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : "Pay by card / Apple Pay / Google Pay"}
+                </button>
 
                 <div className="grid grid-cols-2 gap-3 pt-6 border-t border-border">
                   {[
