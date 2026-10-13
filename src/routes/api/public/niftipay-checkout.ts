@@ -3,6 +3,7 @@ import { z } from "zod";
 import { BAC_WATER_UPSELL, VARIANT_GID, creditForSubtotal } from "@/lib/shopify";
 import { getProduct, getVariant } from "@/lib/products";
 import { getAdminDb, shippingForSubtotal, shopifyAdmin } from "@/lib/niftipay.server";
+import { buildNiftiPaySummary, verifyNiftiPayTotal } from "@/lib/niftipay-summary";
 
 const GID_TO_KEY = new Map(Object.entries(VARIANT_GID).map(([k, gid]) => [gid, k]));
 
@@ -60,7 +61,9 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
         let subtotal = 0;
         let hasBac = false;
         for (const l of lines) {
-          const [slug, variantId] = GID_TO_KEY.get(l.merchandiseId)!.split("::");
+          const key = GID_TO_KEY.get(l.merchandiseId);
+          if (!key) return json({ error: "Unknown product" }, 400);
+          const [slug, variantId] = key.split("::");
           const product = getProduct(slug);
           if (!product) continue;
           subtotal += getVariant(product, variantId).price * l.quantity;
@@ -95,6 +98,8 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           const amount = Number(draft.totalPriceSet.shopMoney.amount);
           console.log("[niftipay-checkout v2-shipping]", { subtotal, shipping, shippingApplied, draftTotal: amount, draftId: draft.id });
           if (!(amount > 0)) throw new Error(`Draft total invalid: ${amount}`);
+          const summary = buildNiftiPaySummary(lines, shippingApplied);
+          verifyNiftiPayTotal(summary, amount);
           const reference = `ORP-${draft.legacyResourceId}`;
 
           const res = await fetch("https://www.niftipay.com/api/fiat/orders", {
@@ -121,7 +126,7 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           });
           if (error) console.error("niftipay_orders insert failed", error);
 
-          return json({ payUrl, shippingApplied, amount, version: "v2-shipping" });
+          return json({ payUrl, summary, shippingApplied, amount, version: "v2-shipping" });
         } catch (e) {
           console.error("NiftiPay checkout failed", e);
           return json({ error: "Could not start card payment. Please try again or use standard checkout." }, 502);
