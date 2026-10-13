@@ -15,6 +15,7 @@ import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function ProductCard({ p }: { p: Product }) {
   const { add, items } = useCart();
@@ -30,7 +31,7 @@ export function ProductCard({ p }: { p: Product }) {
 
   const buyNow = () => {
     if (showBacOffer) { setOfferOpen(true); return; }
-    void payByCard(null);
+    void goToCheckout(null);
   };
 
   const goToCheckout = async (bacVariantId: string | null) => {
@@ -62,22 +63,13 @@ export function ProductCard({ p }: { p: Product }) {
     }
   };
 
-  const payByCard = async (bacVariantId: string | null) => {
+  const payByCard = async () => {
     const gid = getVariantGid(p.slug, defaultVariant.id);
     if (!gid) { toast.error("Unavailable for checkout"); return; }
     setCardLoading(true);
     try {
       const lines = [{ merchandiseId: gid, quantity: 1 }];
-      const codes: string[] = [];
-      if (bacVariantId) {
-        const bacGid = getVariantGid(BAC_WATER_UPSELL.slug, bacVariantId);
-        if (bacGid) {
-          lines.push({ merchandiseId: bacGid, quantity: 1 });
-          codes.push(BAC_WATER_UPSELL.code);
-        }
-      }
-      await startNiftiPayCheckout(lines, codes);
-      setOfferOpen(false);
+      await startNiftiPayCheckout(lines, []);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Card payment failed to start");
     } finally {
@@ -118,16 +110,22 @@ export function ProductCard({ p }: { p: Product }) {
           disabled={loading || cardLoading}
           className="bg-gold text-navy-deep py-2.5 text-[10px] font-bold tracking-widest hover:bg-gold-soft transition-colors disabled:opacity-60 flex items-center justify-center"
         >
-          {loading || cardLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : "BUY NOW"}
+          {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : "BUY NOW"}
         </button>
+        <Button
+          variant="outline"
+          onClick={() => void payByCard()}
+          disabled={loading || cardLoading}
+          className="col-span-2 w-full h-auto min-h-11 rounded-none px-2 py-3 border-navy-deep text-navy-deep text-[10px] font-bold tracking-normal whitespace-normal leading-snug hover:bg-navy-deep hover:text-bone shadow-none disabled:opacity-60"
+        >
+          {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : "Pay by card / Apple Pay / Google Pay"}
+        </Button>
       </div>
       <BacWaterBuyNowDialog
         open={offerOpen}
         onOpenChange={setOfferOpen}
         onContinue={(bacVariantId) => void goToCheckout(bacVariantId)}
-        onPayByCard={(bacVariantId) => void payByCard(bacVariantId)}
         loading={loading}
-        cardLoading={cardLoading}
       />
     </div>
   );
