@@ -128,39 +128,6 @@ export function ProductCard({ p }: { p: Product }) {
         loading={loading}
         cardLoading={cardLoading}
       />
-      <Dialog open={choiceOpen} onOpenChange={setChoiceOpen}>
-        <DialogContent className="sm:max-w-md p-0 gap-0 overflow-hidden border-gold/60">
-          <div className="bg-navy-deep text-bone px-5 py-2.5">
-            <span className="text-[10px] font-bold tracking-[0.2em]">CHOOSE PAYMENT METHOD</span>
-          </div>
-          <div className="p-5">
-            <DialogHeader className="space-y-2 text-left">
-              <DialogTitle className="font-display text-xl font-semibold leading-tight">
-                How would you like to pay?
-              </DialogTitle>
-              <DialogDescription className="text-xs leading-snug">
-                Continue to our standard checkout, or pay instantly by card, Apple Pay or Google Pay.
-              </DialogDescription>
-            </DialogHeader>
-            <button
-              type="button"
-              disabled={loading || cardLoading}
-              onClick={() => { setChoiceOpen(false); void goToCheckout(null); }}
-              className="mt-5 w-full bg-navy-deep text-bone py-3.5 text-xs font-bold tracking-widest hover:bg-navy-deep/90 transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
-            >
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : "CONTINUE TO CHECKOUT"}
-            </button>
-            <button
-              type="button"
-              disabled={cardLoading || loading}
-              onClick={() => void payByCard(null)}
-              className="mt-2 w-full border border-navy-deep text-navy-deep py-3.5 text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
-            >
-              {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : "Pay by card / Apple Pay / Google Pay"}
-            </button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
