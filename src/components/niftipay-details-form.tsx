@@ -1,5 +1,8 @@
 // Customer-details step shown before every NiftiPay card payment.
 // Mounted imperatively by the shared client helper so every card button gets it.
+// Autofill: every field carries a real name/id and an autocomplete token, so iOS
+// Safari (Apple Pay contact + saved addresses) and Chrome/Android (Google Pay
+// saved contacts and addresses) can fill the whole form in one tap.
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Loader2, X } from "lucide-react";
@@ -7,7 +10,29 @@ import { Loader2, X } from "lucide-react";
 import { COUNTRIES, customerSchema, type CustomerDetails } from "@/lib/niftipay-customer";
 
 const STORAGE_KEY = "orp_niftipay_customer_v1";
+const FORM_ID = "niftipay-details-form";
 const EMPTY: CustomerDetails = { name: "", email: "", phone: "", address1: "", address2: "", city: "", postcode: "", country: "GB" };
+
+type FieldAttrs = {
+  name: string;
+  autoComplete: string;
+  inputMode?: React.InputHTMLAttributes<HTMLInputElement>["inputMode"];
+  autoCompleteType?: React.SelectHTMLAttributes<HTMLSelectElement>["autoComplete"];
+};
+
+// Autocomplete tokens are fixed here and applied last, so no call site can turn
+// autofill off. The "shipping" prefix keeps Apple Pay / Google Pay shipping
+// addresses separate from billing/contact autofill.
+const FIELD_ATTRS: Record<keyof CustomerDetails, FieldAttrs> = {
+  name: { name: "name", autoComplete: "shipping name", inputMode: "text" },
+  email: { name: "email", autoComplete: "email", inputMode: "email" },
+  phone: { name: "phone", autoComplete: "tel", inputMode: "tel" },
+  address1: { name: "address-line1", autoComplete: "shipping address-line1", inputMode: "text" },
+  address2: { name: "address-line2", autoComplete: "shipping address-line2", inputMode: "text" },
+  city: { name: "address-level2", autoComplete: "shipping address-level2", inputMode: "text" },
+  postcode: { name: "postal-code", autoComplete: "shipping postal-code", inputMode: "text" },
+  country: { name: "country", autoComplete: "shipping country" },
+};
 
 function loadSaved(): CustomerDetails {
   try {
@@ -39,44 +64,67 @@ function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
     onDone({ details: r.data });
   };
 
-  const field = (k: keyof CustomerDetails, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => (
-    <label className="block">
-      <span className="block text-[11px] font-bold tracking-widest text-navy-deep mb-1">{label}</span>
-      <input
-        value={v[k] ?? ""}
-        onChange={set(k)}
-        aria-invalid={Boolean(errors[k])}
-        className="w-full border border-border bg-background px-3 py-2.5 text-base text-navy-deep focus:outline-none focus:ring-2 focus:ring-navy"
-        {...props}
-      />
-      {errors[k] && <span className="block text-xs text-destructive mt-1">{errors[k]}</span>}
-    </label>
-  );
+  const field = (k: keyof CustomerDetails, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => {
+    const a = FIELD_ATTRS[k];
+    return (
+      <label className="block" htmlFor={`niftipay-${k}`}>
+        <span className="block text-[11px] font-bold tracking-widest text-navy-deep mb-1">{label}</span>
+        <input
+          value={v[k] ?? ""}
+          onChange={set(k)}
+          aria-invalid={Boolean(errors[k])}
+          className="w-full border border-border bg-background px-3 py-2.5 text-base text-navy-deep focus:outline-none focus:ring-2 focus:ring-navy"
+          {...props}
+          // Autofill attributes applied last: nothing may disable them.
+          id={`niftipay-${k}`}
+          name={a.name}
+          autoComplete={a.autoComplete}
+          {...(a.inputMode ? { inputMode: a.inputMode } : {})}
+        />
+        {errors[k] && <span className="block text-xs text-destructive mt-1">{errors[k]}</span>}
+      </label>
+    );
+  };
+
+  const country = FIELD_ATTRS.country;
 
   return (
     <div className="fixed inset-0 z-[150] flex items-end sm:items-center justify-center bg-navy-deep/70 p-0 sm:p-4" role="dialog" aria-modal="true" aria-labelledby="np-details-title">
-      <form onSubmit={submit} noValidate className="relative w-full sm:max-w-lg max-h-[92vh] overflow-y-auto bg-bone border border-border p-6 sm:p-8">
+      <form
+        id={FORM_ID}
+        name="niftipay-details"
+        autoComplete="on"
+        onSubmit={submit}
+        noValidate
+        className="relative w-full sm:max-w-lg max-h-[92vh] overflow-y-auto bg-bone border border-border p-6 sm:p-8"
+      >
         <button type="button" onClick={() => onDone(null)} aria-label="Close" className="absolute right-4 top-4 text-navy-deep/70 hover:text-navy-deep">
           <X className="h-5 w-5" />
         </button>
         <h2 id="np-details-title" className="font-display text-2xl font-medium text-navy-deep mb-1">Delivery details</h2>
         <p className="text-sm text-muted-foreground mb-5">We need these to ship your order. You'll pay on the next screen.</p>
         <div className="space-y-3">
-          {field("name", "FULL NAME", { autoComplete: "name" })}
+          {field("name", "FULL NAME")}
           <div className="grid sm:grid-cols-2 gap-3">
-            {field("email", "EMAIL", { type: "email", autoComplete: "email", inputMode: "email" })}
-            {field("phone", "PHONE", { type: "tel", autoComplete: "tel", inputMode: "tel" })}
+            {field("email", "EMAIL", { type: "email" })}
+            {field("phone", "PHONE", { type: "tel" })}
           </div>
-          {field("address1", "ADDRESS LINE 1", { autoComplete: "address-line1" })}
-          {field("address2", "ADDRESS LINE 2 (OPTIONAL)", { autoComplete: "address-line2" })}
+          {field("address1", "ADDRESS LINE 1")}
+          {field("address2", "ADDRESS LINE 2 (OPTIONAL)")}
           <div className="grid grid-cols-2 gap-3">
-            {field("city", "TOWN / CITY", { autoComplete: "address-level2" })}
-            {field("postcode", "POSTCODE", { autoComplete: "postal-code" })}
+            {field("city", "TOWN / CITY")}
+            {field("postcode", "POSTCODE")}
           </div>
-          <label className="block">
+          <label className="block" htmlFor={`niftipay-country`}>
             <span className="block text-[11px] font-bold tracking-widest text-navy-deep mb-1">COUNTRY</span>
-            <select value={v.country} onChange={set("country")} autoComplete="country"
-              className="w-full border border-border bg-background px-3 py-2.5 text-base text-navy-deep focus:outline-none focus:ring-2 focus:ring-navy">
+            <select
+              value={v.country}
+              onChange={set("country")}
+              id={`niftipay-country`}
+              name={country.name}
+              autoComplete={country.autoComplete}
+              className="w-full border border-border bg-background px-3 py-2.5 text-base text-navy-deep focus:outline-none focus:ring-2 focus:ring-navy"
+            >
               {COUNTRIES.map(([code, name]) => <option key={code} value={code}>{name}</option>)}
             </select>
           </label>
