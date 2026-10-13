@@ -116,7 +116,6 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
               },
               presentmentCurrencyCode: "GBP",
               email,
-              phone: customer.phone,
               shippingAddress: address,
               billingAddress: address,
               ...(customerId ? { purchasingEntity: { customerId } } : {}),
