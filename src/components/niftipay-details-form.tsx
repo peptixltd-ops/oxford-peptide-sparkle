@@ -14,6 +14,7 @@ const FORM_ID = "niftipay-details-form";
 const EMPTY: CustomerDetails = { name: "", email: "", phone: "", address1: "", address2: "", city: "", postcode: "", country: "GB" };
 
 type FieldAttrs = {
+  id: string;
   name: string;
   autoComplete: string;
   inputMode?: React.InputHTMLAttributes<HTMLInputElement>["inputMode"];
@@ -21,18 +22,18 @@ type FieldAttrs = {
 };
 
 // Autocomplete tokens are fixed here and applied last, so no call site can turn
-// autofill off. Every field shares the "shipping" section, so iOS Safari
-// (Apple Pay contact + saved addresses) and Chrome/Android (Google Pay saved
-// contacts and addresses) fill the whole form in one tap from the first field.
+// autofill off. Plain standard tokens with each input's id and name matching its
+// token give iOS Safari (Apple Pay contact + saved addresses) and Chrome/Android
+// (Google Pay saved contacts and addresses) the best one-tap fill.
 const FIELD_ATTRS: Record<keyof CustomerDetails, FieldAttrs> = {
-  name: { name: "name", autoComplete: "shipping name", inputMode: "text" },
-  email: { name: "email", autoComplete: "shipping email", inputMode: "email" },
-  phone: { name: "tel", autoComplete: "shipping tel", inputMode: "tel" },
-  address1: { name: "address-line1", autoComplete: "shipping address-line1", inputMode: "text" },
-  address2: { name: "address-line2", autoComplete: "shipping address-line2", inputMode: "text" },
-  city: { name: "city", autoComplete: "shipping address-level2", inputMode: "text" },
-  postcode: { name: "postal-code", autoComplete: "shipping postal-code", inputMode: "text" },
-  country: { name: "country", autoComplete: "shipping country" },
+  name: { id: "name", name: "name", autoComplete: "name", inputMode: "text" },
+  email: { id: "email", name: "email", autoComplete: "email", inputMode: "email" },
+  phone: { id: "tel", name: "tel", autoComplete: "tel", inputMode: "tel" },
+  address1: { id: "address-line1", name: "address-line1", autoComplete: "address-line1", inputMode: "text" },
+  address2: { id: "address-line2", name: "address-line2", autoComplete: "address-line2", inputMode: "text" },
+  city: { id: "address-level2", name: "address-level2", autoComplete: "address-level2", inputMode: "text" },
+  postcode: { id: "postal-code", name: "postal-code", autoComplete: "postal-code", inputMode: "text" },
+  country: { id: "country", name: "country", autoComplete: "country" },
 };
 
 function loadSaved(): CustomerDetails {
@@ -49,8 +50,12 @@ type Result = { details: CustomerDetails } | null;
 function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
   const [v, setV] = useState<CustomerDetails>(loadSaved);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const set = (k: keyof CustomerDetails) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setV({ ...v, [k]: e.target.value });
+  // Typed loosely on purpose: browser autofill can fire onChange or onInput
+  // with different event shapes, and filled values must stick either way.
+  const set = (k: keyof CustomerDetails) => (e: { target: EventTarget | null }) => {
+    const el = e.target as HTMLInputElement | HTMLSelectElement | null;
+    if (el) setV({ ...v, [k]: el.value });
+  };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,16 +73,17 @@ function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
   const field = (k: keyof CustomerDetails, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => {
     const a = FIELD_ATTRS[k];
     return (
-      <label className="block" htmlFor={`niftipay-${k}`}>
+      <label className="block" htmlFor={a.id}>
         <span className="block text-[11px] font-bold tracking-widest text-navy-deep mb-1">{label}</span>
         <input
           value={v[k] ?? ""}
           onChange={set(k)}
+          onInput={set(k)}
           aria-invalid={Boolean(errors[k])}
           className="w-full border border-border bg-background px-3 py-2.5 text-base text-navy-deep focus:outline-none focus:ring-2 focus:ring-navy"
           {...props}
           // Autofill attributes applied last: nothing may disable them.
-          id={`niftipay-${k}`}
+          id={a.id}
           name={a.name}
           autoComplete={a.autoComplete}
           {...(a.inputMode ? { inputMode: a.inputMode } : {})}
@@ -116,12 +122,13 @@ function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
             {field("city", "TOWN / CITY")}
             {field("postcode", "POSTCODE")}
           </div>
-          <label className="block" htmlFor={`niftipay-country`}>
+          <label className="block" htmlFor={country.id}>
             <span className="block text-[11px] font-bold tracking-widest text-navy-deep mb-1">COUNTRY</span>
             <select
               value={v.country}
               onChange={set("country")}
-              id={`niftipay-country`}
+              onInput={set("country")}
+              id={country.id}
               name={country.name}
               autoComplete={country.autoComplete}
               className="w-full border border-border bg-background px-3 py-2.5 text-base text-navy-deep focus:outline-none focus:ring-2 focus:ring-navy"
