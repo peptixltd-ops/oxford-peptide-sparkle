@@ -10,6 +10,7 @@ import {
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
+import { useState } from "react";
 import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { toast } from "sonner";
@@ -114,10 +115,10 @@ export function ProductCard({ p }: { p: Product }) {
         </button>
         <button
           onClick={buyNow}
-          disabled={loading}
+          disabled={loading || cardLoading}
           className="bg-gold text-navy-deep py-2.5 text-[10px] font-bold tracking-widest hover:bg-gold-soft transition-colors disabled:opacity-60 flex items-center justify-center"
         >
-          {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : "BUY NOW"}
+          {loading || cardLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : "BUY NOW"}
         </button>
       </div>
       <BacWaterBuyNowDialog
