@@ -69,16 +69,17 @@ function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
   const field = (k: keyof CustomerDetails, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => {
     const a = FIELD_ATTRS[k];
     return (
-      <label className="block" htmlFor={`niftipay-${k}`}>
+      <label className="block" htmlFor={a.id}>
         <span className="block text-[11px] font-bold tracking-widest text-navy-deep mb-1">{label}</span>
         <input
           value={v[k] ?? ""}
           onChange={set(k)}
+          onInput={set(k)}
           aria-invalid={Boolean(errors[k])}
           className="w-full border border-border bg-background px-3 py-2.5 text-base text-navy-deep focus:outline-none focus:ring-2 focus:ring-navy"
           {...props}
           // Autofill attributes applied last: nothing may disable them.
-          id={`niftipay-${k}`}
+          id={a.id}
           name={a.name}
           autoComplete={a.autoComplete}
           {...(a.inputMode ? { inputMode: a.inputMode } : {})}
@@ -117,12 +118,13 @@ function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
             {field("city", "TOWN / CITY")}
             {field("postcode", "POSTCODE")}
           </div>
-          <label className="block" htmlFor={`niftipay-country`}>
+          <label className="block" htmlFor={country.id}>
             <span className="block text-[11px] font-bold tracking-widest text-navy-deep mb-1">COUNTRY</span>
             <select
               value={v.country}
               onChange={set("country")}
-              id={`niftipay-country`}
+              onInput={set("country")}
+              id={country.id}
               name={country.name}
               autoComplete={country.autoComplete}
               className="w-full border border-border bg-background px-3 py-2.5 text-base text-navy-deep focus:outline-none focus:ring-2 focus:ring-navy"
