@@ -50,8 +50,12 @@ type Result = { details: CustomerDetails } | null;
 function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
   const [v, setV] = useState<CustomerDetails>(loadSaved);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const set = (k: keyof CustomerDetails) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setV({ ...v, [k]: e.target.value });
+  // Typed loosely on purpose: browser autofill can fire onChange or onInput
+  // with different event shapes, and filled values must stick either way.
+  const set = (k: keyof CustomerDetails) => (e: { target: EventTarget | null }) => {
+    const el = e.target as HTMLInputElement | HTMLSelectElement | null;
+    if (el) setV({ ...v, [k]: el.value });
+  };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
