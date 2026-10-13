@@ -54,20 +54,32 @@ export function BacWaterBuyNowDialog({
 
           <div className="mt-5 grid gap-2">
             {product.variants.map(variant => (
-              <button
-                key={variant.id}
-                type="button"
-                disabled={loading}
-                onClick={() => onContinue(variant.id)}
-                className="flex items-center justify-between gap-3 border border-border px-3 py-3 hover:border-gold hover:bg-muted/40 transition-colors text-left disabled:opacity-60"
-              >
-                <span className="text-sm font-semibold">{variant.label} bacteriostatic water</span>
-                <span className="flex items-center gap-2">
-                  <span className="text-xs text-muted-foreground line-through">{fmt(variant.price)}</span>
-                  <span className="text-sm font-bold text-gold">{fmt(discounted(variant.price))}</span>
-                  <Plus className="w-3.5 h-3.5" />
-                </span>
-              </button>
+              <div key={variant.id} className="flex items-stretch gap-2">
+                <button
+                  type="button"
+                  disabled={loading || cardLoading}
+                  onClick={() => onContinue(variant.id)}
+                  className="flex-1 flex items-center justify-between gap-3 border border-border px-3 py-3 hover:border-gold hover:bg-muted/40 transition-colors text-left disabled:opacity-60"
+                >
+                  <span className="text-sm font-semibold">{variant.label} bacteriostatic water</span>
+                  <span className="flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground line-through">{fmt(variant.price)}</span>
+                    <span className="text-sm font-bold text-gold">{fmt(discounted(variant.price))}</span>
+                    <Plus className="w-3.5 h-3.5" />
+                  </span>
+                </button>
+                {onPayByCard && (
+                  <button
+                    type="button"
+                    disabled={cardLoading || loading}
+                    onClick={() => onPayByCard(variant.id)}
+                    title="Pay by card / Apple Pay / Google Pay"
+                    className="border border-navy-deep text-navy-deep px-3 text-[10px] font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors disabled:opacity-60 flex items-center justify-center"
+                  >
+                    {cardLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" /> : "CARD"}
+                  </button>
+                )}
+              </div>
             ))}
           </div>
 
