@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { seo } from "@/lib/seo";
+import { useEffect } from "react";
+import { confirmNiftiPayOrder } from "@/lib/niftipay.functions";
 
 export const Route = createFileRoute("/checkout/success")({
   head: () =>
@@ -15,6 +17,10 @@ export const Route = createFileRoute("/checkout/success")({
 });
 
 function Success() {
+  useEffect(() => {
+    const ref = new URLSearchParams(window.location.search).get("reference");
+    if (ref && /^ORP-\d+$/.test(ref)) void confirmNiftiPayOrder({ data: { reference: ref } }).catch(() => {});
+  }, []);
   return (
     <div className="min-h-screen bg-bone text-navy-deep">
       <SiteHeader />
