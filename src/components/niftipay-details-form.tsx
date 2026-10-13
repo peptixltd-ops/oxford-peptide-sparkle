@@ -21,15 +21,16 @@ type FieldAttrs = {
 };
 
 // Autocomplete tokens are fixed here and applied last, so no call site can turn
-// autofill off. The "shipping" prefix keeps Apple Pay / Google Pay shipping
-// addresses separate from billing/contact autofill.
+// autofill off. Every field shares the "shipping" section, so iOS Safari
+// (Apple Pay contact + saved addresses) and Chrome/Android (Google Pay saved
+// contacts and addresses) fill the whole form in one tap from the first field.
 const FIELD_ATTRS: Record<keyof CustomerDetails, FieldAttrs> = {
   name: { name: "name", autoComplete: "shipping name", inputMode: "text" },
-  email: { name: "email", autoComplete: "email", inputMode: "email" },
-  phone: { name: "phone", autoComplete: "tel", inputMode: "tel" },
+  email: { name: "email", autoComplete: "shipping email", inputMode: "email" },
+  phone: { name: "tel", autoComplete: "shipping tel", inputMode: "tel" },
   address1: { name: "address-line1", autoComplete: "shipping address-line1", inputMode: "text" },
   address2: { name: "address-line2", autoComplete: "shipping address-line2", inputMode: "text" },
-  city: { name: "address-level2", autoComplete: "shipping address-level2", inputMode: "text" },
+  city: { name: "city", autoComplete: "shipping address-level2", inputMode: "text" },
   postcode: { name: "postal-code", autoComplete: "shipping postal-code", inputMode: "text" },
   country: { name: "country", autoComplete: "shipping country" },
 };
