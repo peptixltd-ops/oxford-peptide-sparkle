@@ -61,12 +61,17 @@ export type Database = {
           amount: number | null
           created_at: string
           currency: string | null
+          customer_email: string | null
+          customer_name: string | null
+          customer_phone: string | null
           draft_order_id: string | null
           id: string
           last_event: string | null
           niftipay_order_key: string | null
           processed_events: string[]
           reference: string
+          shipping_address: Json | null
+          shopify_customer_id: string | null
           shopify_order_id: string | null
           status: string
           updated_at: string | null
@@ -75,12 +80,17 @@ export type Database = {
           amount?: number | null
           created_at?: string
           currency?: string | null
+          customer_email?: string | null
+          customer_name?: string | null
+          customer_phone?: string | null
           draft_order_id?: string | null
           id?: string
           last_event?: string | null
           niftipay_order_key?: string | null
           processed_events?: string[]
           reference: string
+          shipping_address?: Json | null
+          shopify_customer_id?: string | null
           shopify_order_id?: string | null
           status?: string
           updated_at?: string | null
@@ -89,12 +99,17 @@ export type Database = {
           amount?: number | null
           created_at?: string
           currency?: string | null
+          customer_email?: string | null
+          customer_name?: string | null
+          customer_phone?: string | null
           draft_order_id?: string | null
           id?: string
           last_event?: string | null
           niftipay_order_key?: string | null
           processed_events?: string[]
           reference?: string
+          shipping_address?: Json | null
+          shopify_customer_id?: string | null
           shopify_order_id?: string | null
           status?: string
           updated_at?: string | null

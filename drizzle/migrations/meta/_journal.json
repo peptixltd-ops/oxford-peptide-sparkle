@@ -8,6 +8,13 @@
       "when": 1791845052129,
       "tag": "0000_create_niftipay_orders",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791921058379,
+      "tag": "0001_niftipay_orders_customer",
+      "breakpoints": true
     }
   ]
 }
