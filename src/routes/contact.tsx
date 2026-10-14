@@ -111,6 +111,7 @@ function ContactPage() {
           </div>
 
           <form onSubmit={onSubmit} className="lg:col-span-3 bg-white border border-navy-deep/15 p-8 space-y-5">
+            <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
             <div className="grid sm:grid-cols-2 gap-5">
               <label className="block text-xs">
                 <span className="font-bold tracking-widest text-navy-deep/70">NAME</span>
