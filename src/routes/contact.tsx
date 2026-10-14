@@ -31,12 +31,22 @@ function ContactPage() {
     }
     setSending(true);
     try {
-      const res = await fetch("https://formsubmit.co/ajax/info@oxfordresearchpeptides.com", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...parsed.data, _subject: `[Contact] ${parsed.data.subject}` }),
+        body: JSON.stringify({
+          access_key: "b98a26b8-b763-4b4f-84ec-d5068e0f7e8d",
+          name: parsed.data.name,
+          email: parsed.data.email,
+          subject: `[Contact] ${parsed.data.subject}`,
+          message: parsed.data.message,
+          from_name: "Oxford Research Peptides website",
+          replyto: parsed.data.email,
+          botcheck: "",
+        }),
       });
-      if (!res.ok) throw new Error("Failed");
+      const json = await res.json().catch(() => null);
+      if (!json || json.success !== true) throw new Error("Failed");
       toast.success("Message sent. We'll reply within one working day.");
       form.reset();
     } catch {
@@ -101,6 +111,7 @@ function ContactPage() {
           </div>
 
           <form onSubmit={onSubmit} className="lg:col-span-3 bg-white border border-navy-deep/15 p-8 space-y-5">
+            <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
             <div className="grid sm:grid-cols-2 gap-5">
               <label className="block text-xs">
                 <span className="font-bold tracking-widest text-navy-deep/70">NAME</span>
