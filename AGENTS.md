@@ -10,5 +10,6 @@
 <!-- LOVABLE:END -->
 
 - Mount the entry age confirmation once in the root shell, using a blocking accessible dialog and tab-session persistence; defer competing popups until confirmation so entry remains consistent across routes.
+- Normalize route metadata through the shared SEO text helper and keep editorial metadata overrides separate from content registries, so shortening search text never changes visible prose or headings.
 - NiftiPay card checkout creates a Shopify draft order server-side and completes it only from the signature-verified NiftiPay webhook; the success page never marks orders paid — the webhook is the single source of payment truth.
 - All NiftiPay entry points use the shared client helper to open the NiftiPay payment page directly; the server verifies the order summary against the same Shopify draft total charged by NiftiPay, preventing mismatched amounts.

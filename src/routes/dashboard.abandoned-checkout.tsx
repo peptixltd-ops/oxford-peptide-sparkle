@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { seoText } from "@/lib/seo";
 import { EMAILS, OFFER_PREVIEW, type BuildOpts, type PreviewProduct } from "@/lib/email-flow/templates";
 import logo from "@/assets/oxford-logo.jpg.asset.json";
 import vialRetaAsset from "@/assets/vials/orp-retatrutide.webp.asset.json";
@@ -11,25 +12,28 @@ const vialWater = vialWaterAsset.url;
 
 export const Route = createFileRoute("/dashboard/abandoned-checkout")({
   component: FlowDashboard,
-  head: () => ({
+  head: () => {
+    const { title, description } = seoText("/dashboard/abandoned-checkout", "Abandoned Checkout Flow Preview | Oxford Research Peptides", "Internal preview dashboard for the Oxford Research Peptides abandoned checkout email sequence — desktop and mobile previews, subject lines and approval status.");
+    return {
     meta: [
-      { title: "Abandoned Checkout Flow Preview | Oxford Research Peptides" },
+      { title },
       {
         name: "description",
-        content:
-          "Internal preview dashboard for the Oxford Research Peptides abandoned checkout email sequence — desktop and mobile previews, subject lines and approval status.",
+        content: description,
       },
-      { property: "og:title", content: "Abandoned Checkout Flow Preview" },
+      { property: "og:title", content: title },
       {
         property: "og:description",
-        content:
-          "Five-stage abandoned checkout email sequence previews for Oxford Research Peptides.",
+        content: description,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
       { name: "robots", content: "noindex,nofollow" },
     ],
-  }),
+    };
+  },
 });
 
 type Status = "DRAFT" | "CHANGES REQUESTED" | "APPROVED";

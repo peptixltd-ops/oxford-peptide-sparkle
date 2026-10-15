@@ -18,15 +18,25 @@ import {
 } from "lucide-react";
 import heroTrio from "@/assets/hero-lab-trio.png.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
+import { seoText } from "@/lib/seo";
 
 
 export const Route = createFileRoute("/concept")({
-  head: () => ({
+  head: () => {
+    const { title, description } = seoText("/concept", "Concept — Oxford Research Peptides", "Radically simplified homepage concept.");
+    return {
     meta: [
-      { title: "Concept — Oxford Research Peptides" },
-      { name: "description", content: "Radically simplified homepage concept." },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
-  }),
+    };
+  },
   component: ConceptHome,
 });
 

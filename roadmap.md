@@ -6,3 +6,6 @@
 - [x] Convert every ORP product image and footer logo to WebP.
 - [x] Update references and image loading/dimension attributes without CSS changes.
 - [x] Verify image rendering and unchanged desktop/mobile sizing; report image sizes.
+## SEO text lengths
+- [ ] Shorten metadata and generated templates without changing visible content.
+- [ ] Verify all actual routes/data, social matches, and limits; report examples and changed files.
