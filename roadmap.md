@@ -5,4 +5,4 @@
 ## Image performance
 - [x] Convert every ORP product image and footer logo to WebP.
 - [x] Update references and image loading/dimension attributes without CSS changes.
-- [ ] Verify image rendering and unchanged desktop/mobile sizing; report image sizes.
+- [x] Verify image rendering and unchanged desktop/mobile sizing; report image sizes.
