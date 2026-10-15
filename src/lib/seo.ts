@@ -1,5 +1,37 @@
 // Central SEO helper — emits canonical, og:*, twitter:*, JSON-LD, and optional noindex.
 // Every leaf route should call this from head() to guarantee consistent metadata.
+import { SEO_METADATA } from "./seo-metadata";
+
+const BRAND_SUFFIX = " | Oxford Research Peptides";
+export const TITLE_LIMIT = 60;
+export const DESCRIPTION_LIMIT = 155;
+
+function fitWords(text: string, limit: number): string {
+  if (text.length <= limit) return text;
+  const prefix = text.slice(0, limit + 1);
+  const boundary = prefix.lastIndexOf(" ");
+  return (boundary > 0 ? prefix.slice(0, boundary) : text.slice(0, limit))
+    .replace(/[\s,;:—|/-]+$/, "");
+}
+
+/** Metadata-only normalization: never mutate the visible content registries. */
+export function seoText(path: string, originalTitle: string, originalDescription: string) {
+  const editorial = SEO_METADATA[path.replace(/\/$/, "") || "/"];
+  const topic = (editorial?.topic ?? originalTitle
+    .replace(/\s*[—|]\s*Oxford Research Peptides.*$/, "")
+    .replace(/\s*—\s*(Research Guide|Literature Review|Research Programme|Study Collection|Compound Reference|Glossary|Comparison|Mechanism|Laboratory Methodology|Peptide Research Reading Path)$/, ""))
+    .replace(/\s+/g, " ").trim();
+  const title = `${fitWords(topic, TITLE_LIMIT - BRAND_SUFFIX.length)}${BRAND_SUFFIX}`;
+  const source = (editorial?.description ?? originalDescription).replace(/\s+/g, " ").trim();
+  let description = source;
+  if (source.length > DESCRIPTION_LIMIT) {
+    // Reserve the explicit restriction rather than losing it at the end of a long summary.
+    const restriction = /(?:research[ -]use[ -]only|(?:laboratory|in[ -]vitro).*research only|not for human consumption)/i.test(originalDescription)
+      ? " For laboratory research only." : "";
+    description = `${fitWords(source, DESCRIPTION_LIMIT - restriction.length - 1).replace(/[.!?]+$/, "")}.${restriction}`;
+  }
+  return { title, description };
+}
 
 export const SITE_URL = "https://oxfordresearchpeptides.com";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -16,19 +48,20 @@ export type SeoOptions = {
 };
 
 export function seo(opts: SeoOptions) {
+  const { title, description } = seoText(opts.path, opts.title, opts.description);
   const url = `${SITE_URL}${opts.path}`;
   const image = opts.ogImage ?? DEFAULT_OG_IMAGE;
   const meta: Array<Record<string, string>> = [
-    { title: opts.title },
-    { name: "description", content: opts.description },
-    { property: "og:title", content: opts.title },
-    { property: "og:description", content: opts.description },
+    { title },
+    { name: "description", content: description },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
     { property: "og:url", content: url },
     { property: "og:type", content: opts.ogType ?? "website" },
     { property: "og:image", content: image },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: opts.title },
-    { name: "twitter:description", content: opts.description },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
     { name: "twitter:image", content: image },
   ];
   if (opts.noindex) {
