@@ -126,6 +126,8 @@ function Home() {
             <div className="relative flex items-center justify-end overflow-visible">
               <img
                 src={heroTrio.url}
+                width={1264}
+                height={848}
                 alt="Oxford Research Peptides — Retatrutide, BPC-157 and Semaglutide research vials"
                 fetchPriority="high"
                 decoding="async"
@@ -179,7 +181,7 @@ function Home() {
         <section className="bg-navy-deep text-bone py-20">
           <div className="container-x grid lg:grid-cols-[1fr_1.2fr_0.9fr] gap-10 items-center">
             <div className="rounded-sm overflow-hidden">
-              <img src={labStandards} alt="Laboratory reference standards" width={640} height={400} loading="lazy" className="w-full h-full object-cover" />
+              <img src={labStandards} alt="Laboratory reference standards" width={640} height={400} loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </div>
             <div>
               <div className="text-gold text-xs font-bold tracking-[0.25em] mb-4">OUR STANDARDS</div>

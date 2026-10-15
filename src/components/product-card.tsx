@@ -84,7 +84,7 @@ export function ProductCard({ p }: { p: Product }) {
         params={{ slug: p.slug }}
         className="aspect-square flex items-center justify-center mb-4 relative bg-white overflow-hidden"
       >
-        <img src={p.img} alt={`${p.name} research peptide vial`} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 brightness-110" loading="lazy" />
+        <img src={p.img} width={666} height={999} decoding="async" alt={`${p.name} research peptide vial`} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 brightness-110" loading="lazy" />
       </Link>
       <Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-gold transition-colors">
         <h3 className="font-display text-base font-semibold mb-2 leading-tight">{p.name}</h3>

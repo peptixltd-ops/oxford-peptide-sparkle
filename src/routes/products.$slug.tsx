@@ -151,7 +151,7 @@ function ProductPage() {
           <div className="container-x min-w-0">
             <div className="grid min-w-0 grid-cols-1 gap-7 lg:grid-cols-2 lg:gap-12">
               <div className="flex aspect-square w-full min-w-0 items-center justify-center overflow-hidden border border-border bg-white p-4 sm:p-10">
-                <img src={product.img} alt={`${product.name} research peptide vial`} className="max-h-full max-w-full w-auto object-contain" />
+                <img src={product.img} width={666} height={999} decoding="async" fetchPriority="high" alt={`${product.name} research peptide vial`} className="max-h-full max-w-full w-auto object-contain" />
               </div>
               <div className="w-full min-w-0 overflow-hidden">
                 <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">RESEARCH PEPTIDE</div>

@@ -29,7 +29,7 @@ export const Route = createFileRoute("/lab-testing")({
         </section>
         <section className="py-14">
           <div className="container-x grid lg:grid-cols-2 gap-10 items-start">
-            <img src={labStandards} alt="Laboratory reference standards" className="w-full rounded-sm" loading="lazy" />
+            <img src={labStandards} width={1280} height={800} decoding="async" alt="Laboratory reference standards" className="w-full rounded-sm" loading="lazy" />
             <div className="space-y-6">
               {[
                 { icon: FlaskConical, title: "HPLC Purity Analysis", body: "Reverse-phase HPLC confirms purity for every production batch." },

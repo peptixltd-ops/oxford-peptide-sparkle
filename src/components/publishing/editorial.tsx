@@ -33,7 +33,7 @@ export function AuthorCard({ author, role, className }: AuthorCardProps) {
     >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-muted text-xs font-semibold uppercase text-muted-foreground">
         {author.avatarUrl ? (
-          <img src={author.avatarUrl} alt="" className="h-full w-full object-cover" />
+          <img src={author.avatarUrl} loading="lazy" decoding="async" alt="" className="h-full w-full object-cover" />
         ) : (
           <span aria-hidden>{author.name.slice(0, 2)}</span>
         )}
