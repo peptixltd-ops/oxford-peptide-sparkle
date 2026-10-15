@@ -50,6 +50,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/explore/pathways/compound-focused", changefreq: "monthly", priority: "0.5" },
           { path: "/explore/pathways/mechanism-focused", changefreq: "monthly", priority: "0.5" },
           { path: "/explore/pathways/methodology-focused", changefreq: "monthly", priority: "0.5" },
+          { path: "/research-hub/guides", changefreq: "monthly", priority: "0.6" },
+          { path: "/research-hub/glossary", changefreq: "monthly", priority: "0.6" },
+          { path: "/research-hub/literature", changefreq: "monthly", priority: "0.6" },
+          { path: "/research-hub/comparisons", changefreq: "monthly", priority: "0.6" },
+          { path: "/compounds", changefreq: "monthly", priority: "0.7" },
+          { path: "/coas", changefreq: "monthly", priority: "0.6" },
         ];
 
         for (const p of products) {
