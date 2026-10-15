@@ -149,7 +149,7 @@ function ConceptProductCard({ product: p }: { product: (typeof products)[0] }) {
     <div className="bg-white border border-border group flex flex-col">
       <Link to="/products/$slug" params={{ slug: p.slug }} className="block aspect-[4/5] bg-bone p-6 flex items-center justify-center">
         <img
-          src={p.img}
+          src={p.img} width={666} height={999} decoding="async" loading="lazy"
           alt={p.name}
           className="h-full w-full object-contain group-hover:scale-105 transition-transform duration-300"
         />
@@ -259,7 +259,7 @@ function ConceptHome() {
             </div>
             <div className="order-1 md:order-2 flex items-center justify-center">
               <img
-                src={heroTrio.url}
+                src={heroTrio.url} width={1800} height={1200} decoding="async"
                 alt="Oxford Research Peptides — BPC-157, Retatrutide and GHK-Cu research vials"
                 fetchPriority="high"
                 className="w-full max-w-xl h-auto rounded-sm shadow-2xl"
@@ -418,7 +418,7 @@ function ConceptHome() {
         <section className="bg-white">
           <div className="grid md:grid-cols-2 items-stretch">
             <img
-              src={labStandards}
+              src={labStandards} width={1280} height={800} decoding="async"
               alt="Laboratory bench with research peptide vials and glassware"
               loading="lazy"
               className="w-full h-64 md:h-full object-cover"

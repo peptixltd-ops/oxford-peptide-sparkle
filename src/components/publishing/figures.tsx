@@ -97,6 +97,7 @@ export function ScientificDiagram({
           src={src}
           alt={alt}
           loading="lazy"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-contain"
         />
       ) : (

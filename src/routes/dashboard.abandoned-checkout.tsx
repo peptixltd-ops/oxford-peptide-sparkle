@@ -2,9 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { EMAILS, OFFER_PREVIEW, type BuildOpts, type PreviewProduct } from "@/lib/email-flow/templates";
 import logo from "@/assets/oxford-logo.jpg.asset.json";
-import vialReta from "@/assets/vials/orp-retatrutide.png";
-import vialBpc from "@/assets/vials/orp-bpc-157.png";
-import vialWater from "@/assets/vials/orp-bac-water.png";
+import vialRetaAsset from "@/assets/vials/orp-retatrutide.webp.asset.json";
+const vialReta = vialRetaAsset.url;
+import vialBpcAsset from "@/assets/vials/orp-bpc-157.webp.asset.json";
+const vialBpc = vialBpcAsset.url;
+import vialWaterAsset from "@/assets/vials/orp-bac-water.webp.asset.json";
+const vialWater = vialWaterAsset.url;
 
 export const Route = createFileRoute("/dashboard/abandoned-checkout")({
   component: FlowDashboard,

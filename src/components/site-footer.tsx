@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Twitter, Mail, ArrowRight } from "lucide-react";
 import { Logo } from "./site-header";
-import orsLogo from "@/assets/oxford-research-syndicate.png.asset.json";
+import orsLogo from "@/assets/oxford-research-syndicate.webp.asset.json";
 
 
 const cols = [
@@ -40,7 +40,7 @@ export function SiteFooter() {
       <div className="container-x grid min-w-0 grid-cols-2 gap-8 py-14 md:grid-cols-3 lg:grid-cols-6">
         <div className="col-span-2 min-w-0">
           <div className="inline-block max-w-full rounded-sm bg-white p-3">
-            <img src={orsLogo.url} alt="Oxford Research Syndicate Ltd" className="h-auto max-h-14 max-w-full w-auto" />
+            <img src={orsLogo.url} width={936} height={248} loading="lazy" decoding="async" alt="Oxford Research Syndicate Ltd" className="h-auto max-h-14 max-w-full w-auto" />
           </div>
           <p className="text-bone/60 text-xs mt-5 max-w-xs leading-relaxed">
 

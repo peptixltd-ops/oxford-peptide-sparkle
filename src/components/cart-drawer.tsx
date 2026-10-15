@@ -164,7 +164,7 @@ export function CartDrawer() {
                 key={`${item.slug}::${item.variantId}`}
                 className="flex gap-3 bg-white border border-border p-3 items-center"
               >
-                <img src={product.img} alt={product.name} className="w-14 h-14 object-contain shrink-0" />
+                <img src={product.img} width={666} height={999} decoding="async" loading="lazy" alt={product.name} className="w-14 h-14 object-contain shrink-0" />
                 <div className="flex-1 min-w-0">
                   <div className="font-display text-sm font-semibold truncate">{product.name}</div>
                   <div className="text-[11px] text-muted-foreground">{variant.label}</div>

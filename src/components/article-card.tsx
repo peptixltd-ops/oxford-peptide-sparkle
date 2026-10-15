@@ -24,6 +24,9 @@ export function ArticleCard({ article, variant = "compact" }: Props) {
       <div className="aspect-[4/3] overflow-hidden mb-3">
         <img
           src={article.img}
+          width={800}
+          height={600}
+          decoding="async"
           alt={article.title}
           loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

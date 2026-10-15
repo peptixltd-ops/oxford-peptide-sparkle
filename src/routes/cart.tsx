@@ -111,7 +111,7 @@ function CartPage() {
                 {lines.map(({ item, product, variant }) => (
                   <div key={`${item.slug}::${item.variantId}`} className="grid grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:grid-cols-[5rem_minmax(0,1fr)_auto_auto_auto] items-center gap-x-3 gap-y-3 p-4 sm:p-5 border-b border-border last:border-b-0">
                     <Link to="/products/$slug" params={{ slug: product.slug }} className="w-[4.5rem] h-[4.5rem] sm:w-20 sm:h-20 bg-muted/40 flex items-center justify-center shrink-0 row-span-2 sm:row-span-1">
-                      <img src={product.img} alt={product.name} className="max-h-full object-contain" />
+                      <img src={product.img} width={666} height={999} decoding="async" loading="lazy" alt={product.name} className="max-h-full object-contain" />
                     </Link>
                     <div className="min-w-0 col-span-2 sm:col-span-1">
                       <Link to="/products/$slug" params={{ slug: product.slug }} className="block font-display text-base sm:text-lg font-semibold hover:text-gold transition-colors truncate">
