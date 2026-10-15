@@ -154,26 +154,15 @@ export async function createCheckout(
 
 
 /**
- * Popup blockers (Safari/Firefox by default) suppress `window.open` calls made
- * after an await, because the user-activation window has expired. So open the
- * tab synchronously inside the click handler, then point it at the checkout URL
- * once we have it. If the browser blocked it anyway, fall back to same-tab
- * navigation so the shopper always reaches checkout.
+ * Checkout opens in the same browser tab: no popup tab is created, so popup
+ * blockers can never interfere. The `tab` arguments are kept on the helper
+ * signatures so existing callers compile unchanged; they are always null.
  */
 export function openCheckoutTab(): Window | null {
-  if (typeof window === "undefined") return null;
-  try {
-    return window.open("about:blank", "_blank");
-  } catch {
-    return null;
-  }
+  return null;
 }
 
 export function sendToCheckout(tab: Window | null, url: string) {
-  if (tab && !tab.closed) {
-    tab.location.href = url;
-    return;
-  }
   window.location.assign(url);
 }
 
