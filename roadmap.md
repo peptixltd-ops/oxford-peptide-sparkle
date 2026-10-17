@@ -1,3 +1,6 @@
+## Delivery offer visibility
+- [ ] Highlight the £12 UK delivery offer in the announcement bar, product purchase area and cart drawer.
+- [ ] Update outdated delivery copy site-wide and verify the visible changes without publishing.
 ## NiftiPay order summary
 ## NiftiPay international delivery
 - [x] Update only NiftiPay UK free delivery to £12 for both methods, revise modal/cart wording and verify server tests and live display; no matching banner wording existed.
