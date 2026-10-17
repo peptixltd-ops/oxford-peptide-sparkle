@@ -1,4 +1,9 @@
 ## NiftiPay order summary
+## Newsletter Shopify sync
+- [ ] Add non-blocking customer consent, tags and welcome-code sync; remove missing email RPC.
+- [ ] Wire footer signup and verify validation, code delivery and double-submit protection.
+- [ ] Verify Shopify customer permissions (currently missing write_customers).
+
 - [x] Check documented hosted-payment description support.
 - [x] Add a shared card-checkout summary using server-verified totals.
 - [x] Verify summary, back navigation, and payment handoff on mobile and desktop.
