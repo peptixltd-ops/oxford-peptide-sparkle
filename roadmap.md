@@ -1,4 +1,7 @@
 ## NiftiPay order summary
+## NiftiPay international delivery
+- [ ] Add worldwide eligible countries, conditional region validation and live delivery totals.
+- [ ] Enforce UK/international shipping on the server and verify the checkout flow without publishing.
 ## Newsletter Shopify sync
 - [x] Add non-blocking customer consent, tags and welcome-code sync; remove missing email RPC.
 - [x] Wire footer signup; verify inline validation, simulated code delivery, double-submit protection and actual endpoint honeypot/validation.
