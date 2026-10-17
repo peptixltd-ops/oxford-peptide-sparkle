@@ -13,6 +13,7 @@ import {
   sendToCheckout,
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
+import { niftiPayShipping } from "@/lib/niftipay-shipping";
 import { BacWaterUpsell } from "@/components/bac-water-upsell";
 import { toast } from "sonner";
 import { createPortal } from "react-dom";
@@ -50,9 +51,7 @@ export function CartDrawer() {
     .filter((l): l is NonNullable<typeof l> => !!l);
 
   const subtotal = lines.reduce((s, l) => s + l.variant.price * l.item.qty, 0);
-  const FREE_SHIPPING_THRESHOLD = 20;
-  const SHIPPING_RATE = 3.99;
-  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_RATE;
+  const shipping = niftiPayShipping(subtotal, "GB");
 
   const fmt = (n: number) => `£${n.toFixed(2)}`;
   const bacLines = lines.filter((l) => l.product.slug === BAC_WATER_UPSELL.slug);
@@ -223,7 +222,7 @@ export function CartDrawer() {
               <span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span>
             </div>
             <p className="text-[11px] text-muted-foreground">
-              NiftiPay: free UK delivery on baskets of £12 or more.
+              Free UK delivery on orders of £12 or more.
             </p>
             {credit && (
               <div className="flex justify-between text-sm text-gold">
