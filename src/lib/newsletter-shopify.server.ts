@@ -69,11 +69,6 @@ export async function syncNewsletterCustomer(
   const customer = saved[mutation].customer;
   if (!customer) throw new Error("Shopify newsletter customer was not saved.");
 
-  const consent = await graphql<{ customerEmailMarketingConsentUpdate: MutationResult }>(
-    `mutation NewsletterEmailConsent($input: CustomerEmailMarketingConsentUpdateInput!) { customerEmailMarketingConsentUpdate(input: $input) { userErrors { field message } } }`,
-    { input: { customerId: customer.id, emailMarketingConsent: { marketingState: "SUBSCRIBED", marketingOptInLevel: "SINGLE_OPT_IN" } } },
-  );
-  check(consent.customerEmailMarketingConsentUpdate);
   const tagged = await graphql<{ tagsAdd: MutationResult }>(
     `mutation NewsletterTags($id: ID!, $tags: [String!]!) { tagsAdd(id: $id, tags: $tags) { userErrors { field message } } }`,
     { id: customer.id, tags: ["newsletter", subscriber.source] },
@@ -84,6 +79,12 @@ export async function syncNewsletterCustomer(
     { metafields: [{ ownerId: customer.id, namespace: "custom", key: "welcome_code", type: "single_line_text_field", value: subscriber.code }] },
   );
   check(metafield.metafieldsSet);
+  // Publish consent last so welcome automations can already read the saved code.
+  const consent = await graphql<{ customerEmailMarketingConsentUpdate: MutationResult }>(
+    `mutation NewsletterEmailConsent($input: CustomerEmailMarketingConsentUpdateInput!) { customerEmailMarketingConsentUpdate(input: $input) { userErrors { field message } } }`,
+    { input: { customerId: customer.id, emailMarketingConsent: { marketingState: "SUBSCRIBED", marketingOptInLevel: "SINGLE_OPT_IN" } } },
+  );
+  check(consent.customerEmailMarketingConsentUpdate);
   if (subscriber.phone && subscriber.smsConsent) {
     const sms = await graphql<{ customerSmsMarketingConsentUpdate: MutationResult }>(
       `mutation NewsletterSmsConsent($input: CustomerSmsMarketingConsentUpdateInput!) { customerSmsMarketingConsentUpdate(input: $input) { userErrors { field message } } }`,
