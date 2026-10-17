@@ -15,6 +15,7 @@ import {
   sendToCheckout,
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
+import { niftiPayShipping } from "@/lib/niftipay-shipping";
 import { BacWaterUpsell } from "@/components/bac-water-upsell";
 
 import { Trash2, Loader2 } from "lucide-react";
@@ -47,9 +48,7 @@ function CartPage() {
     .filter((l): l is NonNullable<typeof l> => !!l);
 
   const subtotal = lines.reduce((s, l) => s + l.variant.price * l.item.qty, 0);
-  const FREE_SHIPPING_THRESHOLD = 20;
-  const SHIPPING_RATE = 3.99;
-  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_RATE;
+  const shipping = niftiPayShipping(subtotal, "GB");
   const credit = creditForSubtotal(subtotal);
   const bacLines = lines.filter(l => l.product.slug === BAC_WATER_UPSELL.slug);
   const bacDiscount = Math.min(
