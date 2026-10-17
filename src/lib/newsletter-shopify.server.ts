@@ -46,8 +46,11 @@ export async function syncNewsletterCustomer(
     return result.data;
   }
 
-  function check(result: MutationResult) {
-    if (result.userErrors.length) throw new Error(result.userErrors.map(error => error.message).join("; "));
+  function check(result: MutationResult, mutationName: string) {
+    if (result.userErrors.length) {
+      console.error(`Shopify newsletter ${mutationName} userErrors`, result.userErrors);
+      throw new Error(result.userErrors.map(error => error.message).join("; "));
+    }
   }
 
   const found = await graphql<{ customers: { nodes: Array<{ id: string; email: string | null }> } }>(
@@ -61,11 +64,11 @@ export async function syncNewsletterCustomer(
     ...(subscriber.phone && subscriber.smsConsent ? { phone: subscriber.phone } : {}),
   };
   const mutation = existing ? "customerUpdate" : "customerCreate";
-  const saved = await graphql<Record<string, MutationResult & { customer: { id: string } | null }>>(
-    `mutation SaveNewsletterCustomer($input: CustomerInput!) { ${mutation}(input: $input) { customer { id } userErrors { field message } } }`,
+  const saved = await graphql<Record<string, MutationResult & { customer: { id: string; emailMarketingConsent: { marketingState: string } | null } | null }>>(
+    `mutation SaveNewsletterCustomer($input: CustomerInput!) { ${mutation}(input: $input) { customer { id emailMarketingConsent { marketingState } } userErrors { field message } } }`,
     { input },
   );
-  check(saved[mutation]);
+  check(saved[mutation], mutation);
   const customer = saved[mutation].customer;
   if (!customer) throw new Error("Shopify newsletter customer was not saved.");
 
@@ -73,24 +76,26 @@ export async function syncNewsletterCustomer(
     `mutation NewsletterTags($id: ID!, $tags: [String!]!) { tagsAdd(id: $id, tags: $tags) { userErrors { field message } } }`,
     { id: customer.id, tags: ["newsletter", subscriber.source] },
   );
-  check(tagged.tagsAdd);
+  check(tagged.tagsAdd, "tagsAdd");
   const metafield = await graphql<{ metafieldsSet: MutationResult }>(
     `mutation NewsletterWelcomeCode($metafields: [MetafieldsSetInput!]!) { metafieldsSet(metafields: $metafields) { userErrors { field message } } }`,
     { metafields: [{ ownerId: customer.id, namespace: "custom", key: "welcome_code", type: "single_line_text_field", value: subscriber.code }] },
   );
-  check(metafield.metafieldsSet);
+  check(metafield.metafieldsSet, "metafieldsSet");
   // Publish consent last so welcome automations can already read the saved code.
-  const consent = await graphql<{ customerEmailMarketingConsentUpdate: MutationResult }>(
-    `mutation NewsletterEmailConsent($input: CustomerEmailMarketingConsentUpdateInput!) { customerEmailMarketingConsentUpdate(input: $input) { userErrors { field message } } }`,
-    { input: { customerId: customer.id, emailMarketingConsent: { marketingState: "SUBSCRIBED", marketingOptInLevel: "SINGLE_OPT_IN" } } },
-  );
-  check(consent.customerEmailMarketingConsentUpdate);
+  if (customer.emailMarketingConsent?.marketingState !== "SUBSCRIBED") {
+    const consent = await graphql<{ customerEmailMarketingConsentUpdate: MutationResult }>(
+      `mutation NewsletterEmailConsent($input: CustomerEmailMarketingConsentUpdateInput!) { customerEmailMarketingConsentUpdate(input: $input) { userErrors { field message } } }`,
+      { input: { customerId: customer.id, emailMarketingConsent: { marketingState: "SUBSCRIBED", marketingOptInLevel: "SINGLE_OPT_IN", consentUpdatedAt: new Date().toISOString() } } },
+    );
+    check(consent.customerEmailMarketingConsentUpdate, "customerEmailMarketingConsentUpdate");
+  }
   if (subscriber.phone && subscriber.smsConsent) {
     const sms = await graphql<{ customerSmsMarketingConsentUpdate: MutationResult }>(
       `mutation NewsletterSmsConsent($input: CustomerSmsMarketingConsentUpdateInput!) { customerSmsMarketingConsentUpdate(input: $input) { userErrors { field message } } }`,
       { input: { customerId: customer.id, smsMarketingConsent: { marketingState: "SUBSCRIBED", marketingOptInLevel: "SINGLE_OPT_IN" } } },
     );
-    check(sms.customerSmsMarketingConsentUpdate);
+    check(sms.customerSmsMarketingConsentUpdate, "customerSmsMarketingConsentUpdate");
   }
 }
 
