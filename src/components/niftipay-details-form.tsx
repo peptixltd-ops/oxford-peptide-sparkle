@@ -155,6 +155,7 @@ function DetailsForm({ onDone, lines }: { onDone: (r: Result) => void; lines: Ch
           {v.country === "GB" && (
             <fieldset className="space-y-2">
               <legend className="text-[11px] font-bold tracking-widest text-navy-deep mb-1">DELIVERY</legend>
+              <p className="text-[11px] text-muted-foreground">Free UK delivery on baskets of £12 or more.</p>
               {(["express", "standard"] as const).map((method) => (
                 <label key={method} className="flex items-center gap-2 text-sm text-navy-deep">
                   <input type="radio" name="shippingMethod" value={method} checked={shippingMethod === method} onChange={() => setShippingMethod(method)} />

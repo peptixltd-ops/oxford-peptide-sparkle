@@ -10,10 +10,11 @@ mock.module("./niftipay.server", () => ({
     if (query.includes("customers(first")) return { customers: { nodes: [{ id: "gid://shopify/Customer/1" }] } };
     draftInput = variables.input;
     const shipping = Number(draftInput.shippingLine.priceWithCurrency.amount);
+    const quantity = draftInput.lineItems[0].quantity;
     return { draftOrderCreate: { userErrors: [], draftOrder: {
       id: "gid://shopify/DraftOrder/1", legacyResourceId: "1",
       shippingLine: { originalPriceSet: { shopMoney: { amount: String(shipping) } } },
-      totalPriceSet: { shopMoney: { amount: String(4 + shipping), currencyCode: "GBP" } },
+      totalPriceSet: { shopMoney: { amount: String(4 * quantity + shipping), currencyCode: "GBP" } },
     } } };
   },
   getAdminDb: async () => ({ from: () => ({ insert: async (row) => { savedOrder = row; return { error: null }; } }) }),
@@ -35,8 +36,8 @@ test("checkout server ignores forged shipping, charges GBP and passes validated 
     return Response.json({ payUrl: "https://www.niftipay.com/test-only", id: "test-only", pricing: { totalCents: Math.round(paymentInput.amount * 100) } });
   });
   try {
-    for (const [country, method, expectedShipping, expectedTotal] of [["GB", "express", 3.99, 7.99], ["GB", "standard", 5.99, 9.99], ["US", "express", 15, 19], ["CA", "standard", 15, 19], ["AU", "express", 15, 19]]) {
-      const response = await handler({ request: new Request("http://localhost/api/public/niftipay-checkout", { method: "POST", body: JSON.stringify({ lines: [{ merchandiseId, quantity: 1 }], customer: { ...customer, country, region: "Test Region" }, shippingMethod: method, shipping: 0, amount: 0 }) }) });
+    for (const [country, method, quantity, expectedShipping, expectedTotal] of [["GB", "express", 1, 3.99, 7.99], ["GB", "standard", 1, 5.99, 9.99], ["GB", "express", 2, 0, 8], ["GB", "standard", 2, 0, 8], ["US", "express", 1, 15, 19], ["US", "express", 2, 15, 23], ["CA", "standard", 1, 15, 19], ["AU", "express", 1, 15, 19]]) {
+      const response = await handler({ request: new Request("http://localhost/api/public/niftipay-checkout", { method: "POST", body: JSON.stringify({ lines: [{ merchandiseId, quantity }], customer: { ...customer, country, region: "Test Region" }, shippingMethod: method, shipping: 99, amount: 0 }) }) });
       assert.equal(response.status, 200);
       const result = await response.json();
       assert.equal(result.shippingApplied, expectedShipping);
