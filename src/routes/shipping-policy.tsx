@@ -6,6 +6,11 @@ function Page() {
   return (
     <LegalPage eyebrow="POLICIES" title="Shipping Policy" updated="January 2026">
       <P>
+        UK delivery is free on orders of £12 or more. Under £12, Express delivery is £3.99
+        and Standard delivery is £5.99. International delivery is a flat £15 regardless of
+        order value, excluding Russia and Belarus.
+      </P>
+      <P>
         Please refer to our Frequently Asked Questions (FAQ) page for complete shipping and
         delivery information, including dispatch times, tracking, courier partners and
         availability.
@@ -23,6 +28,6 @@ function Page() {
 }
 
 export const Route = createFileRoute("/shipping-policy")({
-  head: () => seo({ path: "/shipping-policy", title: 'Shipping Policy — Oxford Research Peptides', description: 'Shipping and delivery information — please refer to our FAQ for full details.' }),
+  head: () => seo({ path: "/shipping-policy", title: 'Shipping Policy — Oxford Research Peptides', description: 'Research-only orders: UK delivery free from £12; under £12 Express £3.99 / Standard £5.99. International flat £15, excluding Russia and Belarus.' }),
   component: Page,
 });

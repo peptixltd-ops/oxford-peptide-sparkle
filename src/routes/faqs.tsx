@@ -21,9 +21,10 @@ const categories: Category[] = [
     items: [
       { q: "How long does delivery take?", a: "Orders placed before 2pm are shipped the same working day via tracked next-day courier within the UK." },
       { q: "When are orders dispatched?", a: "Monday to Friday, excluding UK bank holidays." },
+      { q: "How much does delivery cost?", a: "UK delivery is free on orders of £12 or more. Under £12, Express delivery is £3.99 and Standard delivery is £5.99. International delivery is a flat £15 regardless of order value." },
       { q: "Will I receive tracking?", a: "Yes — every order is sent with Royal Mail or DPD tracking and you'll receive the tracking number by email as soon as the parcel is collected." },
       { q: "What if my order hasn't arrived?", a: "Get in touch with our team within 14 days of dispatch and we'll resolve it the same working day." },
-      { q: "Do you ship internationally?", a: "At the moment we ship within the UK only. International shipping is on our roadmap — sign up to our newsletter to be notified when it goes live." },
+      { q: "Do you ship internationally?", a: "Yes — international delivery is a flat £15 regardless of order value. We ship worldwide except to Russia and Belarus." },
       { q: "What if my product arrives damaged?", a: "Email us your order number, a clear photo of the damage and a short description of the issue. We'll arrange a replacement as quickly as possible." },
       { q: "Can I place a bulk order?", a: "Yes. We offer bulk pricing for researchers, clinics and laboratories. Send us the products and quantities you need and we'll come back to you with pricing and lead times." },
     ],

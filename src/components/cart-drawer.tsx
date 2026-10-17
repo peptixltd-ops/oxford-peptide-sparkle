@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { X, Check, Loader2 } from "lucide-react";
+import { X, Check, Loader2, Truck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { getProduct, getVariant } from "@/lib/products";
@@ -221,8 +221,9 @@ export function CartDrawer() {
               <span>Shipping</span>
               <span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span>
             </div>
-            <p className="text-[11px] text-muted-foreground">
-              Free UK delivery on orders of £12 or more.
+            <p className="flex items-center gap-2 border-l-2 border-gold bg-bone px-3 py-2 text-xs font-semibold text-navy-deep">
+              <Truck className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+              <span>Free UK delivery when you spend £12 or more</span>
             </p>
             {credit && (
               <div className="flex justify-between text-sm text-gold">

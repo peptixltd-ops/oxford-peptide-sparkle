@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Search, User, ShoppingBag, Menu } from "lucide-react";
+import { Search, User, ShoppingBag, Menu, Truck } from "lucide-react";
 import { useEffect, useState } from "react";
 import oxfordLogo from "@/assets/oxford-logo.webp.asset.json";
 import { useCart } from "@/lib/cart";
@@ -60,6 +60,12 @@ export function SiteHeader() {
 
   return (
     <header className="bg-white border-b border-border relative z-20">
+      <div className="bg-navy-deep text-bone">
+        <div className="container-x flex items-center justify-center gap-2 py-2.5 text-center text-xs font-semibold">
+          <Truck className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+          <span>Free UK delivery when you spend £12 or more</span>
+        </div>
+      </div>
       <div className="container-x flex items-center justify-between h-20 gap-4">
         <Logo />
         <nav
