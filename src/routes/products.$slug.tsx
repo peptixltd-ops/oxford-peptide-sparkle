@@ -220,10 +220,6 @@ function ProductPage() {
                     {loading ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : "BUY NOW"}
                   </button>
                 </div>
-                <p className="mb-3 flex items-center gap-2 text-xs font-semibold text-navy-deep">
-                  <Truck className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-                  <span>Free UK delivery when you spend £12 or more</span>
-                </p>
                 <button
                   type="button"
                   onClick={payByCard}
