@@ -5,15 +5,16 @@ export async function startNiftiPayCheckout(lines: CheckoutLine[], discountCodes
   if (lines.length === 0) throw new Error("No items available for checkout");
   const { collectCustomerDetails } = await import("@/components/niftipay-details-form");
   let tab: Window | null = null;
-  const customer = await collectCustomerDetails(() => {
+  const result = await collectCustomerDetails(() => {
     tab = openCheckoutTab();
-  });
-  if (!customer) return; // shopper closed the form
+  }, lines);
+  if (!result) return; // shopper closed the form
+  const { details: customer, shippingMethod } = result;
   try {
     const response = await fetch("/api/public/niftipay-checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ lines, discountCodes, customer, email: customer.email, name: customer.name }),
+      body: JSON.stringify({ lines, discountCodes, customer, shippingMethod, email: customer.email, name: customer.name }),
     });
     const data = await response.json();
     if (!response.ok || !data.payUrl) {
