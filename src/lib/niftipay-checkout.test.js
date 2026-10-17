@@ -2,11 +2,11 @@ import { test, mock } from "bun:test";
 import assert from "node:assert/strict";
 import { getVariantGid } from "./shopify";
 
-let draftInput: any;
-let paymentInput: any;
-let savedOrder: any;
+let draftInput;
+let paymentInput;
+let savedOrder;
 mock.module("./niftipay.server", () => ({
-  shopifyAdmin: async (query: string, variables: any) => {
+  shopifyAdmin: async (query, variables) => {
     if (query.includes("customers(first")) return { customers: { nodes: [{ id: "gid://shopify/Customer/1" }] } };
     draftInput = variables.input;
     const shipping = Number(draftInput.shippingLine.priceWithCurrency.amount);
@@ -16,11 +16,11 @@ mock.module("./niftipay.server", () => ({
       totalPriceSet: { shopMoney: { amount: String(4 + shipping), currencyCode: "GBP" } },
     } } };
   },
-  getAdminDb: async () => ({ from: () => ({ insert: async (row: any) => { savedOrder = row; return { error: null }; } }) }),
+  getAdminDb: async () => ({ from: () => ({ insert: async (row) => { savedOrder = row; return { error: null }; } }) }),
 }));
 
 const { Route } = await import("../routes/api/public/niftipay-checkout");
-const handler = (Route.options as any).server.handlers.POST;
+const handler = (Route.options).server.handlers.POST;
 const merchandiseId = getVariantGid("bacteriostatic-water", "3mL");
 const customer = { name: "Test Researcher", email: "researcher@example.com", phone: "+12025550123", address1: "123 Test Street", city: "Test City", postcode: "90001", country: "GB" };
 
@@ -30,12 +30,12 @@ test("checkout server ignores forged shipping, charges GBP and passes validated 
   const originalId = process.env.NIFTIPAY_INTEGRATION_ID;
   process.env.NIFTIPAY_API_KEY = "test-only";
   process.env.NIFTIPAY_INTEGRATION_ID = "test-only";
-  globalThis.fetch = (async (_url: unknown, options: any) => {
+  globalThis.fetch = (async (_url, options) => {
     paymentInput = JSON.parse(options.body);
     return Response.json({ payUrl: "https://www.niftipay.com/test-only", id: "test-only", pricing: { totalCents: Math.round(paymentInput.amount * 100) } });
-  }) as typeof fetch;
+  });
   try {
-    for (const [country, method, expectedShipping, expectedTotal] of [["GB", "express", 3.99, 7.99], ["GB", "standard", 5.99, 9.99], ["US", "express", 15, 19], ["CA", "standard", 15, 19], ["AU", "express", 15, 19]] as const) {
+    for (const [country, method, expectedShipping, expectedTotal] of [["GB", "express", 3.99, 7.99], ["GB", "standard", 5.99, 9.99], ["US", "express", 15, 19], ["CA", "standard", 15, 19], ["AU", "express", 15, 19]]) {
       const response = await handler({ request: new Request("http://localhost/api/public/niftipay-checkout", { method: "POST", body: JSON.stringify({ lines: [{ merchandiseId, quantity: 1 }], customer: { ...customer, country, region: "Test Region" }, shippingMethod: method, shipping: 0, amount: 0 }) }) });
       assert.equal(response.status, 200);
       const result = await response.json();
