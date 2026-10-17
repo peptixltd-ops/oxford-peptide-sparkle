@@ -5,13 +5,16 @@
 // saved contacts and addresses) can fill the whole form in one tap.
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
-import { Loader2, X } from "lucide-react";
+import { X } from "lucide-react";
 
-import { COUNTRIES, customerSchema, type CustomerDetails } from "@/lib/niftipay-customer";
+import { COUNTRIES, REGION_REQUIRED_COUNTRIES, customerSchema, type CustomerDetails } from "@/lib/niftipay-customer";
+import { niftiPayShipping, niftiPayShippingTitle, type NiftiPayShippingMethod } from "@/lib/niftipay-shipping";
+import { buildNiftiPaySummary } from "@/lib/niftipay-summary";
+import { type CheckoutLine } from "@/lib/shopify";
 
 const STORAGE_KEY = "orp_niftipay_customer_v1";
 const FORM_ID = "niftipay-details-form";
-const EMPTY: CustomerDetails = { name: "", email: "", phone: "", address1: "", address2: "", city: "", postcode: "", country: "GB" };
+const EMPTY: CustomerDetails = { name: "", email: "", phone: "", address1: "", address2: "", city: "", postcode: "", country: "GB", region: "" };
 
 type FieldAttrs = {
   id: string;
@@ -34,27 +37,38 @@ const FIELD_ATTRS: Record<keyof CustomerDetails, FieldAttrs> = {
   city: { id: "address-level2", name: "address-level2", autoComplete: "address-level2", inputMode: "text" },
   postcode: { id: "postal-code", name: "postal-code", autoComplete: "postal-code", inputMode: "text" },
   country: { id: "country", name: "country", autoComplete: "country" },
+  region: { id: "address-level1", name: "address-level1", autoComplete: "address-level1", inputMode: "text" },
 };
 
 function loadSaved(): CustomerDetails {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? { ...EMPTY, ...JSON.parse(raw) } : EMPTY;
+    const saved = raw ? { ...EMPTY, ...JSON.parse(raw) } : EMPTY;
+    return { ...saved, country: COUNTRIES.some(([code]) => code === saved.country) ? saved.country : "GB" };
   } catch {
     return EMPTY;
   }
 }
 
-type Result = { details: CustomerDetails } | null;
+type Result = { details: CustomerDetails; shippingMethod: NiftiPayShippingMethod } | null;
 
-function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
+function DetailsForm({ onDone, lines }: { onDone: (r: Result) => void; lines: CheckoutLine[] }) {
   const [v, setV] = useState<CustomerDetails>(loadSaved);
+  const [shippingMethod, setShippingMethod] = useState<NiftiPayShippingMethod>("express");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const subtotal = buildNiftiPaySummary(lines, 0).subtotal;
+  const shipping = niftiPayShipping(subtotal, v.country, shippingMethod);
+  const summary = buildNiftiPaySummary(lines, shipping);
+  const fmt = (amount: number) => new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(amount);
   // Typed loosely on purpose: browser autofill can fire onChange or onInput
   // with different event shapes, and filled values must stick either way.
   const set = (k: keyof CustomerDetails) => (e: { target: EventTarget | null }) => {
     const el = e.target as HTMLInputElement | HTMLSelectElement | null;
-    if (el) setV({ ...v, [k]: el.value });
+    if (el) {
+      const value = el.value;
+      setV((current) => ({ ...current, [k]: value }));
+      setErrors((current) => ({ ...current, [k]: "" }));
+    }
   };
 
   const submit = (e: React.FormEvent) => {
@@ -67,7 +81,7 @@ function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
       return;
     }
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(r.data)); } catch { /* ignore */ }
-    onDone({ details: r.data });
+    onDone({ details: r.data, shippingMethod });
   };
 
   const field = (k: keyof CustomerDetails, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => {
@@ -136,6 +150,26 @@ function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
               {COUNTRIES.map(([code, name]) => <option key={code} value={code}>{name}</option>)}
             </select>
           </label>
+          {field("region", REGION_REQUIRED_COUNTRIES.has(v.country) ? "STATE / PROVINCE / REGION" : "STATE / PROVINCE / REGION (OPTIONAL)", { required: REGION_REQUIRED_COUNTRIES.has(v.country) })}
+          {errors.country && <span className="block text-xs text-destructive mt-1">{errors.country}</span>}
+          {v.country === "GB" && (
+            <fieldset className="space-y-2">
+              <legend className="text-[11px] font-bold tracking-widest text-navy-deep mb-1">DELIVERY</legend>
+              {(["express", "standard"] as const).map((method) => (
+                <label key={method} className="flex items-center gap-2 text-sm text-navy-deep">
+                  <input type="radio" name="shippingMethod" value={method} checked={shippingMethod === method} onChange={() => setShippingMethod(method)} />
+                  {method === "express" ? "Express" : "Standard"}
+                  <span className="ml-auto">{niftiPayShipping(subtotal, "GB", method) === 0 ? "Free" : fmt(niftiPayShipping(subtotal, "GB", method))}</span>
+                </label>
+              ))}
+            </fieldset>
+          )}
+          <div className="border-t border-border pt-3 space-y-2 text-sm text-navy-deep" aria-live="polite" aria-atomic="true">
+            <div className="flex justify-between gap-3"><span>Subtotal</span><span>{fmt(summary.subtotal)}</span></div>
+            {summary.discounts.map((discount) => <div key={discount.label} className="flex justify-between gap-3"><span>{discount.label}</span><span>−{fmt(discount.amount)}</span></div>)}
+            <div className="flex justify-between gap-3"><span>{niftiPayShippingTitle(v.country, shippingMethod)}</span><span>{shipping === 0 ? "Free" : fmt(shipping)}</span></div>
+            <div className="flex justify-between gap-3 font-bold"><span>Total</span><span>{fmt(summary.total)}</span></div>
+          </div>
         </div>
         <button type="submit" className="mt-6 w-full px-7 py-3.5 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors">
           CONTINUE TO SECURE PAYMENT
@@ -149,7 +183,7 @@ function DetailsForm({ onDone }: { onDone: (r: Result) => void }) {
 }
 
 /** Shows the form; resolves with the details (submit = user gesture) or null if closed. */
-export function collectCustomerDetails(onSubmitGesture: () => void): Promise<CustomerDetails | null> {
+export function collectCustomerDetails(onSubmitGesture: () => void, lines: CheckoutLine[]): Promise<Result> {
   return new Promise((resolve) => {
     const host = document.createElement("div");
     document.body.appendChild(host);
@@ -161,8 +195,8 @@ export function collectCustomerDetails(onSubmitGesture: () => void): Promise<Cus
       document.body.style.overflow = prevOverflow;
       root.unmount();
       host.remove();
-      resolve(r ? r.details : null);
+      resolve(r);
     };
-    root.render(<DetailsForm onDone={done} />);
+    root.render(<DetailsForm onDone={done} lines={lines} />);
   });
 }

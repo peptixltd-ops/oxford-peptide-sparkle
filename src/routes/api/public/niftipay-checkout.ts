@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { BAC_WATER_UPSELL, VARIANT_GID, creditForSubtotal } from "@/lib/shopify";
 import { getProduct, getVariant } from "@/lib/products";
-import { getAdminDb, shippingForSubtotal, shopifyAdmin } from "@/lib/niftipay.server";
+import { getAdminDb, shopifyAdmin } from "@/lib/niftipay.server";
 import { customerSchema } from "@/lib/niftipay-customer";
+import { niftiPayShipping, niftiPayShippingTitle, shippingMethodSchema } from "@/lib/niftipay-shipping";
 import { buildNiftiPaySummary, verifyNiftiPayTotal } from "@/lib/niftipay-summary";
 
 const GID_TO_KEY = new Map(Object.entries(VARIANT_GID).map(([k, gid]) => [gid, k]));
@@ -25,6 +26,7 @@ const schema = z.object({
   email: z.string().email().max(255).optional(),
   name: z.string().trim().max(200).optional(),
   customer: customerSchema,
+  shippingMethod: shippingMethodSchema,
 });
 
 const DRAFT_CREATE = `
@@ -68,8 +70,8 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           return json({ error: "Invalid JSON body" }, 400);
         }
         const parsed = schema.safeParse(raw);
-        if (!parsed.success) return json({ error: "Invalid cart", details: parsed.error.flatten() }, 400);
-        const { lines, customer } = parsed.data;
+        if (!parsed.success) return json({ error: parsed.error.issues[0]?.message ?? "Invalid cart", details: parsed.error.flatten() }, 400);
+        const { lines, customer, shippingMethod } = parsed.data;
         const email = customer.email;
         const name = customer.name;
         const [firstName, ...rest] = customer.name.split(/\s+/);
@@ -77,6 +79,7 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
         const address = {
           firstName, lastName, address1: customer.address1, ...(customer.address2 ? { address2: customer.address2 } : {}),
           city: customer.city, zip: customer.postcode, countryCode: customer.country, phone: customer.phone,
+          ...(customer.region ? { province: customer.region } : {}),
         };
 
         const apiKey = process.env["NIFTIPAY_API_KEY"];
@@ -100,7 +103,8 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           if (slug === BAC_WATER_UPSELL.slug) hasBac = true;
         }
         const credit = creditForSubtotal(subtotal);
-        const shipping = shippingForSubtotal(subtotal);
+        // Never accept a client shipping amount; country and method are validated above.
+        const shipping = niftiPayShipping(subtotal, customer.country, shippingMethod);
         const discountCodes = [...(credit ? [credit.code] : []), ...(hasBac ? [BAC_WATER_UPSELL.code] : [])];
 
         try {
@@ -111,7 +115,7 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
               ...(discountCodes.length ? { discountCodes } : {}),
               tags: ["niftipay"],
               shippingLine: {
-                title: "Standard Shipping",
+                title: niftiPayShippingTitle(customer.country, shippingMethod),
                 priceWithCurrency: { amount: shipping.toFixed(2), currencyCode: "GBP" },
               },
               presentmentCurrencyCode: "GBP",
