@@ -265,24 +265,17 @@ export const Route = createFileRoute("/api/public/newsletter-subscribe")({
             );
           }
 
-          // Compute expiry (30 days from now)
-          const expiresOn = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          });
-
-          // Enqueue welcome email (RPC exists only after email infra is set up)
+          // Keep code delivery independent of Shopify customer permissions or outages.
           try {
-            await supabase.rpc("enqueue_email", {
-              queue_name: "transactional_emails",
-              template_name: "newsletter-welcome",
-              recipient_email: email,
-              template_data: { code, expiresOn },
-              idempotency_key: `newsletter-welcome-${email}`,
-            });
+            const { syncNewsletterCustomerSafely } = await import("@/lib/newsletter-shopify.server");
+            await syncNewsletterCustomerSafely(
+              { email, phone, smsConsent: sms_consent, source, code },
+              discountToken ? [discountToken, ...adminTokens.filter(token => token !== discountToken)] : adminTokens,
+              SHOPIFY_SHOP,
+              SHOPIFY_API_VERSION,
+            );
           } catch (err) {
-            console.warn("enqueue_email not available yet; email will not be sent until email infra is configured.", err);
+            console.error("Shopify newsletter sync unavailable; subscriber keeps their code", err);
           }
 
           return new Response(JSON.stringify({ success: true, code }), { status: 200, headers: jsonHeaders });
