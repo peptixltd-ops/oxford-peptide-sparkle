@@ -26,18 +26,19 @@ describe("NiftiPay delivery rules", () => {
     }
     assert.equal(customerSchema.safeParse({ ...customer, country: "XX" }).success, false);
   });
-  test("UK Express remains £3.99 below £20 and free from £20", () => {
-    assert.equal(niftiPayShipping(19.99, "GB", "express"), 3.99);
-    assert.equal(niftiPayShipping(20, "GB", "express"), 0);
+  test("UK Express is £3.99 below £12 and free at £12 or more", () => {
+    assert.equal(niftiPayShipping(11.99, "GB", "express"), 3.99);
+    assert.equal(niftiPayShipping(12, "GB", "express"), 0);
     assert.equal(niftiPayShipping(50, "GB"), 0);
   });
-  test("UK Standard is £5.99 below £30 and free from £30", () => {
-    assert.equal(niftiPayShipping(29.99, "GB", "standard"), 5.99);
-    assert.equal(niftiPayShipping(30, "GB", "standard"), 0);
+  test("UK Standard is £5.99 below £12 and free at £12 or more", () => {
+    assert.equal(niftiPayShipping(11.99, "GB", "standard"), 5.99);
+    assert.equal(niftiPayShipping(12, "GB", "standard"), 0);
+    assert.equal(niftiPayShipping(50, "GB", "standard"), 0);
   });
   test("every eligible international destination costs £15 without a free threshold", () => {
     for (const [country] of COUNTRIES.slice(1)) {
-      for (const subtotal of [0, 20, 30, 10000]) {
+      for (const subtotal of [0, 11.99, 12, 20, 30, 10000]) {
         assert.equal(niftiPayShipping(subtotal, country, "express"), 15);
         assert.equal(niftiPayShipping(subtotal, country, "standard"), 15);
       }

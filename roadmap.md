@@ -1,5 +1,6 @@
 ## NiftiPay order summary
 ## NiftiPay international delivery
+- [ ] Update only NiftiPay UK free delivery to £12 for both methods, revise related wording and verify tests/display.
 - [x] Add worldwide eligible countries, conditional region validation and live delivery totals.
 - [x] Enforce UK/international shipping on the server; verify product/shop/cart modal flows, API rejection and mocked payment handoff without publishing or creating live test orders.
 ## Newsletter Shopify sync

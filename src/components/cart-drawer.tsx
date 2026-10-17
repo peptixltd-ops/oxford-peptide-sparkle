@@ -53,7 +53,6 @@ export function CartDrawer() {
   const FREE_SHIPPING_THRESHOLD = 20;
   const SHIPPING_RATE = 3.99;
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_RATE;
-  const toFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
 
   const fmt = (n: number) => `£${n.toFixed(2)}`;
   const bacLines = lines.filter((l) => l.product.slug === BAC_WATER_UPSELL.slug);
@@ -223,11 +222,9 @@ export function CartDrawer() {
               <span>Shipping</span>
               <span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span>
             </div>
-            {toFreeShipping > 0 && (
-              <p className="text-[11px] text-muted-foreground">
-                Spend {fmt(toFreeShipping)} more for free UK shipping.
-              </p>
-            )}
+            <p className="text-[11px] text-muted-foreground">
+              NiftiPay: free UK delivery on baskets of £12 or more.
+            </p>
             {credit && (
               <div className="flex justify-between text-sm text-gold">
                 <span>Store credit ({credit.code})</span>
