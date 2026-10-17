@@ -75,7 +75,7 @@ function CollectionPage() {
         <p className="text-[10px] font-bold uppercase tracking-widest text-gold">
           {collection.eyebrow}
         </p>
-        <h1 className="mt-2 font-display text-3xl md:text-4xl">{collection.title}</h1>
+        <h1 className="mt-2 font-display text-3xl md:text-4xl">{collection.title} — Collection</h1>
         <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-navy-deep/85">
           {collection.summary}
         </p>

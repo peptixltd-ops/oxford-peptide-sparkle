@@ -43,6 +43,8 @@
   --navy: oklch(0.22 0.04 255);
   --navy-deep: oklch(0.16 0.035 258);
   --gold: oklch(0.68 0.12 70);
+  --gold-readable: oklch(0.55 0.12 70);
+  --gold-text: var(--gold-readable);
   --gold-soft: oklch(0.78 0.09 72);
   --bone: oklch(0.97 0.008 80);
 
@@ -99,6 +101,20 @@
 }
 
 @utility container-x { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+/* Text-only gold adapts to the nearest surface; artwork and button fills retain gold. */
+:is(.dark, .bg-navy, .bg-navy-deep, .bg-primary) {
+  --gold-text: var(--gold);
+}
+:is(.bg-white, .bg-bone, .bg-background, .bg-card, .bg-popover, .bg-muted, .bg-secondary) {
+  --gold-text: var(--gold-readable);
+}
+.dark :is(.bg-background, .bg-card, .bg-popover, .bg-muted, .bg-secondary) {
+  --gold-text: var(--gold);
+}
+:is(.text-gold, .hover\:text-gold:hover, .focus-visible\:text-gold:focus-visible):not(svg):not(button):not([role="button"]):not(.bg-gold):not(.bg-gold-soft) {
+  color: var(--gold-text);
+}
 
 /* --- Cart drawer + add-to-cart feedback animations --- */
 @keyframes orp-fade-in { from { opacity: 0 } to { opacity: 1 } }

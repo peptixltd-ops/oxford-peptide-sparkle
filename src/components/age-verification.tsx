@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { Shield } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import logo from "@/assets/oxford-logo.jpg.asset.json";
+import logo from "@/assets/oxford-logo-dialog.webp.asset.json";
 import { AGE_CONFIRMATION_KEY, isAgeConfirmed } from "@/lib/age-confirmation";
 
 export function AgeVerification({ children }: { children: ReactNode }) {
