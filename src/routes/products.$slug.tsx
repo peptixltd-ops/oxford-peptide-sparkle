@@ -30,6 +30,7 @@ export const Route = createFileRoute("/products/$slug")({
       title: `${product.name} — Oxford Research Peptides`,
       description: product.description,
       ogType: "product",
+      ogImage: new URL(product.img, SITE_URL).href,
     });
     const productJsonLd = {
       "@context": "https://schema.org",

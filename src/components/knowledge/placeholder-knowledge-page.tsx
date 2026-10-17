@@ -47,7 +47,7 @@ export function PlaceholderKnowledgePage({
             <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">
               {category?.eyebrow ?? "RESEARCH HUB"}
             </div>
-            <h1 className="font-display text-4xl md:text-5xl font-medium">{label}</h1>
+            <h1 className="font-display text-4xl md:text-5xl font-medium">{label}{categoryId === "glossary" ? " — Glossary Definition" : ""}</h1>
             <p className="text-bone/70 mt-4 max-w-2xl">
               This entry is scaffolded and awaiting scientific content. The URL, layout, breadcrumbs
               and cross-links are stable — Release 2 will populate the article body.

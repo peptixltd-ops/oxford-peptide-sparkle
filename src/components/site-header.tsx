@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, User, ShoppingBag, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
-import oxfordLogo from "@/assets/oxford-logo.jpg.asset.json";
+import oxfordLogo from "@/assets/oxford-logo.webp.asset.json";
 import { useCart } from "@/lib/cart";
 import { MobileNav } from "./mobile-nav";
 import { CartDrawer } from "./cart-drawer";
@@ -14,8 +14,8 @@ export function Logo({ light = false }: { light?: boolean }) {
       <span className={light ? "inline-block bg-white rounded-sm px-3 py-2" : "inline-block"}>
         <img
           src={oxfordLogo.url}
-          width={1920}
-          height={693}
+          width={266}
+          height={96}
           decoding="async"
           alt="Oxford Research Peptides"
           className="h-12 w-auto object-contain"

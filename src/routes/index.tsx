@@ -6,7 +6,7 @@ import {
   Truck, FlaskConical,
 } from "lucide-react";
 
-import heroTrio from "@/assets/hero-trio-transparent.png.asset.json";
+import heroTrio from "@/assets/hero-trio-transparent.webp.asset.json";
 import labStandards from "@/assets/lab-standards.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";

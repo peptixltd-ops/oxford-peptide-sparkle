@@ -113,7 +113,7 @@ export function CompoundLayout(props: CompoundLayoutProps) {
       <section aria-label="Compound hero" className="bg-navy-deep text-bone py-12 md:py-16">
         <div className="container-x">
           <div className="text-gold text-[11px] font-bold tracking-[0.3em] mb-3">{eyebrow}</div>
-          <h1 className="font-display text-4xl md:text-5xl font-medium">{name}</h1>
+          <h1 className="font-display text-4xl md:text-5xl font-medium">{name} — Compound Profile</h1>
           {aliases && (
             <div className="mt-3 text-sm text-bone/70">
               <span className="text-[10px] font-bold tracking-widest text-gold/80 mr-2">ALIASES</span>

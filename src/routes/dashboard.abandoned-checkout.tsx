@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { seoText } from "@/lib/seo";
 import { EMAILS, OFFER_PREVIEW, type BuildOpts, type PreviewProduct } from "@/lib/email-flow/templates";
-import logo from "@/assets/oxford-logo.jpg.asset.json";
+import logo from "@/assets/oxford-logo-email.webp.asset.json";
 import vialRetaAsset from "@/assets/vials/orp-retatrutide.webp.asset.json";
 const vialReta = vialRetaAsset.url;
 import vialBpcAsset from "@/assets/vials/orp-bpc-157.webp.asset.json";

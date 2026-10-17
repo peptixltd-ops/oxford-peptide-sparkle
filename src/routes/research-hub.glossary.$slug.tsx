@@ -81,7 +81,7 @@ function GlossaryTermPage() {
               GLOSSARY
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-medium">
-              {entry.term}
+              {entry.term} — Glossary Definition
             </h1>
             {entry.aliases && entry.aliases.length > 0 && (
               <p className="mt-3 text-bone/70 text-sm">
