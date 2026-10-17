@@ -1,5 +1,6 @@
 ## Delivery offer visibility
 - [x] Keep the £12 UK delivery offer in the cart drawer note only; the announcement bar and the product purchase-area line were reverted to their original state after the change of plan.
+- [x] Point the full cart page shipping calculation at the shared UK £12 helper and align the NiftiPay delivery details modal note wording with the drawer.
 - [x] Update outdated delivery copy site-wide and verify the visible changes without publishing; retain existing checkout calculations as requested.
 ## NiftiPay order summary
 ## NiftiPay international delivery
