@@ -1,5 +1,5 @@
 ## Delivery offer visibility
-- [x] Highlight the £12 UK delivery offer in the announcement bar, product purchase area and cart drawer.
+- [x] Highlight the £12 UK delivery offer in the announcement bar and the cart drawer note; the product purchase-area line was removed after the change of plan.
 - [x] Update outdated delivery copy site-wide and verify the visible changes without publishing; retain existing checkout calculations as requested.
 ## NiftiPay order summary
 ## NiftiPay international delivery
