@@ -50,7 +50,6 @@ function CartPage() {
   const FREE_SHIPPING_THRESHOLD = 20;
   const SHIPPING_RATE = 3.99;
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_RATE;
-  const toFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
   const credit = creditForSubtotal(subtotal);
   const bacLines = lines.filter(l => l.product.slug === BAC_WATER_UPSELL.slug);
   const bacDiscount = Math.min(
@@ -144,9 +143,7 @@ function CartPage() {
                 <div className="space-y-3 text-sm border-b border-border pb-4 mb-4">
                   <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
                   <div className="flex justify-between"><span>Shipping</span><span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span></div>
-                  {toFreeShipping > 0 && (
-                    <p className="text-[11px] text-muted-foreground">Spend {fmt(toFreeShipping)} more for free UK shipping.</p>
-                  )}
+                  <p className="text-[11px] text-muted-foreground">UK delivery is free on orders of £12 or more. Under £12: Express £3.99 / Standard £5.99. International delivery: flat £15.</p>
                   {bacDiscount > 0 && (
                     <div className="flex justify-between text-gold"><span>Bac water offer (£{BAC_WATER_UPSELL.amountOff} off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
                   )}
