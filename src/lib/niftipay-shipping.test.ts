@@ -10,7 +10,7 @@ describe("NiftiPay delivery rules", () => {
     assert.equal(COUNTRIES.length, 247);
     assert.deepEqual(COUNTRIES[0], ["GB", "United Kingdom"]);
     const names = COUNTRIES.slice(1).map(([, name]) => name);
-    assert.deepEqual(names, [...names].sort());
+    assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b, "en")));
     assert.equal(new Set(COUNTRIES.map(([code]) => code)).size, 247);
     for (const [code] of COUNTRIES) {
       assert.match(code, /^[A-Z]{2}$/);

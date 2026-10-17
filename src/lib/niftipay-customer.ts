@@ -2,7 +2,7 @@
 import { z } from "zod";
 
 // ISO 3166-1 alpha-2 destinations; excluded destinations are never accepted.
-export const COUNTRIES = [
+const ISO_COUNTRIES = [
   ["GB", "United Kingdom"],
   ["AF", "Afghanistan"],
   ["AL", "Albania"],
@@ -252,6 +252,7 @@ export const COUNTRIES = [
   ["AX", "Åland Islands"],
 ] as const;
 
+export const COUNTRIES = [ISO_COUNTRIES[0], ...ISO_COUNTRIES.slice(1).sort((a, b) => a[1].localeCompare(b[1], "en"))];
 const countryCodes = new Set<string>(COUNTRIES.map(([code]) => code));
 export const REGION_REQUIRED_COUNTRIES = new Set(["US", "CA", "AU"]);
 
