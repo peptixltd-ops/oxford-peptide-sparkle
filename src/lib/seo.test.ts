@@ -34,4 +34,15 @@ describe("SEO metadata rules", () => {
     assert.equal(meta.find((tag) => tag.property === "og:description")?.content, description);
     assert.equal(meta.find((tag) => tag.name === "twitter:description")?.content, description);
   });
+  test("product social images use the product image on the canonical domain", () => {
+    const image = "https://oxfordresearchpeptides.com/__l5e/assets-v1/product/semaglutide.webp";
+    const result = seo({ path: "/products/semaglutide", title: "Semaglutide", description: "Laboratory research only.", ogImage: image });
+    assert.equal(result.meta.find((tag) => tag.property === "og:image")?.content, image);
+    assert.equal(result.meta.find((tag) => tag.name === "twitter:image")?.content, image);
+  });
+  test("non-product pages retain og-image.jpg for both social images", () => {
+    const result = seo({ path: "/about", title: "About", description: "About Oxford Research Peptides." });
+    assert.equal(result.meta.find((tag) => tag.property === "og:image")?.content, "https://oxfordresearchpeptides.com/og-image.jpg");
+    assert.equal(result.meta.find((tag) => tag.name === "twitter:image")?.content, "https://oxfordresearchpeptides.com/og-image.jpg");
+  });
 });
