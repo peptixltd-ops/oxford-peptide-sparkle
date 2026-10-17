@@ -43,7 +43,7 @@
   --navy: oklch(0.22 0.04 255);
   --navy-deep: oklch(0.16 0.035 258);
   --gold: oklch(0.68 0.12 70);
-  --gold-readable: oklch(0.55 0.12 70);
+  --gold-readable: oklch(0.53 0.12 70);
   --gold-text: var(--gold-readable);
   --gold-soft: oklch(0.78 0.09 72);
   --bone: oklch(0.97 0.008 80);
