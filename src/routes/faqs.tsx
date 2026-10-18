@@ -19,10 +19,10 @@ const categories: Category[] = [
     id: "orders",
     label: "Orders & Shipping",
     items: [
-      { q: "How long does delivery take?", a: "Orders placed before 2pm are shipped the same working day via tracked next-day courier within the UK." },
-      { q: "When are orders dispatched?", a: "Monday to Friday, excluding UK bank holidays." },
+      { q: "How long does delivery take?", a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. UK orders are sent by Royal Mail Tracked 24, usually delivered the next working day." },
+      { q: "When are orders dispatched?", a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. Working days are Monday to Friday, excluding UK bank holidays. Otherwise, dispatch is on the next working day." },
       { q: "How much does delivery cost?", a: "UK delivery is free on orders of £12 or more. Under £12, Express delivery is £3.99 and Standard delivery is £5.99. International delivery is a flat £15 regardless of order value." },
-      { q: "Will I receive tracking?", a: "Yes — every order is sent with Royal Mail or DPD tracking and you'll receive the tracking number by email as soon as the parcel is collected." },
+      { q: "Will I receive tracking?", a: "Yes — UK orders are sent by Royal Mail Tracked 24, usually delivered the next working day. You'll receive the tracking number by email as soon as the parcel is collected." },
       { q: "What if my order hasn't arrived?", a: "Get in touch with our team within 14 days of dispatch and we'll resolve it the same working day." },
       { q: "Do you ship internationally?", a: "Yes — international delivery is a flat £15 regardless of order value. We ship worldwide except to Russia and Belarus." },
       { q: "What if my product arrives damaged?", a: "Email us your order number, a clear photo of the damage and a short description of the issue. We'll arrange a replacement as quickly as possible." },
@@ -33,7 +33,7 @@ const categories: Category[] = [
     id: "payments",
     label: "Payments",
     items: [
-      { q: "Which payment methods do you accept?", a: "We accept all major credit and debit cards, Apple Pay and Google Pay at checkout." },
+      { q: "Which payment methods do you accept?", a: "We accept credit and debit cards, Apple Pay and Google Pay via card checkout, and Pay by Bank for UK bank accounts." },
       { q: "Is checkout secure?", a: "All transactions are PCI-compliant and processed with end-to-end encryption. Card details are never stored on our servers." },
       { q: "Do you offer subscriptions?", a: "Yes — save 10% on recurring monthly deliveries. You can pause, edit or cancel from your account at any time." },
     ],

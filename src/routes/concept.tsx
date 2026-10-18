@@ -43,7 +43,7 @@ export const Route = createFileRoute("/concept")({
 const trustPills = [
   { icon: FlaskConical, label: "Laboratory Research Use" },
   { icon: ShieldCheck, label: "HPLC & MS Verified" },
-  { icon: Package, label: "UK Delivery, Tracked Next Day" },
+  { icon: Package, label: "Royal Mail Tracked 24, usually delivered the next working day" },
   { icon: Microscope, label: "COA Available On Request" },
 ];
 
@@ -83,21 +83,21 @@ const stats = [
   { big: "≥99%", small: "PURITY" },
   { big: "Quality", small: "TESTED" },
   { big: "UK-Based", small: "SUPPLIER" },
-  { big: "Next Day", small: "DELIVERY" },
+  { big: "Tracked 24", small: "USUALLY DELIVERED THE NEXT WORKING DAY" },
 ];
 
 const faqs = [
   {
     q: "How long does delivery take?",
-    a: "Orders placed before 2pm ship same day via tracked next-day courier within the UK.",
+    a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. UK orders are sent by Royal Mail Tracked 24, usually delivered the next working day.",
   },
   {
     q: "When are orders dispatched?",
-    a: "Monday to Friday, excluding UK public holidays. You will receive a delivery confirmation with tracking as soon as your parcel leaves us.",
+    a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. Working days are Monday to Friday, excluding UK public holidays. Otherwise, dispatch is on the next working day. You will receive a delivery confirmation with tracking as soon as your parcel leaves us.",
   },
   {
     q: "Will I receive tracking?",
-    a: "Yes — a tracked next-day courier reference is emailed to you as soon as your order leaves us so you can follow the parcel to delivery.",
+    a: "Yes — a Royal Mail Tracked 24 reference is emailed to you as soon as your order leaves us so you can follow the parcel to delivery. UK orders are usually delivered the next working day.",
   },
   {
     q: "Is a Certificate of Analysis included?",
@@ -400,7 +400,7 @@ function ConceptHome() {
                   laboratory research peptides
                 </strong>{" "}
                 in the UK, with a focus on identity verification, documented purity and
-                reliable next-day delivery. Every product is intended strictly for in-vitro
+                Royal Mail Tracked 24 delivery, usually delivered the next working day. Every product is intended strictly for in-vitro
                 laboratory research by qualified researchers and institutions.
               </p>
               <p>

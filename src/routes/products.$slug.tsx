@@ -233,7 +233,7 @@ function ProductPage() {
                   {[
                     { icon: FlaskConical, l: "Third-Party Tested" },
                     { icon: ClipboardCheck, l: "COA Included" },
-                    { icon: Truck, l: "Same-Day UK Dispatch" },
+                    { icon: Truck, l: "Orders placed before 2pm (UK time) on a working day are dispatched the same day." },
                     { icon: ShieldCheck, l: "Research Use Only" },
                   ].map(f => (
                     <div key={f.l} className="flex items-center gap-2 text-xs">

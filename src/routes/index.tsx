@@ -104,7 +104,7 @@ function Home() {
                 <span className="text-gold italic">Research<span className="not-italic">.</span></span>
               </h1>
               <p className="hidden sm:block text-bone/75 text-base md:text-lg max-w-md mb-8 leading-relaxed">
-                Independently verified ≥99% purity. Every batch ships with a traceable COA, discreet packaging and next-day UK delivery tracked.
+                Independently verified ≥99% purity. Every batch ships with a traceable COA and discreet packaging. UK delivery is by Royal Mail Tracked 24, usually delivered the next working day.
               </p>
 
               <div className="flex flex-wrap gap-3 mb-6 md:mb-8">
@@ -141,7 +141,7 @@ function Home() {
             <div className="container-x grid grid-cols-2 md:grid-cols-4 gap-6 py-5">
               {[
                 { icon: Award, l: "≥99% Purity — Independently Verified" },
-                { icon: Truck, l: "Next Day UK Delivery — Tracked & Discreet" },
+                { icon: Truck, l: "Royal Mail Tracked 24 — Usually delivered the next working day · Discreet" },
                 { icon: FlaskConical, l: "Research-Grade Lyophilised Vials" },
                 { icon: ShieldCheck, l: "Batch-Traceable COAs" },
               ].map(f => (

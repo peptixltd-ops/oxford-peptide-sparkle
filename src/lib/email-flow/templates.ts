@@ -223,8 +223,8 @@ const dispatch = (pad = "32px") => `
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BRAND.line};background:${BRAND.bone};">
     <tr><td style="padding:14px 18px;">
       <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.2em;color:${BRAND.gold};">DISPATCHED FROM THE UK</div>
-      <div style="margin-top:7px;font:400 14px/1.55 ${BRAND.serif};color:${BRAND.navy};">Order by 5pm today and your selection is dispatched the same day.</div>
-      <div style="margin-top:5px;font:400 12px/1.55 ${BRAND.sans};color:${BRAND.muted};">Sent Royal Mail Tracked 24 — tracked, discreet packaging, typically with you the next day.</div>
+      <div style="margin-top:7px;font:400 14px/1.55 ${BRAND.serif};color:${BRAND.navy};">Orders placed before 2pm (UK time) on a working day are dispatched the same day.</div>
+      <div style="margin-top:5px;font:400 12px/1.55 ${BRAND.sans};color:${BRAND.muted};">Royal Mail Tracked 24, usually delivered the next working day — tracked, discreet packaging.</div>
     </td></tr>
   </table>
 </td></tr>`;
@@ -284,7 +284,7 @@ const TRUST_FULL = [
   "UK Manufactured",
   "Independent Third-Party Testing",
   "Batch-Specific COAs",
-  "Same-Day UK Dispatch where applicable",
+  "Orders placed before 2pm (UK time) on a working day are dispatched the same day.",
   "Fast &amp; Discreet UK Delivery",
   "Secure Checkout",
   "Research Use Only",
@@ -294,7 +294,7 @@ const TRUST_MID = [
   "UK Manufactured",
   "Third-Party Tested",
   "Batch-Specific COAs",
-  "Same-Day UK Dispatch where applicable",
+  "Orders placed before 2pm (UK time) on a working day are dispatched the same day.",
   "Fast &amp; Discreet UK Delivery",
   "Secure Checkout",
   "Research Use Only",

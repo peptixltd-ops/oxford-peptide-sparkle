@@ -73,7 +73,7 @@ export const products: Product[] = [
   {
     slug: "ghk-cu",
     name: "GHK-Cu",
-    purity: ">98% Purity",
+    purity: "99.93% Purity",
     img: vialGhkcu,
     accent: "#1f6b6b",
     description: "Copper tripeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",

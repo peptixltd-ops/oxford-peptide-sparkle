@@ -1,3 +1,5 @@
+## Wording consistency
+- [x] Align dispatch and delivery wording, payment labels and GHK-Cu purity; footer Bestsellers already targets /shop and was verified. Preserved styling, prices, legal identity and scripts; 15 tests passed and desktop/mobile checks completed without publishing.
 ## Cart payment choices
 - [x] Update both cart payment blocks with equal buttons and saved non-UK delivery-country guidance (no visitor-country detector exists); verified desktop/mobile, card delivery modal and actual same-tab Shopify handoffs without publishing.
 ## Popup fixes
