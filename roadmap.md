@@ -1,3 +1,5 @@
+## Wording consistency
+- [ ] Align dispatch and delivery wording, payment labels, GHK-Cu purity and footer shop link; preserve styling, prices, legal identity and scripts; list exact wording changes.
 ## Cart payment choices
 - [x] Update both cart payment blocks with equal buttons and saved non-UK delivery-country guidance (no visitor-country detector exists); verified desktop/mobile, card delivery modal and actual same-tab Shopify handoffs without publishing.
 ## Popup fixes
