@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Truck, Zap } from "lucide-react";
 
-/** Cut-off: 5pm UK time, Monday–Friday. */
-const CUTOFF_HOUR = 17;
+/** Cut-off: 2pm UK time, Monday–Friday. */
+const CUTOFF_HOUR = 14;
 
 function londonParts(d: Date) {
   const f = new Intl.DateTimeFormat("en-GB", {
@@ -24,7 +24,7 @@ function londonParts(d: Date) {
 
 type State = { open: boolean; h: number; m: number; s: number };
 
-function compute(now: Date): State {
+export function compute(now: Date): State {
   const { weekday, hour, minute, second } = londonParts(now);
   const isWeekend = weekday === "Sat" || weekday === "Sun";
   const secsNow = hour * 3600 + minute * 60 + second;
@@ -55,14 +55,14 @@ export function DispatchCountdown() {
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         <span className="inline-flex items-center gap-1.5 bg-navy-deep text-bone px-3 py-1.5 text-[10px] font-bold tracking-widest">
           <Zap className="w-3 h-3 text-gold" aria-hidden="true" />
-          SAME-DAY DISPATCH
+          UK DISPATCH
         </span>
         <p className="text-sm text-navy-deep font-medium" aria-live="polite">
           {state === null ? (
-            <>Order before 5pm for same-day dispatch — arriving tomorrow.</>
+            <>Orders placed before 2pm (UK time) on a working day are dispatched the same day.</>
           ) : state.open ? (
             <>
-              Arriving <span className="font-bold">tomorrow</span> if you order within{" "}
+              Orders placed before <span className="font-bold">2pm (UK time)</span> on a working day are dispatched the same day. Time until 2pm:{" "}
               <span className="font-bold tabular-nums text-navy-deep">
                 {state.h > 0 ? `${state.h} hour${state.h === 1 ? "" : "s"}, ` : ""}
                 {state.m} minute{state.m === 1 ? "" : "s"}
@@ -70,7 +70,7 @@ export function DispatchCountdown() {
               </span>
             </>
           ) : (
-            <>Today&apos;s 5pm cut-off has passed — order now and we dispatch on the next working day.</>
+            <>Orders placed before 2pm (UK time) on a working day are dispatched the same day. Otherwise, dispatch is on the next working day.</>
           )}
         </p>
       </div>
@@ -81,7 +81,7 @@ export function DispatchCountdown() {
             ROYAL MAIL <span className="text-gold">TRACKED 24</span>
           </span>
         </span>
-        <span className="text-xs text-muted-foreground">Tracked &amp; discreet UK delivery</span>
+        <span className="text-xs text-muted-foreground">Usually delivered the next working day · discreet UK delivery</span>
       </div>
     </div>
   );

@@ -176,10 +176,10 @@ function CartPage() {
                       <Button
                         onClick={payByCard}
                         disabled={cardLoading || loading || lines.length === 0}
-                        aria-label="Pay by card / Google Pay"
+                        aria-label="Pay by card / Apple Pay / Google Pay"
                         className="w-full h-14 rounded-none px-2 py-3 bg-gold text-navy-deep text-xs font-bold whitespace-normal shadow-none hover:bg-gold-soft disabled:opacity-60"
                       >
-                        {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Pay by card / Google Pay"}
+                        {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Pay by card / Apple Pay / Google Pay"}
                       </Button>
                     </div>
                     <div className="min-w-0">

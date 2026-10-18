@@ -8,7 +8,7 @@ export const defaultTrustBadges: Badge[] = [
   { icon: FlaskConical, title: "Third-Party Tested", sub: "Independent laboratory testing" },
   { icon: ClipboardCheck, title: "Batch Verified", sub: "Every batch verified" },
   
-  { icon: Truck, title: "Next Day UK Delivery", sub: "Tracked & discreet packaging" },
+  { icon: Truck, title: "Royal Mail Tracked 24", sub: "Usually delivered the next working day · discreet packaging" },
 ];
 
 /**
