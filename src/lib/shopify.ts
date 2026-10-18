@@ -124,8 +124,6 @@ export const BAC_WATER_UPSELL = {
   code: "BACWATER2OFF",
   /** Fixed discount per bacteriostatic water vial, in GBP. */
   amountOff: 2,
-  /** Offer window per shopper, in minutes. */
-  minutes: 15,
 } as const;
 
 

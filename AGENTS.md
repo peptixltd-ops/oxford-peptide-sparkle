@@ -17,3 +17,4 @@
 - All NiftiPay entry points use the shared client helper to open the NiftiPay payment page directly; the server verifies the order summary against the same Shopify draft total charged by NiftiPay, preventing mismatched amounts.
 - NiftiPay country/region validation and shipping rules live in browser-safe shared modules; the checkout route independently applies them to its derived subtotal, so displayed totals and server charges agree without trusting client shipping amounts.
 - Newsletter popup and footer share the subscriber endpoint; Shopify customer synchronization is isolated in a server-only helper and never blocks saved-code delivery, so provider permission errors cannot break signup.
+- Keep newsletter popup eligibility and suppression rules in a browser-safe helper, and unmount the overlay when closed or ineligible, so route/cart changes cannot leave a click-blocking layer.

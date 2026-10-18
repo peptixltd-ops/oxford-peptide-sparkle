@@ -1,3 +1,6 @@
+## Popup fixes
+- [x] Restrict store-credit popup timing, pages, cart and age eligibility; persist suppression for 30 days and verify click-through after closing.
+- [x] Remove bacteriostatic water countdown and use standing-offer wording, preserving checkout skip and styling; verified without publishing.
 ## Delivery offer visibility
 - [x] Keep the £12 UK delivery offer in the cart drawer note only; the announcement bar and the product purchase-area line were reverted to their original state after the change of plan.
 - [x] Point the full cart page shipping calculation at the shared UK £12 helper and align the NiftiPay delivery details modal note wording with the drawer.

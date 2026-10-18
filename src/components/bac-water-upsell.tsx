@@ -1,48 +1,15 @@
-import { useEffect, useState } from "react";
-import { Plus, Clock } from "lucide-react";
+import { Plus } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/lib/cart";
 import { getProduct } from "@/lib/products";
 import { BAC_WATER_UPSELL } from "@/lib/shopify";
 
-const KEY = "orp_bacwater_offer_start";
-
-/** Shared countdown so the offer window is consistent across cart + drawer. */
-function useOfferCountdown() {
-  const [left, setLeft] = useState<number | null>(null);
-
-  useEffect(() => {
-    const now = Date.now();
-    let start = Number(window.localStorage.getItem(KEY));
-    // Reset the offer window if it's missing, corrupt, or already expired so
-    // returning shoppers (later sessions, new carts) get a fresh countdown.
-    if (!start || Number.isNaN(start) || start + BAC_WATER_UPSELL.minutes * 60_000 <= now) {
-      start = now;
-      window.localStorage.setItem(KEY, String(start));
-    }
-    const end = start + BAC_WATER_UPSELL.minutes * 60_000;
-    const tick = () => setLeft(Math.max(0, end - Date.now()));
-    tick();
-    const id = window.setInterval(tick, 1000);
-    return () => window.clearInterval(id);
-  }, []);
-
-  return left;
-}
-
-const fmtTime = (ms: number) => {
-  const s = Math.floor(ms / 1000);
-  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
-};
-
 export function BacWaterUpsell({ compact = false }: { compact?: boolean }) {
   const { items, add } = useCart();
-  const left = useOfferCountdown();
   const product = getProduct(BAC_WATER_UPSELL.slug);
 
   const alreadyInCart = items.some(i => i.slug === BAC_WATER_UPSELL.slug);
   if (!product || alreadyInCart || items.length === 0) return null;
-  if (left !== null && left <= 0) return null;
 
   const fmt = (n: number) => `£${n.toFixed(2)}`;
   const discounted = (n: number) => Math.max(0, n - BAC_WATER_UPSELL.amountOff);
@@ -53,12 +20,6 @@ export function BacWaterUpsell({ compact = false }: { compact?: boolean }) {
         <span className="text-[10px] font-bold tracking-[0.2em]">
           ADD BACTERIOSTATIC WATER — £{BAC_WATER_UPSELL.amountOff} OFF
         </span>
-
-        {left !== null && (
-          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-gold tabular-nums">
-            <Clock className="w-3 h-3" /> {fmtTime(left)}
-          </span>
-        )}
       </div>
 
       <div className={compact ? "p-4" : "p-5"}>
@@ -70,7 +31,7 @@ export function BacWaterUpsell({ compact = false }: { compact?: boolean }) {
             <p className="font-display text-base font-semibold leading-tight">Reconstitution diluent</p>
             <p className="text-xs text-muted-foreground leading-snug">
               Sterile bacteriostatic water (0.9% benzyl alcohol) — required to reconstitute lyophilised
-              peptides. Limited-time £{BAC_WATER_UPSELL.amountOff} off per vial, applied automatically at checkout.
+              peptides. Add bacteriostatic water for £{BAC_WATER_UPSELL.amountOff} less when bought with your order, applied automatically at checkout.
             </p>
           </div>
         </div>
