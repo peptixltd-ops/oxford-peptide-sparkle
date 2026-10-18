@@ -18,3 +18,4 @@
 - NiftiPay country/region validation and shipping rules live in browser-safe shared modules; the checkout route independently applies them to its derived subtotal, so displayed totals and server charges agree without trusting client shipping amounts.
 - Newsletter popup and footer share the subscriber endpoint; Shopify customer synchronization is isolated in a server-only helper and never blocks saved-code delivery, so provider permission errors cannot break signup.
 - Keep newsletter popup eligibility and suppression rules in a browser-safe helper, and unmount the overlay when closed or ineligible, so route/cart changes cannot leave a click-blocking layer.
+- Cart payment guidance reads the validated country from saved NiftiPay delivery details after hydration; do not infer location from GBP or browser language, because this site has no visitor geolocation detector.

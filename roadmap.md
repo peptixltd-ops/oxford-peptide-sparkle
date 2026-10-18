@@ -1,5 +1,5 @@
 ## Cart payment choices
-- [ ] Update both cart payment blocks with equal buttons and detected non-UK guidance; verify desktop/mobile and existing checkout handoffs without publishing.
+- [x] Update both cart payment blocks with equal buttons and saved non-UK delivery-country guidance (no visitor-country detector exists); verified desktop/mobile, card delivery modal and actual same-tab Shopify handoffs without publishing.
 ## Popup fixes
 - [x] Restrict store-credit popup timing, pages, cart and age eligibility; persist suppression for 30 days and verify click-through after closing.
 - [x] Remove bacteriostatic water countdown and use standing-offer wording, preserving checkout skip and styling; verified without publishing.
