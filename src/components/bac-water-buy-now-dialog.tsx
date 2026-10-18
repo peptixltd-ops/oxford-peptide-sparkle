@@ -42,7 +42,7 @@ export function BacWaterBuyNowDialog({
             </DialogTitle>
             <DialogDescription className="text-xs leading-snug">
               Sterile bacteriostatic water (0.9% benzyl alcohol) is required to reconstitute lyophilised
-              peptides. Add a vial now for £{BAC_WATER_UPSELL.amountOff} off — the discount is applied
+              peptides. Add bacteriostatic water for £{BAC_WATER_UPSELL.amountOff} less when bought with your order — the discount is applied
               automatically at checkout.
             </DialogDescription>
           </DialogHeader>

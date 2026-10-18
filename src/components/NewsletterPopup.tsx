@@ -1,19 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "@tanstack/react-router";
+import { useCart } from "@/lib/cart";
+import { AGE_CONFIRMATION_KEY } from "@/lib/age-confirmation";
+import { NEWSLETTER_PROMPT_KEY as KEY, NEWSLETTER_DELAY_MS, newsletterEligible, newsletterCooldownExpired } from "@/lib/newsletter-popup";
 
 type Status = "form" | "loading" | "success" | "error";
 
-const KEY = "orp_newsletter_prompt";
-const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
-const DELAY_MS = 15000;
-
 function shouldShow(): boolean {
   try {
-    const v = localStorage.getItem(KEY);
-    if (!v) return true;
-    if (v === "subscribed") return false;
-    const ts = Number(v);
-    if (!Number.isFinite(ts)) return true;
-    return Date.now() - ts > SEVEN_DAYS;
+    return newsletterCooldownExpired(localStorage.getItem(KEY), Date.now());
   } catch {
     return true;
   }
@@ -59,6 +54,13 @@ const COUNTRY_CODES: Array<{ code: string; dial: string; label: string; flag: st
 ];
 
 export function NewsletterPopup() {
+  const { pathname } = useLocation();
+  const { items, drawerOpen } = useCart();
+  // This component is mounted by AgeVerification only after confirmation,
+  // including when sessionStorage is unavailable.
+  const [ageConfirmed, setAgeConfirmed] = useState(false);
+  const shownThisVisit = useRef(false);
+  const eligible = newsletterEligible(pathname, items.length, drawerOpen, ageConfirmed);
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("form");
   const [email, setEmail] = useState("");
@@ -72,13 +74,37 @@ export function NewsletterPopup() {
   const dialogRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!shouldShow()) return;
-    const t = window.setTimeout(() => {
+    try {
+      setAgeConfirmed(sessionStorage.getItem(AGE_CONFIRMATION_KEY) === "true");
+    } catch {
+      setAgeConfirmed(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!eligible) {
+      setOpen(false);
+      return;
+    }
+    if (shownThisVisit.current || !shouldShow()) return;
+    const show = () => {
+      if (shownThisVisit.current || !shouldShow()) return;
+      shownThisVisit.current = true;
+      // Remember the impression too, so navigation/reloads cannot repeat it.
+      try { localStorage.setItem(KEY, String(Date.now())); } catch { /* ignore */ }
       setOpen(true);
       trackGA("newsletter_popup_view");
-    }, DELAY_MS);
-    return () => window.clearTimeout(t);
-  }, []);
+    };
+    const t = window.setTimeout(show, NEWSLETTER_DELAY_MS);
+    const onExit = (event: MouseEvent) => {
+      if (event.clientY <= 0 && event.relatedTarget === null && window.matchMedia("(hover: hover) and (pointer: fine)").matches) show();
+    };
+    document.addEventListener("mouseout", onExit);
+    return () => {
+      window.clearTimeout(t);
+      document.removeEventListener("mouseout", onExit);
+    };
+  }, [eligible, pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -136,7 +162,9 @@ export function NewsletterPopup() {
     } catch { /* ignore */ }
   }
 
-  if (!open) return null;
+  // Unmount the entire overlay immediately on navigation or cart changes.
+  // Hidden overlays have no DOM nodes and cannot intercept pointer events.
+  if (!open || !eligible) return null;
 
   return (
     <div
