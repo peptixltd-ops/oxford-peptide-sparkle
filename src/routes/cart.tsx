@@ -16,6 +16,8 @@ import {
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { niftiPayShipping } from "@/lib/niftipay-shipping";
+import { COUNTRIES } from "@/lib/niftipay-customer";
+import { Button } from "@/components/ui/button";
 import { BacWaterUpsell } from "@/components/bac-water-upsell";
 
 import { Trash2, Loader2 } from "lucide-react";
@@ -38,6 +40,16 @@ export const Route = createFileRoute("/cart")({
 function CartPage() {
   const { items, setQty, remove, clear } = useCart();
   const [loading, setLoading] = useState(false);
+  const [outsideUK, setOutsideUK] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("orp_niftipay_customer_v1") ?? "null");
+      setOutsideUK(typeof saved?.country === "string" && saved.country !== "GB" && COUNTRIES.some(([code]) => code === saved.country));
+    } catch {
+      setOutsideUK(false);
+    }
+  }, []);
   const lines = items
     .map(i => {
       const product = getProduct(i.slug);
@@ -157,7 +169,21 @@ function CartPage() {
                 <div className="flex justify-between font-display text-xl font-medium mb-6">
                   <span>Total</span><span>{fmt(total)}</span>
                 </div>
-                <button
+                <div className="space-y-3">
+                  <p className="text-xs text-muted-foreground">Choose how you'd like to pay</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="min-w-0">
+                      <Button
+                        onClick={payByCard}
+                        disabled={cardLoading || loading || lines.length === 0}
+                        aria-label="Pay by card / Google Pay"
+                        className="w-full h-14 rounded-none px-2 py-3 bg-gold text-navy-deep text-xs font-bold whitespace-normal shadow-none hover:bg-gold-soft disabled:opacity-60"
+                      >
+                        {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Pay by card / Google Pay"}
+                      </Button>
+                    </div>
+                    <div className="min-w-0">
+                <Button
                   onClick={async () => {
                     trackBeginCheckout(lines.map(l => ({ product: l.product, variant: l.variant, quantity: l.item.qty })));
                     const tab = openCheckoutTab();
@@ -183,18 +209,17 @@ function CartPage() {
                       setLoading(false);
                     }
                   }}
-                  disabled={loading || lines.length === 0}
-                  className="w-full px-7 py-4 bg-gold text-navy-deep text-xs font-bold tracking-widest hover:bg-gold-soft transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                  disabled={loading || cardLoading || lines.length === 0}
+                  aria-label="Pay by bank"
+                  className="w-full h-14 rounded-none px-2 py-3 bg-gold text-navy-deep text-xs font-bold whitespace-normal shadow-none hover:bg-gold-soft disabled:opacity-60"
                 >
-                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "CHECKOUT"}
-                </button>
-            <button
-              onClick={payByCard}
-              disabled={cardLoading || lines.length === 0}
-              className="w-full py-4 mt-2 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors disabled:opacity-60 flex items-center justify-center"
-            >
-              {cardLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Pay by card / Apple Pay / Google Pay"}
-            </button>
+                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Pay by bank"}
+                </Button>
+                      <p className="mt-1.5 text-center text-[10px] text-muted-foreground">UK bank accounts only</p>
+                    </div>
+                  </div>
+                  {outsideUK && <p className="text-[11px] text-muted-foreground">Paying from outside the UK? Card is quickest.</p>}
+                </div>
                 <Link to="/shop" className="block text-center mt-3 text-xs text-muted-foreground hover:text-gold">Continue shopping</Link>
               </aside>
             </div>
