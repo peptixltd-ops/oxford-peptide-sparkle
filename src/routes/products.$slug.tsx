@@ -10,7 +10,7 @@ import { useCart } from "@/lib/cart";
 import { BAC_WATER_UPSELL, closeCheckoutTab, createCheckout, getVariantGid, openCheckoutTab, sendToCheckout } from "@/lib/shopify";
 import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { seo, SITE_URL } from "@/lib/seo";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { spendTiersLine } from "@/lib/spend-tiers";
 import { stickyBarVisible, useOverlayOpen } from "@/lib/overlays";
 import { toast } from "sonner";
@@ -77,7 +77,7 @@ export const Route = createFileRoute("/products/$slug")({
 function ProductPage() {
   const { product } = Route.useLoaderData();
   const { add, items, drawerOpen } = useCart();
-  const mainActionsRef = useRef<HTMLDivElement | null>(null);
+  const [mainActionsEl, setMainActionsEl] = useState<HTMLDivElement | null>(null);
   const [mainButtonVisible, setMainButtonVisible] = useState(true);
   const cookieBannerOpen = useOverlayOpen("cookieBanner");
   const ageGateOpen = useOverlayOpen("ageGate");
@@ -95,12 +95,12 @@ function ProductPage() {
   }, [product.slug, variant.id]);
 
   useEffect(() => {
-    const el = mainActionsRef.current;
+    const el = mainActionsEl;
     if (!el || typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(([entry]) => setMainButtonVisible(entry.isIntersecting || entry.boundingClientRect.top > 0));
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [mainActionsEl]);
   const showSticky = stickyBarVisible({ mainButtonVisible, drawerOpen, cookieBannerOpen, ageConfirmed: !ageGateOpen });
 
   const bacInCart = items.some(i => i.slug === BAC_WATER_UPSELL.slug);
@@ -219,7 +219,7 @@ function ProductPage() {
                   <span className="col-span-2 text-sm text-muted-foreground sm:col-span-1">Total: <span className="font-semibold text-navy-deep">{fmt(variant.price * qty)}</span></span>
                 </div>
 
-                <div ref={mainActionsRef} data-dbg={JSON.stringify({ mainButtonVisible, drawerOpen, cookieBannerOpen, ageGateOpen })} className="grid grid-cols-2 gap-3 mb-3">
+                <div ref={setMainActionsEl} className="grid grid-cols-2 gap-3 mb-3">
                   <button
                     type="button"
                     onClick={() => add(product.slug, variant.id, qty)}
