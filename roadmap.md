@@ -35,3 +35,6 @@
 - [x] Use each product image in its social metadata.
 - [x] Make compound, glossary and collection H1s specific.
 - [x] Check whether the www redirect can be changed in code; leave domain settings and publishing untouched (hosting-controlled 302).
+## WhatsApp button above sticky bar
+- [x] Lift the WhatsApp button above the mobile sticky Add to cart bar; unchanged when the bar is hidden.
+- [x] Verify no overlap on a phone screen and unchanged position at the top of the page and on desktop.
