@@ -17,6 +17,7 @@ import { CookieBanner } from "@/components/cookie-banner";
 import { SkipToContent } from "@/components/skip-to-content";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { AgeVerification } from "@/components/age-verification";
+import { useBottomLayerHeight } from "@/lib/overlays";
 import { tiktokPage } from "@/lib/tiktok";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
@@ -205,12 +206,15 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function WhatsAppButton() {
+  // Rises above the sticky Add to cart bar when that bar is on screen.
+  const bottomLayer = useBottomLayerHeight();
   return (
     <a
       href="https://wa.me/447457404317?text=Hi%20there%2C%20I%20have%20a%20question%20about%20your%20products.%20Can%20you%20assist%20me%20please%3F"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Message us on WhatsApp"
+      style={bottomLayer > 0 ? { bottom: `calc(${bottomLayer}px + 1rem)` } : undefined}
       className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gold text-navy-deep shadow-lg transition-transform hover:scale-105 hover:bg-gold-soft focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
     >
       <svg

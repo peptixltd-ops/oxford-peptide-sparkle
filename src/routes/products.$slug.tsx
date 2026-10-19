@@ -12,7 +12,7 @@ import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { seo, SITE_URL } from "@/lib/seo";
 import { useEffect, useState } from "react";
 import { spendTiersLine } from "@/lib/spend-tiers";
-import { stickyBarVisible, useOverlayOpen } from "@/lib/overlays";
+import { setBottomLayerHeight, stickyBarVisible, useOverlayOpen } from "@/lib/overlays";
 import { toast } from "sonner";
 import { ClipboardCheck, FlaskConical, Truck, ShieldCheck, Loader2 } from "lucide-react";
 import { trackViewItem, trackBeginCheckout } from "@/lib/tracking";
