@@ -96,10 +96,16 @@ function ProductPage() {
 
   useEffect(() => {
     const el = mainActionsEl;
-    if (!el || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(([entry]) => setMainButtonVisible(entry.isIntersecting || entry.boundingClientRect.top > 0));
-    io.observe(el);
-    return () => io.disconnect();
+    if (!el) return;
+    // Visible until the main buttons have scrolled up past the top of the screen.
+    const check = () => setMainButtonVisible(el.getBoundingClientRect().bottom > 0);
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => {
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
   }, [mainActionsEl]);
   const showSticky = stickyBarVisible({ mainButtonVisible, drawerOpen, cookieBannerOpen, ageConfirmed: !ageGateOpen });
 
