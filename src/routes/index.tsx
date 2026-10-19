@@ -6,7 +6,12 @@ import {
   Truck, FlaskConical,
 } from "lucide-react";
 
-import heroTrio from "@/assets/hero-trio-transparent.webp.asset.json";
+import hero640 from "@/assets/hero-trio-640.webp";
+import hero960 from "@/assets/hero-trio-960.webp";
+import hero1264 from "@/assets/hero-trio-1264.webp";
+
+const HERO_SRCSET = `${hero640} 640w, ${hero960} 960w, ${hero1264} 1264w`;
+const HERO_SIZES = "(min-width: 1024px) 60vw, 110vw";
 import labStandards from "@/assets/lab-standards.jpg";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -33,7 +38,7 @@ export const Route = createFileRoute("/")({
       links: [
         ...base.links,
         // Preload the LCP hero asset so it starts fetching in parallel with the HTML.
-        { rel: "preload", as: "image", href: heroTrio.url },
+        { rel: "preload", as: "image", href: hero960, imageSrcSet: HERO_SRCSET, imageSizes: HERO_SIZES, fetchPriority: "high", type: "image/webp" },
       ],
     };
   },
@@ -125,7 +130,9 @@ function Home() {
 
             <div className="relative flex items-center justify-end overflow-visible">
               <img
-                src={heroTrio.url}
+                src={hero960}
+                srcSet={HERO_SRCSET}
+                sizes={HERO_SIZES}
                 width={1264}
                 height={848}
                 alt="Oxford Research Peptides — Retatrutide, BPC-157 and Semaglutide research vials"

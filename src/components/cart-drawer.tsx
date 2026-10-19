@@ -13,6 +13,7 @@ import {
   sendToCheckout,
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
+import { nextSpendTier } from "@/lib/spend-tiers";
 import { niftiPayShipping } from "@/lib/niftipay-shipping";
 import { COUNTRIES } from "@/lib/niftipay-customer";
 import { Button } from "@/components/ui/button";
@@ -74,7 +75,7 @@ export function CartDrawer() {
 
   const credit = creditForSubtotal(subtotal);
   const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
-  const nextTier = !credit ? 30 : credit.threshold === 30 ? 80 : null;
+  const nextTier = nextSpendTier(subtotal);
 
   const added = lastAdded ? getProduct(lastAdded.slug) : null;
   const addedVariant = added && lastAdded ? getVariant(added, lastAdded.variantId) : null;
@@ -244,10 +245,11 @@ export function CartDrawer() {
               </div>
             )}
             {nextTier && (
-              <p className="text-[11px] text-muted-foreground">
-                Spend {fmt(nextTier - subtotal)} more to unlock £{nextTier === 30 ? 5 : 10} off.
-              </p>
-            )}
+              <div className="space-y-1.5" aria-live="polite">
+                <p className="text-xs font-semibold text-navy-deep">Add {fmt(nextTier.needed)} more to save £{nextTier.amount}</p>
+                <div className="h-1 w-full bg-border" aria-hidden="true"><div className="h-full bg-gold" style={{ width: `${Math.round(nextTier.progress * 100)}%` }} /></div>
+              </div>
+              )}
             <div className="flex justify-between pt-3 border-t border-border font-display text-lg font-medium">
               <span>Total</span>
               <span>{fmt(total)}</span>
