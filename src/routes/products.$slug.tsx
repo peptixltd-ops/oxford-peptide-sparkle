@@ -78,6 +78,7 @@ function ProductPage() {
   const { product } = Route.useLoaderData();
   const { add, items, drawerOpen } = useCart();
   const [mainActionsEl, setMainActionsEl] = useState<HTMLDivElement | null>(null);
+  const [stickyBarEl, setStickyBarEl] = useState<HTMLDivElement | null>(null);
   const [mainButtonVisible, setMainButtonVisible] = useState(true);
   const cookieBannerOpen = useOverlayOpen("cookieBanner");
   const ageGateOpen = useOverlayOpen("ageGate");
@@ -108,6 +109,20 @@ function ProductPage() {
     };
   }, [mainActionsEl]);
   const showSticky = stickyBarVisible({ mainButtonVisible, drawerOpen, cookieBannerOpen, ageConfirmed: !ageGateOpen });
+
+  // Publish the bar's height so the floating WhatsApp button sits above it.
+  useEffect(() => {
+    const el = stickyBarEl;
+    if (!showSticky || !el) { setBottomLayerHeight(0); return; }
+    const measure = () => setBottomLayerHeight(el.getBoundingClientRect().height);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      setBottomLayerHeight(0);
+    };
+  }, [showSticky, stickyBarEl]);
 
   const bacInCart = items.some(i => i.slug === BAC_WATER_UPSELL.slug);
   const showBacOffer = product.slug !== BAC_WATER_UPSELL.slug && !bacInCart;
@@ -271,7 +286,7 @@ function ProductPage() {
       </main>
 
       {showSticky && (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-bone/95 backdrop-blur md:hidden" role="region" aria-label="Quick add to cart">
+        <div ref={setStickyBarEl} className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-bone/95 backdrop-blur md:hidden" role="region" aria-label="Quick add to cart">
           <div className="container-x flex items-center gap-3 py-3 pr-20">
             <div className="min-w-0 flex-1">
               <div className="truncate text-sm font-semibold">{product.name}</div>

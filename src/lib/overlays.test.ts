@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { stickyBarVisible } from "./overlays";
+import { getBottomLayerHeight, setBottomLayerHeight, stickyBarVisible } from "./overlays";
 
 const base = { mainButtonVisible: false, drawerOpen: false, cookieBannerOpen: false, ageConfirmed: true };
 test("shows once main button is out of view", () => assert.equal(stickyBarVisible(base), true));
