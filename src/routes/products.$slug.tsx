@@ -219,7 +219,7 @@ function ProductPage() {
                   <span className="col-span-2 text-sm text-muted-foreground sm:col-span-1">Total: <span className="font-semibold text-navy-deep">{fmt(variant.price * qty)}</span></span>
                 </div>
 
-                <div ref={mainActionsRef} data-dbg={JSON.stringify({ mainButtonVisible, drawerOpen, cookieBannerOpen, ageGateOpen })} className="grid grid-cols-2 gap-3 mb-3">
+                <div ref={mainActionsRef} className="grid grid-cols-2 gap-3 mb-3">
                   <button
                     type="button"
                     onClick={() => add(product.slug, variant.id, qty)}
