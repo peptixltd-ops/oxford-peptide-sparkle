@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "@tanstack/react-router";
 import { useCart } from "@/lib/cart";
+import { useOverlayOpen } from "@/lib/overlays";
 import { AGE_CONFIRMATION_KEY } from "@/lib/age-confirmation";
 import { NEWSLETTER_PROMPT_KEY as KEY, NEWSLETTER_DELAY_MS, newsletterEligible, newsletterCooldownExpired } from "@/lib/newsletter-popup";
 
@@ -60,7 +61,9 @@ export function NewsletterPopup() {
   // including when sessionStorage is unavailable.
   const [ageConfirmed, setAgeConfirmed] = useState(false);
   const shownThisVisit = useRef(false);
-  const eligible = newsletterEligible(pathname, items.length, drawerOpen, ageConfirmed);
+  const cookieBannerOpen = useOverlayOpen("cookieBanner");
+  // Never stack on top of the cookie banner: wait until it has been answered.
+  const eligible = newsletterEligible(pathname, items.length, drawerOpen, ageConfirmed) && !cookieBannerOpen;
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("form");
   const [email, setEmail] = useState("");

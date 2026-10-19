@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { tiktokSetConsent } from "@/lib/tiktok";
+import { useCart } from "@/lib/cart";
+import { setOverlayOpen } from "@/lib/overlays";
 
 const KEY = "orp_cookie_consent_v1";
 
@@ -21,7 +23,15 @@ export function CookieBanner() {
     setVisible(false);
   };
 
-  if (!visible) return null;
+  const { drawerOpen } = useCart();
+  // One overlay at a time: the banner steps aside while the cart drawer is open.
+  const shown = visible && !drawerOpen;
+  useEffect(() => {
+    setOverlayOpen("cookieBanner", shown);
+    return () => setOverlayOpen("cookieBanner", false);
+  }, [shown]);
+
+  if (!shown) return null;
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 bg-navy-deep text-bone border-t border-gold/40">
       <div className="container-x py-4 flex flex-col md:flex-row items-start md:items-center gap-4 text-xs">
