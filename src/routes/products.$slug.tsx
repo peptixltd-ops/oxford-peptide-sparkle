@@ -165,7 +165,7 @@ function ProductPage() {
   };
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-clip bg-bone text-navy-deep">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip bg-bone text-navy-deep pb-20 md:pb-0">
       <SiteHeader />
       <Breadcrumbs items={[{ label: "Shop", to: "/shop" }, { label: product.name }]} />
       <main id="main-content">
