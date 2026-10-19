@@ -10,7 +10,9 @@ import { useCart } from "@/lib/cart";
 import { BAC_WATER_UPSELL, closeCheckoutTab, createCheckout, getVariantGid, openCheckoutTab, sendToCheckout } from "@/lib/shopify";
 import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { seo, SITE_URL } from "@/lib/seo";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { spendTiersLine } from "@/lib/spend-tiers";
+import { stickyBarVisible, useOverlayOpen } from "@/lib/overlays";
 import { toast } from "sonner";
 import { ClipboardCheck, FlaskConical, Truck, ShieldCheck, Loader2 } from "lucide-react";
 import { trackViewItem, trackBeginCheckout } from "@/lib/tracking";
@@ -74,7 +76,11 @@ export const Route = createFileRoute("/products/$slug")({
 
 function ProductPage() {
   const { product } = Route.useLoaderData();
-  const { add, items } = useCart();
+  const { add, items, drawerOpen } = useCart();
+  const mainActionsRef = useRef<HTMLDivElement | null>(null);
+  const [mainButtonVisible, setMainButtonVisible] = useState(true);
+  const cookieBannerOpen = useOverlayOpen("cookieBanner");
+  const ageGateOpen = useOverlayOpen("ageGate");
   const [qty, setQty] = useState(1);
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [loading, setLoading] = useState(false);
@@ -87,6 +93,15 @@ function ProductPage() {
     trackViewItem(product, variant);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product.slug, variant.id]);
+
+  useEffect(() => {
+    const el = mainActionsRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(([entry]) => setMainButtonVisible(entry.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  const showSticky = stickyBarVisible({ mainButtonVisible, drawerOpen, cookieBannerOpen, ageConfirmed: !ageGateOpen });
 
   const bacInCart = items.some(i => i.slug === BAC_WATER_UPSELL.slug);
   const showBacOffer = product.slug !== BAC_WATER_UPSELL.slug && !bacInCart;
@@ -161,7 +176,8 @@ function ProductPage() {
                   <span className="bg-gold/20 text-navy-deep text-xs font-bold px-3 py-1.5">{variant.label}</span>
                   <span className="text-sm text-muted-foreground">{product.purity}</span>
                 </div>
-                <div className="text-3xl sm:text-4xl font-display font-medium mb-6">{fmt(variant.price)}</div>
+                <div className="text-3xl sm:text-4xl font-display font-medium mb-2">{fmt(variant.price)}</div>
+                <p className="text-xs font-semibold text-navy-deep/80 mb-6">{spendTiersLine()}</p>
                 <p className="text-base text-navy-deep/75 leading-relaxed mb-6">{product.description}</p>
 
                 <DispatchCountdown />
@@ -203,7 +219,7 @@ function ProductPage() {
                   <span className="col-span-2 text-sm text-muted-foreground sm:col-span-1">Total: <span className="font-semibold text-navy-deep">{fmt(variant.price * qty)}</span></span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 mb-3">
+                <div ref={mainActionsRef} className="grid grid-cols-2 gap-3 mb-3">
                   <button
                     type="button"
                     onClick={() => add(product.slug, variant.id, qty)}
@@ -247,6 +263,24 @@ function ProductPage() {
         </section>
         <ProductTechnicalData p={product} variant={variant} />
       </main>
+
+      {showSticky && (
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-bone/95 backdrop-blur md:hidden" role="region" aria-label="Quick add to cart">
+          <div className="container-x flex items-center gap-3 py-3 pr-20">
+            <div className="min-w-0 flex-1">
+              <div className="truncate text-sm font-semibold">{product.name}</div>
+              <div className="text-xs text-muted-foreground">{variant.label} · <span className="font-semibold text-navy-deep">{fmt(variant.price)}</span></div>
+            </div>
+            <button
+              type="button"
+              onClick={() => add(product.slug, variant.id, qty)}
+              className="shrink-0 bg-navy-deep px-4 py-3 text-[11px] font-bold tracking-widest text-bone focus-visible:outline-2 focus-visible:outline-gold"
+            >
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+      )}
 
       <BacWaterBuyNowDialog
         open={offerOpen}

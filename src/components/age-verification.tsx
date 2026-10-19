@@ -3,6 +3,7 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { Shield } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import logo from "@/assets/oxford-logo-dialog.webp.asset.json";
+import { setOverlayOpen } from "@/lib/overlays";
 import { AGE_CONFIRMATION_KEY, isAgeConfirmed } from "@/lib/age-confirmation";
 
 export function AgeVerification({ children }: { children: ReactNode }) {
@@ -17,6 +18,10 @@ export function AgeVerification({ children }: { children: ReactNode }) {
     }
     setReady(true);
   }, []);
+
+  useEffect(() => {
+    setOverlayOpen("ageGate", !(ready && confirmed));
+  }, [ready, confirmed]);
 
   const confirm = (checked: boolean | "indeterminate") => {
     if (!isAgeConfirmed(checked)) return;
