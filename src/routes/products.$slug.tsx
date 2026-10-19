@@ -97,7 +97,7 @@ function ProductPage() {
   useEffect(() => {
     const el = mainActionsRef.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(([entry]) => setMainButtonVisible(entry.isIntersecting));
+    const io = new IntersectionObserver(([entry]) => setMainButtonVisible(entry.isIntersecting || entry.boundingClientRect.top > 0));
     io.observe(el);
     return () => io.disconnect();
   }, []);
