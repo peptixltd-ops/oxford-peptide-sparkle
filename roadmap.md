@@ -1,3 +1,6 @@
+## Remove spend-tier discounts
+- [ ] Remove spend-tier copy, cart credits/progress and automatic codes from both checkouts; preserve email codes, water offer and delivery rules.
+- [ ] Verify cart totals and both checkout discount payloads without publishing.
 ## Wording consistency
 - [x] Align dispatch and delivery wording, payment labels and GHK-Cu purity; footer Bestsellers already targets /shop and was verified. Preserved styling, prices, legal identity and scripts; 15 tests passed and desktop/mobile checks completed without publishing.
 ## Cart payment choices
