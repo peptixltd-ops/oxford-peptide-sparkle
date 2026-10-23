@@ -26,7 +26,7 @@ describe("NiftiPay verified order summary", () => {
     assert.deepEqual(summary.discounts, []);
     assert.equal(summary.total, 45);
   });
-  test("£80+ orders receive no automatic £10 spend credit", () => {
+  test("£90 basket receives no automatic spend-tier discount", () => {
     const summary = buildNiftiPaySummary([line("retatrutide", "10mg", 2)], 0);
     assert.equal(summary.subtotal, 90);
     assert.deepEqual(summary.discounts, []);

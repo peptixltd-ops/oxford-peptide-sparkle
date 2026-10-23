@@ -4,7 +4,7 @@ import { useLocation } from "@tanstack/react-router";
 import { useCart } from "@/lib/cart";
 import { useOverlayOpen } from "@/lib/overlays";
 import { AGE_CONFIRMATION_KEY } from "@/lib/age-confirmation";
-import { NEWSLETTER_PROMPT_KEY as KEY, NEWSLETTER_DELAY_MS, newsletterEligible, newsletterCooldownExpired } from "@/lib/newsletter-popup";
+import { NEWSLETTER_PROMPT_KEY as KEY, NEWSLETTER_DELAY_MS, newsletterEligible, newsletterCooldownExpired, newsletterPreviewRequested } from "@/lib/newsletter-popup";
 
 type Status = "form" | "loading" | "success" | "error";
 
@@ -56,7 +56,11 @@ const COUNTRY_CODES: Array<{ code: string; dial: string; label: string; flag: st
 ];
 
 export function NewsletterPopup() {
-  const { pathname } = useLocation();
+  const { pathname, searchStr } = useLocation();
+  const [previewRequested, setPreviewRequested] = useState(false);
+  useEffect(() => {
+    setPreviewRequested(newsletterPreviewRequested(window.location.hostname, searchStr));
+  }, [searchStr]);
   const { items, drawerOpen } = useCart();
   // This component is mounted by AgeVerification only after confirmation,
   // including when sessionStorage is unavailable.
@@ -64,7 +68,7 @@ export function NewsletterPopup() {
   const shownThisVisit = useRef(false);
   const cookieBannerOpen = useOverlayOpen("cookieBanner");
   // Never stack on top of the cookie banner: wait until it has been answered.
-  const eligible = newsletterEligible(pathname, items.length, drawerOpen, ageConfirmed) && !cookieBannerOpen;
+  const eligible = (previewRequested ? ageConfirmed && !drawerOpen : newsletterEligible(pathname, items.length, drawerOpen, ageConfirmed)) && !cookieBannerOpen;
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("form");
   const [email, setEmail] = useState("");
@@ -90,15 +94,21 @@ export function NewsletterPopup() {
       setOpen(false);
       return;
     }
-    if (shownThisVisit.current || !shouldShow()) return;
+    if (shownThisVisit.current || (!previewRequested && !shouldShow())) return;
     const show = () => {
-      if (shownThisVisit.current || !shouldShow()) return;
+      if (shownThisVisit.current || (!previewRequested && !shouldShow())) return;
       shownThisVisit.current = true;
       // Remember the impression too, so navigation/reloads cannot repeat it.
-      try { localStorage.setItem(KEY, String(Date.now())); } catch { /* ignore */ }
+      if (!previewRequested) {
+        try { localStorage.setItem(KEY, String(Date.now())); } catch { /* ignore */ }
+      }
       setOpen(true);
       trackGA("newsletter_popup_view");
     };
+    if (previewRequested) {
+      show();
+      return;
+    }
     const t = window.setTimeout(show, NEWSLETTER_DELAY_MS);
     const onExit = (event: MouseEvent) => {
       if (event.clientY <= 0 && event.relatedTarget === null && window.matchMedia("(hover: hover) and (pointer: fine)").matches) show();
@@ -108,7 +118,7 @@ export function NewsletterPopup() {
       window.clearTimeout(t);
       document.removeEventListener("mouseout", onExit);
     };
-  }, [eligible, pathname]);
+  }, [eligible, pathname, previewRequested]);
 
   useEffect(() => {
     if (!open) return;
@@ -121,7 +131,9 @@ export function NewsletterPopup() {
   }, [open]);
 
   function dismiss() {
-    try { localStorage.setItem(KEY, String(Date.now())); } catch { /* ignore */ }
+    if (!previewRequested) {
+      try { localStorage.setItem(KEY, String(Date.now())); } catch { /* ignore */ }
+    }
     trackGA("newsletter_popup_dismiss");
     setOpen(false);
   }

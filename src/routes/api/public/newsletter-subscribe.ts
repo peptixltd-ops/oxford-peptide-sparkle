@@ -7,9 +7,9 @@ const SHOPIFY_SHOP = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
 // Welcome 10% off discount (gid://shopify/DiscountCodeNode/1847011410261): 10% off, once per customer
 const PARENT_PRICE_RULE_ID = "1847011410261";
-// Permanent once-per-customer fallback under the same GBP 10 credit rule. This keeps
+// Permanent once-per-customer fallback under the same Welcome 10% off rule. This keeps
 // acquisition working if Shopify rotates or temporarily rejects an admin token.
-const FALLBACK_DISCOUNT_CODE = "OXFORD10CREDIT";
+const FALLBACK_DISCOUNT_CODE = "OXFORDWELCOME10";
 
 function normalizePhone(input: string): string | null {
   const raw = input.trim().replace(/[\s\-().]/g, "");
