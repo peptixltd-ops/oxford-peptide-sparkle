@@ -164,7 +164,12 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           const amount = Number(draft.totalPriceSet.shopMoney.amount);
           console.log("[niftipay-checkout v2-shipping]", { subtotal, shipping, shippingApplied, draftTotal: amount, draftId: draft.id });
           if (!(amount > 0)) throw new Error(`Draft total invalid: ${amount}`);
-          const summary = buildNiftiPaySummary(lines, shippingApplied);
+          let summary = buildNiftiPaySummary(lines, shippingApplied);
+          if (emailCode) {
+            // Email code changes Shopify's discount mix; the summary follows the draft total exactly.
+            const off = Math.round((summary.subtotal + shippingApplied - amount) * 100) / 100;
+            summary = { ...summary, discounts: off > 0 ? [{ label: `Discounts (${discountCodes.join(", ")})`, amount: off }] : [], total: amount };
+          }
           verifyNiftiPayTotal(summary, amount);
           const reference = `ORP-${draft.legacyResourceId}`;
 
