@@ -102,20 +102,6 @@ function trackingConsent(): string {
 export type CheckoutLine = { merchandiseId: string; quantity: number };
 
 /**
- * Automatic basket credit tiers. Shopify codes can only hold one fixed amount,
- * so the best qualifying code is resolved here and applied to the cart for the
- * customer (they never have to type anything).
- */
-export const CREDIT_TIERS = [
-  { threshold: 80, amount: 10, code: "SAVE10" },
-  { threshold: 30, amount: 5, code: "SAVE5" },
-] as const;
-
-export function creditForSubtotal(subtotal: number) {
-  return CREDIT_TIERS.find((t) => subtotal >= t.threshold) ?? null;
-}
-
-/**
  * Bacteriostatic water cart upsell: a Shopify price rule discounts the bac
  * water line by a fixed £ amount per vial when this code is on the cart.
  * Applied automatically.
@@ -130,11 +116,10 @@ export const BAC_WATER_UPSELL = {
 
 export async function createCheckout(
   lines: CheckoutLine[],
-  subtotal?: number,
+  _subtotal?: number,
   extraDiscountCodes: string[] = [],
 ): Promise<string> {
   if (lines.length === 0) throw new Error("Cart is empty");
-  const credit = typeof subtotal === "number" ? creditForSubtotal(subtotal) : null;
   const saved = getSavedDiscount();
   const extras = extraDiscountCodes.filter((c) => c !== saved);
   const create = async (codes: string[]) => {
@@ -152,14 +137,7 @@ export async function createCheckout(
       | { checkoutUrl?: string; discountCodes?: { code: string; applicable: boolean }[] }
       | undefined;
   };
-  let cart = await create([...(saved ? [saved] : []), ...(credit ? [credit.code] : []), ...extras]);
-  // Email code wins over the spend tier when Shopify won't combine them.
-  const savedApplied = (c: typeof cart) =>
-    c?.discountCodes?.some((d) => d.code.toUpperCase() === saved && d.applicable) ?? false;
-  if (saved && credit && !savedApplied(cart)) {
-    const retry = await create([saved, ...extras]);
-    if (savedApplied(retry)) cart = retry;
-  }
+  const cart = await create([...(saved ? [saved] : []), ...extras]);
   const url = cart?.checkoutUrl;
   if (!url) throw new Error("No checkout URL returned");
   return formatCheckoutUrl(url);

@@ -19,10 +19,18 @@ describe("NiftiPay verified order summary", () => {
     assert.deepEqual(summary.discounts, [{ label: "Bac water offer", amount: 2 }]);
     assert.equal(summary.total, 7.99);
   });
-  test("default product uses quantity one and the existing store credit", () => {
+  test("£30+ orders receive no automatic £5 spend credit", () => {
     const summary = buildNiftiPaySummary([line("retatrutide", "10mg")], 0);
     assert.equal(summary.items[0].quantity, 1);
-    assert.equal(summary.total, 40);
+    assert.equal(summary.subtotal, 45);
+    assert.deepEqual(summary.discounts, []);
+    assert.equal(summary.total, 45);
+  });
+  test("£80+ orders receive no automatic £10 spend credit", () => {
+    const summary = buildNiftiPaySummary([line("retatrutide", "10mg", 2)], 0);
+    assert.equal(summary.subtotal, 90);
+    assert.deepEqual(summary.discounts, []);
+    assert.equal(summary.total, 90);
   });
   test("never permits payment when the authoritative draft amount differs", () => {
     const summary = buildNiftiPaySummary([line("bacteriostatic-water", "3mL")], 3.99);

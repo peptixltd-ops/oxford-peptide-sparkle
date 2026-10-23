@@ -9,14 +9,12 @@ import {
   BAC_WATER_UPSELL,
   closeCheckoutTab,
   createCheckout,
-  creditForSubtotal,
   getVariantGid,
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { DiscountCodeBox } from "@/components/discount-code-box";
-import { nextSpendTier } from "@/lib/spend-tiers";
 import { niftiPayShipping } from "@/lib/niftipay-shipping";
 import { COUNTRIES } from "@/lib/niftipay-customer";
 import { Button } from "@/components/ui/button";
@@ -63,15 +61,13 @@ function CartPage() {
 
   const subtotal = lines.reduce((s, l) => s + l.variant.price * l.item.qty, 0);
   const shipping = niftiPayShipping(subtotal, "GB");
-  const credit = creditForSubtotal(subtotal);
   const bacLines = lines.filter(l => l.product.slug === BAC_WATER_UPSELL.slug);
   const bacDiscount = Math.min(
     bacLines.reduce((s, l) => s + l.variant.price * l.item.qty, 0),
     bacLines.reduce((s, l) => s + BAC_WATER_UPSELL.amountOff * l.item.qty, 0),
   );
 
-  const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
-  const nextTier = nextSpendTier(subtotal);
+  const total = Math.max(0, subtotal - bacDiscount) + shipping;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
   const [cardLoading, setCardLoading] = useState(false);
   const payByCard = async () => {
@@ -83,7 +79,7 @@ function CartPage() {
           return gid ? { merchandiseId: gid, quantity: l.item.qty } : null;
         })
         .filter((x): x is { merchandiseId: string; quantity: number } => !!x);
-      const codes = [...(credit ? [credit.code] : []), ...(bacLines.length ? [BAC_WATER_UPSELL.code] : [])];
+      const codes = bacLines.length ? [BAC_WATER_UPSELL.code] : [];
       await startNiftiPayCheckout(shopLines, codes);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Card payment failed");
@@ -160,16 +156,6 @@ function CartPage() {
                   {bacDiscount > 0 && (
                     <div className="flex justify-between text-gold"><span>Bac water offer (£{BAC_WATER_UPSELL.amountOff} off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
                   )}
-                  {credit && (
-                    <div className="flex justify-between text-gold"><span>Store credit ({credit.code})</span><span className="font-semibold">-{fmt(credit.amount)}</span></div>
-                  )}
-
-                  {nextTier && (
-                    <div className="space-y-1.5" aria-live="polite">
-                      <p className="text-xs font-semibold text-navy-deep">Add {fmt(nextTier.needed)} more to save £{nextTier.amount}</p>
-                      <div className="h-1 w-full bg-border" aria-hidden="true"><div className="h-full bg-gold" style={{ width: `${Math.round(nextTier.progress * 100)}%` }} /></div>
-                    </div>
-                    )}
                 </div>
                 <div className="flex justify-between font-display text-xl font-medium mb-6">
                   <span>Total</span><span>{fmt(total)}</span>

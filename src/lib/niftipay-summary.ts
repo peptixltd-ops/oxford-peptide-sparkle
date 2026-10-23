@@ -1,5 +1,5 @@
 import { getProduct, getVariant } from "./products";
-import { BAC_WATER_UPSELL, VARIANT_GID, creditForSubtotal, type CheckoutLine } from "./shopify";
+import { BAC_WATER_UPSELL, VARIANT_GID, type CheckoutLine } from "./shopify";
 
 export type NiftiPaySummary = {
   items: { name: string; variant: string; quantity: number; unitPrice: number; price: number; image: string }[];
@@ -28,10 +28,8 @@ export function buildNiftiPaySummary(lines: CheckoutLine[], shipping: number): N
       price: pennies(variant.price) * line.quantity / 100, image: product.img };
   });
   const subtotal = items.reduce((sum, item) => sum + pennies(item.price), 0) / 100;
-  const credit = creditForSubtotal(subtotal);
   const discounts = [
     ...(bacDiscount ? [{ label: "Bac water offer", amount: bacDiscount / 100 }] : []),
-    ...(credit ? [{ label: `Store credit (${credit.code})`, amount: credit.amount }] : []),
   ];
   const discount = discounts.reduce((sum, item) => sum + pennies(item.amount), 0);
   const total = (Math.max(0, pennies(subtotal) - discount) + pennies(shipping)) / 100;

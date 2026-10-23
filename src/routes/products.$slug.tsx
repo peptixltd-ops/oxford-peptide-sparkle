@@ -11,7 +11,6 @@ import { BAC_WATER_UPSELL, closeCheckoutTab, createCheckout, getVariantGid, open
 import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
 import { seo, SITE_URL } from "@/lib/seo";
 import { useEffect, useState } from "react";
-import { spendTiersLine } from "@/lib/spend-tiers";
 import { setBottomLayerHeight, stickyBarVisible, useOverlayOpen } from "@/lib/overlays";
 import { toast } from "sonner";
 import { ClipboardCheck, FlaskConical, Truck, ShieldCheck, Loader2 } from "lucide-react";
@@ -198,7 +197,6 @@ function ProductPage() {
                   <span className="text-sm text-muted-foreground">{product.purity}</span>
                 </div>
                 <div className="text-3xl sm:text-4xl font-display font-medium mb-2">{fmt(variant.price)}</div>
-                <p className="text-xs font-semibold text-navy-deep/80 mb-6">{spendTiersLine()}</p>
                 <p className="text-base text-navy-deep/75 leading-relaxed mb-6">{product.description}</p>
 
                 <DispatchCountdown />
