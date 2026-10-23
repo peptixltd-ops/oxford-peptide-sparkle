@@ -23,6 +23,7 @@ const schema = z.object({
     .min(1)
     .max(50),
   discountCodes: z.array(z.string().max(50)).max(10).default([]),
+  discountCode: z.string().trim().regex(/^[A-Za-z0-9_-]{1,40}$/).optional(),
   email: z.string().email().max(255).optional(),
   name: z.string().trim().max(200).optional(),
   customer: customerSchema,
@@ -53,6 +54,25 @@ async function findOrCreateCustomer(c: { email: string; firstName: string; lastN
     return (r?.customerCreate?.customer?.id as string | undefined) ?? null;
   } catch (e) {
     console.warn("[niftipay-checkout] customer lookup failed, continuing without customer", e);
+    return null;
+  }
+}
+
+const CODE_LOOKUP = `query($code: String!) { codeDiscountNodeByCode(code: $code) { codeDiscount {
+  ... on DiscountCodeBasic { status combinesWith { orderDiscounts productDiscounts } }
+  ... on DiscountCodeBxgy { status combinesWith { orderDiscounts productDiscounts } }
+  ... on DiscountCodeFreeShipping { status combinesWith { orderDiscounts productDiscounts } }
+} } }`;
+
+/** Validates an email/cart code against Shopify; null when unknown or not active. */
+async function validateCode(code: string) {
+  try {
+    const d = await shopifyAdmin(CODE_LOOKUP, { code });
+    const c = d?.codeDiscountNodeByCode?.codeDiscount;
+    if (!c || c.status !== "ACTIVE") return null;
+    return { code, combinesOrder: !!c.combinesWith?.orderDiscounts, combinesProduct: !!c.combinesWith?.productDiscounts };
+  } catch (e) {
+    console.warn("[niftipay-checkout] discount lookup failed", e);
     return null;
   }
 }
@@ -105,7 +125,15 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
         const credit = creditForSubtotal(subtotal);
         // Never accept a client shipping amount; country and method are validated above.
         const shipping = niftiPayShipping(subtotal, customer.country, shippingMethod);
-        const discountCodes = [...(credit ? [credit.code] : []), ...(hasBac ? [BAC_WATER_UPSELL.code] : [])];
+        // Saved email code is validated against Shopify and takes priority over the spend tier.
+        const emailCode = parsed.data.discountCode ? await validateCode(parsed.data.discountCode.toUpperCase()) : null;
+        const discountCodes = emailCode
+          ? [
+              emailCode.code,
+              ...(credit && emailCode.combinesOrder ? [credit.code] : []),
+              ...(hasBac && emailCode.combinesProduct ? [BAC_WATER_UPSELL.code] : []),
+            ]
+          : [...(credit ? [credit.code] : []), ...(hasBac ? [BAC_WATER_UPSELL.code] : [])];
 
         try {
           const customerId = await findOrCreateCustomer({ email, firstName, lastName, address: { ...address } });

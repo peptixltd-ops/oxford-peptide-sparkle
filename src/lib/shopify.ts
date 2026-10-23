@@ -2,6 +2,7 @@
 // Only Oxford Research Peptides (ORP-) variants are mapped here.
 
 import { tiktokAttribution } from "./tiktok";
+import { getSavedDiscount } from "./discount-code";
 
 const SHOPIFY_DOMAIN = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
@@ -55,7 +56,7 @@ export const getVariantGid = (slug: string, variantId: string): string | undefin
 const CART_CREATE = `
   mutation cartCreate($input: CartInput!) {
     cartCreate(input: $input) {
-      cart { id checkoutUrl }
+      cart { id checkoutUrl discountCodes { code applicable } }
       userErrors { field message }
     }
   }`;
@@ -134,18 +135,32 @@ export async function createCheckout(
 ): Promise<string> {
   if (lines.length === 0) throw new Error("Cart is empty");
   const credit = typeof subtotal === "number" ? creditForSubtotal(subtotal) : null;
-  const discountCodes = [...(credit ? [credit.code] : []), ...extraDiscountCodes];
-  const data = await storefront(CART_CREATE, {
-    input: {
-      lines,
-      ...(discountCodes.length ? { discountCodes } : {}),
-      // Cookie choice travels with the order so the purchase webhook can honour it.
-      attributes: [{ key: "_tracking_consent", value: trackingConsent() }],
-    },
-  });
-  const errs = data?.cartCreate?.userErrors ?? [];
-  if (errs.length) throw new Error(errs.map((e: { message: string }) => e.message).join(", "));
-  const url = data?.cartCreate?.cart?.checkoutUrl;
+  const saved = getSavedDiscount();
+  const extras = extraDiscountCodes.filter((c) => c !== saved);
+  const create = async (codes: string[]) => {
+    const data = await storefront(CART_CREATE, {
+      input: {
+        lines,
+        ...(codes.length ? { discountCodes: codes } : {}),
+        // Cookie choice travels with the order so the purchase webhook can honour it.
+        attributes: [{ key: "_tracking_consent", value: trackingConsent() }],
+      },
+    });
+    const errs = data?.cartCreate?.userErrors ?? [];
+    if (errs.length) throw new Error(errs.map((e: { message: string }) => e.message).join(", "));
+    return data?.cartCreate?.cart as
+      | { checkoutUrl?: string; discountCodes?: { code: string; applicable: boolean }[] }
+      | undefined;
+  };
+  let cart = await create([...(saved ? [saved] : []), ...(credit ? [credit.code] : []), ...extras]);
+  // Email code wins over the spend tier when Shopify won't combine them.
+  const savedApplied = (c: typeof cart) =>
+    c?.discountCodes?.some((d) => d.code.toUpperCase() === saved && d.applicable) ?? false;
+  if (saved && credit && !savedApplied(cart)) {
+    const retry = await create([saved, ...extras]);
+    if (savedApplied(retry)) cart = retry;
+  }
+  const url = cart?.checkoutUrl;
   if (!url) throw new Error("No checkout URL returned");
   return formatCheckoutUrl(url);
 }
