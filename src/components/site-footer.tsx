@@ -3,6 +3,7 @@ import { Instagram, Twitter, Mail, ArrowRight } from "lucide-react";
 import { Logo } from "./site-header";
 import orsLogo from "@/assets/oxford-research-syndicate.webp.asset.json";
 import { useRef, useState } from "react";
+import { saveDiscount } from "@/lib/discount-code";
 import { Button } from "@/components/ui/button";
 
 
@@ -66,6 +67,7 @@ export function SiteFooter() {
         return;
       }
       setWelcomeCode(data.code);
+      saveDiscount(data.code);
       try { localStorage.setItem("orp_newsletter_prompt", "subscribed"); } catch { /* storage unavailable */ }
       const tracking = window as unknown as { gtag?: (...args: unknown[]) => void };
       tracking.gtag?.("event", "newsletter_signup", { has_phone: false, source: "footer" });
@@ -121,7 +123,7 @@ export function SiteFooter() {
             <Button type="submit" disabled={pending || !!welcomeCode} className="h-auto shrink-0 rounded-none px-4 py-0 bg-gold text-navy-deep hover:bg-gold/90 shadow-none" aria-label="Subscribe" aria-busy={pending}><ArrowRight className="w-4 h-4" /></Button>
           </form>
           {signupError && <p id="footer-newsletter-error" role="alert" className="mt-3 text-xs text-bone/90">{signupError}</p>}
-          {welcomeCode && <p role="status" className="mt-3 text-xs text-bone/90 break-words">You're subscribed. Your welcome code: <strong className="text-gold">{welcomeCode}</strong></p>}
+          {welcomeCode && <p role="status" className="mt-3 text-xs text-bone/90 break-words">You're subscribed. Your 10% off code <strong className="text-gold">{welcomeCode}</strong> has been applied to your basket.</p>}
         </div>
       </div>
       <div className="border-t border-bone/10">

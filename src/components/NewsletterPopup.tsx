@@ -1,3 +1,4 @@
+import { saveDiscount } from "@/lib/discount-code";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "@tanstack/react-router";
 import { useCart } from "@/lib/cart";
@@ -148,6 +149,7 @@ export function NewsletterPopup() {
         return;
       }
       setCode(data.code ?? "");
+      if (data.code) saveDiscount(data.code);
       setStatus("success");
       try { localStorage.setItem(KEY, "subscribed"); } catch { /* ignore */ }
       trackGA("newsletter_signup", { has_phone: !!phone });
@@ -203,11 +205,11 @@ export function NewsletterPopup() {
               id="orp-newsletter-title"
               className="font-display text-3xl leading-tight text-navy-deep mb-3"
             >
-              Up to £10 instant store credit for first time customers
+              Get 10% off your first order
             </h2>
             <p className="text-sm text-navy-deep/75 mb-6">
               Join the Oxford research list for launch alerts, batch drops and priority stock
-              access, plus a one time use store credit code.
+              access, plus a one time use 10% off code.
             </p>
 
 
@@ -277,11 +279,11 @@ export function NewsletterPopup() {
                 disabled={status === "loading"}
                 className="w-full h-11 bg-navy-deep text-bone font-bold tracking-widest text-sm hover:bg-navy disabled:opacity-60"
               >
-                {status === "loading" ? "SENDING…" : "CLAIM UP TO £10 STORE CREDIT"}
+                {status === "loading" ? "SENDING…" : "CLAIM 10% OFF"}
               </button>
 
               <p className="text-[11px] text-navy-deep/55 leading-relaxed pt-1">
-                For laboratory research use only. Minimum spend applies to your email discount code. By
+                For laboratory research use only. By
                 submitting, you agree to receive email updates — and SMS offers if you enter a
                 phone number.
               </p>
@@ -294,9 +296,9 @@ export function NewsletterPopup() {
             <p className="text-[11px] font-bold tracking-[0.25em] text-gold uppercase mb-3">
               You're on the list
             </p>
-            <h2 className="font-display text-3xl text-navy-deep mb-2">Your credit is active</h2>
+            <h2 className="font-display text-3xl text-navy-deep mb-2">Your 10% off is active</h2>
             <p className="text-sm text-navy-deep/75 mb-5">
-              Your email discount code is below to use at checkout. Minimum spend applies.
+              Your code has been applied to your basket and will be used automatically at checkout.
             </p>
             <div className="border border-dashed border-gold bg-white px-4 py-4 mb-4">
               <div className="font-mono text-xl tracking-widest text-navy-deep">{code}</div>
