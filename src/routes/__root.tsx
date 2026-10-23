@@ -18,6 +18,8 @@ import { SkipToContent } from "@/components/skip-to-content";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { AgeVerification } from "@/components/age-verification";
 import { useBottomLayerHeight } from "@/lib/overlays";
+import { discountFromSearch, saveDiscount } from "@/lib/discount-code";
+import { toast } from "sonner";
 import { tiktokPage } from "@/lib/tiktok";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
@@ -234,6 +236,17 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   // TikTok PageView on in-app navigation (first load is fired by the base code).
+  // Email-link discount capture: ?discount=CODE or ?discount_code=CODE on any page.
+  useEffect(() => {
+    const capture = (search: string) => {
+      const code = saveDiscount(discountFromSearch(search));
+      if (code) toast(`Discount ${code} will be applied at checkout`);
+    };
+    capture(window.location.search);
+    return router.subscribe("onResolved", ({ toLocation }) => {
+      capture(toLocation.searchStr ?? "");
+    });
+  }, [router]);
   useEffect(() => {
     let last = router.state.location.href;
     return router.subscribe("onResolved", ({ toLocation }) => {

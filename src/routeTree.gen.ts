@@ -51,6 +51,7 @@ import { Route as CompoundsIndexRouteImport } from './routes/compounds.index'
 import { Route as CompoundsSlugRouteImport } from './routes/compounds.$slug'
 import { Route as DashboardAbandonedCheckoutRouteImport } from './routes/dashboard.abandoned-checkout'
 import { Route as DashboardEditorialRouteImport } from './routes/dashboard.editorial'
+import { Route as DiscountCodeRouteImport } from './routes/discount.$code'
 import { Route as ExploreIndexRouteImport } from './routes/explore.index'
 import { Route as ExploreCompoundsRouteImport } from './routes/explore.compounds'
 import { Route as ExploreMechanismsRouteImport } from './routes/explore.mechanisms'
@@ -297,6 +298,11 @@ const DashboardEditorialRoute = DashboardEditorialRouteImport.update({
   path: '/dashboard/editorial',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiscountCodeRoute = DiscountCodeRouteImport.update({
+  id: '/discount/$code',
+  path: '/discount/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExploreIndexRoute = ExploreIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -524,6 +530,7 @@ export interface FileRoutesByFullPath {
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
+  '/discount/$code': typeof DiscountCodeRoute
   '/explore/compounds': typeof ExploreCompoundsRoute
   '/explore/mechanisms': typeof ExploreMechanismsRoute
   '/products/$slug': typeof ProductsSlugRoute
@@ -598,6 +605,7 @@ export interface FileRoutesByTo {
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
+  '/discount/$code': typeof DiscountCodeRoute
   '/explore/compounds': typeof ExploreCompoundsRoute
   '/explore/mechanisms': typeof ExploreMechanismsRoute
   '/products/$slug': typeof ProductsSlugRoute
@@ -676,6 +684,7 @@ export interface FileRoutesById {
   '/compounds/$slug': typeof CompoundsSlugRoute
   '/dashboard/abandoned-checkout': typeof DashboardAbandonedCheckoutRoute
   '/dashboard/editorial': typeof DashboardEditorialRoute
+  '/discount/$code': typeof DiscountCodeRoute
   '/explore/compounds': typeof ExploreCompoundsRoute
   '/explore/mechanisms': typeof ExploreMechanismsRoute
   '/products/$slug': typeof ProductsSlugRoute
@@ -755,6 +764,7 @@ export interface FileRouteTypes {
     | '/compounds/$slug'
     | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
+    | '/discount/$code'
     | '/explore/compounds'
     | '/explore/mechanisms'
     | '/products/$slug'
@@ -829,6 +839,7 @@ export interface FileRouteTypes {
     | '/compounds/$slug'
     | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
+    | '/discount/$code'
     | '/explore/compounds'
     | '/explore/mechanisms'
     | '/products/$slug'
@@ -906,6 +917,7 @@ export interface FileRouteTypes {
     | '/compounds/$slug'
     | '/dashboard/abandoned-checkout'
     | '/dashboard/editorial'
+    | '/discount/$code'
     | '/explore/compounds'
     | '/explore/mechanisms'
     | '/products/$slug'
@@ -983,6 +995,7 @@ export interface RootRouteChildren {
   CheckoutSuccessRoute: typeof CheckoutSuccessRoute
   DashboardAbandonedCheckoutRoute: typeof DashboardAbandonedCheckoutRoute
   DashboardEditorialRoute: typeof DashboardEditorialRoute
+  DiscountCodeRoute: typeof DiscountCodeRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ApiPublicNewsletterSubscribeRoute: typeof ApiPublicNewsletterSubscribeRoute
   ApiPublicNiftipayCheckoutRoute: typeof ApiPublicNiftipayCheckoutRoute
@@ -1288,6 +1301,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard/editorial'
       fullPath: '/dashboard/editorial'
       preLoaderRoute: typeof DashboardEditorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discount/$code': {
+      id: '/discount/$code'
+      path: '/discount/$code'
+      fullPath: '/discount/$code'
+      preLoaderRoute: typeof DiscountCodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explore/': {
@@ -1657,6 +1677,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutSuccessRoute: CheckoutSuccessRoute,
   DashboardAbandonedCheckoutRoute: DashboardAbandonedCheckoutRoute,
   DashboardEditorialRoute: DashboardEditorialRoute,
+  DiscountCodeRoute: DiscountCodeRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ApiPublicNewsletterSubscribeRoute: ApiPublicNewsletterSubscribeRoute,
   ApiPublicNiftipayCheckoutRoute: ApiPublicNiftipayCheckoutRoute,
