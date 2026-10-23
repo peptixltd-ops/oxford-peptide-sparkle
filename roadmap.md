@@ -1,3 +1,5 @@
+## Welcome offer fallback and preview
+- [ ] Replace obsolete welcome-credit references with the 10% fallback and verify preview-only immediate popup behavior.
 ## Remove spend-tier discounts
 - [x] Remove spend-tier copy, cart credits/progress and automatic codes from both checkouts; preserve email codes, water offer and delivery rules.
 - [x] Verify £90 cart/drawer totals and both checkout discount payloads with intercepted payment handoffs; 15 relevant tests passed without publishing or creating live orders.
@@ -6,7 +8,7 @@
 ## Cart payment choices
 - [x] Update both cart payment blocks with equal buttons and saved non-UK delivery-country guidance (no visitor-country detector exists); verified desktop/mobile, card delivery modal and actual same-tab Shopify handoffs without publishing.
 ## Popup fixes
-- [x] Restrict store-credit popup timing, pages, cart and age eligibility; persist suppression for 30 days and verify click-through after closing.
+- [x] Restrict newsletter popup timing, pages, cart and age eligibility; persist suppression for 30 days and verify click-through after closing.
 - [x] Remove bacteriostatic water countdown and use standing-offer wording, preserving checkout skip and styling; verified without publishing.
 ## Delivery offer visibility
 - [x] Keep the £12 UK delivery offer in the cart drawer note only; the announcement bar and the product purchase-area line were reverted to their original state after the change of plan.
