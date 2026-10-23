@@ -238,7 +238,10 @@ function RootComponent() {
   // TikTok PageView on in-app navigation (first load is fired by the base code).
   // Email-link discount capture: ?discount=CODE or ?discount_code=CODE on any page.
   useEffect(() => {
+    let handled = "";
     const capture = (search: string) => {
+      if (search === handled) return;
+      handled = search;
       const code = saveDiscount(discountFromSearch(search));
       if (code) toast(`Discount ${code} will be applied at checkout`);
     };
