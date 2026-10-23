@@ -1,5 +1,6 @@
 ## Welcome offer fallback and preview
-- [ ] Replace obsolete welcome-credit references with the 10% fallback and verify preview-only immediate popup behavior.
+- [x] Replace obsolete welcome-credit references with OXFORDWELCOME10; configured node 1847011410261; 16 tests pass and immediate preview popup verified with age gate first, existing cooldown and a nonempty basket. Not published.
+- [ ] Independently verify OXFORDWELCOME10 on the Welcome 10% discount: blocked by Shopify reporting that this discount is unavailable to the connected account/channel; store-owner access is required.
 ## Remove spend-tier discounts
 - [x] Remove spend-tier copy, cart credits/progress and automatic codes from both checkouts; preserve email codes, water offer and delivery rules.
 - [x] Verify £90 cart/drawer totals and both checkout discount payloads with intercepted payment handoffs; 15 relevant tests passed without publishing or creating live orders.
