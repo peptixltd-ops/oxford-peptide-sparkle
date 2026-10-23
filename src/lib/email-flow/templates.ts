@@ -200,11 +200,11 @@ const credit = () => `
       <table role="presentation" cellpadding="0" cellspacing="0" style="margin:16px auto 0;">
         <tr>
           <td align="center" style="padding:0 7px;">
-            <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.muted};">£5 OVER £30</div>
+            <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.muted};">YOUR EMAIL DISCOUNT CODE</div>
             <div style="margin-top:7px;border:1px dashed ${BRAND.gold};padding:11px 16px;font:700 14px/1 ${BRAND.sans};letter-spacing:.12em;color:${BRAND.navy};background:${BRAND.bone};">${CREDIT_CODES.five}</div>
           </td>
           <td align="center" style="padding:0 7px;">
-            <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.gold};">£10 OVER £80</div>
+            <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.16em;color:${BRAND.gold};">YOUR EMAIL DISCOUNT CODE</div>
             <div style="margin-top:7px;border:1px dashed ${BRAND.gold};padding:11px 16px;font:700 14px/1 ${BRAND.sans};letter-spacing:.12em;color:${BRAND.navy};background:${BRAND.bone};">${CREDIT_CODES.ten}</div>
           </td>
         </tr>

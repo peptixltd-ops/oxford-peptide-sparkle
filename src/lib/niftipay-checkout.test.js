@@ -8,13 +8,19 @@ let savedOrder;
 mock.module("./niftipay.server", () => ({
   shopifyAdmin: async (query, variables) => {
     if (query.includes("customers(first")) return { customers: { nodes: [{ id: "gid://shopify/Customer/1" }] } };
+    if (query.includes("codeDiscountNodeByCode")) return { codeDiscountNodeByCode: { codeDiscount: {
+      status: variables.code === "WELCOME10-TEST" ? "ACTIVE" : "EXPIRED",
+      combinesWith: { productDiscounts: true, orderDiscounts: true },
+    } } };
     draftInput = variables.input;
     const shipping = Number(draftInput.shippingLine.priceWithCurrency.amount);
-    const quantity = draftInput.lineItems[0].quantity;
+    const total = draftInput.lineItems.reduce((sum, line) => sum +
+      (line.variantId === getVariantGid("bacteriostatic-water", "3mL") ? 4 : 45) * line.quantity, 0)
+      - (draftInput.discountCodes?.includes("WELCOME10-TEST") ? 10 : 0);
     return { draftOrderCreate: { userErrors: [], draftOrder: {
       id: "gid://shopify/DraftOrder/1", legacyResourceId: "1",
       shippingLine: { originalPriceSet: { shopMoney: { amount: String(shipping) } } },
-      totalPriceSet: { shopMoney: { amount: String(4 * quantity + shipping), currencyCode: "GBP" } },
+      totalPriceSet: { shopMoney: { amount: String(total + shipping), currencyCode: "GBP" } },
     } } };
   },
   getAdminDb: async () => ({ from: () => ({ insert: async (row) => { savedOrder = row; return { error: null }; } }) }),
@@ -48,6 +54,23 @@ test("checkout server ignores forged shipping, charges GBP and passes validated 
       assert.equal(draftInput.billingAddress.province, "Test Region");
       assert.equal(savedOrder.shipping_address.province, "Test Region");
     }
+    for (const quantity of [1, 2]) {
+      const response = await handler({ request: new Request("http://localhost/api/public/niftipay-checkout", {
+        method: "POST", body: JSON.stringify({ lines: [{ merchandiseId: getVariantGid("retatrutide", "10mg"), quantity }],
+          customer, shippingMethod: "express", discountCodes: ["SAVE5", "SAVE10"] }),
+      }) });
+      assert.equal(response.status, 200);
+      assert.equal((await response.json()).amount, 45 * quantity);
+      assert.equal(draftInput.discountCodes, undefined);
+    }
+    const response = await handler({ request: new Request("http://localhost/api/public/niftipay-checkout", {
+      method: "POST", body: JSON.stringify({ lines: [
+        { merchandiseId: getVariantGid("retatrutide", "10mg"), quantity: 2 }, { merchandiseId, quantity: 1 },
+      ], customer, shippingMethod: "express", discountCode: "welcome10-test" }),
+    }) });
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).amount, 84);
+    assert.deepEqual(draftInput.discountCodes, ["WELCOME10-TEST", "BACWATER2OFF"]);
   } finally {
     globalThis.fetch = originalFetch;
     if (originalKey === undefined) delete process.env.NIFTIPAY_API_KEY; else process.env.NIFTIPAY_API_KEY = originalKey;

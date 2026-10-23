@@ -281,8 +281,7 @@ export function NewsletterPopup() {
               </button>
 
               <p className="text-[11px] text-navy-deep/55 leading-relaxed pt-1">
-                For laboratory research use only. £5 off orders over £30, £10 off orders over £80. Applied automatically at
-                checkout, minimum spend applies. By
+                For laboratory research use only. Minimum spend applies to your email discount code. By
                 submitting, you agree to receive email updates — and SMS offers if you enter a
                 phone number.
               </p>
@@ -297,7 +296,7 @@ export function NewsletterPopup() {
             </p>
             <h2 className="font-display text-3xl text-navy-deep mb-2">Your credit is active</h2>
             <p className="text-sm text-navy-deep/75 mb-5">
-              £5 off over £30, £10 off over £80 — applied automatically at checkout. Your backup code is below if you ever need it.
+              Your email discount code is below to use at checkout. Minimum spend applies.
             </p>
             <div className="border border-dashed border-gold bg-white px-4 py-4 mb-4">
               <div className="font-mono text-xl tracking-widest text-navy-deep">{code}</div>

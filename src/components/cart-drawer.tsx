@@ -7,14 +7,12 @@ import {
   BAC_WATER_UPSELL,
   closeCheckoutTab,
   createCheckout,
-  creditForSubtotal,
   getVariantGid,
   openCheckoutTab,
   sendToCheckout,
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { DiscountCodeBox } from "@/components/discount-code-box";
-import { nextSpendTier } from "@/lib/spend-tiers";
 import { niftiPayShipping } from "@/lib/niftipay-shipping";
 import { COUNTRIES } from "@/lib/niftipay-customer";
 import { Button } from "@/components/ui/button";
@@ -74,9 +72,7 @@ export function CartDrawer() {
     bacLines.reduce((s, l) => s + BAC_WATER_UPSELL.amountOff * l.item.qty, 0),
   );
 
-  const credit = creditForSubtotal(subtotal);
-  const total = Math.max(0, subtotal - (credit?.amount ?? 0) - bacDiscount) + shipping;
-  const nextTier = nextSpendTier(subtotal);
+  const total = Math.max(0, subtotal - bacDiscount) + shipping;
 
   const added = lastAdded ? getProduct(lastAdded.slug) : null;
   const addedVariant = added && lastAdded ? getVariant(added, lastAdded.variantId) : null;
@@ -91,7 +87,7 @@ export function CartDrawer() {
           return gid ? { merchandiseId: gid, quantity: l.item.qty } : null;
         })
         .filter((x): x is { merchandiseId: string; quantity: number } => !!x);
-      const codes = [...(credit ? [credit.code] : []), ...(bacLines.length ? [BAC_WATER_UPSELL.code] : [])];
+      const codes = bacLines.length ? [BAC_WATER_UPSELL.code] : [];
       await startNiftiPayCheckout(shopLines, codes);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Card payment failed");
@@ -239,18 +235,6 @@ export function CartDrawer() {
               <Truck className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
               <span>Free UK delivery when you spend £12 or more</span>
             </p>
-            {credit && (
-              <div className="flex justify-between text-sm text-gold">
-                <span>Store credit ({credit.code})</span>
-                <span className="font-semibold">-{fmt(credit.amount)}</span>
-              </div>
-            )}
-            {nextTier && (
-              <div className="space-y-1.5" aria-live="polite">
-                <p className="text-xs font-semibold text-navy-deep">Add {fmt(nextTier.needed)} more to save £{nextTier.amount}</p>
-                <div className="h-1 w-full bg-border" aria-hidden="true"><div className="h-full bg-gold" style={{ width: `${Math.round(nextTier.progress * 100)}%` }} /></div>
-              </div>
-              )}
             <div className="flex justify-between pt-3 border-t border-border font-display text-lg font-medium">
               <span>Total</span>
               <span>{fmt(total)}</span>

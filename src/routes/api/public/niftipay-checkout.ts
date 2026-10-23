@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { BAC_WATER_UPSELL, VARIANT_GID, creditForSubtotal } from "@/lib/shopify";
+import { BAC_WATER_UPSELL, VARIANT_GID } from "@/lib/shopify";
 import { getProduct, getVariant } from "@/lib/products";
 import { getAdminDb, shopifyAdmin } from "@/lib/niftipay.server";
 import { customerSchema } from "@/lib/niftipay-customer";
@@ -122,18 +122,16 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           subtotal += getVariant(product, variantId).price * l.quantity;
           if (slug === BAC_WATER_UPSELL.slug) hasBac = true;
         }
-        const credit = creditForSubtotal(subtotal);
         // Never accept a client shipping amount; country and method are validated above.
         const shipping = niftiPayShipping(subtotal, customer.country, shippingMethod);
-        // Saved email code is validated against Shopify and takes priority over the spend tier.
+        // Saved email code is validated against Shopify; retain only compatible water offers.
         const emailCode = parsed.data.discountCode ? await validateCode(parsed.data.discountCode.toUpperCase()) : null;
         const discountCodes = emailCode
           ? [
               emailCode.code,
-              ...(credit && emailCode.combinesOrder ? [credit.code] : []),
               ...(hasBac && emailCode.combinesProduct ? [BAC_WATER_UPSELL.code] : []),
             ]
-          : [...(credit ? [credit.code] : []), ...(hasBac ? [BAC_WATER_UPSELL.code] : [])];
+          : (hasBac ? [BAC_WATER_UPSELL.code] : []);
 
         try {
           const customerId = await findOrCreateCustomer({ email, firstName, lastName, address: { ...address } });

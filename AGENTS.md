@@ -20,4 +20,4 @@
 - Keep newsletter popup eligibility and suppression rules in a browser-safe helper, and unmount the overlay when closed or ineligible, so route/cart changes cannot leave a click-blocking layer.
 - Cart payment guidance reads the validated country from saved NiftiPay delivery details after hydration; do not infer location from GBP or browser language, because this site has no visitor geolocation detector.
 - Overlay coordination (age gate, cookie banner, cart drawer, sticky bars, popups) goes through the shared browser-safe overlay registry, so only one blocking/bottom layer shows at a time and the age gate always comes first. A bottom-fixed bar publishes its measured height to that registry so floating buttons sit above it instead of overlapping.
-- Spend-tier messaging reads the same tier list checkout applies, so displayed savings can never differ from what Shopify or NiftiPay charge.
+- Checkout discount selection uses only saved email codes and the existing water offer; no subtotal-based discount is selected or subtracted in cart estimates or either checkout.
