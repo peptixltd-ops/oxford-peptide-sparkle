@@ -15,6 +15,7 @@ import {
   sendToCheckout,
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
+import { DiscountCodeBox } from "@/components/discount-code-box";
 import { nextSpendTier } from "@/lib/spend-tiers";
 import { niftiPayShipping } from "@/lib/niftipay-shipping";
 import { COUNTRIES } from "@/lib/niftipay-customer";
@@ -173,6 +174,7 @@ function CartPage() {
                 <div className="flex justify-between font-display text-xl font-medium mb-6">
                   <span>Total</span><span>{fmt(total)}</span>
                 </div>
+                <div className="mb-4"><DiscountCodeBox /></div>
                 <div className="space-y-3">
                   <p className="text-xs text-muted-foreground">Choose how you'd like to pay</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
