@@ -2,7 +2,6 @@ export const NEWSLETTER_PROMPT_KEY = "orp_newsletter_prompt";
 export const NEWSLETTER_DELAY_MS = 30_000;
 export const NEWSLETTER_COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000;
 
-
 export function newsletterPageEligible(pathname: string): boolean {
   const path = pathname.replace(/\/+$/, "") || "/";
   return path === "/" || path === "/shop" || path === "/collections" || path.startsWith("/collections/");
