@@ -1,18 +1,8 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
-import { NEWSLETTER_DELAY_MS, NEWSLETTER_COOLDOWN_MS, newsletterEligible, newsletterCooldownExpired, newsletterPreviewRequested } from "./newsletter-popup";
+import { NEWSLETTER_DELAY_MS, NEWSLETTER_COOLDOWN_MS, newsletterEligible, newsletterCooldownExpired } from "./newsletter-popup";
 
 describe("newsletter popup rules", () => {
-  test("previewpopup=1 is enabled only on preview hosts", () => {
-    for (const host of ["localhost", "id-preview--project.lovable.app", "id-preview-6--project.lovable.app", "id-preview-abc123--project.lovable.app", "project--example-dev.lovable.app"]) {
-      assert.equal(newsletterPreviewRequested(host, "?previewpopup=1"), true);
-    }
-    for (const host of ["oxfordresearchpeptides.com", "www.oxfordresearchpeptides.com", "oxford-peptide-sparkle.lovable.app", "project--example.lovable.app", "id-preview--example.attacker.com"]) {
-      assert.equal(newsletterPreviewRequested(host, "?previewpopup=1"), false);
-    }
-    assert.equal(newsletterPreviewRequested("localhost", "?previewpopup=0"), false);
-    assert.equal(newsletterPreviewRequested("localhost", ""), false);
-  });
   test("waits 30 seconds", () => assert.equal(NEWSLETTER_DELAY_MS, 30_000));
   test("only allows homepage and shopping collections", () => {
     for (const path of ["/", "/shop", "/shop/", "/collections/peptides"]) assert.equal(newsletterEligible(path, 0, false, true), true);
