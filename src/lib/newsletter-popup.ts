@@ -2,18 +2,6 @@ export const NEWSLETTER_PROMPT_KEY = "orp_newsletter_prompt";
 export const NEWSLETTER_DELAY_MS = 30_000;
 export const NEWSLETTER_COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000;
 
-/** Temporary visual review override, never enabled on a published storefront. */
-export function newsletterPreviewRequested(hostname: string, search: string): boolean {
-  const host = hostname.toLowerCase();
-  const firstLabel = host.split(".")[0] ?? "";
-  const hostingSuffix = /\.(lovable\.app|gpt-eng\.com|gptengineer\.run)$/.test(host);
-  const previewHost = host === "localhost" || host === "127.0.0.1"
-    || (hostingSuffix && (/^(?:id-preview|preview)(?:-[a-z0-9]+)?--.+$/.test(firstLabel)
-      || /^project--.+-dev$/.test(firstLabel)))
-    || /\.(lovableproject\.com|lovableproject-dev\.com)$/.test(host);
-  return previewHost && new URLSearchParams(search).get("previewpopup") === "1";
-}
-
 export function newsletterPageEligible(pathname: string): boolean {
   const path = pathname.replace(/\/+$/, "") || "/";
   return path === "/" || path === "/shop" || path === "/collections" || path.startsWith("/collections/");
