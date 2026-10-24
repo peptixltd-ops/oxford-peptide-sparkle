@@ -1,3 +1,5 @@
+## Remove preview popup override
+- [x] Delete the temporary ?previewpopup=1 override so the pop-up follows only its normal rules (30s timer or desktop exit intent, empty cart, eligible page, age gate, 30-day cooldown). Not published.
 ## Welcome offer fallback and preview
 - [x] Replace obsolete welcome-credit references with OXFORDWELCOME10; configured node 1847011410261; 16 tests pass and immediate preview popup verified with age gate first, existing cooldown and a nonempty basket. Not published.
 - [ ] Independently verify OXFORDWELCOME10 on the Welcome 10% discount: blocked by Shopify reporting that this discount is unavailable to the connected account/channel; store-owner access is required.
