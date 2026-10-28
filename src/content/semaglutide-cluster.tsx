@@ -7,9 +7,7 @@
  * registry below.
  *
  * Semaglutide is a well-characterised, approved therapeutic in the
- * United Kingdom (as Ozempic, Wegovy and Rybelsus). Oxford Research
- * Peptides supplies Semaglutide strictly as a reference standard for
- * in-vitro laboratory research — this cluster documents the published
+ * United Kingdom (as Ozempic, Wegovy and Rybelsus). This cluster documents the published
  * scientific literature and does not describe, recommend or endorse
  * any therapeutic use.
  */
@@ -271,7 +269,7 @@ const semaglutideFaqs: { question: string; answer: string }[] = [
   {
     question: "What is Semaglutide?",
     answer:
-      "Semaglutide is a synthetic long-acting glucagon-like peptide-1 (GLP-1) receptor agonist derived from native human GLP-1(7-37) with substitutions at position 8 and lysine-26 acylation with a C18 fatty-di-acid via a γGlu-2xOEG spacer. Oxford Research Peptides supplies Semaglutide as a lyophilised reference standard strictly for in-vitro laboratory research.",
+      "Semaglutide is a synthetic long-acting glucagon-like peptide-1 (GLP-1) receptor agonist derived from native human GLP-1(7-37) with substitutions at position 8 and lysine-26 acylation with a C18 fatty-di-acid via a γGlu-2xOEG spacer.",
   },
   {
     question: "Which receptor does Semaglutide target?",
@@ -329,8 +327,7 @@ export function semaglutideMonograph(): CompoundLayoutProps {
         {" "}and chronic kidney disease in type 2 diabetes (FLOW).<Cite refId="perkovic-2024" />
       </P>
       <p className="text-xs italic text-muted-foreground">
-        Oxford Research Peptides supplies Semaglutide strictly as a
-        reference standard for in-vitro laboratory research. Nothing on
+        Nothing on
         this page constitutes medical advice or endorses any therapeutic
         use of research-grade material. Approved Semaglutide medicines
         (Ozempic, Wegovy, Rybelsus) are prescribed by qualified
@@ -464,7 +461,7 @@ export function semaglutideMonograph(): CompoundLayoutProps {
   const labMethodology = (
     <Prose>
       <P>
-        Semaglutide reference standards are supplied lyophilised. Standard
+        Standard
         laboratory practice for acylated GLP-1 analogues applies: careful
         aseptic technique, low-binding plasticware, and awareness that
         albumin-binding acylated peptides are surface-active and can
@@ -539,8 +536,7 @@ export function semaglutideMonograph(): CompoundLayoutProps {
         prescription therapeutics regulated by the MHRA in the United
         Kingdom, the EMA in the European Union and the FDA in the United
         States. Oxford Research Peptides does not supply approved
-        medicines. Research-grade Semaglutide supplied by Oxford Research
-        Peptides is a lyophilised reference standard intended solely for
+        medicines. Research-grade material is intended solely for
         in-vitro laboratory work and is not for human or veterinary use.
       </ImportantNote>
     </Prose>
@@ -756,9 +752,7 @@ const whatIsSemaglutide: GuideContent = {
 
         <ImportantNote title="Research-use framing">
           Approved Semaglutide medicines are prescription therapeutics
-          regulated by the MHRA in the United Kingdom. Oxford Research
-          Peptides supplies Semaglutide strictly as a lyophilised
-          reference standard for in-vitro laboratory research. See{" "}
+          regulated by the MHRA in the United Kingdom. See{" "}
           <a className="underline underline-offset-2" href="/research-use-only">Research Use Only</a>{" "}
           and{" "}
           <a className="underline underline-offset-2" href="/testing-and-quality-control">Testing &amp; Quality Control</a>{" "}
@@ -948,8 +942,7 @@ const semaglutideMoA: GuideContent = {
 
         <ImportantNote title="Research-use framing">
           This mechanism note describes published pharmacology and does not
-          constitute medical advice. Oxford Research Peptides supplies
-          Semaglutide as an in-vitro reference standard only.
+          constitute medical advice.
         </ImportantNote>
 
         <p className="text-sm text-navy-deep/80">
@@ -1094,7 +1087,7 @@ const semaglutideFaqEntries: { question: string; answer: string }[] = [
   {
     question: "Is Semaglutide safe for human use?",
     answer:
-      "Approved Semaglutide medicines (Ozempic, Wegovy, Rybelsus) are regulated by the MHRA in the United Kingdom and are prescribed by qualified clinicians who assess indication, contraindication and risk. Oxford Research Peptides does not supply approved medicines and Semaglutide reference standards from Oxford Research Peptides are intended solely for in-vitro laboratory research.",
+      "Approved Semaglutide medicines (Ozempic, Wegovy, Rybelsus) are regulated by the MHRA in the United Kingdom and are prescribed by qualified clinicians who assess indication, contraindication and risk. Oxford Research Peptides does not supply approved medicines.",
   },
 ];
 
@@ -1130,8 +1123,7 @@ const semaglutideFaqGuide: GuideContent = {
         half-life of approximately one week in humans, supports
         once-weekly subcutaneous or once-daily oral dosing, and is
         evaluated in extensive metabolic, cardiovascular and renal
-        outcome trials. Oxford Research Peptides supplies it as an
-        in-vitro reference standard only.
+        outcome trials.
       </QuickAnswer>
     ),
     keyFacts: (
@@ -1357,9 +1349,7 @@ const semaglutidePK: GuideContent = {
           The pharmacokinetics summarised here derive from published human
           and preclinical studies of Semaglutide administered as an
           approved therapeutic (Ozempic, Wegovy, Rybelsus) under MHRA and
-          FDA authorisation. Oxford Research Peptides supplies Semaglutide
-          as a reference standard for in-vitro laboratory research only —
-          in-vivo pharmacokinetic parameters are contextual scientific
+          FDA authorisation. In-vivo pharmacokinetic parameters are contextual scientific
           information and do not describe or endorse any human use of
           research-grade material.
         </P>
@@ -1532,8 +1522,7 @@ const semaglutideResearchApplications: GuideContent = {
 
         <ImportantNote title="Research-use framing">
           This overview describes the published research landscape.
-          Oxford Research Peptides supplies Semaglutide as a lyophilised
-          reference standard for in-vitro laboratory research only. Nothing
+          Nothing
           on this page is medical advice or an endorsement of a therapeutic
           use.
         </ImportantNote>

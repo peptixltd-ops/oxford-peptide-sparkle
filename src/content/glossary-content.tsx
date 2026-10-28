@@ -2215,7 +2215,7 @@ const batch2Defs: readonly Batch2Def[] = [
     bodyParas: [
       "Semaglutide is a synthetic long-acting glucagon-like peptide-1 (GLP-1) receptor agonist derived from native GLP-1(7-37) with three key modifications — Aib8, Arg34 and lysine-26 C18 fatty-di-acid acylation via a γGlu-2xOEG spacer.",
       "The modifications confer DPP-4 resistance and reversible albumin binding, extending plasma half-life to approximately one week. Semaglutide is one of the most extensively studied compounds in the GLP-1 class.",
-      "Oxford Research Peptides supplies Semaglutide strictly as a lyophilised reference standard for in-vitro laboratory research; approved Semaglutide medicines are prescription therapeutics regulated by the MHRA in the United Kingdom.",
+      "Approved Semaglutide medicines are prescription therapeutics regulated by the MHRA in the United Kingdom.",
     ],
     why: "Semaglutide is the reference long-acting GLP-1 receptor agonist against which every subsequent incretin analogue is benchmarked.",
     relatedGlossarySlugs: ["glp-1", "glp-1-receptor-agonist", "acylation", "albumin-binding", "native-glp-1", "oral-semaglutide"],

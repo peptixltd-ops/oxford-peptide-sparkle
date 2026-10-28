@@ -497,7 +497,7 @@ const semaVsReta: ComparisonContent = {
 
         <ImportantNote title="Research-use framing">
           This comparison summarises published pharmacology. Oxford
-          Research Peptides supplies both Semaglutide and Retatrutide as
+          Research Peptides supplies Retatrutide as
           lyophilised reference standards for in-vitro laboratory research
           only. Nothing here constitutes medical advice.
         </ImportantNote>
@@ -755,9 +755,7 @@ const semaVsTirz: ComparisonContent = {
 
         <ImportantNote title="Research-use framing">
           Both compounds are described here as published research
-          pharmacology. Oxford Research Peptides supplies Semaglutide as
-          a lyophilised reference standard for in-vitro laboratory
-          research only. This page does not describe or endorse any
+          pharmacology. This page does not describe or endorse any
           therapeutic use.
         </ImportantNote>
 
@@ -846,8 +844,6 @@ const semaVsLira: ComparisonContent = {
       and (with SNAC) once-daily oral dosing. Their receptor pharmacology
       at GLP-1R is very similar; the practical differences arise from
       dosing frequency, cumulative exposure profile and evidence base.
-      Oxford Research Peptides supplies Semaglutide as a research-use
-      reference standard only.
     </HundredFiftyWordAnswer>
   ),
   buildLayout: () => ({
@@ -997,8 +993,7 @@ const semaVsLira: ComparisonContent = {
         </UL>
 
         <ImportantNote title="Research-use framing">
-          Oxford Research Peptides supplies Semaglutide as a lyophilised
-          reference standard for in-vitro laboratory research. This page
+          This page
           summarises published pharmacology of both compounds for
           educational purposes only.
         </ImportantNote>

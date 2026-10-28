@@ -187,8 +187,7 @@ const sustain6: StudyContent = {
       the cardiovascular safety profile of Semaglutide and shaped
       subsequent GLP-1 receptor agonist clinical development. Oxford
       Research Peptides describes this trial for educational purposes
-      only; research-grade Semaglutide is supplied strictly as an
-      in-vitro reference standard.
+      only.
     </HundredFiftyWordAnswer>
   ),
   buildLayout: () => {
@@ -290,9 +289,7 @@ const sustain6: StudyContent = {
 
           <ImportantNote title="Research-use framing">
             This is an educational literature summary of a published
-            clinical trial. Oxford Research Peptides supplies Semaglutide
-            as a lyophilised reference standard for in-vitro laboratory
-            research only.
+            clinical trial.
           </ImportantNote>
 
           <p className="text-sm text-navy-deep/80">
@@ -364,8 +361,7 @@ const stepProgramme: StudyContent = {
       2.4 mg as a well-characterised weight-management intervention and
       supported its regulatory approval for chronic weight management.
       Oxford Research Peptides describes the STEP programme here as
-      educational literature; research-grade Semaglutide is supplied
-      strictly as an in-vitro reference standard.
+      educational literature.
     </HundredFiftyWordAnswer>
   ),
   buildLayout: () => {

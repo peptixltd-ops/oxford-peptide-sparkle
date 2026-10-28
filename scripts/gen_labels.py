@@ -24,7 +24,6 @@ PRODUCTS = [
     ("bpc-tb500", "BPC-157 / TB-500", ['20MG BLEND']),
     ("ipamorelin", "IPAMORELIN", ['10MG']),
     ("selank", "SELANK", ['10MG']),
-    ("semaglutide", "SEMAGLUTIDE", ['15MG']),
     ("tesamorelin", "TESAMORELIN", ['10MG']),
     ("klow", "KLOW", ['80MG BLEND']),
     ("tb-500", "TB-500", ['10MG']),
