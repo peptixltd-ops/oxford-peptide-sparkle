@@ -588,8 +588,7 @@ const semaVsTirz: ComparisonContent = {
       diabetes (SURPASS-2) and separate obesity trials (STEP-1 vs
       SURMOUNT-1) show consistently greater efficacy for Tirzepatide on
       HbA1c and weight endpoints, though safety and outcome data continue
-      to accumulate for both compounds. Oxford Research Peptides supplies
-      Semaglutide as an in-vitro reference standard only.
+      to accumulate for both compounds.
     </HundredFiftyWordAnswer>
   ),
   buildLayout: () => ({

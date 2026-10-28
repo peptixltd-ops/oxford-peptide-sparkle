@@ -464,9 +464,7 @@ const stepProgramme: StudyContent = {
           />
 
           <ImportantNote title="Research-use framing">
-            Educational summary only. Oxford Research Peptides supplies
-            Semaglutide as an in-vitro reference standard for laboratory
-            research only.
+            Educational summary only.
           </ImportantNote>
 
           <p className="text-sm text-navy-deep/80">
