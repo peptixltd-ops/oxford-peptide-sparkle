@@ -135,7 +135,7 @@ function Home() {
                 sizes={HERO_SIZES}
                 width={1264}
                 height={848}
-                alt="Oxford Research Peptides — Retatrutide, BPC-157 and Semaglutide research vials"
+                alt="Oxford Research Peptides — Retatrutide and BPC-157 research vials"
                 fetchPriority="high"
                 decoding="async"
                 className="w-[110%] md:w-[125%] lg:w-[115%] max-w-none h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)] brightness-110 translate-x-4 md:translate-x-8"
@@ -173,7 +173,7 @@ function Home() {
               A selection of the research peptides most frequently referenced by laboratories working with our material. Product listings support research — not the other way around.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {products.filter(p => ["retatrutide", "mots-c", "semaglutide", "bpc-157"].includes(p.slug)).map(p => <ProductCard key={p.slug} p={p} />)}
+              {products.filter(p => ["retatrutide", "mots-c", "bpc-157"].includes(p.slug)).map(p => <ProductCard key={p.slug} p={p} />)}
             </div>
             <div className="flex justify-center mt-10">
               <Link to="/shop" className="px-8 py-3.5 border border-navy-deep text-navy-deep text-xs font-bold tracking-widest hover:bg-navy-deep hover:text-bone transition-colors inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold">

@@ -16,8 +16,6 @@ import vialIpamorelinAsset from "@/assets/vials/orp-ipamorelin.webp.asset.json";
 const vialIpamorelin = vialIpamorelinAsset.url;
 import vialSelankAsset from "@/assets/vials/orp-selank.webp.asset.json";
 const vialSelank = vialSelankAsset.url;
-import vialSemaglutideAsset from "@/assets/vials/orp-semaglutide.webp.asset.json";
-const vialSemaglutide = vialSemaglutideAsset.url;
 import vialTesamorelinAsset from "@/assets/vials/orp-tesamorelin.webp.asset.json";
 const vialTesamorelin = vialTesamorelinAsset.url;
 import vialKlowAsset from "@/assets/vials/orp-klow.webp.asset.json";
@@ -132,15 +130,6 @@ export const products: Product[] = [
     accent: "#1f6b6b",
     description: "Synthetic heptapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
     variants: [v("10mg", 22)],
-  },
-  {
-    slug: "semaglutide",
-    name: "Semaglutide",
-    purity: ">99% Purity",
-    img: vialSemaglutide,
-    accent: "#7a1f2b",
-    description: "GLP-1 receptor ligand reference standard. Lyophilised powder for in-vitro laboratory research only.",
-    variants: [v("15mg", 36)],
   },
   {
     slug: "tesamorelin",

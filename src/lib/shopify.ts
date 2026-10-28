@@ -25,7 +25,6 @@ export const VARIANT_GID: Record<string, string> = {
   "tirzepatide::40mg": "gid://shopify/ProductVariant/54181695029589",
   "tirzepatide::50mg": "gid://shopify/ProductVariant/54613700411733",
   "tirzepatide::60mg": "gid://shopify/ProductVariant/54613700706645",
-  "semaglutide::15mg": "gid://shopify/ProductVariant/54181697421653",
   "cagrilintide::5mg": "gid://shopify/ProductVariant/54613700739413",
   "cagrilintide::10mg": "gid://shopify/ProductVariant/54181699191125",
   "ghk-cu::50mg": "gid://shopify/ProductVariant/54181707317589",

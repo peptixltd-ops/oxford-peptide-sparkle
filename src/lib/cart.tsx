@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { getProduct, getVariant } from "./products";
+import { isRetiredProductSlug, withoutRetiredProducts } from "./retired-products";
 import { trackAddToCart, trackRemoveFromCart } from "./tracking";
 
 export type CartItem = { slug: string; variantId: string; qty: number };
@@ -35,7 +36,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = typeof window !== "undefined" ? window.localStorage.getItem(KEY) : null;
-      if (raw) setItems(JSON.parse(raw));
+      if (raw) setItems(withoutRetiredProducts<CartItem>(JSON.parse(raw)));
     } catch {}
   }, []);
 
@@ -46,6 +47,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items]);
 
   const add = (slug: string, variantId: string, qty = 1) => {
+    if (isRetiredProductSlug(slug)) return;
     const product = getProduct(slug);
     if (product) {
       const variant = getVariant(product, variantId);
