@@ -35,9 +35,7 @@ export const semaglutideGuideExtendedAnswers: Record<string, ReactNode> = {
       half-life to approximately one week in humans. Semaglutide
       selectively agonises the GLP-1 receptor, a class B G-protein-coupled
       receptor, and is one of the most extensively studied compounds in
-      the GLP-1 class. Oxford Research Peptides supplies Semaglutide as
-      a lyophilised reference standard for in-vitro laboratory research
-      only.
+      the GLP-1 class.
     </EA>
   ),
   "semaglutide-mechanism-of-action": (
@@ -110,8 +108,7 @@ export const semaglutideGuideExtendedAnswers: Record<string, ReactNode> = {
       applications — including neuroinflammation — remain predominantly
       preclinical, resting on rodent circuit-mapping work such as Gabery
       and colleagues. Oxford Research Peptides describes this literature
-      as scientific context; research-grade Semaglutide is supplied as an
-      in-vitro reference standard only.
+      as scientific context.
     </EA>
   ),
   "albumin-binding-half-life-extension": (

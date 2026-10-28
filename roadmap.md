@@ -1,3 +1,6 @@
+## Remove Semaglutide from sale
+- [x] Remove catalogue, sale copy, variant mapping and stale-cart entries; redirect old product slugs to /shop.
+- [x] Verify shop, search, cart, five permanent redirects, sitemap and card endpoint rejection; 17 tests passed. Retain scientific/historical references and report them. Not published.
 ## Remove preview popup override
 - [x] Delete the temporary ?previewpopup=1 override so the pop-up follows only its normal rules (30s timer or desktop exit intent, empty cart, eligible page, age gate, 30-day cooldown). Not published.
 ## Welcome offer fallback and preview

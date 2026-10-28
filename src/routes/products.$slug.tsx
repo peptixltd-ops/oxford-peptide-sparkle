@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -6,6 +6,7 @@ import { ProductTechnicalData } from "@/components/product-technical-data";
 import { DispatchCountdown } from "@/components/dispatch-countdown";
 
 import { getProduct, type Variant } from "@/lib/products";
+import { isRetiredProductSlug } from "@/lib/retired-products";
 import { useCart } from "@/lib/cart";
 import { BAC_WATER_UPSELL, closeCheckoutTab, createCheckout, getVariantGid, openCheckoutTab, sendToCheckout } from "@/lib/shopify";
 import { BacWaterBuyNowDialog } from "@/components/bac-water-buy-now-dialog";
@@ -19,6 +20,7 @@ import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
+    if (isRetiredProductSlug(params.slug)) throw redirect({ to: "/shop", statusCode: 301 });
     const product = getProduct(params.slug);
     if (!product) throw notFound();
     return { product };

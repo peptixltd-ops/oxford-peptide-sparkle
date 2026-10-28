@@ -48,7 +48,7 @@ const trustPills = [
 ];
 
 const bestSellers = products.filter((p) =>
-  ["retatrutide", "tirzepatide", "semaglutide", "ghk-cu"].includes(p.slug)
+  ["retatrutide", "tirzepatide", "ghk-cu"].includes(p.slug)
 );
 
 const topResearch = products.filter((p) =>
@@ -406,7 +406,7 @@ function ConceptHome() {
               <p>
                 Each batch is verified by HPLC and MS; a Certificate of Analysis is
                 available on request and independent third-party testing can be supplied.
-                Our research catalogue includes retatrutide, tirzepatide, semaglutide,
+                Our research catalogue includes retatrutide, tirzepatide,
                 BPC-157 and TB-500.
               </p>
             </div>
