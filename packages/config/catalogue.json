@@ -1,0 +1,521 @@
+{
+  "generated_from": "public-products-json",
+  "vendor": "Oxford Research Peptides",
+  "products": [
+    {
+      "shopify_product_id": 11373176947029,
+      "shopify_handle": "retatrutide-2",
+      "handle": "retatrutide",
+      "title": "RT GLP",
+      "shopify_title": "Reta GLP",
+      "vendor": "Oxford Research Peptides",
+      "description": "Triple agonist research peptide (GLP-1 / GIP / glucagon receptor ligand). Lyophilised powder supplied in a sealed vial for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/retatrutide.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181660361045,
+          "sku": "ORP-RETATRUTIDE-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 45,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54181660393813,
+          "sku": "ORP-RETATRUTIDE-20MG",
+          "title": "20mg",
+          "option_value": "20mg",
+          "price": 72,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54181660426581,
+          "sku": "ORP-RETATRUTIDE-30MG",
+          "title": "30mg",
+          "option_value": "30mg",
+          "price": 95,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54181660459349,
+          "sku": "ORP-RETATRUTIDE-40MG",
+          "title": "40mg",
+          "option_value": "40mg",
+          "price": 108,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613700018517,
+          "sku": "ORP-RETATRUTIDE-50MG",
+          "title": "50mg",
+          "option_value": "50mg",
+          "price": 122,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613700313429,
+          "sku": "ORP-RETATRUTIDE-60MG",
+          "title": "60mg",
+          "option_value": "60mg",
+          "price": 135,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373182517589,
+      "shopify_handle": "tirzepatide-2",
+      "handle": "tirzepatide",
+      "title": "Tirzepatide",
+      "shopify_title": "Tirzepatide",
+      "vendor": "Oxford Research Peptides",
+      "description": "Dual GIP / GLP-1 receptor ligand reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/tirzepatide.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181694964053,
+          "sku": "ORP-TIRZEPATIDE-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 45,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54181694996821,
+          "sku": "ORP-TIRZEPATIDE-20MG",
+          "title": "20mg",
+          "option_value": "20mg",
+          "price": 63,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54181695029589,
+          "sku": "ORP-TIRZEPATIDE-40MG",
+          "title": "40mg",
+          "option_value": "40mg",
+          "price": 90,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613700346197,
+          "sku": "ORP-TIRZEPATIDE-15MG",
+          "title": "15mg",
+          "option_value": "15mg",
+          "price": 54,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613700378965,
+          "sku": "ORP-TIRZEPATIDE-30MG",
+          "title": "30mg",
+          "option_value": "30mg",
+          "price": 77,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613700411733,
+          "sku": "ORP-TIRZEPATIDE-50MG",
+          "title": "50mg",
+          "option_value": "50mg",
+          "price": 104,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613700706645,
+          "sku": "ORP-TIRZEPATIDE-60MG",
+          "title": "60mg",
+          "option_value": "60mg",
+          "price": 113,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373185892693,
+      "shopify_handle": "ghk-cu-2",
+      "handle": "ghk-cu",
+      "title": "GHK-Cu",
+      "shopify_title": "GHK-Cu",
+      "vendor": "Oxford Research Peptides",
+      "description": "Copper tripeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": "99.93% Purity",
+      "image": "/products/ghk-cu.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181707317589,
+          "sku": "ORP-GHK-CU-50MG",
+          "title": "50mg",
+          "option_value": "50mg",
+          "price": 16,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373193396565,
+      "shopify_handle": "mots-c-2",
+      "handle": "mots-c",
+      "title": "MOTS-c",
+      "shopify_title": "MOTS-c",
+      "vendor": "Oxford Research Peptides",
+      "description": "Mitochondrial-derived peptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/mots-c.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181730746709,
+          "sku": "ORP-MOTS-C-40MG",
+          "title": "40mg",
+          "option_value": "40mg",
+          "price": 72,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613700837717,
+          "sku": "ORP-MOTS-C-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 23,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373201719637,
+      "shopify_handle": "bacteriostatic-water-2",
+      "handle": "bacteriostatic-water",
+      "title": "Bacteriostatic Water",
+      "shopify_title": "Bacteriostatic Water",
+      "vendor": "Oxford Research Peptides",
+      "description": "Sterile bacteriostatic water for laboratory reconstitution of lyophilised peptides.",
+      "purity": "0.9% Benzyl Alcohol",
+      "image": "/products/bacteriostatic-water.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181746704725,
+          "sku": "ORP-BAC-WATER-3ML",
+          "title": "3mL",
+          "option_value": "3mL",
+          "price": 6,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613701230933,
+          "sku": "ORP-BAC-WATER-10ML",
+          "title": "10mL",
+          "option_value": "10mL",
+          "price": 7,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373194740053,
+      "shopify_handle": "nad-2",
+      "handle": "nad",
+      "title": "NAD+",
+      "shopify_title": "NAD+",
+      "vendor": "Oxford Research Peptides",
+      "description": "Nicotinamide adenine dinucleotide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/nad.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181732843861,
+          "sku": "ORP-NAD-500MG",
+          "title": "500mg",
+          "option_value": "500mg",
+          "price": 54,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373186613589,
+      "shopify_handle": "bpc-157-tb-500-mix-2",
+      "handle": "bpc-tb500",
+      "title": "BPC-157 / TB-500 Mix",
+      "shopify_title": "BPC-157 / TB-500 Mix",
+      "vendor": "Oxford Research Peptides",
+      "description": "Combined BPC-157 and TB-500 reference standard blend. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/bpc-tb500.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181708235093,
+          "sku": "ORP-BPC-TB500-MIX-20MG",
+          "title": "20mg blend",
+          "option_value": "20mg blend",
+          "price": 36,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373190775125,
+      "shopify_handle": "ipamorelin-2",
+      "handle": "ipamorelin",
+      "title": "Ipamorelin",
+      "shopify_title": "Ipamorelin",
+      "vendor": "Oxford Research Peptides",
+      "description": "Selective GHSR ligand reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/ipamorelin.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181721178453,
+          "sku": "ORP-IPAMORELIN-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 41,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373187662165,
+      "shopify_handle": "selank-2",
+      "handle": "selank",
+      "title": "Selank",
+      "shopify_title": "Selank",
+      "vendor": "Oxford Research Peptides",
+      "description": "Synthetic heptapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/selank.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181713150293,
+          "sku": "ORP-SELANK-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 22,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373201621333,
+      "shopify_handle": "tesamorelin-2",
+      "handle": "tesamorelin",
+      "title": "Tesamorelin",
+      "shopify_title": "Tesamorelin",
+      "vendor": "Oxford Research Peptides",
+      "description": "GHRH analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/tesamorelin.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181746573653,
+          "sku": "ORP-TESAMORELIN-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 63,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373192544597,
+      "shopify_handle": "klow-1",
+      "handle": "klow",
+      "title": "KLOW",
+      "shopify_title": "KLOW",
+      "vendor": "Oxford Research Peptides",
+      "description": "Multi-peptide research blend (KPV, LL-37, GHK-Cu, TB-500). Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/klow.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181729730901,
+          "sku": "ORP-KLOW-80MG",
+          "title": "80mg blend",
+          "option_value": "80mg blend",
+          "price": 50,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373199327573,
+      "shopify_handle": "tb-502",
+      "handle": "tb-500",
+      "title": "TB-500",
+      "shopify_title": "TB-500",
+      "vendor": "Oxford Research Peptides",
+      "description": "Thymosin Beta-4 fragment reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/tb-500.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181739987285,
+          "sku": "ORP-TB500-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 23,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373189202261,
+      "shopify_handle": "igf-lr3-1",
+      "handle": "igf-lr3",
+      "title": "IGF-1 LR3",
+      "shopify_title": "IGF-LR3",
+      "vendor": "Oxford Research Peptides",
+      "description": "Long Arg3 IGF-1 analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/igf-lr3.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181716492629,
+          "sku": "ORP-IGF-LR3-1MG",
+          "title": "1mg",
+          "option_value": "1mg",
+          "price": 68,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373183238485,
+      "shopify_handle": "cagrilintide-2",
+      "handle": "cagrilintide",
+      "title": "Cagrilintide",
+      "shopify_title": "Cagrilintide",
+      "vendor": "Oxford Research Peptides",
+      "description": "Long-acting amylin analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/cagrilintide.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181699191125,
+          "sku": "ORP-CAGRILINTIDE-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 50,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613700739413,
+          "sku": "ORP-CAGRILINTIDE-5MG",
+          "title": "5mg",
+          "option_value": "5mg",
+          "price": 41,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373198475605,
+      "shopify_handle": "ss-32",
+      "handle": "ss-31",
+      "title": "SS-31",
+      "shopify_title": "SS-31",
+      "vendor": "Oxford Research Peptides",
+      "description": "Mitochondria-targeted tetrapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/ss-31.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181738316117,
+          "sku": "ORP-SS31-50MG",
+          "title": "50mg",
+          "option_value": "50mg",
+          "price": 108,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54366174937429,
+          "sku": "ORP-SS31-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 44,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373196345685,
+      "shopify_handle": "pt-142",
+      "handle": "pt-141",
+      "title": "PT-141",
+      "shopify_title": "PT-141",
+      "vendor": "Oxford Research Peptides",
+      "description": "Melanocortin receptor ligand reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/pt-141.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181734875477,
+          "sku": "ORP-PT141-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 27,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373197590869,
+      "shopify_handle": "semax-2",
+      "handle": "semax",
+      "title": "Semax",
+      "shopify_title": "Semax",
+      "vendor": "Oxford Research Peptides",
+      "description": "Synthetic ACTH(4-10) analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/semax.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181737431381,
+          "sku": "ORP-SEMAX-30MG",
+          "title": "30mg",
+          "option_value": "30mg",
+          "price": 41,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613701132629,
+          "sku": "ORP-SEMAX-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 27,
+          "shopify_available": true
+        }
+      ]
+    },
+    {
+      "shopify_product_id": 11373202014549,
+      "shopify_handle": "bpc-158",
+      "handle": "bpc-157",
+      "title": "BPC-157",
+      "shopify_title": "BPC-157",
+      "vendor": "Oxford Research Peptides",
+      "description": "Synthetic pentadecapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+      "purity": ">99% Purity",
+      "image": "/products/bpc-157.webp",
+      "variants": [
+        {
+          "shopify_variant_id": 54181748375893,
+          "sku": "ORP-BPC157-10MG",
+          "title": "10mg",
+          "option_value": "10mg",
+          "price": 18,
+          "shopify_available": true
+        },
+        {
+          "shopify_variant_id": 54613701296469,
+          "sku": "ORP-BPC157-5MG",
+          "title": "5mg",
+          "option_value": "5mg",
+          "price": 11,
+          "shopify_available": true
+        }
+      ]
+    }
+  ],
+  "rejected": []
+}

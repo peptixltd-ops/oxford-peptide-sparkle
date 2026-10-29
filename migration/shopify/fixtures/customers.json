@@ -1,0 +1,23 @@
+[
+  {
+    "id": 9001,
+    "email": "ada.researcher@example.com",
+    "first_name": "Ada",
+    "last_name": "Researcher",
+    "tags": "Oxford Research Peptides"
+  },
+  {
+    "id": 9002,
+    "email": "shared.buyer@example.com",
+    "first_name": "Sam",
+    "last_name": "Shared",
+    "tags": ""
+  },
+  {
+    "id": 9003,
+    "email": "other.brand@example.com",
+    "first_name": "Olga",
+    "last_name": "Other",
+    "tags": "Pondok Peptides"
+  }
+]

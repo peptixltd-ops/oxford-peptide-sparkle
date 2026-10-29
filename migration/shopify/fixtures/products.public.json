@@ -1,0 +1,760 @@
+[
+  {
+    "id": 11373202014549,
+    "title": "BPC-157",
+    "handle": "bpc-158",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "bpc-157",
+      "oxford-research-peptides",
+      "research-peptide",
+      "tissue-repair"
+    ],
+    "variants": [
+      {
+        "id": 54181748375893,
+        "title": "10mg",
+        "sku": "ORP-BPC157-10MG",
+        "price": "18.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613701296469,
+        "title": "5mg",
+        "sku": "ORP-BPC157-5MG",
+        "price": "11.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "5mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-bpc-157_24b28b81-c302-4d1e-91c8-05b2f8902734.png?v=1792422009"
+      }
+    ]
+  },
+  {
+    "id": 11373201719637,
+    "title": "Bacteriostatic Water",
+    "handle": "bacteriostatic-water-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Accessory",
+    "tags": [
+      "accessory",
+      "bac-water",
+      "bacteriostatic",
+      "oxford-research-peptides",
+      "reconstitution",
+      "solvent"
+    ],
+    "variants": [
+      {
+        "id": 54181746704725,
+        "title": "3mL",
+        "sku": "ORP-BAC-WATER-3ML",
+        "price": "6.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "3mL",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613701230933,
+        "title": "10mL",
+        "sku": "ORP-BAC-WATER-10ML",
+        "price": "7.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mL",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-bac-water_b8c0fce7-d458-4838-8bba-3b51a296e3f9.png?v=1792422060"
+      }
+    ]
+  },
+  {
+    "id": 11373201621333,
+    "title": "Tesamorelin",
+    "handle": "tesamorelin-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "ghrh",
+      "oxford-research-peptides",
+      "research-peptide",
+      "secretagogue",
+      "tesamorelin"
+    ],
+    "variants": [
+      {
+        "id": 54181746573653,
+        "title": "10mg",
+        "sku": "ORP-TESAMORELIN-10MG",
+        "price": "63.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-tesamorelin_f6280c5c-cc40-419b-b745-96d9450a6bf8.png?v=1792422123"
+      }
+    ]
+  },
+  {
+    "id": 11373199327573,
+    "title": "TB-500",
+    "handle": "tb-502",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "oxford-research-peptides",
+      "recovery",
+      "research-peptide",
+      "tb-500",
+      "thymosin"
+    ],
+    "variants": [
+      {
+        "id": 54181739987285,
+        "title": "10mg",
+        "sku": "ORP-TB500-10MG",
+        "price": "23.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-tb-500_22acfdde-ee2e-4bef-9cfd-ed0310881864.png?v=1792422156"
+      }
+    ]
+  },
+  {
+    "id": 11373198475605,
+    "title": "SS-31",
+    "handle": "ss-32",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "elamipretide",
+      "mitochondrial",
+      "oxford-research-peptides",
+      "research-peptide",
+      "ss-31"
+    ],
+    "variants": [
+      {
+        "id": 54181738316117,
+        "title": "50mg",
+        "sku": "ORP-SS31-50MG",
+        "price": "108.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "50mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54366174937429,
+        "title": "10mg",
+        "sku": "ORP-SS31-10MG",
+        "price": "44.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-ss-31_5746e3c0-4e2b-4062-b5e5-b6997d3f12eb.png?v=1792422196"
+      }
+    ]
+  },
+  {
+    "id": 11373197590869,
+    "title": "Semax",
+    "handle": "semax-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "nootropic",
+      "oxford-research-peptides",
+      "research-peptide",
+      "semax"
+    ],
+    "variants": [
+      {
+        "id": 54181737431381,
+        "title": "30mg",
+        "sku": "ORP-SEMAX-30MG",
+        "price": "41.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "30mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613701132629,
+        "title": "10mg",
+        "sku": "ORP-SEMAX-10MG",
+        "price": "27.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-semax_ae23a687-e5b2-43bc-adb9-ffc263a9af2a.png?v=1792422231"
+      }
+    ]
+  },
+  {
+    "id": 11373196345685,
+    "title": "PT-141",
+    "handle": "pt-142",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "bremelanotide",
+      "oxford-research-peptides",
+      "pt-141",
+      "research-peptide"
+    ],
+    "variants": [
+      {
+        "id": 54181734875477,
+        "title": "10mg",
+        "sku": "ORP-PT141-10MG",
+        "price": "27.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-pt-141_8a82a1e3-3dbe-47e3-aca4-6a14dafdf04e.png?v=1792422265"
+      }
+    ]
+  },
+  {
+    "id": 11373194740053,
+    "title": "NAD+",
+    "handle": "nad-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "longevity",
+      "mitochondrial",
+      "nad",
+      "oxford-research-peptides",
+      "research-peptide"
+    ],
+    "variants": [
+      {
+        "id": 54181732843861,
+        "title": "500mg",
+        "sku": "ORP-NAD-500MG",
+        "price": "54.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "500mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-nad_71204123-4af2-4be8-9f1e-3a3f84d3bfa1.png?v=1792422300"
+      }
+    ]
+  },
+  {
+    "id": 11373193396565,
+    "title": "MOTS-c",
+    "handle": "mots-c-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "mitochondrial",
+      "mots-c",
+      "oxford-research-peptides",
+      "research-peptide"
+    ],
+    "variants": [
+      {
+        "id": 54181730746709,
+        "title": "40mg",
+        "sku": "ORP-MOTS-C-40MG",
+        "price": "72.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "40mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613700837717,
+        "title": "10mg",
+        "sku": "ORP-MOTS-C-10MG",
+        "price": "23.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-mots-c_aac33bde-b5d8-4f99-8a20-0f12d7d17464.png?v=1792422333"
+      }
+    ]
+  },
+  {
+    "id": 11373192544597,
+    "title": "KLOW",
+    "handle": "klow-1",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "blend",
+      "klow",
+      "oxford-research-peptides",
+      "research-peptide"
+    ],
+    "variants": [
+      {
+        "id": 54181729730901,
+        "title": "80mg blend",
+        "sku": "ORP-KLOW-80MG",
+        "price": "50.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "80mg blend",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-klow_1c5e1cfd-5fda-408e-9c85-3cc427513c9a.png?v=1792422366"
+      }
+    ]
+  },
+  {
+    "id": 11373190775125,
+    "title": "Ipamorelin",
+    "handle": "ipamorelin-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "gh",
+      "ipamorelin",
+      "oxford-research-peptides",
+      "research-peptide",
+      "secretagogue"
+    ],
+    "variants": [
+      {
+        "id": 54181721178453,
+        "title": "10mg",
+        "sku": "ORP-IPAMORELIN-10MG",
+        "price": "41.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-ipamorelin_d13b1eb5-890b-415c-8c53-fc4e3ff3af7f.png?v=1792422401"
+      }
+    ]
+  },
+  {
+    "id": 11373189202261,
+    "title": "IGF-LR3",
+    "handle": "igf-lr3-1",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "growth",
+      "igf-1",
+      "oxford-research-peptides",
+      "research-peptide"
+    ],
+    "variants": [
+      {
+        "id": 54181716492629,
+        "title": "1mg",
+        "sku": "ORP-IGF-LR3-1MG",
+        "price": "68.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "1mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-igf-lr3_47a2115c-b044-4e5f-a73f-da91cf326a07.png?v=1792422434"
+      }
+    ]
+  },
+  {
+    "id": 11373187662165,
+    "title": "Selank",
+    "handle": "selank-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "nootropic",
+      "oxford-research-peptides",
+      "research-peptide",
+      "selank"
+    ],
+    "variants": [
+      {
+        "id": 54181713150293,
+        "title": "10mg",
+        "sku": "ORP-SELANK-10MG",
+        "price": "22.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-selank_2cfeb7a4-26fc-4d2a-9733-07613a163d81.png?v=1792422469"
+      }
+    ]
+  },
+  {
+    "id": 11373186613589,
+    "title": "BPC-157 / TB-500 Mix",
+    "handle": "bpc-157-tb-500-mix-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "blend",
+      "bpc-157",
+      "oxford-research-peptides",
+      "recovery",
+      "research-peptide",
+      "tb-500"
+    ],
+    "variants": [
+      {
+        "id": 54181708235093,
+        "title": "20mg blend",
+        "sku": "ORP-BPC-TB500-MIX-20MG",
+        "price": "36.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "20mg blend",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-bpc-tb500-mix_4ea01e78-1fa9-4fbf-bd50-a4c88df087a9.png?v=1792422504"
+      }
+    ]
+  },
+  {
+    "id": 11373185892693,
+    "title": "GHK-Cu",
+    "handle": "ghk-cu-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "copper",
+      "ghk-cu",
+      "oxford-research-peptides",
+      "research-peptide",
+      "skin"
+    ],
+    "variants": [
+      {
+        "id": 54181707317589,
+        "title": "50mg",
+        "sku": "ORP-GHK-CU-50MG",
+        "price": "16.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "50mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-ghk-cu_087fd503-5ad5-44b9-aa60-90f6d1d89334.png?v=1792422538"
+      }
+    ]
+  },
+  {
+    "id": 11373183238485,
+    "title": "Cagrilintide",
+    "handle": "cagrilintide-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "amylin",
+      "cagrilintide",
+      "oxford-research-peptides",
+      "research-peptide"
+    ],
+    "variants": [
+      {
+        "id": 54181699191125,
+        "title": "10mg",
+        "sku": "ORP-CAGRILINTIDE-10MG",
+        "price": "50.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613700739413,
+        "title": "5mg",
+        "sku": "ORP-CAGRILINTIDE-5MG",
+        "price": "41.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "5mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-cagrilintide_bf62ecd2-150d-4cd1-8f31-fd3c750844d2.png?v=1792422569"
+      }
+    ]
+  },
+  {
+    "id": 11373182517589,
+    "title": "Tirzepatide",
+    "handle": "tirzepatide-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "dual-agonist",
+      "gip",
+      "glp-1",
+      "oxford-research-peptides",
+      "research-peptide"
+    ],
+    "variants": [
+      {
+        "id": 54181694964053,
+        "title": "10mg",
+        "sku": "ORP-TIRZEPATIDE-10MG",
+        "price": "45.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54181694996821,
+        "title": "20mg",
+        "sku": "ORP-TIRZEPATIDE-20MG",
+        "price": "63.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "20mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54181695029589,
+        "title": "40mg",
+        "sku": "ORP-TIRZEPATIDE-40MG",
+        "price": "90.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "40mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613700346197,
+        "title": "15mg",
+        "sku": "ORP-TIRZEPATIDE-15MG",
+        "price": "54.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "15mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613700378965,
+        "title": "30mg",
+        "sku": "ORP-TIRZEPATIDE-30MG",
+        "price": "77.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "30mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613700411733,
+        "title": "50mg",
+        "sku": "ORP-TIRZEPATIDE-50MG",
+        "price": "104.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "50mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613700706645,
+        "title": "60mg",
+        "sku": "ORP-TIRZEPATIDE-60MG",
+        "price": "113.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "60mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-tirzepatide_f3621b14-072e-4406-9362-b01fd4a88784.png?v=1792422639"
+      }
+    ]
+  },
+  {
+    "id": 11373176947029,
+    "title": "Reta GLP",
+    "handle": "retatrutide-2",
+    "vendor": "Oxford Research Peptides",
+    "product_type": "Research Peptide",
+    "tags": [
+      "gip",
+      "glp-1",
+      "glucagon",
+      "oxford-research-peptides",
+      "research-peptide",
+      "triple-agonist"
+    ],
+    "variants": [
+      {
+        "id": 54181660361045,
+        "title": "10mg",
+        "sku": "ORP-RETATRUTIDE-10MG",
+        "price": "45.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "10mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54181660393813,
+        "title": "20mg",
+        "sku": "ORP-RETATRUTIDE-20MG",
+        "price": "72.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "20mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54181660426581,
+        "title": "30mg",
+        "sku": "ORP-RETATRUTIDE-30MG",
+        "price": "95.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "30mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54181660459349,
+        "title": "40mg",
+        "sku": "ORP-RETATRUTIDE-40MG",
+        "price": "108.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "40mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613700018517,
+        "title": "50mg",
+        "sku": "ORP-RETATRUTIDE-50MG",
+        "price": "122.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "50mg",
+        "available": true,
+        "inventory_quantity": null
+      },
+      {
+        "id": 54613700313429,
+        "title": "60mg",
+        "sku": "ORP-RETATRUTIDE-60MG",
+        "price": "135.00",
+        "compare_at_price": null,
+        "grams": 0,
+        "option1": "60mg",
+        "available": true,
+        "inventory_quantity": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.shopify.com/s/files/1/1044/5550/4213/files/orp-retatrutide.png?v=1792421699"
+      }
+    ]
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "id": 5001,
+    "email": "ada.researcher@example.com",
+    "customer_id": 9001,
+    "financial_status": "paid",
+    "currency": "GBP",
+    "line_items": [
+      { "sku": "ORP-BPC157-10MG", "vendor": "Oxford Research Peptides", "quantity": 1, "price": "18.00", "title": "BPC-157" }
+    ]
+  },
+  {
+    "id": 5002,
+    "email": "shared.buyer@example.com",
+    "customer_id": 9002,
+    "financial_status": "paid",
+    "currency": "GBP",
+    "line_items": [
+      { "sku": "ORP-RETATRUTIDE-10MG", "vendor": "Oxford Research Peptides", "quantity": 1, "price": "45.00", "title": "RT GLP" },
+      { "sku": "PP-OTHER-10MG", "vendor": "Pondok Peptides", "quantity": 1, "price": "30.00", "title": "Other brand vial" }
+    ]
+  },
+  {
+    "id": 5003,
+    "email": "other.brand@example.com",
+    "customer_id": 9003,
+    "financial_status": "paid",
+    "currency": "GBP",
+    "line_items": [
+      { "sku": "UKPL-1", "vendor": "UKPeptideLabs", "quantity": 1, "price": "25.00", "title": "Other brand" }
+    ]
+  }
+]

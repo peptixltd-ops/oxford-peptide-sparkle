@@ -1,0 +1,5 @@
+[
+  { "id": 1, "code": "OXFORDWELCOME10", "value_type": "percentage", "value": "-10.0" },
+  { "id": 2, "code": "BACWATER2OFF", "value_type": "fixed_amount", "value": "-2.0" },
+  { "id": 3, "title": "not a code!" }
+]

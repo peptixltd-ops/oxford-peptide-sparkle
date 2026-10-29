@@ -1,0 +1,14 @@
+{
+  "name": "@orp/config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs",
+    "./shipping": "./shipping.mjs",
+    "./catalogue": "./catalogue.json",
+    "./catalogue.json": "./catalogue.json",
+    "./research-index.json": "./research-index.json",
+    "./discounts": "./discounts.mjs"
+  }
+}
