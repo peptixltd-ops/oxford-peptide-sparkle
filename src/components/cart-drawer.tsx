@@ -149,23 +149,37 @@ export function CartDrawer() {
           </button>
         </div>
 
-        {added && addedVariant && (
-          <div className="mx-4 mt-4 flex items-center gap-3 bg-white border border-gold p-3 animate-scale-in">
-            <span className="w-7 h-7 rounded-full bg-gold text-navy-deep flex items-center justify-center shrink-0">
-              <Check className="w-4 h-4" aria-hidden="true" />
-            </span>
-            <div className="text-xs">
-              <div className="font-bold tracking-widest text-[10px] text-gold-soft">ADDED TO CART</div>
-              <div className="font-semibold">
-                {added.name} · {addedVariant.label}
+        {lines.length === 0 ? (
+          <div className="mx-4 mt-4 flex flex-col items-center gap-4 bg-white border border-gold p-6 text-center animate-scale-in">
+            <div className="font-bold tracking-widest text-[10px] text-gold-soft">YOUR BASKET IS EMPTY</div>
+            <Link
+              to="/shop"
+              onClick={closeDrawer}
+              className="inline-flex h-11 items-center justify-center rounded-none bg-gold px-6 text-xs font-bold text-navy-deep shadow-none hover:bg-gold-soft focus-visible:outline-2 focus-visible:outline-gold"
+            >
+              Continue browsing
+            </Link>
+          </div>
+        ) : (
+          added &&
+          addedVariant && (
+            <div className="mx-4 mt-4 flex items-center gap-3 bg-white border border-gold p-3 animate-scale-in">
+              <span className="w-7 h-7 rounded-full bg-gold text-navy-deep flex items-center justify-center shrink-0">
+                <Check className="w-4 h-4" aria-hidden="true" />
+              </span>
+              <div className="text-xs">
+                <div className="font-bold tracking-widest text-[10px] text-gold-soft">ADDED TO CART</div>
+                <div className="font-semibold">
+                  {added.name} · {addedVariant.label}
+                </div>
               </div>
             </div>
-          </div>
+          )
         )}
 
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {lines.length === 0 ? (
-            <p className="text-sm text-muted-foreground text-center py-12">Your cart is empty.</p>
+            <p className="text-sm text-muted-foreground text-center py-12">Your basket is empty.</p>
           ) : (
             lines.map(({ item, product, variant }) => (
               <div
