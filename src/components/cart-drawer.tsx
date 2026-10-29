@@ -179,7 +179,7 @@ export function CartDrawer() {
 
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {lines.length === 0 ? (
-            <p className="text-sm text-muted-foreground text-center py-12">Your basket is empty.</p>
+            <p className="text-sm text-muted-foreground text-center py-12">&nbsp;</p>
           ) : (
             lines.map(({ item, product, variant }) => (
               <div
