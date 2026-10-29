@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import "./globals.css";
-import { SiteChrome } from "@/components/site-chrome";
+import { Providers } from "@/components/providers";
 
 const staging = process.env.NEXT_PUBLIC_STAGING === "true";
 
@@ -10,31 +10,20 @@ export const metadata: Metadata = {
   title: { default: "Oxford Research Peptides", template: "%s | Oxford Research Peptides" },
   description: "Evidence-based reference material for research peptides. Independently tested, UK manufactured — strictly for in-vitro laboratory research.",
   robots: staging ? { index: false, follow: false } : { index: true, follow: true },
-  openGraph: { images: ["/og-image.jpg"], siteName: "Oxford Research Peptides" },
+  icons: { icon: "/favicon.png?v=3", apple: "/favicon.png?v=3" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const organization = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Oxford Research Peptides",
-    legalName: "Oxford Research Syndicate Ltd",
-    url: "https://oxfordresearchpeptides.com",
-    email: "info@oxfordresearchpeptides.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "131a Movers Lane",
-      addressLocality: "Barking",
-      postalCode: "IG11 7UQ",
-      addressCountry: "GB",
-    },
-  };
   return (
-    <html lang="en-GB">
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" />
+      </head>
       <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
         <Suspense fallback={null}>
-          <SiteChrome>{children}</SiteChrome>
+          <Providers>{children}</Providers>
         </Suspense>
       </body>
     </html>

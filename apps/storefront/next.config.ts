@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   transpilePackages: ["@orp/ui", "@orp/config"],
   eslint: { ignoreDuringBuilds: true },
   async redirects() {

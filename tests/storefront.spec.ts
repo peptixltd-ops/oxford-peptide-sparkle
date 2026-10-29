@@ -2,8 +2,10 @@ import { test, expect } from "@playwright/test";
 
 async function enter(page: import("@playwright/test").Page) {
   await page.goto("/");
-  await page.getByRole("checkbox").check();
-  await page.getByRole("button", { name: "ENTER" }).click();
+  const box = page.getByRole("checkbox", { name: /18 or over/i });
+  await box.waitFor({ state: "visible" });
+  await box.click();
+  await page.getByRole("dialog", { name: /age confirmation/i }).waitFor({ state: "hidden" });
   await page.getByRole("button", { name: "REJECT" }).click();
 }
 
@@ -14,21 +16,18 @@ test("home shop product cart and sandbox checkout", async ({ page }, testInfo) =
   const shot = (name: string) => page.screenshot({ path: `/workspace/artifacts/screenshots/${testInfo.project.name}-${name}.png`, fullPage: true });
   await shot("home");
   await page.goto("/shop");
-  await expect(page.getByRole("heading", { name: "Shop", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "All Research Peptides" })).toBeVisible();
   await expect(page.getByText("RT GLP").first()).toBeVisible();
   await expect(page.getByText(/Semaglutide/i)).toHaveCount(0);
   await shot("shop");
   await page.goto("/products/retatrutide");
   await expect(page.getByRole("heading", { name: "RT GLP" })).toBeVisible();
-  await expect(page.getByText("ORP-RETATRUTIDE-10MG")).toBeVisible();
+  await expect(page.getByText("£45.00").first()).toBeVisible();
   await shot("product");
-  await Promise.all([
-    page.waitForResponse((response) => response.url().includes("/api/cart") && response.request().method() === "POST" && response.ok()),
-    page.getByRole("button", { name: "ADD TO BASKET" }).first().click(),
-  ]);
-  await expect(page.getByText("Your basket")).toBeVisible();
+  await page.getByRole("button", { name: "ADD TO CART" }).first().click();
+  await expect(page.getByText("ADDED TO CART")).toBeVisible();
   await page.goto("/cart");
-  await expect(page.getByRole("heading", { name: "Basket" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Your Cart" })).toBeVisible();
   await shot("cart");
   await page.goto("/checkout");
   const checkout = page.locator("main");

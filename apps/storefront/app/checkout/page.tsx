@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import { formatGbp } from "@orp/ui";
 import { quoteShipping, shippingMethodsFor } from "@orp/config/shipping";
 import { track } from "@/lib/analytics";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { getProduct, getVariant } from "@/lib/products";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -17,18 +20,31 @@ export default function CheckoutPage() {
   const [code, setCode] = useState("");
 
   useEffect(() => {
-    const id = localStorage.getItem("orp_cart_id") || "";
-    setCartId(id);
     const saved = localStorage.getItem("orp_discount");
     if (saved) {
       try { setCode(JSON.parse(saved).code || ""); } catch { /* ignore */ }
     }
-    if (!id) return;
-    fetch(`/api/cart?id=${id}`).then((response) => response.json()).then((data) => {
-      const value = data.cart?.item_subtotal || 0;
-      setSubtotal(value);
-      track("begin_checkout", { currency: "GBP", value });
-    });
+    let items: Array<{ slug: string; variantId: string; qty: number }> = [];
+    try { items = JSON.parse(localStorage.getItem("orp_cart_v2") || "[]"); } catch { /* ignore */ }
+    const goods = items.reduce((sum, item) => {
+      const product = getProduct(item.slug);
+      if (!product) return sum;
+      return sum + getVariant(product, item.variantId).price * item.qty;
+    }, 0);
+    setSubtotal(goods);
+    track("begin_checkout", { currency: "GBP", value: goods });
+    if (!items.length) return;
+    fetch("/api/cart", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ action: "from-local", items, promotion: saved ? JSON.parse(saved).code : undefined }),
+    }).then((response) => response.json()).then((data) => {
+      const id = data.cart?.id;
+      if (id) {
+        localStorage.setItem("orp_cart_id", id);
+        setCartId(id);
+      }
+    }).catch(() => undefined);
   }, []);
 
   let quote: { amount: number; label: string } | null = null;
@@ -74,8 +90,10 @@ export default function CheckoutPage() {
   }
 
   return (
-    <main id="main-content" className="container-x" style={{ padding: "2.5rem 0 4rem", maxWidth: 720 }}>
-      <h1 style={{ fontSize: 52 }}>Checkout</h1>
+    <div className="min-h-screen bg-bone text-navy-deep">
+    <SiteHeader />
+    <main id="main-content" className="container-x max-w-3xl py-12">
+      <h1 className="font-display text-5xl font-medium mb-4">Checkout</h1>
       <p>Sandbox payments only. The test card is 4242 4242 4242 4242. Nothing is charged. A declined card is 4000 0000 0000 0002.</p>
       <form onSubmit={submit} style={{ display: "grid", gap: 12 }}>
         <label className="field">Email<input name="email" type="email" required autoComplete="email" /></label>
@@ -105,9 +123,11 @@ export default function CheckoutPage() {
         <label className="field">Expiry<input name="expiry" placeholder="12/30" required /></label>
         <label className="field">CVC<input name="cvc" placeholder="123" required /></label>
         {error && <p role="alert">{error}</p>}
-        <button className="btn" disabled={pending || !cartId || Boolean(quoteError)} type="submit">{pending ? "PLACING ORDER..." : "PLACE SANDBOX ORDER"}</button>
+        <button className="w-full bg-gold text-navy-deep py-4 text-xs font-bold tracking-widest disabled:opacity-60" disabled={pending || !cartId || Boolean(quoteError)} type="submit">{pending ? "PLACING ORDER..." : "PLACE SANDBOX ORDER"}</button>
       </form>
-      <p style={{ fontSize: 13, color: "var(--muted)" }}>VAT is not added. It has not been configured and must be confirmed before any live cutover.</p>
+      <p className="text-xs text-muted-foreground mt-4">VAT is not added. It has not been configured and must be confirmed before any live cutover.</p>
     </main>
+    <SiteFooter />
+    </div>
   );
 }

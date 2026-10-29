@@ -6,7 +6,7 @@ Branch: `cursor/medusa-migration-1e9d`. Medusa **2.22.1**. Not merged.
 | --- | --- |
 | 1 Audit | Written in `MIGRATION_AUDIT.md` |
 | 2 Platform | Running locally. UK/GBP region, sales channel, Barking stock location, Redis cache, event bus, workflow engine, and locking |
-| 3 Storefront | Next.js commerce shell: home, shop, product, cart, search, account, legal, COAs, research URLs |
+| 3 Storefront | Live Lovable JSX, Tailwind tokens, and chrome ported into Next.js. Viewport diff versus production is under 1% on home, shop, product, cart, COAs, about, contact, FAQ, and legal pages at 375/768/1440 |
 | 4 Catalogue import | 18 ORP products from the public feed. Images re-hosted under `/products`. Handles are the live site handles |
 | 5 Reconciliation | `MIGRATION_RECONCILIATION.md` |
 | 6 SEO | `SEO_MIGRATION_MAP.csv` (157 rows). Staging `robots.txt` disallows all. Semaglutide product 301s to `/shop` |

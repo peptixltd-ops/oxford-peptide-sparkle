@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
-import { pages } from "@/lib/content";
-import { StaticPage } from "@/components/static-page";
+"use client";
 
-export const metadata: Metadata = { title: pages.faqs.title, description: pages.faqs.description, alternates: { canonical: "/faqs" } };
-export default function Page() { return <StaticPage page={pages.faqs} />; }
+import { Route } from "@/views/faqs";
+
+export default function Page() {
+  const Screen = Route.component;
+  if (!Screen) return null;
+  return <Screen />;
+}
