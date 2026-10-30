@@ -14,6 +14,28 @@ function fitWords(text: string, limit: number): string {
     .replace(/[\s,;:—|/-]+$/, "");
 }
 
+/**
+ * Metadata-only shortening that stops on a clause or sentence boundary, so a
+ * trimmed summary never ends on a dangling fragment such as "Purity ≥99% (HPLC".
+ */
+function fitBoundary(text: string, limit: number): string {
+  const balanced = (s: string) => (s.match(/\(/g)?.length ?? 0) === (s.match(/\)/g)?.length ?? 0);
+  const ends: number[] = [];
+  for (const mark of [". ", ", ", "; "]) {
+    let i = text.indexOf(mark);
+    while (i !== -1) {
+      ends.push(i + mark.length - 1);
+      i = text.indexOf(mark, i + 1);
+    }
+  }
+  ends.sort((a, b) => b - a);
+  for (const end of ends) {
+    const candidate = text.slice(0, end).replace(/[\s,;:.—|/-]+$/, "");
+    if (candidate.length > 0 && candidate.length <= limit && balanced(candidate)) return candidate;
+  }
+  return fitWords(text, limit);
+}
+
 /** Metadata-only normalization: never mutate the visible content registries. */
 export function seoText(path: string, originalTitle: string, originalDescription: string) {
   const editorial = SEO_METADATA[path.replace(/\/$/, "") || "/"];
