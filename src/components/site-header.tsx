@@ -5,6 +5,7 @@ import oxfordLogo from "@/assets/oxford-logo.webp.asset.json";
 import { useCart } from "@/lib/cart";
 import { MobileNav } from "./mobile-nav";
 import { CartDrawer } from "./cart-drawer";
+import { SiteSearch } from "./site-search";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -41,7 +42,6 @@ export function SiteHeader() {
   const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [q, setQ] = useState("");
   const [pop, setPop] = useState(false);
 
   // Pulse the cart badge each time an item is added.
@@ -51,12 +51,6 @@ export function SiteHeader() {
     const t = setTimeout(() => setPop(false), 550);
     return () => clearTimeout(t);
   }, [bump]);
-
-  const submitSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSearchOpen(false);
-    navigate({ to: "/search", search: { q } });
-  };
 
   return (
     <header className="bg-white border-b border-border relative z-20">
@@ -121,25 +115,12 @@ export function SiteHeader() {
       </div>
       {searchOpen && (
         <div className="absolute inset-x-0 top-full bg-white border-b border-border shadow-lg">
-          <form onSubmit={submitSearch} className="container-x py-4 flex gap-3">
-            <label htmlFor="site-search" className="sr-only">
-              Search
-            </label>
-            <input
-              id="site-search"
-              autoFocus
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search peptides, articles, COAs..."
-              className="flex-1 border border-border px-4 py-3 text-sm outline-none focus:border-gold focus-visible:outline-2 focus-visible:outline-gold"
-            />
-            <button
-              type="submit"
-              className="px-6 py-3 bg-navy-deep text-bone text-xs font-bold tracking-widest hover:bg-navy transition-colors focus-visible:outline-2 focus-visible:outline-gold"
-            >
-              SEARCH
-            </button>
-          </form>
+          <SiteSearch
+            onSubmit={(value) => {
+              setSearchOpen(false);
+              navigate({ to: "/search", search: { q: value } });
+            }}
+          />
         </div>
       )}
       <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} links={navLinks} />
