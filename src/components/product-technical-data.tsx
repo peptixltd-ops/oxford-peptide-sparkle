@@ -11,8 +11,10 @@ const purityLabel = (purity: string) =>
   purity.replace(/^>/, "≥").replace(/\s*Purity\s*$/i, "").trim();
 
 const isLiquid = (p: Product) => p.slug === "bacteriostatic-water";
+const isAceticAcidWater = (p: Product) => p.slug === "acetic-acid-water";
 
 export function productTitle(p: Product) {
+  if (isAceticAcidWater(p)) return `${p.name} — Sterile Diluent (0.6%)`;
   if (isLiquid(p)) return `${p.name} — Laboratory Diluent (${p.purity})`;
   return `${p.name} — Research Grade (Lyophilised, HPLC ${purityLabel(p.purity)})`;
 }
@@ -22,6 +24,7 @@ type Group = { heading: string; rows: Row[] };
 
 function groups(p: Product, variant: Variant): Group[] {
   const liquid = isLiquid(p);
+  const acetic = isAceticAcidWater(p);
   return [
     {
       heading: "Identification",
@@ -33,21 +36,28 @@ function groups(p: Product, variant: Variant): Group[] {
     },
     {
       heading: "Physical & Chemical Properties",
-      rows: [
-        {
-          label: "Appearance",
-          value: liquid
-            ? "Clear, colourless sterile solution"
-            : "White to off-white lyophilised powder",
-        },
-        {
-          label: "Purity",
-          value: liquid
-            ? "USP-grade water with 0.9% benzyl alcohol"
-            : `${purityLabel(p.purity)} by HPLC — verified by third-party analysis`,
-        },
-        { label: "Format", value: liquid ? "Sealed multi-use vial" : "Sealed lyophilised vial" },
-      ],
+      rows: acetic
+        ? [
+            { label: "Appearance", value: "Clear, colourless liquid" },
+            { label: "Grade", value: "Sterile Diluent" },
+            { label: "Composition", value: "0.6% acetic acid" },
+            { label: "Format", value: "Sealed vial" },
+          ]
+        : [
+            {
+              label: "Appearance",
+              value: liquid
+                ? "Clear, colourless sterile solution"
+                : "White to off-white lyophilised powder",
+            },
+            {
+              label: "Purity",
+              value: liquid
+                ? "USP-grade water with 0.9% benzyl alcohol"
+                : `${purityLabel(p.purity)} by HPLC — verified by third-party analysis`,
+            },
+            { label: "Format", value: liquid ? "Sealed multi-use vial" : "Sealed lyophilised vial" },
+          ],
     },
     {
       heading: "Research Use & Safety",
@@ -65,21 +75,26 @@ function groups(p: Product, variant: Variant): Group[] {
     },
     {
       heading: "Storage, Handling & Stability",
-      rows: liquid
+      rows: acetic
         ? [
-            { label: "Storage Temperature", value: "15–25 °C, protect from light" },
-            { label: "Shelf Life", value: "28 days after first puncture; 2 years unopened" },
+            { label: "Storage Temperature", value: "Room temperature, away from light" },
             { label: "Handling", value: "Use aseptic technique for every withdrawal" },
           ]
-        : [
-            { label: "Storage Temperature, Unopened", value: "-20 °C recommended for long-term storage" },
-            { label: "Storage Temperature, Opened", value: "-20 °C, minimise freeze–thaw cycles" },
-            { label: "Shelf Life", value: "2 years unopened under recommended conditions" },
-            {
-              label: "Reconstitution Stability",
-              value: "Stable for up to 28 days at 2–8 °C in aqueous solution under sterile conditions",
-            },
-          ],
+        : liquid
+          ? [
+              { label: "Storage Temperature", value: "15–25 °C, protect from light" },
+              { label: "Shelf Life", value: "28 days after first puncture; 2 years unopened" },
+              { label: "Handling", value: "Use aseptic technique for every withdrawal" },
+            ]
+          : [
+              { label: "Storage Temperature, Unopened", value: "-20 °C recommended for long-term storage" },
+              { label: "Storage Temperature, Opened", value: "-20 °C, minimise freeze–thaw cycles" },
+              { label: "Shelf Life", value: "2 years unopened under recommended conditions" },
+              {
+                label: "Reconstitution Stability",
+                value: "Stable for up to 28 days at 2–8 °C in aqueous solution under sterile conditions",
+              },
+            ],
     },
   ];
 }
@@ -87,6 +102,8 @@ function groups(p: Product, variant: Variant): Group[] {
 export function ProductTechnicalData({ p, variant }: { p: Product; variant: Variant }) {
   const title = productTitle(p);
   const liquid = isLiquid(p);
+  const acetic = isAceticAcidWater(p);
+  const solution = liquid || acetic;
 
   return (
     <section className="w-full min-w-0 border-t border-border py-10 sm:py-14">
@@ -96,15 +113,16 @@ export function ProductTechnicalData({ p, variant }: { p: Product; variant: Vari
             <div>
               <h2 className="font-display text-xl font-semibold mb-2">Usage and Storage</h2>
               <p className="text-sm leading-relaxed text-navy-deep/75">
-                {title} is supplied {liquid ? "as a sterile solution" : "as a lyophilised solid"} to
+                {title} is supplied {solution ? "as a sterile solution" : "as a lyophilised solid"} to
                 ensure maximum stability and ease of use in research environments. For best results,
-                follow our {liquid ? "handling" : "reconstitution"} and storage guidelines below.
+                follow our {acetic ? "storage" : liquid ? "handling and storage" : "reconstitution and storage"}
+                guidelines below.
               </p>
             </div>
             <div>
               <h2 className="font-display text-xl font-semibold mb-2">Quality Assurance</h2>
               <p className="text-sm leading-relaxed text-navy-deep/75">
-                Each batch is {liquid ? "prepared" : "synthesised"} through a controlled process and
+                Each batch is {solution ? "prepared" : "synthesised"} through a controlled process and
                 undergoes stringent quality control to meet the high purity and stability standards
                 that researchers require. Batch-matched certificates of analysis are available for
                 every vial we dispatch.
