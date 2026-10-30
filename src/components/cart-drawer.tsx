@@ -25,6 +25,11 @@ import { createPortal } from "react-dom";
 /**
  * Slide-in cart drawer. Opens automatically whenever an item is added to the
  * cart so the customer gets immediate confirmation of what they added.
+ *
+ * Layout: fixed header, one scrolling body (added-item banner, then the items,
+ * then the compact water upsell), and a pinned checkout footer. `min-h-0` on the
+ * scrolling body is what lets it shrink instead of pushing the checkout buttons
+ * off-screen on short mobile viewports.
  */
 export function CartDrawer() {
   const { items, drawerOpen, closeDrawer, lastAdded, setQty, remove } = useCart();
@@ -140,7 +145,7 @@ export function CartDrawer() {
         className="absolute inset-0 bg-navy-deep/60 backdrop-blur-sm animate-fade-in"
       />
       <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-bone text-navy-deep shadow-2xl flex flex-col animate-slide-in-right">
-        <div className="flex items-center justify-between px-6 h-20 border-b border-border bg-white">
+        <div className="flex items-center justify-between px-6 h-20 border-b border-border bg-white shrink-0">
           <span className="text-[11px] font-bold tracking-[0.3em]">YOUR CART</span>
           <button
             type="button"
@@ -152,87 +157,80 @@ export function CartDrawer() {
           </button>
         </div>
 
-        {lines.length === 0 ? (
-          <div className="mx-4 mt-4 flex flex-col items-center gap-4 bg-white border border-gold p-6 text-center animate-scale-in">
-            <div className="font-bold tracking-widest text-[10px] text-gold-soft">YOUR BASKET IS EMPTY</div>
-            <Link
-              to="/shop"
-              onClick={closeDrawer}
-              className="inline-flex h-11 items-center justify-center rounded-none bg-gold px-6 text-xs font-bold text-navy-deep shadow-none hover:bg-gold-soft focus-visible:outline-2 focus-visible:outline-gold"
-            >
-              Continue browsing
-            </Link>
-          </div>
-        ) : (
-          added &&
-          addedVariant && (
-            <div className="mx-4 mt-4 flex items-center gap-3 bg-white border border-gold p-3 animate-scale-in">
-              <span className="w-7 h-7 rounded-full bg-gold text-navy-deep flex items-center justify-center shrink-0">
-                <Check className="w-4 h-4" aria-hidden="true" />
-              </span>
-              <div className="text-xs">
-                <div className="font-bold tracking-widest text-[10px] text-gold-soft">ADDED TO CART</div>
-                <div className="font-semibold">
-                  {added.name} · {addedVariant.label}
-                </div>
-              </div>
-            </div>
-          )
-        )}
-
-        <div className="flex-1 overflow-y-auto p-4 space-y-3">
+        <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3">
           {lines.length === 0 ? (
-            <p className="text-sm text-muted-foreground text-center py-12">&nbsp;</p>
-          ) : (
-            lines.map(({ item, product, variant }) => (
-              <div
-                key={`${item.slug}::${item.variantId}`}
-                className="flex gap-3 bg-white border border-border p-3 items-center"
+            <div className="flex flex-col items-center gap-4 bg-white border border-gold p-6 text-center animate-scale-in">
+              <div className="font-bold tracking-widest text-[10px] text-gold-soft">YOUR BASKET IS EMPTY</div>
+              <Link
+                to="/shop"
+                onClick={closeDrawer}
+                className="inline-flex h-11 items-center justify-center rounded-none bg-gold px-6 text-xs font-bold text-navy-deep shadow-none hover:bg-gold-soft focus-visible:outline-2 focus-visible:outline-gold"
               >
-                <img src={product.img} width={666} height={999} decoding="async" loading="lazy" alt={product.name} className="w-14 h-14 object-contain shrink-0" />
-                <div className="flex-1 min-w-0">
-                  <div className="font-display text-sm font-semibold truncate">{product.name}</div>
-                  <div className="text-[11px] text-muted-foreground">{variant.label}</div>
-                  <div className="flex items-center border border-border w-fit mt-1">
+                Continue browsing
+              </Link>
+            </div>
+          ) : (
+            <>
+              {added && addedVariant && (
+                <div className="flex items-center gap-3 bg-white border border-gold p-3 animate-scale-in">
+                  <span className="w-7 h-7 rounded-full bg-gold text-navy-deep flex items-center justify-center shrink-0">
+                    <Check className="w-4 h-4" aria-hidden="true" />
+                  </span>
+                  <div className="text-xs">
+                    <div className="font-bold tracking-widest text-[10px] text-gold-soft">ADDED TO CART</div>
+                    <div className="font-semibold">
+                      {added.name} · {addedVariant.label}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {lines.map(({ item, product, variant }) => (
+                <div
+                  key={`${item.slug}::${item.variantId}`}
+                  className="flex gap-3 bg-white border border-border p-3 items-center"
+                >
+                  <img src={product.img} width={666} height={999} decoding="async" loading="lazy" alt={product.name} className="w-14 h-14 object-contain shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <div className="font-display text-sm font-semibold truncate">{product.name}</div>
+                    <div className="text-[11px] text-muted-foreground">{variant.label}</div>
+                    <div className="flex items-center border border-border w-fit mt-1">
+                      <button
+                        aria-label="Decrease quantity"
+                        onClick={() => setQty(item.slug, item.variantId, item.qty - 1)}
+                        className="px-2 py-0.5 hover:bg-muted/40"
+                      >
+                        −
+                      </button>
+                      <span className="px-2.5 text-xs">{item.qty}</span>
+                      <button
+                        aria-label="Increase quantity"
+                        onClick={() => setQty(item.slug, item.variantId, item.qty + 1)}
+                        className="px-2 py-0.5 hover:bg-muted/40"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-semibold">{fmt(variant.price * item.qty)}</div>
                     <button
-                      aria-label="Decrease quantity"
-                      onClick={() => setQty(item.slug, item.variantId, item.qty - 1)}
-                      className="px-2 py-0.5 hover:bg-muted/40"
+                      onClick={() => remove(item.slug, item.variantId)}
+                      className="text-[10px] text-muted-foreground hover:text-destructive"
                     >
-                      −
-                    </button>
-                    <span className="px-2.5 text-xs">{item.qty}</span>
-                    <button
-                      aria-label="Increase quantity"
-                      onClick={() => setQty(item.slug, item.variantId, item.qty + 1)}
-                      className="px-2 py-0.5 hover:bg-muted/40"
-                    >
-                      +
+                      Remove
                     </button>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-sm font-semibold">{fmt(variant.price * item.qty)}</div>
-                  <button
-                    onClick={() => remove(item.slug, item.variantId)}
-                    className="text-[10px] text-muted-foreground hover:text-destructive"
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
-            ))
+              ))}
+
+              <BacWaterUpsell compact />
+            </>
           )}
         </div>
 
         {lines.length > 0 && (
-          <div className="px-5 pb-4">
-            <BacWaterUpsell compact />
-          </div>
-        )}
-
-        {lines.length > 0 && (
-          <div className="border-t border-border bg-white p-5 space-y-3">
+          <div className="shrink-0 border-t border-border bg-white p-4 sm:p-5 space-y-3">
             <div className="flex justify-between text-sm">
               <span>Subtotal</span>
               <span className="font-semibold">{fmt(subtotal)}</span>
