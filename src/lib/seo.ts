@@ -50,7 +50,7 @@ export function seoText(path: string, originalTitle: string, originalDescription
     // Reserve the explicit restriction rather than losing it at the end of a long summary.
     const restriction = /(?:research[ -]use[ -]only|(?:laboratory|in[ -]vitro).*research only|not for human consumption)/i.test(originalDescription)
       ? " For laboratory research only." : "";
-    description = `${fitWords(source, DESCRIPTION_LIMIT - restriction.length - 1).replace(/[.!?]+$/, "")}.${restriction}`;
+    description = `${fitBoundary(source, DESCRIPTION_LIMIT - restriction.length - 1).replace(/[.!?]+$/, "")}.${restriction}`;
   }
   return { title, description };
 }
