@@ -115,7 +115,8 @@ export function ProductTechnicalData({ p, variant }: { p: Product; variant: Vari
               <p className="text-sm leading-relaxed text-navy-deep/75">
                 {title} is supplied {solution ? "as a sterile solution" : "as a lyophilised solid"} to
                 ensure maximum stability and ease of use in research environments. For best results,
-                follow our {acetic ? "storage" : liquid ? "handling and storage" : "reconstitution and storage"}
+                follow our{" "}
+                {acetic ? "storage" : liquid ? "handling and storage" : "reconstitution and storage"}{" "}
                 guidelines below.
               </p>
             </div>
