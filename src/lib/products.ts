@@ -276,7 +276,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialEloralintide,
     accent: "#1d4f8a",
-    description: "Amylin receptor agonist reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Eloralintide is an amylin receptor agonist peptide studied in metabolic and appetite-signalling research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 65)],
   },
   {
@@ -285,7 +285,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialMelanotan2,
     accent: "#a37423",
-    description: "Melanocortin receptor ligand reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Melanotan 2 is a synthetic analogue of alpha-melanocyte stimulating hormone studied in melanocortin receptor research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 24)],
   },
   {
@@ -294,7 +294,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialMelanotan1,
     accent: "#1f6b6b",
-    description: "Alpha-MSH analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Melanotan 1 (afamelanotide) is a linear alpha-MSH analogue studied in melanogenesis and melanocortin research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 27)],
   },
   {
@@ -303,7 +303,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialCjc1295Ipamorelin,
     accent: "#7a1f2b",
-    description: "Combined CJC-1295 and Ipamorelin reference standard blend. Lyophilised powder for in-vitro laboratory research only.",
+    description: "CJC-1295 / Ipamorelin is a combined GHRH analogue and ghrelin receptor agonist blend studied in growth hormone secretion research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 66)],
   },
   {
@@ -312,7 +312,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialKpv,
     accent: "#5a3a8a",
-    description: "Alpha-MSH C-terminal tripeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "KPV is a tripeptide fragment of alpha-MSH studied in inflammation and immune signalling research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 42)],
   },
   {
@@ -321,7 +321,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialSnap8,
     accent: "#1d4f8a",
-    description: "Synthetic octapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "SNAP-8 is an octapeptide studied in neuromuscular signalling and SNARE complex research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 25)],
   },
   {
@@ -330,7 +330,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialAod9604,
     accent: "#a37423",
-    description: "hGH fragment analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "AOD-9604 is a modified fragment of human growth hormone (176-191) studied in lipid metabolism research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("5mg", 43)],
   },
   {
@@ -339,7 +339,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialDsip,
     accent: "#1f6b6b",
-    description: "Delta sleep-inducing nonapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "DSIP (delta sleep-inducing peptide) is a neuropeptide studied in sleep regulation and neuroendocrine research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 33)],
   },
   {
@@ -348,7 +348,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialKisspeptin10,
     accent: "#7a1f2b",
-    description: "KISS1R ligand decapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Kisspeptin-10 is a decapeptide studied in GPR54 receptor and reproductive hormone axis research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 50)],
   },
   {
@@ -357,7 +357,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialOxytocinAcetate,
     accent: "#5a3a8a",
-    description: "Oxytocin receptor ligand nonapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Oxytocin Acetate is a nonapeptide studied in neuroendocrine and social behaviour signalling research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 43)],
   },
   {
@@ -366,7 +366,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialSermorelinAcetate,
     accent: "#1d4f8a",
-    description: "GHRH(1-29) analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Sermorelin Acetate is a GHRH (1-29) analogue studied in growth hormone releasing hormone research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 55)],
   },
   {
@@ -375,7 +375,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialPinealon,
     accent: "#a37423",
-    description: "Synthetic tripeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Pinealon is a short tripeptide bioregulator studied in neurological and cellular ageing research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 45), v("20mg", 65)],
   },
   {
@@ -384,7 +384,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialTesamorelinIpamorelin,
     accent: "#1f6b6b",
-    description: "Combined Tesamorelin and Ipamorelin reference standard blend. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Tesamorelin / Ipamorelin is a combined GHRH analogue and ghrelin receptor agonist blend studied in growth hormone axis research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("17mg", 99)],
   },
   {
@@ -393,7 +393,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialCjc1295NoDac,
     accent: "#7a1f2b",
-    description: "Modified GRF(1-29) analogue reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "CJC-1295 No DAC (modified GRF 1-29) is a GHRH analogue studied in pulsatile growth hormone release research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 83)],
   },
   {
@@ -402,7 +402,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vial5Amino1mq,
     accent: "#5a3a8a",
-    description: "NNMT inhibitor small-molecule reference compound. Lyophilised powder for in-vitro laboratory research only.",
+    description: "5-Amino-1MQ is a small molecule NNMT inhibitor studied in cellular metabolism and NAD+ pathway research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 26), v("50mg", 95)],
   },
   {
@@ -411,7 +411,7 @@ export const products: Product[] = [
     purity: "Sterile Diluent",
     img: vialAceticAcidWater,
     accent: "#9aa0a6",
-    description: "Sterile acetic acid water (10 mL) for laboratory reconstitution of lyophilised peptides.",
+    description: "Acetic Acid Water (0.6%) is a sterile diluent used for reconstitution in laboratory research. For in vitro research use only.",
     variants: [v("10mL", 6)],
   },
   {
@@ -420,7 +420,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialAce031,
     accent: "#a37423",
-    description: "Soluble activin receptor type IIB fusion protein reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "ACE-031 is a soluble activin receptor type IIB fusion protein studied in myostatin pathway research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("1mg", 45)],
   },
   {
@@ -429,7 +429,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialAhkCu,
     accent: "#1f6b6b",
-    description: "Copper tripeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "AHK-Cu is a copper-binding tripeptide studied in hair follicle and dermal research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("100mg", 45)],
   },
   {
@@ -438,7 +438,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialAra290,
     accent: "#7a1f2b",
-    description: "Erythropoietin-derived 11-amino-acid reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "ARA-290 (cibinetide) is an erythropoietin-derived peptide studied in innate repair receptor research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 49)],
   },
   {
@@ -447,7 +447,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialCartalax,
     accent: "#5a3a8a",
-    description: "Synthetic tripeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Cartalax is a short peptide bioregulator studied in cartilage and connective tissue research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("20mg", 50)],
   },
   {
@@ -456,7 +456,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialGlutathione,
     accent: "#1d4f8a",
-    description: "Reduced glutathione tripeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Glutathione is a tripeptide antioxidant studied in oxidative stress and cellular redox research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("1500mg", 75)],
   },
   {
@@ -465,7 +465,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialGonadorelin,
     accent: "#a37423",
-    description: "GnRH decapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Gonadorelin is a synthetic GnRH decapeptide studied in hypothalamic-pituitary-gonadal axis research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("2mg", 18)],
   },
   {
@@ -474,7 +474,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialLl37,
     accent: "#1f6b6b",
-    description: "Cathelicidin-derived antimicrobial reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "LL-37 is a human cathelicidin antimicrobial peptide studied in innate immunity research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("5mg", 72)],
   },
   {
@@ -483,7 +483,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialOvagen,
     accent: "#7a1f2b",
-    description: "Synthetic tripeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Ovagen is a short peptide bioregulator studied in hepatic and gastrointestinal tissue research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("20mg", 55)],
   },
   {
@@ -492,7 +492,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialThymosinAlpha1,
     accent: "#5a3a8a",
-    description: "Thymus-derived 28-amino-acid reference peptide. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Thymosin Alpha-1 is a 28-amino-acid thymic peptide studied in immune modulation research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 43)],
   },
   {
@@ -501,7 +501,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialTestagen,
     accent: "#1d4f8a",
-    description: "Synthetic tetrapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "Testagen is a short peptide bioregulator studied in endocrine and testicular tissue research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("20mg", 53)],
   },
   {
@@ -510,7 +510,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialVip,
     accent: "#a37423",
-    description: "Vasoactive intestinal peptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "VIP (vasoactive intestinal peptide) is a 28-amino-acid neuropeptide studied in vascular and immune signalling research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 65)],
   },
   {
@@ -519,7 +519,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialGhrp2,
     accent: "#1f6b6b",
-    description: "Growth hormone secretagogue receptor ligand hexapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "GHRP-2 is a synthetic hexapeptide ghrelin receptor agonist studied in growth hormone secretion research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 28)],
   },
   {
@@ -528,7 +528,7 @@ export const products: Product[] = [
     purity: ">99% Purity",
     img: vialGhrp6,
     accent: "#7a1f2b",
-    description: "Growth hormone secretagogue receptor ligand hexapeptide reference standard. Lyophilised powder for in-vitro laboratory research only.",
+    description: "GHRP-6 is a synthetic hexapeptide ghrelin receptor agonist studied in growth hormone and appetite signalling research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.",
     variants: [v("10mg", 28)],
   },
 ];

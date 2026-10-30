@@ -24,6 +24,13 @@ describe("SEO metadata rules", () => {
     assert.ok(result.description.length <= 155);
     assert.match(result.description, /For laboratory research only\.$/);
   });
+  test("shortening stops on a clause boundary instead of a dangling fragment", () => {
+    const long = "Example peptide is a reference standard studied in receptor research. Purity ≥99% (HPLC Verified), Lyophilized Powder, Storage -20°C or lower. For in vitro research use only.";
+    const result = seoText("/future-page", "Example", long);
+    assert.ok(result.description.length <= 155, result.description);
+    assert.ok(!/\([^)]*[.!?]$/.test(result.description), result.description);
+    assert.match(result.description, /For laboratory research only\.$/);
+  });
   test("search, Open Graph and Twitter use identical normalized values", () => {
     const result = seo({ path: "/future-page", title: "Trial evidence ".repeat(20), description: "Research evidence ".repeat(30) });
     const meta = result.meta;
