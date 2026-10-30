@@ -19,10 +19,10 @@ const categories: Category[] = [
     id: "orders",
     label: "Orders & Shipping",
     items: [
-      { q: "How long does delivery take?", a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. UK orders are sent by Royal Mail Tracked 24, usually delivered the next working day." },
+      { q: "How long does delivery take?", a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. UK orders get next working day delivery (Tracked 24)." },
       { q: "When are orders dispatched?", a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. Working days are Monday to Friday, excluding UK bank holidays. Otherwise, dispatch is on the next working day." },
       { q: "How much does delivery cost?", a: "UK delivery is free on orders of £12 or more. Under £12, Express delivery is £3.99 and Standard delivery is £5.99. International delivery is a flat £15 regardless of order value." },
-      { q: "Will I receive tracking?", a: "Yes — UK orders are sent by Royal Mail Tracked 24, usually delivered the next working day. You'll receive the tracking number by email as soon as the parcel is collected." },
+      { q: "Will I receive tracking?", a: "Yes — UK orders are sent by Royal Mail Tracked 24 with next working day delivery. You'll receive the tracking number by email as soon as the parcel is collected." },
       { q: "What if my order hasn't arrived?", a: "Get in touch with our team within 14 days of dispatch and we'll resolve it the same working day." },
       { q: "Do you ship internationally?", a: "Yes — international delivery is a flat £15 regardless of order value. We ship worldwide except to Russia and Belarus." },
       { q: "What if my product arrives damaged?", a: "Email us your order number, a clear photo of the damage and a short description of the issue. We'll arrange a replacement as quickly as possible." },

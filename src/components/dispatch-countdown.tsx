@@ -81,7 +81,7 @@ export function DispatchCountdown() {
             ROYAL MAIL <span className="text-gold">TRACKED 24</span>
           </span>
         </span>
-        <span className="text-xs text-muted-foreground">Usually delivered the next working day · discreet UK delivery</span>
+        <span className="text-xs text-muted-foreground">Next working day delivery (Tracked 24) · discreet UK delivery</span>
       </div>
     </div>
   );
