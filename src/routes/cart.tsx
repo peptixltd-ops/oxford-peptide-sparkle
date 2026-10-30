@@ -15,6 +15,7 @@ import {
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { DiscountCodeBox } from "@/components/discount-code-box";
+import { CART_PROMOTION, cartPromotionDiscount, useCartPromotion } from "@/lib/cart-promotion";
 import { niftiPayShipping } from "@/lib/niftipay-shipping";
 import { COUNTRIES } from "@/lib/niftipay-customer";
 import { Button } from "@/components/ui/button";
@@ -40,6 +41,7 @@ export const Route = createFileRoute("/cart")({
 function CartPage() {
   const { items, setQty, remove, clear } = useCart();
   const [loading, setLoading] = useState(false);
+  const promotionActive = useCartPromotion();
   const [outsideUK, setOutsideUK] = useState(false);
 
   useEffect(() => {
@@ -67,7 +69,8 @@ function CartPage() {
     bacLines.reduce((s, l) => s + BAC_WATER_UPSELL.amountOff * l.item.qty, 0),
   );
 
-  const total = Math.max(0, subtotal - bacDiscount) + shipping;
+  const promotionDiscount = promotionActive ? cartPromotionDiscount(subtotal) : 0;
+  const total = Math.max(0, subtotal - (promotionActive ? promotionDiscount : bacDiscount)) + shipping;
   const fmt = (n: number) => `£${n.toFixed(2)}`;
   const [cardLoading, setCardLoading] = useState(false);
   const payByCard = async () => {
@@ -153,14 +156,17 @@ function CartPage() {
                   <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
                   <div className="flex justify-between"><span>Shipping</span><span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span></div>
                   <p className="text-[11px] text-muted-foreground">UK delivery is free on orders of £12 or more. Under £12: Express £3.99 / Standard £5.99. International delivery: flat £15.</p>
-                  {bacDiscount > 0 && (
+                  {promotionActive && (
+                    <div className="flex justify-between text-gold"><span>{CART_PROMOTION.code} – {CART_PROMOTION.percent}% off applied</span><span className="font-semibold">-{fmt(promotionDiscount)}</span></div>
+                  )}
+                  {!promotionActive && bacDiscount > 0 && (
                     <div className="flex justify-between text-gold"><span>Bac water offer (£{BAC_WATER_UPSELL.amountOff} off)</span><span className="font-semibold">-{fmt(bacDiscount)}</span></div>
                   )}
                 </div>
                 <div className="flex justify-between font-display text-xl font-medium mb-6">
                   <span>Total</span><span>{fmt(total)}</span>
                 </div>
-                <div className="mb-4"><DiscountCodeBox /></div>
+                {!promotionActive && <div className="mb-4"><DiscountCodeBox /></div>}
                 <div className="space-y-3">
                   <p className="text-xs text-muted-foreground">Choose how you'd like to pay</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

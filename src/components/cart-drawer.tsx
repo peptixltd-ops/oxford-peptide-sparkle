@@ -13,6 +13,7 @@ import {
 } from "@/lib/shopify";
 import { startNiftiPayCheckout } from "@/lib/niftipay-client";
 import { DiscountCodeBox } from "@/components/discount-code-box";
+import { CART_PROMOTION, cartPromotionDiscount, useCartPromotion } from "@/lib/cart-promotion";
 import { niftiPayShipping } from "@/lib/niftipay-shipping";
 import { COUNTRIES } from "@/lib/niftipay-customer";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,7 @@ import { createPortal } from "react-dom";
 export function CartDrawer() {
   const { items, drawerOpen, closeDrawer, lastAdded, setQty, remove } = useCart();
   const [loading, setLoading] = useState(false);
+  const promotionActive = useCartPromotion();
   const [outsideUK, setOutsideUK] = useState(false);
 
   useEffect(() => {
@@ -72,7 +74,8 @@ export function CartDrawer() {
     bacLines.reduce((s, l) => s + BAC_WATER_UPSELL.amountOff * l.item.qty, 0),
   );
 
-  const total = Math.max(0, subtotal - bacDiscount) + shipping;
+  const promotionDiscount = promotionActive ? cartPromotionDiscount(subtotal) : 0;
+  const total = Math.max(0, subtotal - (promotionActive ? promotionDiscount : bacDiscount)) + shipping;
 
   const added = lastAdded ? getProduct(lastAdded.slug) : null;
   const addedVariant = added && lastAdded ? getVariant(added, lastAdded.variantId) : null;
@@ -234,7 +237,13 @@ export function CartDrawer() {
               <span>Subtotal</span>
               <span className="font-semibold">{fmt(subtotal)}</span>
             </div>
-            {bacDiscount > 0 && (
+            {promotionActive && (
+              <div className="flex justify-between text-sm text-gold">
+                <span>{CART_PROMOTION.code} – {CART_PROMOTION.percent}% off applied</span>
+                <span className="font-semibold">-{fmt(promotionDiscount)}</span>
+              </div>
+            )}
+            {!promotionActive && bacDiscount > 0 && (
               <div className="flex justify-between text-sm text-gold">
                 <span>Bac water offer (£{BAC_WATER_UPSELL.amountOff} off)</span>
                 <span className="font-semibold">-{fmt(bacDiscount)}</span>
@@ -254,7 +263,7 @@ export function CartDrawer() {
               <span>{fmt(total)}</span>
             </div>
 
-            <div className="mb-4"><DiscountCodeBox /></div>
+            {!promotionActive && <div className="mb-4"><DiscountCodeBox /></div>}
             <div className="space-y-3">
               <p className="text-xs text-muted-foreground">Choose how you'd like to pay</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

@@ -3,6 +3,7 @@
 
 import { tiktokAttribution } from "./tiktok";
 import { getSavedDiscount } from "./discount-code";
+import { bankCheckoutDiscountCodes } from "./cart-promotion";
 
 const SHOPIFY_DOMAIN = "cqdyni-4v.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
@@ -136,7 +137,7 @@ export async function createCheckout(
       | { checkoutUrl?: string; discountCodes?: { code: string; applicable: boolean }[] }
       | undefined;
   };
-  const cart = await create([...(saved ? [saved] : []), ...extras]);
+  const cart = await create(bankCheckoutDiscountCodes(saved, extras));
   const url = cart?.checkoutUrl;
   if (!url) throw new Error("No checkout URL returned");
   return formatCheckoutUrl(url);
