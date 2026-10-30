@@ -156,6 +156,7 @@ function CartPage() {
                   <div className="flex justify-between"><span>Subtotal</span><span>{fmt(subtotal)}</span></div>
                   <div className="flex justify-between"><span>Shipping</span><span className="font-semibold">{shipping === 0 ? "Free" : fmt(shipping)}</span></div>
                   <p className="text-[11px] text-muted-foreground">UK delivery is free on orders of £12 or more. Under £12: Express £3.99 / Standard £5.99. International delivery: flat £15.</p>
+                  <p className="text-[11px] text-muted-foreground">Next working day delivery (Tracked 24)</p>
                   {promotionActive && (
                     <div className="flex justify-between text-gold"><span>{CART_PROMOTION.code} – {CART_PROMOTION.percent}% off applied</span><span className="font-semibold">-{fmt(promotionDiscount)}</span></div>
                   )}

@@ -43,7 +43,7 @@ export const Route = createFileRoute("/concept")({
 const trustPills = [
   { icon: FlaskConical, label: "Laboratory Research Use" },
   { icon: ShieldCheck, label: "HPLC & MS Verified" },
-  { icon: Package, label: "Royal Mail Tracked 24, usually delivered the next working day" },
+  { icon: Package, label: "Next working day delivery (Tracked 24)" },
   { icon: Microscope, label: "COA Available On Request" },
 ];
 
@@ -83,13 +83,13 @@ const stats = [
   { big: "≥99%", small: "PURITY" },
   { big: "Quality", small: "TESTED" },
   { big: "UK-Based", small: "SUPPLIER" },
-  { big: "Tracked 24", small: "USUALLY DELIVERED THE NEXT WORKING DAY" },
+  { big: "Tracked 24", small: "NEXT WORKING DAY DELIVERY" },
 ];
 
 const faqs = [
   {
     q: "How long does delivery take?",
-    a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. UK orders are sent by Royal Mail Tracked 24, usually delivered the next working day.",
+    a: "Orders placed before 2pm (UK time) on a working day are dispatched the same day. UK orders get next working day delivery (Tracked 24).",
   },
   {
     q: "When are orders dispatched?",
@@ -97,7 +97,7 @@ const faqs = [
   },
   {
     q: "Will I receive tracking?",
-    a: "Yes — a Royal Mail Tracked 24 reference is emailed to you as soon as your order leaves us so you can follow the parcel to delivery. UK orders are usually delivered the next working day.",
+    a: "Yes — a Royal Mail Tracked 24 reference is emailed to you as soon as your order leaves us so you can follow the parcel to delivery. UK orders get next working day delivery.",
   },
   {
     q: "Is a Certificate of Analysis included?",
@@ -400,7 +400,7 @@ function ConceptHome() {
                   laboratory research peptides
                 </strong>{" "}
                 in the UK, with a focus on identity verification, documented purity and
-                Royal Mail Tracked 24 delivery, usually delivered the next working day. Every product is intended strictly for in-vitro
+                next working day delivery (Tracked 24). Every product is intended strictly for in-vitro
                 laboratory research by qualified researchers and institutions.
               </p>
               <p>

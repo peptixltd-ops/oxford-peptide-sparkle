@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Twitter, Mail, ArrowRight } from "lucide-react";
+import { Mail, ArrowRight } from "lucide-react";
 import { Logo } from "./site-header";
 import orsLogo from "@/assets/oxford-research-syndicate.webp.asset.json";
 import { useRef, useState } from "react";
@@ -97,8 +97,6 @@ export function SiteFooter() {
             <li>United Kingdom</li>
           </ul>
           <div className="flex gap-3 mt-5">
-            <a href="#" aria-label="Instagram" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Instagram className="w-4 h-4" /></a>
-            <a href="#" aria-label="Twitter" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Twitter className="w-4 h-4" /></a>
             <a href="mailto:info@oxfordresearchpeptides.com" aria-label="Email" className="w-9 h-9 border border-bone/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"><Mail className="w-4 h-4" /></a>
           </div>
         </div>
