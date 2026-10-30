@@ -1,4 +1,5 @@
 ## Timed Halloween cart promotion
+- [x] Apply shared promotion to card delivery summary and server-verified Shopify draft/NiftiPay charge; 20 tests and the live delivery window verified. No live payment created; not published.
 - [x] Add shared timed promotion, both cart estimates and non-combining bank checkout selection; seven tests pass, both carts and intercepted same-tab bank handoff verified. Not published; card checkout unchanged.
 
 ## Remove Semaglutide from sale

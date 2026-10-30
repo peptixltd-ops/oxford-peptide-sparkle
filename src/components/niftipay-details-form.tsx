@@ -10,6 +10,7 @@ import { X } from "lucide-react";
 import { COUNTRIES, REGION_REQUIRED_COUNTRIES, customerSchema, type CustomerDetails } from "@/lib/niftipay-customer";
 import { niftiPayShipping, niftiPayShippingTitle, type NiftiPayShippingMethod } from "@/lib/niftipay-shipping";
 import { buildNiftiPaySummary } from "@/lib/niftipay-summary";
+import { CART_PROMOTION, useCartPromotion } from "@/lib/cart-promotion";
 import { type CheckoutLine } from "@/lib/shopify";
 
 const STORAGE_KEY = "orp_niftipay_customer_v1";
@@ -56,9 +57,10 @@ function DetailsForm({ onDone, lines }: { onDone: (r: Result) => void; lines: Ch
   const [v, setV] = useState<CustomerDetails>(loadSaved);
   const [shippingMethod, setShippingMethod] = useState<NiftiPayShippingMethod>("express");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const promotionActive = useCartPromotion();
   const subtotal = buildNiftiPaySummary(lines, 0).subtotal;
   const shipping = niftiPayShipping(subtotal, v.country, shippingMethod);
-  const summary = buildNiftiPaySummary(lines, shipping);
+  const summary = buildNiftiPaySummary(lines, shipping, promotionActive ? Date.now() : Date.parse(CART_PROMOTION.endsAt));
   const fmt = (amount: number) => new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(amount);
   // Typed loosely on purpose: browser autofill can fire onChange or onInput
   // with different event shapes, and filled values must stick either way.
