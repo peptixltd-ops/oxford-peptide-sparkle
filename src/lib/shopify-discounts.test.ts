@@ -20,6 +20,8 @@ test("bank checkout sends no automatic spend codes at £30 or £80", async () =>
 });
 
 test("bank checkout preserves saved email code and water offer at £80+", async () => {
+  const originalNow = Date.now;
+  Date.now = () => Date.parse("2026-11-03T00:00:00Z");
   const originalFetch = globalThis.fetch;
   const originalWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
   const merchandiseId = getVariantGid("retatrutide", "10mg");
@@ -36,6 +38,31 @@ test("bank checkout preserves saved email code and water offer at £80+", async 
     await createCheckout([{ merchandiseId, quantity: 2 }], 90, [BAC_WATER_UPSELL.code]);
     assert.deepEqual(codes, ["WELCOME10-TEST", "BACWATER2OFF"]);
   } finally {
+    Date.now = originalNow;
+    globalThis.fetch = originalFetch;
+    if (originalWindow) Object.defineProperty(globalThis, "window", originalWindow);
+    else Reflect.deleteProperty(globalThis, "window");
+  }
+});
+
+test("bank checkout omits saved welcome and water codes during Halloween", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalNow = Date.now;
+  const originalWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
+  Date.now = () => Date.parse("2026-10-30T17:50:00Z");
+  Object.defineProperty(globalThis, "window", { configurable: true, value: { localStorage: { getItem: (key: string) =>
+    key === DISCOUNT_KEY ? JSON.stringify({ code: "OXFORDWELCOME10", expires: Date.now() + 100000 }) : null,
+  } } });
+  let input: { discountCodes?: string[] } = {};
+  globalThis.fetch = async (_url, options) => {
+    input = JSON.parse(String(options?.body)).variables.input;
+    return Response.json({ data: { cartCreate: { cart: { checkoutUrl: "https://example.com/checkout" }, userErrors: [] } } });
+  };
+  try {
+    await createCheckout([{ merchandiseId: "gid://shopify/ProductVariant/54181707317589", quantity: 1 }], 16, [BAC_WATER_UPSELL.code]);
+    assert.equal(input.discountCodes, undefined);
+  } finally {
+    Date.now = originalNow;
     globalThis.fetch = originalFetch;
     if (originalWindow) Object.defineProperty(globalThis, "window", originalWindow);
     else Reflect.deleteProperty(globalThis, "window");
