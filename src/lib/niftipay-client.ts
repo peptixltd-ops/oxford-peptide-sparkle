@@ -1,5 +1,6 @@
 // Browser helper: collects delivery details, then starts a NiftiPay card checkout.
 import { getSavedDiscount } from "./discount-code";
+import { cartPromotionActive } from "./cart-promotion";
 import { closeCheckoutTab, openCheckoutTab, sendToCheckout, type CheckoutLine } from "./shopify";
 
 export async function startNiftiPayCheckout(lines: CheckoutLine[], discountCodes: string[]) {
@@ -11,11 +12,12 @@ export async function startNiftiPayCheckout(lines: CheckoutLine[], discountCodes
   }, lines);
   if (!result) return; // shopper closed the form
   const { details: customer, shippingMethod } = result;
+  const promotionActive = cartPromotionActive();
   try {
     const response = await fetch("/api/public/niftipay-checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ lines, discountCodes, discountCode: getSavedDiscount() ?? undefined, customer, shippingMethod, email: customer.email, name: customer.name }),
+      body: JSON.stringify({ lines, discountCodes: promotionActive ? [] : discountCodes, discountCode: promotionActive ? undefined : getSavedDiscount() ?? undefined, customer, shippingMethod, email: customer.email, name: customer.name }),
     });
     const data = await response.json();
     if (!response.ok || !data.payUrl) {

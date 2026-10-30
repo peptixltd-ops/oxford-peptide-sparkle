@@ -1,5 +1,6 @@
 import { getProduct, getVariant } from "./products";
 import { BAC_WATER_UPSELL, VARIANT_GID, type CheckoutLine } from "./shopify";
+import { CART_PROMOTION, cartPromotionActive, cartPromotionDiscount } from "./cart-promotion";
 
 export type NiftiPaySummary = {
   items: { name: string; variant: string; quantity: number; unitPrice: number; price: number; image: string }[];
@@ -11,7 +12,7 @@ export type NiftiPaySummary = {
 
 const pennies = (value: number) => Math.round(value * 100);
 
-export function buildNiftiPaySummary(lines: CheckoutLine[], shipping: number): NiftiPaySummary {
+export function buildNiftiPaySummary(lines: CheckoutLine[], shipping: number, now = Date.now()): NiftiPaySummary {
   const keys = new Map(Object.entries(VARIANT_GID).map(([key, gid]) => [gid, key]));
   let bacDiscount = 0;
   const items = lines.map(line => {
@@ -28,7 +29,9 @@ export function buildNiftiPaySummary(lines: CheckoutLine[], shipping: number): N
       price: pennies(variant.price) * line.quantity / 100, image: product.img };
   });
   const subtotal = items.reduce((sum, item) => sum + pennies(item.price), 0) / 100;
-  const discounts = [
+  const discounts = cartPromotionActive(now) ? [
+    { label: `${CART_PROMOTION.code} – ${CART_PROMOTION.percent}% off applied`, amount: cartPromotionDiscount(subtotal, now) },
+  ] : [
     ...(bacDiscount ? [{ label: "Bac water offer", amount: bacDiscount / 100 }] : []),
   ];
   const discount = discounts.reduce((sum, item) => sum + pennies(item.amount), 0);

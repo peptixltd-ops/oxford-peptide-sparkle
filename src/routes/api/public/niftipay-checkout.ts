@@ -6,6 +6,7 @@ import { getAdminDb, shopifyAdmin } from "@/lib/niftipay.server";
 import { customerSchema } from "@/lib/niftipay-customer";
 import { niftiPayShipping, niftiPayShippingTitle, shippingMethodSchema } from "@/lib/niftipay-shipping";
 import { buildNiftiPaySummary, verifyNiftiPayTotal } from "@/lib/niftipay-summary";
+import { CART_PROMOTION, cartPromotionActive, cartPromotionDiscount } from "@/lib/cart-promotion";
 
 const GID_TO_KEY = new Map(Object.entries(VARIANT_GID).map(([k, gid]) => [gid, k]));
 
@@ -125,8 +126,10 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
         // Never accept a client shipping amount; country and method are validated above.
         const shipping = niftiPayShipping(subtotal, customer.country, shippingMethod);
         // Saved email code is validated against Shopify; retain only compatible water offers.
-        const emailCode = parsed.data.discountCode ? await validateCode(parsed.data.discountCode.toUpperCase()) : null;
-        const discountCodes = emailCode
+        const promotionNow = Date.now();
+        const promotionActive = cartPromotionActive(promotionNow);
+        const emailCode = !promotionActive && parsed.data.discountCode ? await validateCode(parsed.data.discountCode.toUpperCase()) : null;
+        const discountCodes = promotionActive ? [] : emailCode
           ? [
               emailCode.code,
               ...(hasBac && emailCode.combinesProduct ? [BAC_WATER_UPSELL.code] : []),
@@ -139,6 +142,18 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
             input: {
               lineItems: lines.map((l) => ({ variantId: l.merchandiseId, quantity: l.quantity })),
               ...(discountCodes.length ? { discountCodes } : {}),
+              ...(promotionActive ? {
+                // Automatic offers are not redeemable codes. Record the named discount explicitly,
+                // using its server-rounded amount, and exclude all other automatic/code discounts.
+                acceptAutomaticDiscounts: false,
+                appliedDiscount: {
+                  title: CART_PROMOTION.code,
+                  description: `${CART_PROMOTION.percent}% off`,
+                  valueType: "FIXED_AMOUNT",
+                  value: cartPromotionDiscount(subtotal, promotionNow),
+                },
+                customAttributes: [{ key: "discount_code", value: CART_PROMOTION.code }],
+              } : {}),
               tags: ["niftipay"],
               shippingLine: {
                 title: niftiPayShippingTitle(customer.country, shippingMethod),
@@ -162,7 +177,7 @@ export const Route = createFileRoute("/api/public/niftipay-checkout")({
           const amount = Number(draft.totalPriceSet.shopMoney.amount);
           console.log("[niftipay-checkout v2-shipping]", { subtotal, shipping, shippingApplied, draftTotal: amount, draftId: draft.id });
           if (!(amount > 0)) throw new Error(`Draft total invalid: ${amount}`);
-          let summary = buildNiftiPaySummary(lines, shippingApplied);
+          let summary = buildNiftiPaySummary(lines, shippingApplied, promotionNow);
           if (emailCode) {
             // Email code changes Shopify's discount mix; the summary follows the draft total exactly.
             const off = Math.round((summary.subtotal + shippingApplied - amount) * 100) / 100;
