@@ -1,3 +1,6 @@
+## Timed Halloween cart promotion
+- [x] Add shared timed promotion, both cart estimates and non-combining bank checkout selection; seven tests pass, both carts and intercepted same-tab bank handoff verified. Not published; card checkout unchanged.
+
 ## Remove Semaglutide from sale
 - [x] Remove catalogue, sale copy, variant mapping and stale-cart entries; redirect old product slugs to /shop.
 - [x] Verify shop, search, cart, five permanent redirects, sitemap and card endpoint rejection; 17 tests passed. Retain scientific/historical references and report them. Not published.
