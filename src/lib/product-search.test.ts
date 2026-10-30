@@ -45,6 +45,6 @@ test("a nonsense query suggests nothing", () => {
 });
 
 test("price label shows a single price, or 'from' when there are sizes", () => {
-  assert.equal(suggestionPriceLabel(searchProductSuggestions("selank")[0]!), "£28");
+  assert.equal(suggestionPriceLabel(searchProductSuggestions("selank")[0]!), "£22");
   assert.match(suggestionPriceLabel(searchProductSuggestions("tirzepatide")[0]!), /^from £\d+$/);
 });

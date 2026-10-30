@@ -13,9 +13,11 @@ export const normalizeProductTerm = (value: string) =>
   value.toLowerCase().replace(/[\s\-_./]+/g, "");
 
 /**
- * Match products whose name contains the typed text, ignoring case, hyphens and
- * spaces. Names that start with the text are offered first, then the rest, and
- * each group keeps catalogue order. Returns at most `limit` products.
+ * Match products whose name (or catalogue slug, e.g. 'reta' for the product
+ * shown as RT GLP) contains the typed text, ignoring case, hyphens and spaces.
+ * Closer matches are offered first: names that start with the text, then names
+ * that merely contain it, then the same two passes over the slug; within each
+ * pass the shorter, more exact name wins. Returns at most `limit` products.
  */
 export function searchProductSuggestions(
   query: string,
@@ -24,15 +26,22 @@ export function searchProductSuggestions(
   const term = normalizeProductTerm(query);
   if (!term) return [];
 
-  const starts: Product[] = [];
-  const contains: Product[] = [];
+  const tiers: Product[][] = [[], [], [], []];
   for (const p of products) {
     const name = normalizeProductTerm(p.name);
-    if (name.startsWith(term)) starts.push(p);
-    else if (name.includes(term)) contains.push(p);
+    const slug = normalizeProductTerm(p.slug);
+    if (name.startsWith(term)) tiers[0].push(p);
+    else if (name.includes(term)) tiers[1].push(p);
+    else if (slug.startsWith(term)) tiers[2].push(p);
+    else if (slug.includes(term)) tiers[3].push(p);
   }
 
-  return [...starts, ...contains].slice(0, limit);
+  const byCloseness = (a: Product, b: Product) =>
+    normalizeProductTerm(a.name).length - normalizeProductTerm(b.name).length;
+
+  return tiers
+    .flatMap((tier) => [...tier].sort(byCloseness))
+    .slice(0, limit);
 }
 
 /** Price wording that mirrors the shop grid cards. */
