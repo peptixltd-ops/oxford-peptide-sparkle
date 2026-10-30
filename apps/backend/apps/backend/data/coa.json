@@ -1,0 +1,19 @@
+[
+  { "handle": "retatrutide", "option": "10mg", "batch": "EGB-0226-RT10", "purity": "99.74%", "date": "2026-03-02", "file": "/coas/retatrutide-10mg-certificate-of-analysis-egb0226.webp" },
+  { "handle": "retatrutide", "option": "20mg", "batch": "EGB-0126-RT20", "purity": "99.87%", "date": "2026-01-20", "file": "/coas/retatrutide-20mg-certificate-of-analysis-egb0126.webp" },
+  { "handle": "retatrutide", "option": "20mg", "batch": "EGB-0226-RT20", "purity": "99.20%", "date": "2026-02-13", "file": "/coas/retatrutide-20mg-certificate-of-analysis-egb0226.webp" },
+  { "handle": "retatrutide", "option": "30mg", "batch": "EGB-0426-RT30", "purity": "99.46%", "date": "2026-04-23", "file": "/coas/retatrutide-30mg-certificate-of-analysis-egb0426.webp" },
+  { "handle": "retatrutide", "option": "30mg", "batch": "EGB-RT30-BBG50", "purity": "99.74%", "date": "2026-01-20", "file": "/coas/retatrutide-30mg-certificate-of-analysis-egb-bbg50.webp" },
+  { "handle": "retatrutide", "option": "40mg", "batch": "EGB-0126-RT40", "purity": "99.89%", "date": "2026-01-20", "file": "/coas/retatrutide-40mg-certificate-of-analysis-egb0126.webp" },
+  { "handle": "tirzepatide", "option": "10mg", "batch": "EGB-0126-TR10", "purity": "99.83%", "date": "2026-01-21", "file": "/coas/tirzepatide-10mg-certificate-of-analysis-egb0126.webp" },
+  { "handle": "tirzepatide", "option": "30mg", "batch": "EGB-0526-TR30", "purity": "99.87%", "date": "2026-04-23", "file": "/coas/tirzepatide-30mg-certificate-of-analysis-egb0526.webp" },
+  { "handle": "tirzepatide", "option": "40mg", "batch": "EGB-0126-TR40", "purity": "99.77%", "date": "2026-01-20", "file": "/coas/tirzepatide-40mg-certificate-of-analysis-egb0126.webp" },
+  { "handle": "tirzepatide", "option": "50mg", "batch": "EGB-0126-TR50", "purity": "99.71%", "date": "2026-01-20", "file": "/coas/tirzepatide-50mg-certificate-of-analysis-egb0126.webp" },
+  { "handle": "tirzepatide", "option": "50mg", "batch": "EGB-0226-TR50", "purity": "99.97%", "date": "2026-03-02", "file": "/coas/tirzepatide-50mg-certificate-of-analysis-egb0226.webp" },
+  { "handle": "tirzepatide", "option": "60mg", "batch": "EGB-0126-TR60", "purity": "99.84%", "date": "2026-01-20", "file": "/coas/tirzepatide-60mg-certificate-of-analysis-egb0126.webp" },
+  { "handle": "ss-31", "option": "50mg", "batch": "WWB-EGB0625SS31-50", "purity": "99.76%", "date": "2025-07-02", "file": "https://verify.janoshik.com/tests/70112_KFCMHEXZ1BEV" },
+  { "handle": "pt-141", "option": "10mg", "batch": "WWB-EGB0625PT-10", "purity": "99.63%", "date": "2025-07-02", "file": "https://verify.janoshik.com/tests/70114_GR5AIX2M4JP7" },
+  { "handle": "ghk-cu", "option": "50mg", "batch": "WWB-EGB0625GKU-50", "purity": "99.93%", "date": "2025-07-02", "file": "https://verify.janoshik.com/tests/70116_ZDW7UV6LUXQM" },
+  { "handle": "bpc-tb500", "option": "20mg blend", "batch": "WWB-EGB0725TBBC-20", "purity": "BPC-157 10.1mg / TB-500 11.0mg", "date": "2025-08-18", "file": "https://verify.janoshik.com/tests/75837_ZAXUWZ1XPZC2", "test_type": "HPLC (quantitation)" },
+  { "handle": "tesamorelin", "option": "10mg", "batch": "EGB-WWB1125-TSM10", "purity": "99.29%", "date": "2025-11-26", "file": "https://verify.janoshik.com/tests/90725_RTFTEPXURPDH" }
+]

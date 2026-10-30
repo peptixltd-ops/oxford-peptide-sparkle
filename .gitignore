@@ -30,3 +30,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Medusa migration local runtime
+apps/**/.env
+apps/**/.env.local
+apps/**/data/publishable-key.json
+apps/**/data/email-outbox.jsonl
+apps/**/.medusa
+**/.next
+**/.medusa
+migration/shopify/logs/
+migration/shopify/state/
+playwright-report/
+test-results/
+blob-report/
+artifacts/

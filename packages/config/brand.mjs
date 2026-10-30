@@ -1,0 +1,22 @@
+export const BRAND = {
+  name: "Oxford Research Peptides",
+  legalName: "Oxford Research Syndicate Ltd",
+  companyNumber: "17207898",
+  siteUrl: "https://oxfordresearchpeptides.com",
+  email: "info@oxfordresearchpeptides.com",
+  signOff: "Sullivan, Founder",
+  address: {
+    line1: "131a Movers Lane",
+    city: "Barking",
+    region: "Essex",
+    postcode: "IG11 7UQ",
+    country: "United Kingdom",
+    countryCode: "GB",
+  },
+  currency: "gbp",
+  vendor: "Oxford Research Peptides",
+  skuPrefix: "ORP-",
+  researchNotice: "Research use only. Not for human or animal consumption.",
+  shopifyDomain: "cqdyni-4v.myshopify.com",
+  checkoutDomain: "checkout.oxfordresearchpeptides.com",
+};

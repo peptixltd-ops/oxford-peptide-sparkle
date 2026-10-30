@@ -1,0 +1,821 @@
+[
+  {
+    "path": "/research-hub/guides/what-is-retatrutide",
+    "title": "What is Retatrutide?",
+    "summary": "Introductory reference on Retatrutide (LY3437943) \u2014 a triple-agonist investigational peptide referenced in incretin pharmacology literature.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/retatrutide-mechanism-of-action",
+    "title": "Retatrutide Mechanism of Action",
+    "summary": "Receptor-level explanation of Retatrutide's activity at GLP-1R, GIPR and GCGR as reported in the published preclinical and clinical literature.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/glp-1-receptor-explained",
+    "title": "GLP-1 Receptor Explained",
+    "summary": "Overview of the GLP-1 receptor: a Class B G-protein-coupled receptor central to incretin pharmacology and to a growing family of research peptides.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/gip-receptor-explained",
+    "title": "GIP Receptor Explained",
+    "summary": "Overview of the GIP receptor: a class B G-protein-coupled receptor engaged by dual and triple incretin-agonist research peptides.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/glucagon-receptor-explained",
+    "title": "Glucagon Receptor Explained",
+    "summary": "Overview of the glucagon receptor (GCGR): classification, hepatic signalling and its role as the third receptor in triple-agonist research peptides.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/triple-agonists-explained",
+    "title": "Triple Agonists Explained",
+    "summary": "Educational overview of triple GLP-1 / GIP / glucagon receptor agonists \u2014 pharmacological rationale, structural strategy and comparison to single- and dual-agonist analogues.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/laboratory-reconstitution-guide",
+    "title": "Laboratory Reconstitution Guide",
+    "summary": "Practical, aseptic procedure for reconstituting lyophilised peptide reference material \u2014 diluent selection, concentration calculation and post-reconstitution storage.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/laboratory-storage-guide",
+    "title": "Laboratory Storage Guide",
+    "summary": "General laboratory storage procedure for lyophilised and reconstituted peptide reference standards \u2014 temperature, humidity, light, container and freeze-thaw management.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/retatrutide-research-applications",
+    "title": "Retatrutide Research Applications",
+    "summary": "Educational review of in-vitro and translational research applications for Retatrutide (LY3437943) as a reference standard.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/retatrutide-faq",
+    "title": "Retatrutide FAQ",
+    "summary": "Comprehensive frequently asked questions about Retatrutide (LY3437943): identity, pharmacology, storage, applications and regulatory status.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/bpc-157-mechanism-of-action",
+    "title": "BPC-157 Mechanism of Action",
+    "summary": "Scientifically honest overview of BPC-157's reported mechanistic activity \u2014 nitric-oxide modulation, VEGFR2 up-regulation, FAK-paxillin signalling and the cytoprotection framework \u2014 with explicit note of what remains unresolved.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/bpc-157-faq",
+    "title": "BPC-157 FAQ",
+    "summary": "Comprehensive research-focused FAQ on BPC-157 \u2014 identity, mechanism, laboratory handling, stability, evidence base, regulatory status and common misconceptions.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/what-is-semaglutide",
+    "title": "What is Semaglutide?",
+    "summary": "Beginner-friendly research-focused introduction to Semaglutide \u2014 a long-acting GLP-1 receptor agonist derived from native GLP-1(7-37).",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/semaglutide-mechanism-of-action",
+    "title": "Semaglutide Mechanism of Action",
+    "summary": "Receptor-level explanation of Semaglutide's activity at GLP-1R \u2014 G\u03b1s / cAMP / PKA / EPAC2 signalling, \u03b2-arrestin recruitment, insulinotropic and glucagonostatic effects, gastric emptying and central appetite modulation.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/semaglutide-faq",
+    "title": "Semaglutide FAQ",
+    "summary": "Comprehensive research-focused FAQ on Semaglutide \u2014 identity, receptor pharmacology, structural modifications, pharmacokinetics, laboratory handling, evidence base and regulatory status.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/semaglutide-pharmacokinetics",
+    "title": "Semaglutide Pharmacokinetics",
+    "summary": "Reported pharmacokinetics of Semaglutide \u2014 half-life, albumin binding, C18 di-acid acylation, absorption for subcutaneous vs oral formulations, distribution, steady state and research limitations.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/semaglutide-research-applications",
+    "title": "Semaglutide Research Applications",
+    "summary": "Overview of published Semaglutide research contexts \u2014 metabolic, cardiovascular, renal, neuroinflammation/CNS and NAFLD/MASH \u2014 with a clear preclinical vs human evidence split.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/albumin-binding-half-life-extension",
+    "title": "Albumin Binding and Half-Life Extension",
+    "summary": "Reusable mechanism guide explaining how fatty-acid acylation supports reversible non-covalent binding to serum albumin, and how that extends the plasma half-life of GLP-1 peptides.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/incretin-effect-explained",
+    "title": "Incretin Effect Explained",
+    "summary": "Foundation guide to the incretin effect \u2014 how GLP-1 and GIP amplify glucose-dependent insulin secretion, the physiology of gut L- and K-cells, and how incretin biology underpins GLP-1 receptor agonist research.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/what-is-tirzepatide",
+    "title": "What is Tirzepatide?",
+    "summary": "Beginner-friendly research-focused introduction to Tirzepatide \u2014 a dual GIP / GLP-1 receptor agonist positioned between Semaglutide and Retatrutide in incretin pharmacology.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/tirzepatide-mechanism-of-action",
+    "title": "Tirzepatide Mechanism of Action",
+    "summary": "Receptor-level explanation of Tirzepatide as a dual GIP / GLP-1 receptor agonist \u2014 dual cAMP / PKA signalling, biased \u03b2-arrestin engagement at GLP-1R, GIP-adipocyte biology and integrated satiety signalling.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/research-hub/guides/tirzepatide-faq",
+    "title": "Tirzepatide FAQ",
+    "summary": "Comprehensive research-focused FAQ on Tirzepatide \u2014 identity, dual-receptor pharmacology, structural modifications, pharmacokinetics, laboratory handling, evidence base and regulatory status.",
+    "populated": true,
+    "page_type": "guide"
+  },
+  {
+    "path": "/compounds/retatrutide",
+    "title": "Retatrutide",
+    "summary": "",
+    "populated": true,
+    "page_type": "compound"
+  },
+  {
+    "path": "/compounds/bpc-157",
+    "title": "BPC-157",
+    "summary": "",
+    "populated": true,
+    "page_type": "compound"
+  },
+  {
+    "path": "/compounds/semaglutide",
+    "title": "Semaglutide",
+    "summary": "",
+    "populated": true,
+    "page_type": "compound"
+  },
+  {
+    "path": "/compounds/tirzepatide",
+    "title": "Tirzepatide",
+    "summary": "",
+    "populated": true,
+    "page_type": "compound"
+  },
+  {
+    "path": "/research-hub/glossary/angiogenesis",
+    "title": "Angiogenesis",
+    "summary": "Formation of new blood vessels from pre-existing vasculature, driven by endothelial proliferation and migration.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/vegfr2",
+    "title": "VEGFR2",
+    "summary": "Vascular endothelial growth factor receptor 2 \u2014 the principal endothelial receptor tyrosine kinase driving angiogenic signalling.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/nitric-oxide",
+    "title": "Nitric Oxide",
+    "summary": "Small gaseous signalling molecule (NO) produced by nitric-oxide synthases with vasodilatory, cytoprotective and cell-signalling roles.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/cytoprotection",
+    "title": "Cytoprotection",
+    "summary": "Research framework describing molecules that protect cells and tissues from injury independently of any specific receptor pathway.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/pentadecapeptide",
+    "title": "Pentadecapeptide",
+    "summary": "A peptide composed of fifteen amino-acid residues.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/fibroblast",
+    "title": "Fibroblast",
+    "summary": "Connective-tissue cell that synthesises extracellular matrix and collagen and coordinates directed migration during tissue repair.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/fak-paxillin",
+    "title": "FAK-Paxillin",
+    "summary": "Focal-adhesion signalling axis coupling integrin engagement to directed cell migration and tissue-repair phenotypes.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/peptide",
+    "title": "Peptide",
+    "summary": "Short chain of amino-acid residues joined by peptide bonds, typically fewer than about 50 residues.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/amino-acid",
+    "title": "Amino Acid",
+    "summary": "Bifunctional organic molecule bearing both amino and carboxyl groups; the monomer unit of peptides and proteins.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/peptide-bond",
+    "title": "Peptide Bond",
+    "summary": "Covalent amide linkage between the carboxyl of one amino acid and the amino group of the next, releasing water.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/lyophilisation",
+    "title": "Lyophilisation",
+    "summary": "Freeze-drying \u2014 low-temperature dehydration of a frozen sample by vacuum sublimation.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/lyophilised-powder",
+    "title": "Lyophilised Powder",
+    "summary": "Dry porous cake or powder produced by freeze-drying an aqueous peptide solution.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/reconstitution",
+    "title": "Reconstitution",
+    "summary": "Aseptic dissolution of a lyophilised peptide in a defined volume of sterile diluent.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/bioavailability",
+    "title": "Bioavailability",
+    "summary": "Fraction of an administered dose that reaches the systemic circulation in an active form.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/half-life",
+    "title": "Half-life",
+    "summary": "Time required for the plasma concentration of a compound to fall to half of its initial value.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/stability",
+    "title": "Stability",
+    "summary": "Capacity of a peptide to retain chemical structure, purity and activity over time under defined storage.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/molecular-weight",
+    "title": "Molecular Weight",
+    "summary": "Sum of atomic weights of all atoms in a molecule; for peptides, residue masses minus one water per bond.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/agonist",
+    "title": "Agonist",
+    "summary": "Ligand that binds a receptor and produces the functional response of the endogenous activator.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/antagonist",
+    "title": "Antagonist",
+    "summary": "Ligand that binds a receptor without activating it and blocks the effect of an agonist.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/partial-agonist",
+    "title": "Partial Agonist",
+    "summary": "Ligand that activates a receptor but produces a lower maximal response than a full agonist.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/receptor",
+    "title": "Receptor",
+    "summary": "Cellular protein that binds a specific ligand and initiates a defined intracellular signalling event.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/ligand",
+    "title": "Ligand",
+    "summary": "Molecule that binds a receptor or other biomolecule with defined affinity to form a reversible complex.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/affinity",
+    "title": "Affinity",
+    "summary": "Thermodynamic strength of a ligand\u2013receptor interaction, quantified by the dissociation constant Kd.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/potency",
+    "title": "Potency",
+    "summary": "Concentration of a ligand required to produce a defined functional response (typically EC50 or IC50).",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/ec50",
+    "title": "EC50",
+    "summary": "Concentration of an agonist producing half of its own maximal response in a defined assay.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/ic50",
+    "title": "IC50",
+    "summary": "Concentration of an inhibitor that reduces a defined response by 50% in a given assay system.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/pharmacodynamics",
+    "title": "Pharmacodynamics",
+    "summary": "Branch of pharmacology describing what a compound does to the organism and the mechanism responsible.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/gpcr",
+    "title": "GPCR",
+    "summary": "G-protein-coupled receptor \u2014 seven-transmembrane family that transduces ligand binding via heterotrimeric G proteins.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/signal-transduction",
+    "title": "Signal Transduction",
+    "summary": "Cascade of intracellular events by which a receptor converts a ligand-binding event into a cellular response.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/second-messenger",
+    "title": "Second Messenger",
+    "summary": "Small intracellular molecule that relays and amplifies signals from a receptor to downstream effectors.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/camp",
+    "title": "cAMP",
+    "summary": "Cyclic adenosine 3\u2032,5\u2032-monophosphate \u2014 the central second messenger downstream of Gs-coupled receptors.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/protein-kinase-a",
+    "title": "Protein Kinase A",
+    "summary": "cAMP-dependent serine/threonine kinase that phosphorylates intracellular substrates on receptor activation.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/hplc",
+    "title": "HPLC",
+    "summary": "High-performance liquid chromatography \u2014 the standard technique for assessing peptide purity.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/lc-ms",
+    "title": "LC-MS",
+    "summary": "Liquid chromatography\u2013mass spectrometry \u2014 hyphenated technique confirming peptide identity by intact mass.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/endotoxin",
+    "title": "Endotoxin",
+    "summary": "Lipopolysaccharide from Gram-negative bacteria; a pyrogenic contaminant assayed during peptide manufacture.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/lal-assay",
+    "title": "LAL Assay",
+    "summary": "Limulus amebocyte lysate assay \u2014 the standard method for detecting and quantifying bacterial endotoxin.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/certificate-of-analysis",
+    "title": "Certificate of Analysis",
+    "summary": "Batch-specific quality document reporting identity, purity, endotoxin and related analytical results.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/glp-1",
+    "title": "GLP-1",
+    "summary": "Glucagon-like peptide-1 \u2014 an intestinal incretin hormone that potentiates glucose-dependent insulin secretion.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/incretin",
+    "title": "Incretin",
+    "summary": "Gut-derived peptide hormone (GLP-1, GIP) that amplifies insulin secretion in response to oral nutrient intake.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/incretin-effect",
+    "title": "Incretin Effect",
+    "summary": "Greater insulin release from oral than intravenous glucose at equivalent glycaemia, mediated by GLP-1 and GIP.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/glp-1-receptor-agonist",
+    "title": "GLP-1 Receptor Agonist",
+    "summary": "Pharmacological class of peptides and small molecules that activate the GLP-1 receptor.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/biased-agonism",
+    "title": "Biased Agonism",
+    "summary": "Ligand-selective preference for one branch of a receptor's signalling output over another (e.g. G-protein vs \u03b2-arrestin).",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/beta-arrestin",
+    "title": "Beta-Arrestin",
+    "summary": "Adaptor protein family that binds phosphorylated GPCRs, driving receptor internalisation and arrestin-dependent signalling.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/camp-pka-signalling",
+    "title": "cAMP / PKA Signalling",
+    "summary": "Canonical GPCR signalling module: G\u03b1s elevates cAMP, activating protein kinase A on intracellular substrates.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/epac2",
+    "title": "EPAC2",
+    "summary": "Exchange protein directly activated by cAMP (isoform 2); a PKA-independent cAMP effector important in \u03b2-cell exocytosis.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/gastric-emptying",
+    "title": "Gastric Emptying",
+    "summary": "Rate at which stomach contents transit into the duodenum; slowed by GLP-1R activation via vagal pathways.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/pomc-neuron",
+    "title": "POMC Neuron",
+    "summary": "Hypothalamic arcuate-nucleus neuron expressing proopiomelanocortin; anorexigenic node in central appetite regulation.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/npy-neuron",
+    "title": "NPY Neuron",
+    "summary": "Hypothalamic arcuate-nucleus neuron co-expressing NPY and AgRP; orexigenic node in central appetite regulation.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/insulinotropic",
+    "title": "Insulinotropic",
+    "summary": "Property of stimulating insulin secretion from pancreatic \u03b2-cells, typically in a glucose-dependent manner for incretins.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/glucagonostatic",
+    "title": "Glucagonostatic",
+    "summary": "Property of suppressing glucagon secretion from pancreatic \u03b1-cells, contributing to reduced hepatic glucose output.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/acylation",
+    "title": "Acylation",
+    "summary": "Covalent attachment of an acyl (typically fatty-acid) group to a peptide side chain to modify pharmacokinetics.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/albumin-binding",
+    "title": "Albumin Binding",
+    "summary": "Reversible non-covalent association of a molecule with serum albumin, prolonging plasma residence.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/snac",
+    "title": "SNAC",
+    "summary": "Sodium N-[8-(2-hydroxybenzoyl)amino]caprylate \u2014 the absorption enhancer used in oral Semaglutide.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/subcutaneous-administration",
+    "title": "Subcutaneous Administration",
+    "summary": "Delivery of a drug into the subcutaneous fat, providing slow systemic absorption from the injection depot.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/steady-state",
+    "title": "Steady State",
+    "summary": "Pharmacokinetic condition in which drug input rate equals elimination rate \u2014 reached after ~5 half-lives of regular dosing.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/receptor-internalisation",
+    "title": "Receptor Internalisation",
+    "summary": "Endocytic removal of an activated receptor from the plasma membrane, typically after \u03b2-arrestin recruitment.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/desensitisation",
+    "title": "Desensitisation",
+    "summary": "Diminished receptor responsiveness during sustained agonist exposure, mediated by phosphorylation and internalisation.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/mace",
+    "title": "MACE",
+    "summary": "Major adverse cardiovascular events \u2014 composite endpoint of cardiovascular death, non-fatal myocardial infarction and non-fatal stroke.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/dio-model",
+    "title": "DIO Model",
+    "summary": "Diet-induced obesity model \u2014 rodent (typically mouse or rat) fed a high-fat diet to model obesity and metabolic dysregulation.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/native-glp-1",
+    "title": "Native GLP-1",
+    "summary": "Endogenous glucagon-like peptide-1 (GLP-1(7-37) / GLP-1(7-36)amide) \u2014 rapidly degraded by DPP-4 in plasma.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/oral-semaglutide",
+    "title": "Oral Semaglutide",
+    "summary": "Oral tablet formulation of Semaglutide co-formulated with the absorption enhancer SNAC (marketed as Rybelsus).",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/semaglutide",
+    "title": "Semaglutide",
+    "summary": "Long-acting synthetic GLP-1 receptor agonist derived from GLP-1(7-37) with a C18 fatty-di-acid supporting albumin binding.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/dual-incretin-agonism",
+    "title": "Dual Incretin Agonism",
+    "summary": "Concurrent activation of the GIP and GLP-1 receptors by a single ligand, exemplified by Tirzepatide.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/gip-adipocyte-axis",
+    "title": "GIP-Adipocyte Axis",
+    "summary": "GIP-receptor signalling on adipocytes that modulates lipid handling and insulin sensitivity in adipose tissue.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/satiety-signalling",
+    "title": "Satiety Signalling",
+    "summary": "Integrated central-nervous-system pathways in the hypothalamus and hindbrain that translate incretin engagement into reduced food intake.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/gs-protein",
+    "title": "Gs Protein",
+    "summary": "Stimulatory heterotrimeric G protein (G\u03b1s) that couples class B GPCRs to adenylyl cyclase and cAMP production.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/c20-fatty-diacid",
+    "title": "C20 Fatty Diacid",
+    "summary": "Twenty-carbon dicarboxylic acid used as the albumin-binding side chain of Tirzepatide, attached at Lys20 via a \u03b3Glu-2xOEG spacer.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/weekly-dosing-pharmacokinetics",
+    "title": "Weekly Dosing Pharmacokinetics",
+    "summary": "Pharmacokinetic profile \u2014 typically half-life of several days plus reversible albumin binding \u2014 that supports once-weekly subcutaneous administration.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/surpass-programme",
+    "title": "SURPASS Programme",
+    "summary": "Randomised trial programme evaluating Tirzepatide in adults with type 2 diabetes across monotherapy and active-comparator studies (SURPASS-1 through SURPASS-5).",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/surmount-programme",
+    "title": "SURMOUNT Programme",
+    "summary": "Randomised trial programme evaluating Tirzepatide for weight management in adults with overweight or obesity (SURMOUNT-1 onwards).",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/glossary/hba1c-endpoint",
+    "title": "HbA1c Endpoint",
+    "summary": "Glycated haemoglobin measured as a percentage; standard endpoint for glycaemic-control research reflecting average blood glucose over the preceding two to three months.",
+    "populated": true,
+    "page_type": "glossary"
+  },
+  {
+    "path": "/research-hub/comparisons/semaglutide-vs-retatrutide",
+    "title": "Semaglutide vs Retatrutide",
+    "summary": "Side-by-side comparison of Semaglutide (GLP-1 mono-agonist) and Retatrutide (GLP-1/GIP/GCG triple agonist) \u2014 receptor coverage, structural chemistry, pharmacokinetics, evidence maturity and research applications.",
+    "populated": true,
+    "page_type": "comparison"
+  },
+  {
+    "path": "/research-hub/comparisons/semaglutide-vs-tirzepatide",
+    "title": "Semaglutide vs Tirzepatide",
+    "summary": "Comparison of Semaglutide (GLP-1 mono-agonist) and Tirzepatide (GLP-1/GIP dual agonist) \u2014 receptor coverage, structural chemistry, pharmacokinetics and the published head-to-head evidence base.",
+    "populated": true,
+    "page_type": "comparison"
+  },
+  {
+    "path": "/research-hub/comparisons/semaglutide-vs-liraglutide",
+    "title": "Semaglutide vs Liraglutide",
+    "summary": "Comparison of Semaglutide (once-weekly, C18 di-acid) and Liraglutide (once-daily, C16 mono-acid) \u2014 shared receptor pharmacology, differing acylation chemistry, pharmacokinetics and evidence base.",
+    "populated": true,
+    "page_type": "comparison"
+  },
+  {
+    "path": "/research-hub/literature/sustain-6",
+    "title": "SUSTAIN-6 \u2014 Semaglutide and cardiovascular outcomes in type 2 diabetes",
+    "summary": "Randomised double-blind trial evaluating cardiovascular outcomes of once-weekly subcutaneous Semaglutide versus placebo in adults with type 2 diabetes at high cardiovascular risk.",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/step-programme",
+    "title": "STEP programme \u2014 Semaglutide Treatment Effect in People with Obesity",
+    "summary": "Randomised trial programme evaluating once-weekly subcutaneous Semaglutide for weight management in adults with overweight or obesity, across multiple populations and comparators (STEP-1 through STEP-8).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/select-trial",
+    "title": "SELECT \u2014 Semaglutide and cardiovascular outcomes in obesity without diabetes",
+    "summary": "Randomised double-blind trial of once-weekly subcutaneous Semaglutide versus placebo in adults with overweight or obesity and established cardiovascular disease, without diabetes.",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/flow-trial",
+    "title": "FLOW \u2014 Semaglutide and kidney outcomes in type 2 diabetes",
+    "summary": "Randomised double-blind trial of once-weekly subcutaneous Semaglutide versus placebo evaluating kidney and cardiovascular outcomes in adults with type 2 diabetes and chronic kidney disease.",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/step-1",
+    "title": "STEP-1 \u2014 Semaglutide 2.4 mg in overweight or obesity",
+    "summary": "68-week randomised double-blind placebo-controlled Phase 3 trial of once-weekly subcutaneous Semaglutide 2.4 mg in 1,961 adults with overweight or obesity without diabetes (Wilding et al. 2021).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/step-2",
+    "title": "STEP-2 \u2014 Semaglutide 2.4 mg in overweight or obesity with T2D",
+    "summary": "68-week randomised placebo-controlled Phase 3 trial of Semaglutide 2.4 mg and 1.0 mg vs placebo in adults with overweight/obesity and T2D (Davies et al. 2021).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/step-3",
+    "title": "STEP-3 \u2014 Semaglutide 2.4 mg + intensive behavioural therapy",
+    "summary": "68-week randomised placebo-controlled Phase 3 trial of Semaglutide 2.4 mg as adjunct to intensive behavioural therapy in adults with overweight/obesity (Wadden et al. 2021).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/step-4",
+    "title": "STEP-4 \u2014 Weight-loss maintenance vs Semaglutide withdrawal",
+    "summary": "68-week Phase 3 trial with 20-week Semaglutide 2.4 mg run-in and randomised continuation vs placebo, characterising maintenance and post-withdrawal weight regain (Rubino et al. 2021).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/step-5",
+    "title": "STEP-5 \u2014 Two-year Semaglutide 2.4 mg in overweight/obesity",
+    "summary": "104-week randomised double-blind placebo-controlled Phase 3 trial of Semaglutide 2.4 mg in adults with overweight/obesity (Garvey et al. 2022).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/step-8",
+    "title": "STEP-8 \u2014 Semaglutide 2.4 mg vs Liraglutide 3.0 mg",
+    "summary": "68-week randomised head-to-head Phase 3 trial of once-weekly Semaglutide 2.4 mg vs once-daily Liraglutide 3.0 mg in adults with overweight/obesity (Rubino et al. 2022).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/surpass-1",
+    "title": "SURPASS-1 \u2014 Tirzepatide monotherapy in T2D",
+    "summary": "40-week randomised placebo-controlled Phase 3 monotherapy trial of Tirzepatide 5/10/15 mg in adults with T2D on diet and exercise (Rosenstock et al. 2021).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/surpass-2",
+    "title": "SURPASS-2 \u2014 Tirzepatide vs Semaglutide 1 mg in T2D",
+    "summary": "40-week randomised head-to-head Phase 3 trial of once-weekly Tirzepatide 5/10/15 mg vs once-weekly Semaglutide 1 mg in adults with T2D on metformin (Fr\u00edas et al. 2021).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/surpass-3",
+    "title": "SURPASS-3 \u2014 Tirzepatide vs insulin degludec in T2D",
+    "summary": "52-week randomised active-controlled Phase 3 trial of once-weekly Tirzepatide vs once-daily titrated insulin degludec in adults with T2D on metformin \u00b1 SGLT2 inhibitor (Ludvik et al. 2021).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/surpass-4",
+    "title": "SURPASS-4 \u2014 Tirzepatide vs insulin glargine, elevated CV risk",
+    "summary": "Randomised active-controlled Phase 3 trial of once-weekly Tirzepatide vs once-daily titrated insulin glargine in adults with T2D and elevated CV risk, with pre-specified CV meta-analysis (Del Prato et al. 2021).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/surpass-5",
+    "title": "SURPASS-5 \u2014 Tirzepatide added to titrated insulin glargine in T2D",
+    "summary": "40-week randomised placebo-controlled Phase 3 trial of once-weekly Tirzepatide added to titrated insulin glargine in adults with T2D (Dahl et al. 2022).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/retatrutide-phase-2-obesity",
+    "title": "Retatrutide Phase 2 Obesity Trial",
+    "summary": "48-week randomised placebo-controlled dose-ranging Phase 2 trial of once-weekly Retatrutide (1/4/8/12 mg) in adults with obesity without diabetes (Jastreboff et al. 2023).",
+    "populated": true,
+    "page_type": "literature"
+  },
+  {
+    "path": "/research-hub/literature/retatrutide-phase-2-diabetes",
+    "title": "Retatrutide Phase 2 Diabetes Trial",
+    "summary": "36-week randomised placebo- and active-controlled Phase 2 trial of once-weekly Retatrutide (0.5/4/8/12 mg) vs placebo and dulaglutide 1.5 mg in adults with T2D on metformin (Rosenstock et al. 2023).",
+    "populated": true,
+    "page_type": "literature"
+  }
+]
