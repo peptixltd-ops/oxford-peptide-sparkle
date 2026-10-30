@@ -224,7 +224,7 @@ const dispatch = (pad = "32px") => `
     <tr><td style="padding:14px 18px;">
       <div style="font:700 10px/1 ${BRAND.sans};letter-spacing:.2em;color:${BRAND.gold};">DISPATCHED FROM THE UK</div>
       <div style="margin-top:7px;font:400 14px/1.55 ${BRAND.serif};color:${BRAND.navy};">Orders placed before 2pm (UK time) on a working day are dispatched the same day.</div>
-      <div style="margin-top:5px;font:400 12px/1.55 ${BRAND.sans};color:${BRAND.muted};">Royal Mail Tracked 24, usually delivered the next working day — tracked, discreet packaging.</div>
+      <div style="margin-top:5px;font:400 12px/1.55 ${BRAND.sans};color:${BRAND.muted};">Next working day delivery (Tracked 24) — tracked, discreet packaging.</div>
     </td></tr>
   </table>
 </td></tr>`;

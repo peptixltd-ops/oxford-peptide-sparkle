@@ -11,6 +11,9 @@ function Page() {
         order value, excluding Russia and Belarus.
       </P>
       <P>
+        All UK orders are sent by Royal Mail Tracked 24: next working day delivery (Tracked 24).
+      </P>
+      <P>
         Please refer to our Frequently Asked Questions (FAQ) page for complete shipping and
         delivery information, including dispatch times, tracking, courier partners and
         availability.

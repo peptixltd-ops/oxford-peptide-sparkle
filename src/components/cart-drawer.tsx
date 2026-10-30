@@ -258,6 +258,7 @@ export function CartDrawer() {
               <Truck className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
               <span>Free UK delivery when you spend £12 or more</span>
             </p>
+            <p className="text-[11px] text-muted-foreground">Next working day delivery (Tracked 24)</p>
             <div className="flex justify-between pt-3 border-t border-border font-display text-lg font-medium">
               <span>Total</span>
               <span>{fmt(total)}</span>
