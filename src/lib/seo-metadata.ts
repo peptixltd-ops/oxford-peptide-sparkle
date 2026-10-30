@@ -142,6 +142,12 @@ export const SEO_METADATA: Readonly<Record<string, { topic?: string; description
   "/products/retatrutide": {
     "description": "GLP-1/GIP/glucagon triple agonist research peptide. Lyophilised powder in a sealed vial, for in-vitro laboratory research only."
   },
+  "/products/cjc-1295-ipamorelin": {
+    "description": "Combined CJC-1295 and Ipamorelin GHRH analogue and ghrelin receptor agonist blend for growth hormone secretion research. Research use only."
+  },
+  "/products/tesamorelin-ipamorelin": {
+    "description": "Combined Tesamorelin and Ipamorelin GHRH analogue and ghrelin receptor agonist blend for growth hormone axis research. Research use only."
+  },
   "/research-hub/collections/step-programme": {
     "description": "The STEP programme: randomised trials of once-weekly Semaglutide for obesity across populations and comparators. Educational research summaries."
   },
